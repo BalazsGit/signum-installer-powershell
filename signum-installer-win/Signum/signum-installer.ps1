@@ -67,7 +67,7 @@ $BTDEX_STARTER_PS1 = "start-btdex.ps1"
 $BTDEX_STARTER_EXEC = "start-btdex.bat"
 $BTDEX_VERSION = "v0.6.8"
 $BTDEX_DIR = "BTDEX"
-$BTDEX_VERSION_DIR = "$BTDEX_DIR-$BTDEX_VERSION"
+$BTDEX_VERSION_DIR = "$BTDEX_DIR\$BTDEX_VERSION"
 $BTDEX_EXEC = "btdex-${BTDEX_VERSION}-win.exe"
 $BTDEX_EXEC_PATH = "${BTDEX_DIR}\$BTDEX_VERSION_DIR\${BTDEX_EXEC}"
 $BTDEX_STARTER_PS1_PATH = "${BTDEX_DIR}\$BTDEX_VERSION_DIR\${BTDEX_STARTER_PS1}"
@@ -86,6 +86,81 @@ $PHOENIX_EXEC_PATH = "${PHOENIX_DIR}\$PHOENIX_VERSION_DIR\${PHOENIX_EXEC}"
 $PHOENIX_STARTER_PS1_PATH = "${PHOENIX_DIR}\$PHOENIX_VERSION_DIR\${PHOENIX_STARTER_PS1}"
 $PHOENIX_STARTER_EXEC_PATH = "${PHOENIX_DIR}\$PHOENIX_VERSION_DIR\${PHOENIX_STARTER_EXEC}"
 $PHOENIX_URL = "https://github.com/signum-network/phoenix/releases/download/desktop-${PHOENIX_VERSION}/${PHOENIX_EXEC}"
+
+$PLOTTER_DIR = "Plotter"
+
+$TURBOPLOTTER_STARTER_PS1 = "start-turboplotter.ps1"
+$TURBOPLOTTER_STARTER_EXEC = "start-turboplotter.bat"
+$TURBOPLOTTER_VERSION = "0.10.2"
+$TURBOPLOTTER_VERSION_DIR = "TurboPlotter"
+$TURBOPLOTTER_VERSION_DIR_PATH = "$PLOTTER_DIR\$TURBOPLOTTER_VERSION_DIR"
+$TURBOPLOTTER_VERSION_UNZIP = "$PLOTTER_DIR\$TURBOPLOTTER_VERSION_DIR\TurboPlotter_$TURBOPLOTTER_VERSION"
+$TURBOPLOTTER_VERSION_ZIP = "$PLOTTER_DIR\$TURBOPLOTTER_VERSION_DIR\TurboPlotter_$TURBOPLOTTER_VERSION.zip"
+$TURBOPLOTTER_EXEC = "TurboPlotter.exe"
+$TURBOPLOTTER_EXEC_PATH = "$TURBOPLOTTER_VERSION_UNZIP\${TURBOPLOTTER_EXEC}"
+$TURBOPLOTTER_STARTER_PS1_PATH = "$TURBOPLOTTER_VERSION_UNZIP\${TURBOPLOTTER_STARTER_PS1}"
+$TURBOPLOTTER_STARTER_EXEC_PATH = "$TURBOPLOTTER_VERSION_UNZIP\${TURBOPLOTTER_STARTER_EXEC}"
+$TURBOPLOTTER_URL = "https://blackpawn.com/tp/drop/TurboPlotter_$TURBOPLOTTER_VERSION.zip"
+
+$SIGNUMPLOTTER_STARTER_PS1 = "start-signumplotter.ps1"
+$SIGNUMPLOTTER_STARTER_EXEC = "start-signumplotter.bat"
+$SIGNUMPLOTTER_VERSION = "v2.5.0"
+$SIGNUMPLOTTER_DIR = "SignumPlotter"
+$SIGNUMPLOTTER_VERSION_DIR = "$PLOTTER_DIR\$SIGNUMPLOTTER_DIR\$SIGNUMPLOTTER_VERSION"
+$SIGNUMPLOTTER_EXEC = "signum-plotter.exe"
+$SIGNUMPLOTTER_EXEC_PATH = "$SIGNUMPLOTTER_VERSION_DIR\${SIGNUMPLOTTER_EXEC}"
+$SIGNUMPLOTTER_STARTER_PS1_PATH = "$SIGNUMPLOTTER_VERSION_DIR\${SIGNUMPLOTTER_STARTER_PS1}"
+$SIGNUMPLOTTER_STARTER_EXEC_PATH = "$SIGNUMPLOTTER_VERSION_DIR\${SIGNUMPLOTTER_STARTER_EXEC}"
+$SIGNUMPLOTTER_URL = "https://github.com/signum-network/signum-plotter/releases/download/$SIGNUMPLOTTER_VERSION/signum-plotter.exe"
+
+# https://wiki.signum.network/signum-mining/index.htm
+# https://blackpawn.com/tp/drop/TurboPlotter_0.10.2.zip
+# https://github.com/signum-network/signum-plotter/releases/download/v2.5.0/signum-plotter.exe
+# https://github.com/signum-network/whitepaper/blob/main/business/v1.pdf
+# https://github.com/signum-network/signum-miner/releases/download/v1.8.0/signum-miner.exe
+# https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.7.1/npp.8.7.1.portable.x64.zip
+
+# TODO 1 notepad++ installer
+# TODO Documents Menu
+
+$MINER_DIR = "Miner"
+$SIGNUM_MINER_DIR = "Signum Miner"
+
+$SIGNUM_MINER_MAINNET_STARTER_PS1 = "start-miner.ps1"
+$SIGNUM_MINER_MAINNET_STARTER_EXEC = "start-miner.bat"
+$SIGNUM_MINER_MAINNET_VERSION = "v1.8.0"
+$SIGNUM_MINER_MAINNET_VERSION_DIR = "$SIGNUM_MINER_MAINNET_VERSION"
+$SIGNUM_MINER_MAINNET_VERSION_DIR_PATH = "$SIGNUM_MAINNET_DIR\$MINER_DIR\$SIGNUM_MINER_DIR\$SIGNUM_MINER_MAINNET_VERSION_DIR"
+$SIGNUM_MINER_MAINNET_EXEC = "signum-miner.exe"
+$SIGNUM_MINER_MAINNET_EXEC_PATH = "$SIGNUM_MINER_MAINNET_VERSION_DIR_PATH\${SIGNUM_MINER_MAINNET_EXEC}"
+$SIGNUM_MINER_MAINNET_STARTER_PS1_PATH = "$SIGNUM_MINER_MAINNET_VERSION_DIR_PATH\${SIGNUM_MINER_MAINNET_STARTER_PS1}"
+$SIGNUM_MINER_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_MINER_MAINNET_VERSION_DIR_PATH\${SIGNUM_MINER_MAINNET_STARTER_EXEC}"
+$SIGNUM_MINER_MAINNET_CONF_PATH = "$SIGNUM_MINER_MAINNET_VERSION_DIR_PATH\config.yaml"
+$SIGNUM_MINER_MAINNET_CONF_URL = "https://github.com/signum-network/signum-miner/releases/download/${SIGNUM_MINER_MAINNET_VERSION}/config.yaml"
+$SIGNUM_MINER_MAINNET_URL = "https://github.com/signum-network/signum-miner/releases/download/${SIGNUM_MINER_MAINNET_VERSION}/${SIGNUM_MINER_MAINNET_EXEC}"
+
+$SIGNUM_MINER_TESTNET_STARTER_PS1 = "start-miner.ps1"
+$SIGNUM_MINER_TESTNET_STARTER_EXEC = "start-miner.bat"
+$SIGNUM_MINER_TESTNET_VERSION = "v1.8.0"
+$SIGNUM_MINER_TESTNET_VERSION_DIR = "$SIGNUM_MINER_TESTNET_VERSION"
+$SIGNUM_MINER_TESTNET_VERSION_DIR_PATH = "$SIGNUM_TESTNET_DIR\$MINER_DIR\$SIGNUM_MINER_DIR\$SIGNUM_MINER_TESTNET_VERSION_DIR"
+$SIGNUM_MINER_TESTNET_EXEC = "signum-miner.exe"
+$SIGNUM_MINER_TESTNET_EXEC_PATH = "$SIGNUM_MINER_TESTNET_VERSION_DIR_PATH\${SIGNUM_MINER_TESTNET_EXEC}"
+$SIGNUM_MINER_TESTNET_STARTER_PS1_PATH = "$SIGNUM_MINER_TESTNET_VERSION_DIR_PATH\${SIGNUM_MINER_TESTNET_STARTER_PS1}"
+$SIGNUM_MINER_TESTNET_STARTER_EXEC_PATH = "$SIGNUM_MINER_TESTNET_VERSION_DIR_PATH\${SIGNUM_MINER_TESTNET_STARTER_EXEC}"
+$SIGNUM_MINER_TESTNET_CONF_PATH = "$SIGNUM_MINER_TESTNET_VERSION_DIR_PATH\config.yaml"
+$SIGNUM_MINER_TESTNET_CONF_URL = "https://github.com/signum-network/signum-miner/releases/download/${SIGNUM_MINER_TESTNET_VERSION}/config.yaml"
+$SIGNUM_MINER_TESTNET_URL = "https://github.com/signum-network/signum-miner/releases/download/${SIGNUM_MINER_TESTNET_VERSION}/${SIGNUM_MINER_TESTNET_EXEC}"
+
+$DOCUMENTS_DIR = "Documents"
+
+$WHITEPAPER_VERSION = "v1"
+$WHITEPAPER_DOC = "$WHITEPAPER_VERSION.pdf"
+$WHITEPAPER_DIR = "Whitepaper"
+$WHITEPAPER_DIR_PATH = "$DOCUMENTS_DIR\$WHITEPAPER_DIR"
+$WHITEPAPER_DOC_PATH = "$DOCUMENTS_DIR\$WHITEPAPER_DIR\$WHITEPAPER_VERSION.pdf"
+$WHITEPAPER_URL = "https://signum-network.github.io/whitepaper/business/${WHITEPAPER_VERSION}.pdf"
+# $WHITEPAPER_URL = "https://github.com/signum-network/whitepaper/blob/main/business/${WHITEPAPER_VERSION}.pdf"
 
 $DATABASE_DIR = "Database"
 
@@ -141,20 +216,38 @@ function Show-InstallMenu {
     Write-Host "            Welcome to the Signum Installer          "
     Write-Host "====================================================="
     Write-Host "Please select an option:"
-    Write-Host "[1] Install Signum Mainnet with MariaDB"
-    Write-Host "[2] Install Signum Testnet with MariaDB"
-    Write-Host "[3] Install BTDEX"
-    Write-Host "[4] Install Phoenix"
-    Write-Host "[5] Install MariaDB"
-    Write-Host "[6] Install HeidiSQL"
-    Write-Host "[7] Install NGINX"
+    Write-Host "[1] `tInstall Signum Mainnet with MariaDB"
+    Write-Host "[2] `tInstall Signum Testnet with MariaDB"
+	# Write-Host "[1] Install Signum Mainnet with PostgreSQL set different ports"
+    # Write-Host "[2] Install Signum Testnet with PostgreSQL set different ports"
+	# Write-Host "[1] Install Signum Mainnet with SQLite set different ports"
+    # Write-Host "[2] Install Signum Testnet with SQLite set different ports"
+    Write-Host "[3] `tInstall BTDEX"
+    Write-Host "[4] `tInstall Phoenix"
+	Write-Host "[5] `tInstall TurboPlotter"
+	Write-Host "[6] `tInstall SignumPlotter"
+    Write-Host "[7] `tInstall Signum Miner Mainnet"
+    Write-Host "[8] `tInstall Signum Miner Testnet"
+	# TODO add signum miner
+	# TODO add signum pool
+	# TODO add signum explorer
+    Write-Host "[9] `tInstall MariaDB"
+    Write-Host "[10] `tInstall HeidiSQL"
+    Write-Host "[11] `tInstall NGINX"
+	Write-Host "[12] `tDownload Whitepaper"
     Write-Host "-----------------------------------------------------"
-    Write-Host "[8] Signum Starter Menu"
-    Write-Host "[9] Exit"
+	# TODO Signum pages menu
+	# TODO add usefull signum pages wiki, official page, github stb. coinmarcetcap, bft portal, explorer
+	# Developer menu SmartC SmartJ for smartcontracts
+	# Signum provider menu
+	# letsencrypt with ACME challege
+	# open readme how to use the installer
+    Write-Host "[13] `tSignum Starter Menu"
+    Write-Host "[14] `tExit"
     Write-Host "====================================================="
 
 	# Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
-    $choice = Read-Host "Enter your choice (1-9)"
+    $choice = Read-Host "Enter your choice (1-14)"
 
 	function install-process($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -182,19 +275,34 @@ function Show-InstallMenu {
         "4" {
 			install-process $PHOENIX_EXEC_PATH "Phoenix" {install_phoenix}
         }
-        "5" {
-			install-process $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+		"5" {
+			install-process $TURBOPLOTTER_EXEC_PATH "TurboPlotter" {install_turboplotter}
         }
-        "6" {
-			install-process $HEIDISQL_EXEC_PATH "HeidiSQL" {install_heidisql}
+		"6" {
+			install-process $SIGNUMPLOTTER_EXEC_PATH "SignumPlotter" {install_signumplotter}
         }
 		"7" {
-			install-process $NGINX_EXEC_PATH "NGINX" {install_nginx}
+			install-process $SIGNUM_MINER_MAINNET_EXEC_PATH "Signum Miner Mainnet" {install_signumminer_mainnet}
         }
-        "8" {
-            Show-StartMenu
+		"8" {
+			install-process $SIGNUM_MINER_TESTNET_EXEC_PATH "Signum Miner Testnet" {install_signumminer_testnet}
         }
         "9" {
+			install-process $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+        }
+        "10" {
+			install-process $HEIDISQL_EXEC_PATH "HeidiSQL" {install_heidisql}
+        }
+		"11" {
+			install-process $NGINX_EXEC_PATH "NGINX" {install_nginx}
+        }		
+		"12" {
+			install-doc $WHITEPAPER_DOC_PATH "Whitepaper" $WHITEPAPER_DOC_PATH $WHITEPAPER_URL
+        }
+        "13" {
+            Show-StartMenu
+        }
+        "14" {
             Exit-Script
         }
         default {
@@ -211,19 +319,24 @@ function Show-StartMenu {
     Write-Host "                 Start Signum Node                   "
     Write-Host "====================================================="
     Write-Host "Please select an option:"
-    Write-Host "[1] Start Signum Node Mainnet with MariaDB"
-    Write-Host "[2] Start Signum Node Testnet with MariaDB"
-    Write-Host "[3] Start BTDEX"
-    Write-Host "[4] Start Phoenix"
-    Write-Host "[5] Start MariaDB"
-    Write-Host "[6] Start HeidiSQL"
-	Write-Host "[7] Start NGINX"
+    Write-Host "[1] `tStart Signum Node Mainnet with MariaDB"
+    Write-Host "[2] `tStart Signum Node Testnet with MariaDB"
+    Write-Host "[3] `tStart BTDEX"
+    Write-Host "[4] `tStart Phoenix"
+	Write-Host "[5] `tStart TurboPlotter"
+	Write-Host "[6] `tStart SignumPlotter"
+	Write-Host "[7] `tStart Signum Miner Mainnet"
+	Write-Host "[8] `tStart Signum Miner Testnet"
+    Write-Host "[9] `tStart MariaDB"
+    Write-Host "[10] `tStart HeidiSQL"
+	Write-Host "[11] `tStart NGINX"
+	Write-Host "[12] `tOpen Whitepaper"
     Write-Host "-----------------------------------------------------"
-    Write-Host "[8] Signum Installer Menu"
-    Write-Host "[9] Exit"
+    Write-Host "[13] `tSignum Installer Menu"
+    Write-Host "[14] `tExit"
     Write-Host "====================================================="
 
-    $choice = Read-Host "Enter your choice (1-9)"
+    $choice = Read-Host "Enter your choice (1-14)"
 
 	function start-process-menu($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -254,19 +367,34 @@ function Show-StartMenu {
         "4" {
 			start-process-menu $PHOENIX_STARTER_PS1_PATH "Phoenix" {install_phoenix}
         }
-        "5" {
-			start-process-menu $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+		"5" {
+			start-process-menu $TURBOPLOTTER_STARTER_PS1_PATH "TurboPlotter" {install_turboplotter}
         }
-        "6" {
-			start-process-menu $HEIDISQL_STARTER_PS1_PATH "HeidiSQL" {install_heidisql}
+		"6" {
+			start-process-menu $SIGNUMPLOTTER_STARTER_PS1_PATH "SignumPlotter" {install_signumplotter}
         }
 		"7" {
-			start-process-menu $NGINX_STARTER_PS1_PATH "NGINX" {install_nginx}
+			start-process-menu $SIGNUM_MINER_MAINNET_STARTER_PS1_PATH "Signum Miner Mainnet" {install_signumminer_mainnet}
         }
-        "8" {
-            Show-InstallMenu
+		"8" {
+			start-process-menu $SIGNUM_MINER_TESTNET_STARTER_PS1_PATH "Signum Miner Testnet" {install_signumminer_testnet}
         }
         "9" {
+			start-process-menu $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+        }
+        "10" {
+			start-process-menu $HEIDISQL_STARTER_PS1_PATH "HeidiSQL" {install_heidisql}
+        }
+		"11" {
+			start-process-menu $NGINX_STARTER_PS1_PATH "NGINX" {install_nginx}
+        }
+		"12" {
+            open-doc $WHITEPAPER_DOC_PATH "Whitepaper" $WHITEPAPER_DIR_PATH $WHITEPAPER_URL
+		}
+        "13" {
+            Show-InstallMenu
+        }
+        "14" {
             Exit-Script
         }
         default {
@@ -281,6 +409,43 @@ function Exit-Script {
     Write-Host "Press any key to exit Signum Installer. Goodbye!"
     Pause
     Exit
+}
+
+function open-doc ($file, $name, $target_path, $url) {
+	
+	# Create mainnet/testnet directory
+    if (-not (Test-Path -Path "${file}")) {
+		Write-Host "$name is not downloaded."
+		download-prompt $name $url $target_path $file
+		Pause
+		Show-StartMenu
+    } else {
+        Write-Host "Opening ${name}"
+		Start-Process -FilePath "$file"
+    }
+	Pause
+	Show-InstallMenu
+	
+}
+
+function install-doc ($file, $name, $target_path, $url) {
+	
+	# Create mainnet/testnet directory
+    if (-not (Test-Path -Path "${file}")) {
+		download-prompt $name $url $target_path $file
+    } else {
+		Write-Host "${name} already downloaded."
+		$userChoice = Read-Host "Do you want to Open ${name} (yes/no)"
+		if ($userChoice -match '^(yes|y|Y)$') {
+			Write-Host "Opening ${name}"
+			Start-Process -FilePath "$file"
+		} else {
+			Write-Host "${name} download canceled."
+		}
+    }
+	Pause
+	Show-StartMenu
+	
 }
 
 function Install-SignumMainnet {
@@ -427,11 +592,17 @@ Set-Location -Path `$PSScriptRoot
 
 # Start MariaDB
 ..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$MARIADB_STARTER_PS1_PATH" "-WindowStyle Minimized"
+# Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-ExecutionPolicy Bypass", "-File", "..\..\..\$MARIADB_STARTER_PS1_PATH" -WindowStyle Minimized
 
 Start-Sleep -Seconds 10
 
 # Start Signum Node
-Start-Process -FilePath "jre\bin\java" -ArgumentList "-jar", "signum-node.jar" -WindowStyle Minimized
+# Start-Process -FilePath "jre\bin\java" -ArgumentList "-jar", "signum-node.jar" -WindowStyle Minimized
+Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "jre\bin\java -jar signum-node.jar"
+
+# TODO check
+# & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
+# "jre\bin\java" "-jar" "signum-node.jar" -WindowStyle Minimized
 # Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "Set-Title 'Signum Mainnet Node'; Start-Process -NoNewWindow -FilePath 'jre\bin\java' -ArgumentList '-jar', 'signum-node.jar'"
 
 exit
@@ -582,6 +753,301 @@ exit
 	
 }
 
+function install_signumminer_mainnet {
+    # Create Signum Miner Mainnet directory
+    if (-not (Test-Path "${SIGNUM_MINER_MAINNET_VERSION_DIR_PATH}")) {
+        New-Item -ItemType Directory -Path "${SIGNUM_MINER_MAINNET_VERSION_DIR_PATH}" | Out-Null
+        Write-Host "Created directory: ${SIGNUM_MINER_MAINNET_VERSION_DIR_PATH}"
+    } else {
+        Write-Host "Directory already exists: ${SIGNUM_MINER_MAINNET_VERSION_DIR_PATH}"
+    }
+
+    if (Test-Path $SIGNUM_MINER_MAINNET_EXEC_PATH) {
+        Write-Host "${SIGNUM_MINER_MAINNET_EXEC} already installed."
+    } else {
+        Write-Host "Downloading Signum Miner Mainnet ..."
+        Start-BitsTransfer -Source $SIGNUM_MINER_MAINNET_URL -Destination $SIGNUM_MINER_MAINNET_EXEC_PATH
+
+        if (-not (Test-Path $SIGNUM_MINER_MAINNET_EXEC_PATH)) {
+            Write-Host "Error: Failed to download Signum Miner Mainnet."
+            Read-Host "Press Enter to continue"
+            return
+        }
+	}
+	
+	if (Test-Path $SIGNUM_MINER_MAINNET_VERSION_DIR_PATH\config.yaml) {
+        Write-Host "Configuration file already downloaded."
+    } else {
+        Write-Host "Downloading Configuration file ..."
+        Start-BitsTransfer -Source $SIGNUM_MINER_MAINNET_CONF_URL -Destination $SIGNUM_MINER_MAINNET_CONF_PATH
+
+        if (-not (Test-Path $SIGNUM_MINER_MAINNET_CONF_PATH)) {
+            Write-Host "Error: Failed to download Configuration file."
+            Read-Host "Press Enter to continue"
+            return
+        }
+		Write-Host "Configuration file downloaded ..."
+	}
+			
+	# Create starter ps1
+	if (-not (Test-Path $SIGNUM_MINER_MAINNET_STARTER_PS1_PATH)) {
+		# Create start-nginx.ps1 file with the desired content
+		$content = 
+	
+@"
+# PowerShell script to start Signum Miner Mainnet
+Set-Location -Path `$PSScriptRoot
+
+# Start PHOENIX
+# Start-Process -FilePath "$SIGNUM_MINER_MAINNET_EXEC"
+Start-Process -FilePath "..\..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-NoExit", "-Command", ".\$SIGNUM_MINER_MAINNET_EXEC"
+
+exit
+"@
+
+		$content | Out-File -FilePath $SIGNUM_MINER_MAINNET_STARTER_PS1_PATH -Force
+
+		Write-Host "${SIGNUM_MINER_MAINNET_STARTER_PS1_PATH} successfully created."
+	} else {
+		Write-Host "File already exists: ${SIGNUM_MINER_MAINNET_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${SIGNUM_MINER_MAINNET_STARTER_PS1} ${SIGNUM_MINER_MAINNET_EXEC} ${SIGNUM_MINER_MAINNET_STARTER_EXEC_PATH}
+		
+    Write-Host "Signum Miner Mainnet installed successfully."
+	
+	setup_signumminer "$SIGNUM_MINER_MAINNET_VERSION_DIR_PATH\config.yaml"
+	
+}
+
+function setup_signumminer($config_path) {
+	
+	Clear-Host
+    Write-Host "====================================================="
+    Write-Host "                 Setup Signum Miner                   "
+    Write-Host "====================================================="
+    Write-Host "Please select an option:"
+    Write-Host "[1] `tEdit Configuration file"
+    Write-Host "[2] `tSetup Miner Configuration"
+	Write-Host "[3] `tRestore Configuration"
+	Write-Host "====================================================="
+	Write-Host "[4] `tExit Setup"
+    Write-Host "====================================================="
+	
+	
+    $choice = Read-Host "Enter your choice (1-4)"
+
+    switch ($choice) {
+        "1" {
+			# Download notepad++
+			# Open Configuration with notepad++
+			Return
+        }
+        "2" {
+			# init configuration.yaml with commenting out lines
+			# Load the content of the file
+			$content = Get-Content -Path $config_path
+
+			# Process each line using regex to add '#' only if there's no '#' before the target
+			$content = $content | ForEach-Object {
+				$_ -replace "^\s*10282355196851764065:", "# 10282355196851764065:" `
+				   -replace "^\s*1796535821016683299:", "# 1796535821016683299:" `
+				   -replace "^\s*- 'D:\\plot\\dir'", "# - 'D:\plot\dir'" `
+				   -replace "^\s*- 'E:\\plot\\dir'", "# - 'E:\plot\dir'" `
+				   -replace "^\s*- '/mnt/hd1/plot/dir'", "# - '/mnt/hd1/plot/dir'" `
+				   -replace "^\s*url: 'https://pool.burstcoin.ro'", "#url: 'https://pool.burstcoin.ro'"
+			}
+
+			# Write the changes back to the file
+			$content | Set-Content -Path $config_path
+			
+			Write-Host "Configuration initialized"	
+			
+			# add user inputs
+			Write-Host "Please select an option:"
+			# Would you like to [1] solo mine or [1] pool mine?
+			Write-Host "[1] Setup Solo Miner"
+			Write-Host "[2] Setup Pool Miner"
+			
+			$choice_mining = Read-Host "Enter your choice (1-2)"
+			
+			switch ($choice_mining) {
+				"1" {
+					Write-Host "Solo miner config"
+					$choice_account_id = Read-Host "Enter Account Id"
+					$choice_passphrase = Read-Host "Enter Passphrase"
+					$choice_node_url = Read-Host "Enter Signum node url (default: http://localhost:8125)"
+					if ($choice_node_url -eq "")
+					{
+						$choice_node_url = "http://localhost:8125"
+					}
+					if ($choice_account_id -ne "") {
+						$lines = Get-Content -Path $config_path
+
+						# Loop through each line and add a new line after the target line
+						for ($i = 0; $i -lt $lines.Count; $i++) {
+							if ($lines[$i] -match "^account_id_to_secret_phrase:") {
+								# Insert a new empty line after the detected line
+								$lines = $lines[0..$i] + "$choice_account_id`: $choice_passphrase" + $lines[($i + 1)..($lines.Count - 1)]
+								break
+							}
+						}
+						
+						# Loop through each line and add a new line after the target line
+						for ($i = 0; $i -lt $lines.Count; $i++) {
+							if ($lines[$i] -match "^url:") {
+								# Insert a new empty line after the detected line
+								$lines = $lines[0..$i] + "url`: $choice_node_url" + $lines[($i + 1)..($lines.Count - 1)]
+								break
+							}
+						}
+						
+						$choice_plot_path = Read-Host "Enter Plot path (D:\plot\dir)"
+						while ($choice_plot_path -ne "") {		
+							# Loop through each line and add a new line after the target line
+							for ($i = 0; $i -lt $lines.Count; $i++) {
+								if ($lines[$i] -match "^plot_dirs:") {
+									# Insert a new empty line after the detected line
+									$lines = $lines[0..$i] + "  - '$choice_plot_path'" + $lines[($i + 1)..($lines.Count - 1)]
+									break
+								}
+							}
+							$choice_plot_path = Read-Host "Enter Plot path (empty path exit)"
+						}
+						
+						# Write the modified lines back to the file
+						$lines | Set-Content -Path $config_path
+						
+					}
+				}
+				"2" {
+					Write-Host "Pool miner config"
+					# Enter pool URL
+					$choice_pool_url = Read-Host "Enter Signum pool url (default: https://opensignumpool.ddns.net:8129)"
+					if ($choice_node_url -eq "")
+					{
+						$choice_node_url = "https://opensignumpool.ddns.net:8129"
+					}
+					
+					$lines = Get-Content -Path $config_path
+					# Loop through each line and add a new line after the target line
+					for ($i = 0; $i -lt $lines.Count; $i++) {
+						if ($lines[$i] -match "^url:") {
+							# Insert a new empty line after the detected line
+							$lines = $lines[0..$i] + "url: $choice_pool_url" + $lines[($i + 1)..($lines.Count - 1)]
+							break
+						}
+					}
+					
+					$choice_plot_path = Read-Host "Enter Plot path (empty path: exit)"
+					while ($choice_plot_path -ne "") {
+						# Loop through each line and add a new line after the target line
+						for ($i = 0; $i -lt $lines.Count; $i++) {
+							if ($lines[$i] -match "^plot_dirs:") {
+								# Insert a new empty line after the detected line
+								$lines = $lines[0..$i] + "  - '$choice_plot_path'" + $lines[($i + 1)..($lines.Count - 1)]
+								break
+							}
+						}
+						$choice_plot_path = Read-Host "Enter Plot path (empty path: exit)"
+					}
+					
+					# Write the modified lines back to the file
+					$lines | Set-Content -Path $config_path
+					
+				}
+				default {
+					Write-Host "Invalid choice! Please try again."
+					Pause
+					setup_signumminer $config_path
+				}
+			}
+        }
+		"3" {
+			# Restore Configuration
+			Return
+        }
+		"4" {
+			# Exit Setup
+			Return
+        }
+        default {
+            Write-Host "Invalid choice! Please try again."
+            Pause
+            setup_signumminer $config_path
+        }
+    }
+}
+
+function install_signumminer_testnet {
+    # Create Signum Miner Testnet directory
+    if (-not (Test-Path "${SIGNUM_MINER_TESTNET_VERSION_DIR_PATH}")) {
+        New-Item -ItemType Directory -Path "${SIGNUM_MINER_TESTNET_VERSION_DIR_PATH}" | Out-Null
+        Write-Host "Created directory: ${SIGNUM_MINER_TESTNET_VERSION_DIR_PATH}"
+    } else {
+        Write-Host "Directory already exists: ${SIGNUM_MINER_TESTNET_VERSION_DIR_PATH}"
+    }
+
+    if (Test-Path $SIGNUM_MINER_TESTNET_EXEC_PATH) {
+        Write-Host "${SIGNUM_MINER_TESTNET_EXEC} already installed."
+    } else {
+        Write-Host "Downloading Signum Miner Testnet ..."
+        Start-BitsTransfer -Source $SIGNUM_MINER_TESTNET_URL -Destination $SIGNUM_MINER_TESTNET_EXEC_PATH
+
+        if (-not (Test-Path $SIGNUM_MINER_TESTNET_EXEC_PATH)) {
+            Write-Host "Error: Failed to download Signum Miner Testnet."
+            Read-Host "Press Enter to continue"
+            return
+        }
+	}
+	
+	if (Test-Path $SIGNUM_MINER_TESTNET_VERSION_DIR_PATH\config.yaml) {
+        Write-Host "Configuration file already downloaded."
+    } else {
+        Write-Host "Downloading Configuration file ..."
+        Start-BitsTransfer -Source $SIGNUM_MINER_TESTNET_CONF_URL -Destination $SIGNUM_MINER_TESTNET_CONF_PATH
+
+        if (-not (Test-Path $SIGNUM_MINER_TESTNET_CONF_PATH)) {
+            Write-Host "Error: Failed to download Configuration file."
+            Read-Host "Press Enter to continue"
+            return
+        }
+		Write-Host "Configuration file downloaded ..."
+	}
+			
+	# Create starter ps1
+	if (-not (Test-Path $SIGNUM_MINER_TESTNET_STARTER_PS1_PATH)) {
+		# Create start-nginx.ps1 file with the desired content
+		$content = 
+	
+@"
+# PowerShell script to start Signum Miner Testnet
+Set-Location -Path `$PSScriptRoot
+
+# Start PHOENIX
+# Start-Process -FilePath "$SIGNUM_MINER_TESTNET_EXEC"
+Start-Process -FilePath "..\..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-NoExit", "-Command", ".\$SIGNUM_MINER_TESTNET_EXEC"
+
+exit
+"@
+
+		$content | Out-File -FilePath $SIGNUM_MINER_TESTNET_STARTER_PS1_PATH -Force
+
+		Write-Host "${SIGNUM_MINER_TESTNET_STARTER_PS1_PATH} successfully created."
+	} else {
+		Write-Host "File already exists: ${SIGNUM_MINER_TESTNET_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${SIGNUM_MINER_TESTNET_STARTER_PS1} ${SIGNUM_MINER_TESTNET_EXEC} ${SIGNUM_MINER_TESTNET_STARTER_EXEC_PATH}
+		
+    Write-Host "Signum Miner Testnet installed successfully."
+	
+	setup_signumminer "$SIGNUM_MINER_TESTNET_VERSION_DIR_PATH\config.yaml"
+	
+}
+
 function install_btdex {
     # Create btdex directory
     if (-not (Test-Path $BTDEX_DIR\$BTDEX_VERSION_DIR)) {
@@ -665,7 +1131,7 @@ function install_phoenix {
 Set-Location -Path `$PSScriptRoot
 
 # Start PHOENIX
-Start-Process -FilePath "..\..\..\$PHOENIX_EXEC_PATH"
+Start-Process -FilePath "$PHOENIX_EXEC"
 
 exit
 "@
@@ -681,6 +1147,119 @@ exit
 	create-starter-ps1-exec ${PHOENIX_STARTER_PS1} ${PHOENIX_STARTER_EXEC} ${PHOENIX_STARTER_EXEC_PATH}
 		
     Write-Host "Phoenix installed successfully."
+        
+}
+
+function install_signumplotter {
+    if (-not (Test-Path $SIGNUMPLOTTER_VERSION_DIR)) {
+        New-Item -ItemType Directory -Force -Path $SIGNUMPLOTTER_VERSION_DIR | Out-Null
+        Write-Host "Created directory: $SIGNUMPLOTTER_VERSION_DIR"
+    } else {
+        Write-Host "Directory already exists: $SIGNUMPLOTTER_VERSION_DIR"
+    }
+
+    if (Test-Path $SIGNUMPLOTTER_EXEC_PATH) {
+        Write-Host "${SIGNUMPLOTTER_EXEC} already installed."
+    } else {
+        Write-Host "Downloading SignumPlotter ..."
+        Start-BitsTransfer -Source $SIGNUMPLOTTER_URL -Destination $SIGNUMPLOTTER_EXEC_PATH
+
+        if (-not (Test-Path $SIGNUMPLOTTER_EXEC_PATH)) {
+            Write-Host "Error: Failed to download SignumPlotter."
+            Read-Host "Press Enter to continue"
+            return
+        }
+	}
+			
+	# Create starter ps1
+	if (-not (Test-Path $SIGNUMPLOTTER_STARTER_PS1_PATH)) {
+		# Create start-nginx.ps1 file with the desired content
+		$content = 
+	
+@"
+# PowerShell script to start SignumPlotter
+Set-Location -Path `$PSScriptRoot
+
+# Start SignumPlotter
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-NoExit", "-Command", .\SIGNUMPLOTTER_EXEC"
+# "..\..\..\${POWERSHELL_EXEC_PATH}" "$SIGNUMPLOTTER_EXEC"
+# & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\$SIGNUMPLOTTER_EXEC
+
+exit
+"@
+
+		$content | Out-File -FilePath $SIGNUMPLOTTER_STARTER_PS1_PATH -Force
+
+		Write-Host "${SIGNUMPLOTTER_STARTER_PS1_PATH} successfully created."
+	} else {
+		Write-Host "File already exists: ${SIGNUMPLOTTER_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${SIGNUMPLOTTER_STARTER_PS1} ${SIGNUMPLOTTER_STARTER_EXEC} ${SIGNUMPLOTTER_STARTER_EXEC_PATH}
+		
+    Write-Host "SignumPlotter installed successfully."
+        
+}
+
+function install_turboplotter {
+	
+    if (-not (Test-Path $TURBOPLOTTER_VERSION_DIR_PATH)) {
+        New-Item -ItemType Directory -Force -Path $TURBOPLOTTER_VERSION_DIR_PATH | Out-Null
+        Write-Host "Created directory: $TURBOPLOTTER_VERSION_DIR_PATH"
+    } else {
+        Write-Host "Directory already exists: $TURBOPLOTTER_VERSION_DIR_PATH"
+    }
+	
+	if (Test-Path -Path "${TURBOPLOTTER_VERSION_ZIP}") {
+        Write-Host "${TURBOPLOTTER_VERSION_ZIP} already downloaded."
+    } else {
+        # Download the TurboPlotter testnet zip file
+        Write-Host "Downloading TurboPlotter ..."
+		# TODO try out Invoke-WebRequest or System.Net.Http.HttpClient
+        Start-BitsTransfer -Source "${TURBOPLOTTER_URL}" -Destination "${TURBOPLOTTER_VERSION_ZIP}"
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${TURBOPLOTTER_VERSION_ZIP}")) {
+            Write-Host "Error: Failed to download TurboPlotter."
+            Exit
+        }
+    }
+
+    if (Test-Path -Path "${TURBOPLOTTER_VERSION_UNZIP}") {
+        Write-Host "${TURBOPLOTTER_VERSION_UNZIP} already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping TurboPlotter to ${TURBOPLOTTER_VERSION_UNZIP} ..."
+        Expand-Archive -Path "${TURBOPLOTTER_VERSION_ZIP}" -DestinationPath "${TURBOPLOTTER_VERSION_UNZIP}" -Force
+    }
+			
+	# Create starter ps1
+	if (-not (Test-Path $TURBOPLOTTER_STARTER_PS1_PATH)) {
+		# Create start-nginx.ps1 file with the desired content
+		$content = 
+	
+@"
+# PowerShell script to start TurboPlotter
+Set-Location -Path `$PSScriptRoot
+
+# Start TurboPlotter
+Start-Process -FilePath "$TURBOPLOTTER_EXEC"
+
+exit
+"@
+
+		$content | Out-File -FilePath $TURBOPLOTTER_STARTER_PS1_PATH -Force
+
+		Write-Host "${TURBOPLOTTER_STARTER_PS1_PATH} successfully created."
+	} else {
+		Write-Host "File already exists: ${TURBOPLOTTER_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${TURBOPLOTTER_STARTER_PS1} ${TURBOPLOTTER_STARTER_EXEC} ${TURBOPLOTTER_STARTER_EXEC_PATH}
+		
+    Write-Host "TurboPlotter installed successfully."
         
 }
 
@@ -729,7 +1308,14 @@ function install_mariadb {
 @"
 # PowerShell script to start MariaDB
 Set-Location -Path `$PSScriptRoot
-Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-ExecutionPolicy Bypass", "-Command", ".\bin\${MARIADB_EXEC} --no-defaults --console"
+# TODO find out how to run mariadb 1 within a powershell window, or 2 without powershell within mariadb own terminal window. Use the chosen soluton for 
+# mariadb setup as well currently mariadb within powershell is used in mariadb setup
+# 1:
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" "-Command", ".\bin\${MARIADBD_EXEC} --no-defaults --console"
+# 2: If I can set powershell window title it is ok as well
+# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+
+# & .\bin\${MARIADBD_EXEC} --no-defaults --console
 exit
 "@
         $content | Out-File -FilePath $MARIADB_STARTER_PS1_PATH -Force
@@ -807,6 +1393,22 @@ function install-prompt($name, $installFunction) {
     }
 }
 
+function download-prompt($name, $url, $target_path, $file) {
+    $userChoice = Read-Host "Do you want to download ${name} (yes/no)"
+    if ($userChoice -match '^(yes|y|Y)$') {
+		if (-not (Test-Path "${target_path}")) {
+			New-Item -Path "${target_path}" -ItemType Directory | Out-Null
+		}
+		Write-Host "Downloading ${name} ..."
+		Start-BitsTransfer -Source $url -Destination $file
+		Write-Host "${name} downloaded successfully."
+		# Invoke-WebRequest -Uri $url -OutFile $file
+		# Invoke-RestMethod -Uri $url -OutFile $file
+    } else {
+        Write-Host "${name} download canceled."
+    }
+}
+
 function reinstall-prompt($name, $installFunction) {
     $userChoice = Read-Host "Do you want to reinstall ${name} (yes/no)"
     if ($userChoice -match '^(yes|y|Y)$') {
@@ -825,4 +1427,5 @@ function reinstall-prompt($name, $installFunction) {
 # TODO setup menu mariadb setup signum node setup e.g.
 
 # Initialize the script by showing the install menu
+# Pause
 Show-InstallMenu
