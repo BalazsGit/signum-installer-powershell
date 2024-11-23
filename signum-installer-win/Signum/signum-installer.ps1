@@ -1021,7 +1021,7 @@ function setup_signumminer($config_path, $config_url) {
 					$lines = Get-Content -Path $config_path
 					# Loop through each line and add a new line after the target line
 					for ($i = 0; $i -lt $lines.Count; $i++) {
-						if ($lines[$i] -match "^url:") {
+						if ($lines[$i] -match "url:") {
 							# Insert a new empty line after the detected line
 							$lines = $lines[0..$i] + "url: $choice_pool_url" + $lines[($i + 1)..($lines.Count - 1)]
 							break
