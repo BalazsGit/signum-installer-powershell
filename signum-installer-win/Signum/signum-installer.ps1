@@ -10,7 +10,9 @@ $POWERSHELL_EXEC_PATH = "${POWERSHELL_DIR}\${POWERSHELL_UNZIP}\${POWERSHELL_EXEC
 $POWERSHELL_URL = "https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/PowerShell-${POWERSHELL_VERSION}-win-x64.zip"
 
 $SIGNUM_NODE_DIR = "Node"
-# TODO rename: $SIGNUM_MAINNET_VERSION -> $SIGNUM_MAINNET_NODE_VERSION
+# TODO rename: $SIGNUM_MAINNET_VERSION -> $SIGNUM_MAINNET_NODE_VERSION?
+# TODO MAINNET_POOL
+# TODO TESTNET_POOL
 
 $SIGNUM_STARTER_PS1 = "start-signum.ps1"
 $SIGNUM_STARTER_EXEC = "start-signum.bat"
@@ -981,7 +983,7 @@ function setup_signumminer($config_path, $config_url) {
 						
 						# Loop through each line and add a new line after the target line
 						for ($i = 0; $i -lt $lines.Count; $i++) {
-							if ($lines[$i] -match "^url:") {
+							if ($lines[$i] -match "url:") {
 								# Insert a new empty line after the detected line
 								$lines = $lines[0..$i] + "url`: $choice_node_url" + $lines[($i + 1)..($lines.Count - 1)]
 								break
@@ -1003,16 +1005,17 @@ function setup_signumminer($config_path, $config_url) {
 						
 						# Write the modified lines back to the file
 						$lines | Set-Content -Path $config_path
-						
+						Pause
+						setup_signumminer $config_path $config_url
 					}
 				}
 				"2" {
 					Write-Host "Pool miner config"
 					# Enter pool URL
 					$choice_pool_url = Read-Host "Enter Signum pool url (default: https://opensignumpool.ddns.net:8129)"
-					if ($choice_node_url -eq "")
+					if ($choice_pool_url -eq "")
 					{
-						$choice_node_url = "https://opensignumpool.ddns.net:8129"
+						$choice_pool_url = "https://opensignumpool.ddns.net:8129"
 					}
 					
 					$lines = Get-Content -Path $config_path
@@ -1040,7 +1043,8 @@ function setup_signumminer($config_path, $config_url) {
 					
 					# Write the modified lines back to the file
 					$lines | Set-Content -Path $config_path
-					
+					Pause
+					setup_signumminer $config_path $config_url
 				}
 				default {
 					Write-Host "Invalid choice! Please try again."
