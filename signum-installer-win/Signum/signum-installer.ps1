@@ -122,6 +122,7 @@ $SIGNUMPLOTTER_URL = "https://github.com/signum-network/signum-plotter/releases/
 
 # TODO 1 notepad++ installer
 # TODO Documents Menu
+# TODO makr recommended applications
 
 $MINER_DIR = "Miner"
 $SIGNUM_MINER_DIR = "Signum Miner"
@@ -210,6 +211,19 @@ $NGINX_STARTER_PS1_PATH = "${TOOLS_DIR}\${NGINX_DIR}\${NGINX_UNZIP}\${NGINX_STAR
 $NGINX_STARTER_EXEC_PATH = "${TOOLS_DIR}\${NGINX_DIR}\${NGINX_UNZIP}\${NGINX_STARTER_EXEC}"
 $NGINX_URL = "https://nginx.org/download/nginx-${NGINX_VERSION}.zip"
 
+$NOTEPAD_STARTER_PS1 = "start-notepad.ps1"
+$NOTEPAD_STARTER_EXEC = "start-notepad.bat"
+
+$NOTEPAD_VERSION = "8.7.1"
+$NOTEPAD_DIR = "Notepad"
+$NOTEPAD_ZIP = "npp.$NOTEPAD_VERSION.portable.x64.zip"
+$NOTEPAD_UNZIP = "npp.$NOTEPAD_VERSION.portable.x64"
+$NOTEPAD_EXEC = "notepad++.exe"
+$NOTEPAD_EXEC_PATH = "${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_UNZIP}\${NOTEPAD_EXEC}"
+$NOTEPAD_STARTER_PS1_PATH = "${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_UNZIP}\${NOTEPAD_STARTER_PS1}"
+$NOTEPAD_STARTER_EXEC_PATH = "${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_UNZIP}\${NOTEPAD_STARTER_EXEC}"
+$NOTEPAD_URL = "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.7.1/npp.8.7.1.portable.x64.zip"
+
 function Show-InstallMenu {
     Clear-Host
     Write-Host "====================================================="
@@ -234,7 +248,8 @@ function Show-InstallMenu {
     Write-Host "[9] `tInstall MariaDB"
     Write-Host "[10] `tInstall HeidiSQL"
     Write-Host "[11] `tInstall NGINX"
-	Write-Host "[12] `tDownload Whitepaper"
+	Write-Host "[12] `tInstall Notepad++"
+	Write-Host "[13] `tDownload Whitepaper"
     Write-Host "-----------------------------------------------------"
 	# TODO Signum pages menu
 	# TODO add usefull signum pages wiki, official page, github stb. coinmarcetcap, bft portal, explorer
@@ -242,8 +257,8 @@ function Show-InstallMenu {
 	# Signum provider menu
 	# letsencrypt with ACME challege
 	# open readme how to use the installer
-    Write-Host "[13] `tSignum Starter Menu"
-    Write-Host "[14] `tExit"
+    Write-Host "[14] `tSignum Starter Menu"
+    Write-Host "[15] `tExit"
     Write-Host "====================================================="
 
 	# Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
@@ -295,14 +310,17 @@ function Show-InstallMenu {
         }
 		"11" {
 			install-process $NGINX_EXEC_PATH "NGINX" {install_nginx}
-        }		
+        }
 		"12" {
+			install-process $NOTEPAD_EXEC_PATH "Notepad" {install_notepad}
+        }
+		"13" {
 			install-doc $WHITEPAPER_DOC_PATH "Whitepaper" $WHITEPAPER_DOC_PATH $WHITEPAPER_URL
         }
-        "13" {
+        "14" {
             Show-StartMenu
         }
-        "14" {
+        "15" {
             Exit-Script
         }
         default {
@@ -330,10 +348,11 @@ function Show-StartMenu {
     Write-Host "[9] `tStart MariaDB"
     Write-Host "[10] `tStart HeidiSQL"
 	Write-Host "[11] `tStart NGINX"
-	Write-Host "[12] `tOpen Whitepaper"
+	Write-Host "[12] `tStart Notepad++"
+	Write-Host "[13] `tOpen Whitepaper"
     Write-Host "-----------------------------------------------------"
-    Write-Host "[13] `tSignum Installer Menu"
-    Write-Host "[14] `tExit"
+    Write-Host "[14] `tSignum Installer Menu"
+    Write-Host "[15] `tExit"
     Write-Host "====================================================="
 
     $choice = Read-Host "Enter your choice (1-14)"
@@ -389,12 +408,15 @@ function Show-StartMenu {
 			start-process-menu $NGINX_STARTER_PS1_PATH "NGINX" {install_nginx}
         }
 		"12" {
+			start-process-menu $NOTEPAD_STARTER_PS1_PATH "Notepad" {install_notepad}
+        }
+		"13" {
             open-doc $WHITEPAPER_DOC_PATH "Whitepaper" $WHITEPAPER_DIR_PATH $WHITEPAPER_URL
 		}
-        "13" {
+        "14" {
             Show-InstallMenu
         }
-        "14" {
+        "15" {
             Exit-Script
         }
         default {
@@ -693,6 +715,66 @@ exit
 		
 }
 
+function install_notepad {
+    # Create NOTEPAD++ directory
+    if (-not (Test-Path "${TOOLS_DIR}\${NOTEPAD_DIR}")) {
+        New-Item -ItemType Directory -Path "${TOOLS_DIR}\${NOTEPAD_DIR}" | Out-Null
+        Write-Host "Created directory: ${NOTEPAD_DIR}"
+    } else {
+        Write-Host "Directory already exists: ${NOTEPAD_DIR}"
+    }
+
+    if (Test-Path "${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_ZIP}") {
+        Write-Host "${NOTEPAD_ZIP} already downloaded."
+    } else {
+        # Download Notepad
+        Write-Host "Downloading Notepad ..."
+        Start-BitsTransfer -Source "${NOTEPAD_URL}" -Destination "${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_ZIP}"
+
+        # Check if download was successful
+        if (-not (Test-Path "${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_ZIP}")) {
+            Write-Host "Error: Failed to download Notepad."
+            Pause
+            return
+        }
+    }
+
+    if (Test-Path "${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_UNZIP}") {
+        Write-Host "${NOTEPAD_UNZIP} already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Notepad to $TOOLS_DIR\$NOTEPAD_DIR\$NOTEPAD_UNZIP ..."
+        Expand-Archive -Path "$TOOLS_DIR\$NOTEPAD_DIR\$NOTEPAD_ZIP" -DestinationPath "$TOOLS_DIR\$NOTEPAD_DIR\$NOTEPAD_UNZIP" -Force
+    }
+	
+	# Create starter ps1
+	if (-not (Test-Path $NOTEPAD_STARTER_PS1_PATH)) {
+		# Create start-notepad.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start Notepad
+Set-Location -Path `$PSScriptRoot
+
+# Start Notepad
+Start-Process -FilePath "$NOTEPAD_EXEC"
+
+exit
+"@
+
+		$content | Out-File -FilePath $NOTEPAD_STARTER_PS1_PATH -Force
+
+		Write-Host "${NOTEPAD_STARTER_PS1_PATH} successfully created."
+	} else {
+			Write-Host "File already exists: ${NOTEPAD_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${NOTEPAD_STARTER_PS1} ${NOTEPAD_STARTER_EXEC} ${NOTEPAD_STARTER_EXEC_PATH}
+
+	Write-Host "Notepad installed successfully."
+	
+}
+
 function install_nginx {
     # Create NGINX directory
     if (-not (Test-Path "${TOOLS_DIR}\${NGINX_DIR}")) {
@@ -817,11 +899,11 @@ exit
 		
     Write-Host "Signum Miner Mainnet installed successfully."
 	
-	setup_signumminer "$SIGNUM_MINER_MAINNET_VERSION_DIR_PATH\config.yaml"
+	setup_signumminer "$SIGNUM_MINER_MAINNET_VERSION_DIR_PATH\config.yaml" $SIGNUM_MINER_MAINNET_CONF_URL
 	
 }
 
-function setup_signumminer($config_path) {
+function setup_signumminer($config_path, $config_url) {
 	
 	Clear-Host
     Write-Host "====================================================="
@@ -842,6 +924,9 @@ function setup_signumminer($config_path) {
         "1" {
 			# Download notepad++
 			# Open Configuration with notepad++
+			install_notepad
+			# Start-Process -FilePath "$NOTEPAD_EXEC_PATH"
+			& $NOTEPAD_EXEC_PATH $config_path
 			Return
         }
         "2" {
@@ -960,12 +1045,25 @@ function setup_signumminer($config_path) {
 				default {
 					Write-Host "Invalid choice! Please try again."
 					Pause
-					setup_signumminer $config_path
+					setup_signumminer $config_path $config_url
 				}
 			}
         }
 		"3" {
 			# Restore Configuration
+			 Write-Host "Downloading Configuration file ..."
+			Start-BitsTransfer -Source $config_url -Destination $config_path
+
+			if (-not (Test-Path $config_path)) {
+				Write-Host "Error: Failed to download Configuration file."
+				Read-Host "Press Enter to continue"
+				Pause
+				setup_signumminer $config_path $config_url
+				return
+			}
+			Write-Host "Configuration restored"
+			Pause
+            setup_signumminer $config_path $config_url
 			Return
         }
 		"4" {
@@ -975,7 +1073,7 @@ function setup_signumminer($config_path) {
         default {
             Write-Host "Invalid choice! Please try again."
             Pause
-            setup_signumminer $config_path
+            setup_signumminer $config_path $config_url
         }
     }
 }
@@ -1044,7 +1142,7 @@ exit
 		
     Write-Host "Signum Miner Testnet installed successfully."
 	
-	setup_signumminer "$SIGNUM_MINER_TESTNET_VERSION_DIR_PATH\config.yaml"
+	setup_signumminer "$SIGNUM_MINER_TESTNET_VERSION_DIR_PATH\config.yaml" $SIGNUM_MINER_TESTNET_CONF_URL
 	
 }
 
