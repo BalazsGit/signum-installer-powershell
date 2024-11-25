@@ -41,6 +41,57 @@ $MAINNET_PROPERTIES = ".\${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_UNZIP}\conf
 $TESTNET_DEFAULT_PROPERTIES = ".\${SIGNUM_TESTNET_DIR_PATH}\${SIGNUM_TESTNET_UNZIP}\conf\node-default.properties"
 $TESTNET_PROPERTIES = ".\${SIGNUM_TESTNET_DIR_PATH}\${SIGNUM_TESTNET_UNZIP}\conf\node.properties"
 
+$SIGNUM_POOL_STARTER_PS1 = "start-pool.ps1"
+$SIGNUM_POOL_STARTER_EXEC = "start-pool.bat"
+
+$POOL_JRE_URL = "https://cdn.azul.com/zulu/bin/zulu11.56.19-ca-fx-jre11.0.15-win_x64.zip"
+
+$SIGNUM_MAINNET_POOL_PROPERTIES = "pool.properties"
+$SIGNUM_POOL_MAINNET_VERSION = "v2.2.1"
+$SIGNUM_POOL_MAINNET_DIR = "Pool"
+$SIGNUM_POOL_MAINNET_DIR_PATH = "${SIGNUM_MAINNET_DIR}\${SIGNUM_POOL_MAINNET_DIR}"
+$SIGNUM_POOL_MAINNET_UNZIP = "signum-pool-${SIGNUM_POOL_MAINNET_VERSION}"
+$SIGNUM_POOL_MAINNET_ZIP = "${SIGNUM_POOL_MAINNET_UNZIP}.zip"
+$SIGNUM_POOL_MAINNET_ZIP_PATH = "${SIGNUM_POOL_MAINNET_DIR_PATH}\${SIGNUM_POOL_MAINNET_ZIP}"
+$SIGNUM_POOL_MAINNET_UNZIP_PATH = "${SIGNUM_POOL_MAINNET_DIR_PATH}\${SIGNUM_POOL_MAINNET_UNZIP}"
+$SIGNUM_POOL_MAINNET_PROPERTIES_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_MAINNET_POOL_PROPERTIES"
+$SIGNUM_POOL_MAINNET_STARTER_PS1_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_PS1}"
+$SIGNUM_POOL_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_EXEC}"
+$SIGNUM_POOL_MAINNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_MAINNET_VERSION}/${SIGNUM_POOL_MAINNET_ZIP}"
+
+$SIGNUM_TESTNET_POOL_PROPERTIES = "pool.properties"
+$SIGNUM_POOL_TESTNET_VERSION = "v2.2.1"
+$SIGNUM_POOL_TESTNET_DIR = "Pool"
+$SIGNUM_POOL_TESTNET_DIR_PATH = "${SIGNUM_TESTNET_DIR}\${SIGNUM_POOL_TESTNET_DIR}"
+$SIGNUM_POOL_TESTNET_UNZIP = "signum-pool-${SIGNUM_POOL_TESTNET_VERSION}"
+$SIGNUM_POOL_TESTNET_ZIP = "${SIGNUM_POOL_TESTNET_UNZIP}.zip"
+$SIGNUM_POOL_TESTNET_ZIP_PATH = "${SIGNUM_POOL_TESTNET_DIR_PATH}\${SIGNUM_POOL_TESTNET_ZIP}"
+$SIGNUM_POOL_TESTNET_UNZIP_PATH = "${SIGNUM_POOL_TESTNET_DIR_PATH}\${SIGNUM_POOL_TESTNET_UNZIP}"
+$SIGNUM_POOL_TESTNET_PROPERTIES_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\$SIGNUM_TESTNET_POOL_PROPERTIES"
+$SIGNUM_POOL_TESTNET_STARTER_PS1_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_PS1}"
+$SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_EXEC}"
+$SIGNUM_POOL_TESTNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_TESTNET_VERSION}/${SIGNUM_POOL_TESTNET_ZIP}"
+
+$JAVA_POOL_MAINNET_DIR = "jre"
+$JAVA_POOL_MAINNET_BIN = "jre\bin\java"
+$JAVA_POOL_MAINNET_UNZIP = "zulu11.56.19-ca-fx-jre11.0.15-win_x64"
+$JAVA_POOL_MAINNET_ZIP = "$JAVA_POOL_MAINNET_UNZIP.zip"
+$JAVA_POOL_MAINNET_DIR_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$JAVA_POOL_MAINNET_DIR"
+$JAVA_POOL_MAINNET_BIN_PATH = "$JAVA_POOL_MAINNET_DIR_PATH\bin\java"
+$JAVA_POOL_MAINNET_ZIP_PATH = "${JAVA_POOL_MAINNET_DIR_PATH}\${JAVA_POOL_MAINNET_ZIP}"
+$JAVA_POOL_MAINNET_UNZIP_PATH = "${JAVA_POOL_MAINNET_DIR_PATH}\${JAVA_POOL_MAINNET_UNZIP}"
+$JAVA_POOL_MAINNET_URL = "https://cdn.azul.com/zulu/bin/$JAVA_POOL_MAINNET_ZIP"
+
+$JAVA_POOL_TESTNET_DIR = "jre"
+$JAVA_POOL_TESTNET_BIN = "jre\bin\java"
+$JAVA_POOL_TESTNET_UNZIP = "zulu11.56.19-ca-fx-jre11.0.15-win_x64"
+$JAVA_POOL_TESTNET_ZIP = "$JAVA_POOL_TESTNET_UNZIP.zip"
+$JAVA_POOL_TESTNET_DIR_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\$JAVA_POOL_TESTNET_DIR"
+$JAVA_POOL_TESTNET_BIN_PATH = "$JAVA_POOL_TESTNET_DIR_PATH\bin\java"
+$JAVA_POOL_TESTNET_ZIP_PATH = "${JAVA_POOL_TESTNET_DIR_PATH}\${JAVA_POOL_TESTNET_ZIP}"
+$JAVA_POOL_TESTNET_UNZIP_PATH = "${JAVA_POOL_TESTNET_DIR_PATH}\${JAVA_POOL_TESTNET_UNZIP}"
+$JAVA_POOL_TESTNET_URL = "https://cdn.azul.com/zulu/bin/$JAVA_POOL_TESTNET_ZIP"
+
 $SIGNUM_MAINNET_MINER_VERSION = ""
 $SIGNUM_MAINNET_MINER_DIR = ""
 $SIGNUM_MAINNET_MINER_ZIP = ""
@@ -121,6 +172,25 @@ $SIGNUMPLOTTER_URL = "https://github.com/signum-network/signum-plotter/releases/
 # https://github.com/signum-network/whitepaper/blob/main/business/v1.pdf
 # https://github.com/signum-network/signum-miner/releases/download/v1.8.0/signum-miner.exe
 # https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.7.1/npp.8.7.1.portable.x64.zip
+
+# TODO developers
+# https://github.com/signum-network/signum-smartj 		#link
+# https://github.com/deleterium/DASC-for-Signum 		#link
+# https://deleterium.info/SmartC/stable/
+# https://github.com/deleterium/SmartC
+# https://github.com/deleterium/smartc-web-ui
+# https://github.com/deleterium/SC-Simulator
+# https://github.com/deleterium/smartc-signum-decompiler
+# SmartC youtube
+# https://www.youtube.com/playlist?list=PLyu0NNtb1eg3Gcg2JCrOle8MjtuFPb-Gi
+# https://github.com/signum-network
+# https://github.com/signum-network/signum-pool/releases/tag/v2.2.1
+
+# jre\bin\java
+# https://cdn.azul.com/zulu/bin/zulu11.56.19-ca-fx-jre11.0.15-win_x64.zip
+
+# DB.SqliteSynchronous = OFF
+# DB.Sqlite.CacheSize = -4000
 
 # TODO 1 notepad++ installer
 # TODO Documents Menu
@@ -247,11 +317,24 @@ function Show-InstallMenu {
 	# TODO add signum miner
 	# TODO add signum pool
 	# TODO add signum explorer
-    Write-Host "[9] `tInstall MariaDB"
-    Write-Host "[10] `tInstall HeidiSQL"
-    Write-Host "[11] `tInstall NGINX"
-	Write-Host "[12] `tInstall Notepad++"
-	Write-Host "[13] `tDownload Whitepaper"
+    Write-Host "[9] `tInstall Signum Pool Mainnet with MariaDB"
+    Write-Host "[10] `tInstall Signum Pool Testnet with MariaDB"
+	Write-Host "====================================================="
+	Write-Host "            		 Databases	 			         "
+	Write-Host "====================================================="
+    Write-Host "[11] `tInstall MariaDB"
+	Write-Host "====================================================="
+	Write-Host "            		 Tools	 			             "
+	Write-Host "====================================================="
+    Write-Host "[12] `tInstall HeidiSQL"
+    Write-Host "[13] `tInstall NGINX"
+	Write-Host "[14] `tInstall Notepad++"
+	<# Write-Host "====================================================="
+	Write-Host "            	  Developer Tools 			         "
+	Write-Host "====================================================="
+	Write-Host "[8] `tInstall Signum SmartC Smart Contract Compiler" #>
+	Write-Host "-----------------------------------------------------"
+	Write-Host "[15] `tDownload Whitepaper"
     Write-Host "-----------------------------------------------------"
 	# TODO Signum pages menu
 	# TODO add usefull signum pages wiki, official page, github stb. coinmarcetcap, bft portal, explorer
@@ -259,8 +342,8 @@ function Show-InstallMenu {
 	# Signum provider menu
 	# letsencrypt with ACME challege
 	# open readme how to use the installer
-    Write-Host "[14] `tSignum Starter Menu"
-    Write-Host "[15] `tExit"
+    Write-Host "[16] `tSignum Starter Menu"
+    Write-Host "[17] `tExit"
     Write-Host "====================================================="
 
 	# Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
@@ -269,11 +352,11 @@ function Show-InstallMenu {
 	function install-process($file, $name, $installFunction) {
 		if (Test-Path $file) {
 			Write-Host "${name} already installed."
-			reinstall-prompt $name $installFunction
+			question-prompt "Reinstall" $name $installFunction
 			Pause
 			Show-InstallMenu
 		} else {
-			install-prompt $name $installFunction
+			question-prompt "Install" $name $installFunction
 			Pause
 			Show-InstallMenu
 		}
@@ -281,10 +364,10 @@ function Show-InstallMenu {
 
     switch ($choice) {
         "1" {
-			install-process $SIGNUM_MAINNET_STARTER_PS1_PATH "Signum Mainnet" {Install-SignumMainnet}
+			install-process $SIGNUM_MAINNET_STARTER_PS1_PATH "Signum Mainnet Node" {Install-SignumMainnet}
         }
         "2" {
-			install-process $SIGNUM_TESTNET_STARTER_PS1_PATH "Signum Testnet" {Install-SignumTestnet}
+			install-process $SIGNUM_TESTNET_STARTER_PS1_PATH "Signum Testnet Node" {Install-SignumTestnet}
         }
         "3" {
 			install-process $BTDEX_EXEC_PATH "BTDEX" {install_btdex}
@@ -303,6 +386,12 @@ function Show-InstallMenu {
         }
 		"8" {
 			install-process $SIGNUM_MINER_TESTNET_EXEC_PATH "Signum Miner Testnet" {install_signumminer_testnet}
+        }
+		"9" {
+			install-process $SIGNUM_POOL_MAINNET_STARTER_EXEC_PATH "Signum Pool Mainnet" {Install-SignumPoolMainnet}
+        }
+		"10" {
+			install-process $SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH "Signum Pool Testnet" {Install-SignumPoolTestnet}
         }
         "9" {
 			install-process $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
@@ -369,7 +458,7 @@ function Show-StartMenu {
 			Show-StartMenu
 		} else {
 			Write-Host "${name} is not installed, please install first!"
-			install-prompt $name $installFunction
+			question-prompt "Install" $name $installFunction
 			Pause
 			Show-StartMenu
 		}
@@ -377,10 +466,10 @@ function Show-StartMenu {
 
     switch ($choice) {
         "1" {
-			start-process-menu $SIGNUM_MAINNET_STARTER_PS1_PATH "Signum Mainnet" {Install-SignumMainnet} 
+			start-process-menu $SIGNUM_MAINNET_STARTER_PS1_PATH "Signum Node Mainnet" {Install-SignumMainnet} 
         }
         "2" {
-			start-process-menu $SIGNUM_TESTNET_STARTER_PS1_PATH "Signum Testnet" {Install-SignumTestnet}
+			start-process-menu $SIGNUM_TESTNET_STARTER_PS1_PATH "Signum Node Testnet" {Install-SignumTestnet}
         }
         "3" {
 			start-process-menu $BTDEX_STARTER_PS1_PATH "BTDEX" {install_btdex}
@@ -521,7 +610,8 @@ function Install-SignumMainnet {
     install_mariadb
 
     # Setup MariaDB for Mainnet
-    setup_mariadb "Mainnet" "signum-mainnet"
+    # setup_mariadb "Mainnet" "signum-mainnet"
+	question-prompt "Setup" "MariaDB for Signum Mainnet Node" {setup_mariadb "Signum Node Mainnet" "signum-node-mainnet" "signumuser" "signumpassword"}
 	
 	# Update database information in node.properties
 	setup_db_node_properties ${MAINNET_PROPERTIES}
@@ -533,7 +623,7 @@ function Install-SignumMainnet {
     # Pause
 
     if (-not (Test-Path -Path "${SIGNUM_TESTNET_STARTER_PS1_PATH}")) {
-        install-prompt "Signum Testnet" Install-SignumTestnet
+        question-prompt "Install" "Signum Testnet" Install-SignumTestnet
     }
 }
 
@@ -592,7 +682,7 @@ function Install-SignumTestnet {
     install_mariadb
 
     # Setup MariaDB for Testnet
-    setup_mariadb "Testnet" "signum-testnet" $TESTNET_PROPERTIES
+    setup_mariadb "Signum Node Testnet" "signum-node-testnet" "signumuser" "signumpassword"
 	
 	# Update database information in node.properties
 	setup_db_node_properties ${TESTNET_PROPERTIES}
@@ -601,7 +691,303 @@ function Install-SignumTestnet {
     # Pause
 
     if (-not (Test-Path -Path "${SIGNUM_MAINNET_STARTER_PS1_PATH}")) {
-        install-prompt "Signum Mainnet" Install-SignumMainnet
+        question-prompt "Install" "Signum Node Mainnet" {Install-SignumMainnet}
+    }
+}
+
+function Install-SignumPoolMainnet {
+    Write-Host "Installing Signum Pool Mainnet ..."
+	
+	# Insall Signum Mainnet if not installed yet
+
+		if (Test-Path $SIGNUM_MAINNET_STARTER_PS1_PATH) {
+			Write-Host "${SIGNUM_MAINNET_STARTER_PS1_PATH} already installed."
+		} else {
+			question-prompt "Install" "Signum Node Mainnet" {Install-SignumMainnet}
+			Pause
+		}
+
+	# install-process $SIGNUM_MAINNET_STARTER_PS1_PATH "Signum Mainnet" {Install-SignumMainnet}
+
+    # Create Pool directory
+    if (-not (Test-Path -Path "${SIGNUM_POOL_MAINNET_DIR_PATH}")) {
+        New-Item -Path "${SIGNUM_POOL_MAINNET_DIR_PATH}" -ItemType Directory | Out-Null
+        Write-Host "Created directory: ${SIGNUM_POOL_MAINNET_DIR_PATH}"
+    } else {
+        Write-Host "Directory already exists: ${SIGNUM_POOL_MAINNET_DIR_PATH}"
+    }
+
+    if (Test-Path -Path "${SIGNUM_POOL_MAINNET_ZIP_PATH}") {
+        Write-Host "${SIGNUM_POOL_MAINNET_ZIP_PATH} already downloaded."
+    } else {
+        # Download the Signum Pool Mainnet zip file
+        Write-Host "Downloading Signum Pool from GitHub ..."
+        Start-BitsTransfer -Source "${SIGNUM_POOL_MAINNET_URL}" -Destination "${SIGNUM_POOL_MAINNET_ZIP_PATH}"
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SIGNUM_POOL_MAINNET_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download Signum Pool."
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+
+    if (Test-Path -Path "${SIGNUM_POOL_MAINNET_UNZIP_PATH}") {
+        Write-Host "${SIGNUM_POOL_MAINNET_UNZIP_PATH} already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Signum to ${SIGNUM_POOL_MAINNET_UNZIP_PATH} ..."
+        Expand-Archive -Path "${SIGNUM_POOL_MAINNET_ZIP_PATH}" -DestinationPath "${SIGNUM_POOL_MAINNET_DIR_PATH}" -Force
+    }
+	
+	# Create jre directory
+    if (-not (Test-Path -Path "${JAVA_POOL_MAINNET_DIR_PATH}")) {
+        New-Item -Path "${JAVA_POOL_MAINNET_DIR_PATH}" -ItemType Directory | Out-Null
+        Write-Host "Created directory: ${JAVA_POOL_MAINNET_DIR_PATH}"
+    } else {
+        Write-Host "Directory already exists: ${JAVA_POOL_MAINNET_DIR_PATH}"
+    }
+	
+	# download java
+	if (Test-Path -Path "${JAVA_POOL_MAINNET_ZIP_PATH}") {
+        Write-Host "${JAVA_POOL_MAINNET_ZIP_PATH} already downloaded."
+    } else {
+        # Download the Signum Pool Mainnet zip file
+        Write-Host "Downloading Java ..."
+        Start-BitsTransfer -Source "${JAVA_POOL_MAINNET_URL}" -Destination "${JAVA_POOL_MAINNET_ZIP_PATH}"
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${JAVA_POOL_MAINNET_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download Signum Pool."
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+	
+	# unzip java
+	if (Test-Path -Path "${JAVA_POOL_MAINNET_UNZIP_PATH}") {
+        Write-Host "${JAVA_POOL_MAINNET_ZIP_PATH} already unzipped."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Java to ${JAVA_POOL_MAINNET_UNZIP_PATH} ..."
+        Expand-Archive -Path "${JAVA_POOL_MAINNET_ZIP_PATH}" -DestinationPath "${JAVA_POOL_MAINNET_DIR_PATH}" -Force
+    }
+
+	# Create starter ps1
+	if (-not (Test-Path $SIGNUM_POOL_MAINNET_STARTER_PS1_PATH)) {
+		# Create start-pool.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start Signum Node
+Set-Location -Path `$PSScriptRoot
+
+echo "Starting MariaDB ..."
+
+# Start MariaDB
+..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$MARIADB_STARTER_PS1_PATH" "-WindowStyle Minimized"
+# Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-ExecutionPolicy Bypass", "-File", "..\..\..\$MARIADB_STARTER_PS1_PATH" -WindowStyle Minimized
+
+echo "Starting Signum Node Mainnet ..."
+
+Start-Sleep -Seconds 10
+
+# missing
+
+echo "Starting Signum Pool Mainnet ..."
+
+Start-Sleep -Seconds 10
+
+# Start Signum Pool
+# Start-Process -FilePath "jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java" -ArgumentList "-jar", "signum-pool.jar" -WindowStyle Minimized
+Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java -jar signum-pool.jar"
+
+# TODO check
+# & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
+# "jre\bin\java" "-jar" "signum-node.jar" -WindowStyle Minimized
+# Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "Set-Title 'Signum Mainnet Node'; Start-Process -NoNewWindow -FilePath 'jre\bin\java' -ArgumentList '-jar', 'signum-node.jar'"
+
+exit
+"@
+
+		$content | Out-File -FilePath $SIGNUM_POOL_MAINNET_STARTER_PS1_PATH -Force
+
+		Write-Host "${SIGNUM_POOL_MAINNET_STARTER_PS1_PATH} successfully created."
+	} else {
+		Write-Host "File already exists: ${SIGNUM_POOL_MAINNET_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${SIGNUM_POOL_STARTER_PS1} ${SIGNUM_POOL_STARTER_EXEC} ${SIGNUM_POOL_MAINNET_STARTER_EXEC_PATH}
+
+    # Install MariaDB
+    install_mariadb
+
+    # Setup MariaDB for Mainnet
+    question-prompt "Setup" "MariaDB for Signum Pool Mainnet" {setup_mariadb "Signum Pool Mainnet" "signum-pool-mainnet" "signumuser" "signumpassword"}
+	
+	# Update database information in node.properties
+	setup_db_pool_properties ${SIGNUM_POOL_MAINNET_PROPERTIES_PATH}
+	
+	# Setup pool.properties
+
+	# TODO Create start-signum-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
+	# TODO start-signum-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
+
+    Write-Host "Signum Pool Mainnet Installation complete."
+    # Pause
+
+    if (-not (Test-Path -Path "${SIGNUM_POOL_TESTNET_STARTER_PS1_PATH}")) {
+        question-prompt "Install" "Signum Pool Testnet" Install-SignumPoolTestnet
+    }
+}
+
+function Install-SignumPoolTestnet {
+    Write-Host "Installing Signum Pool Testnet ..."
+	
+	# Insall Signum Testnet if not installed yet
+
+		if (Test-Path $SIGNUM_TESTNET_STARTER_PS1_PATH) {
+			Write-Host "${SIGNUM_TESTNET_STARTER_PS1_PATH} already installed."
+		} else {
+			question-prompt "Install" "Signum Node Testnet" {Install-SignumTestnet}
+			Pause
+		}
+
+	# install-process $SIGNUM_MAINNET_STARTER_PS1_PATH "Signum Testnet" {Install-SignumMainnet}
+
+    # Create Pool directory
+    if (-not (Test-Path -Path "${SIGNUM_POOL_TESTNET_DIR_PATH}")) {
+        New-Item -Path "${SIGNUM_POOL_TESTNET_DIR_PATH}" -ItemType Directory | Out-Null
+        Write-Host "Created directory: ${SIGNUM_POOL_TESTNET_DIR_PATH}"
+    } else {
+        Write-Host "Directory already exists: ${SIGNUM_POOL_TESTNET_DIR_PATH}"
+    }
+
+    if (Test-Path -Path "${SIGNUM_POOL_TESTNET_ZIP_PATH}") {
+        Write-Host "${SIGNUM_POOL_TESTNET_ZIP_PATH} already downloaded."
+    } else {
+        # Download the Signum Pool Testnet zip file
+        Write-Host "Downloading Signum Pool from GitHub ..."
+        Start-BitsTransfer -Source "${SIGNUM_POOL_TESTNET_URL}" -Destination "${SIGNUM_POOL_TESTNET_ZIP_PATH}"
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SIGNUM_POOL_TESTNET_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download Signum Pool."
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+
+    if (Test-Path -Path "${SIGNUM_POOL_TESTNET_UNZIP_PATH}") {
+        Write-Host "${SIGNUM_POOL_TESTNET_UNZIP_PATH} already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Signum to ${SIGNUM_POOL_TESTNET_UNZIP_PATH} ..."
+        Expand-Archive -Path "${SIGNUM_POOL_TESTNET_ZIP_PATH}" -DestinationPath "${SIGNUM_POOL_TESTNET_DIR_PATH}" -Force
+    }
+	
+	# Create jre directory
+    if (-not (Test-Path -Path "${JAVA_POOL_TESTNET_DIR_PATH}")) {
+        New-Item -Path "${JAVA_POOL_TESTNET_DIR_PATH}" -ItemType Directory | Out-Null
+        Write-Host "Created directory: ${JAVA_POOL_TESTNET_DIR_PATH}"
+    } else {
+        Write-Host "Directory already exists: ${JAVA_POOL_TESTNET_DIR_PATH}"
+    }
+	
+	# download java
+	if (Test-Path -Path "${JAVA_POOL_TESTNET_ZIP_PATH}") {
+        Write-Host "${JAVA_POOL_TESTNET_ZIP_PATH} already downloaded."
+    } else {
+        # Download the Signum Pool Testnet zip file
+        Write-Host "Downloading Java ..."
+        Start-BitsTransfer -Source "${JAVA_POOL_TESTNET_URL}" -Destination "${JAVA_POOL_TESTNET_ZIP_PATH}"
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${JAVA_POOL_TESTNET_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download Signum Pool."
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+	
+	# unzip java
+	if (Test-Path -Path "${JAVA_POOL_TESTNET_UNZIP_PATH}") {
+        Write-Host "${JAVA_POOL_TESTNET_ZIP_PATH} already unzipped."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Java to ${JAVA_POOL_TESTNET_UNZIP_PATH} ..."
+        Expand-Archive -Path "${JAVA_POOL_TESTNET_ZIP_PATH}" -DestinationPath "${JAVA_POOL_TESTNET_DIR_PATH}" -Force
+    }
+
+	# Create starter ps1
+	if (-not (Test-Path $SIGNUM_POOL_TESTNET_STARTER_PS1_PATH)) {
+		# Create start-pool.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start Signum Pool Testnet
+Set-Location -Path `$PSScriptRoot
+
+echo "Starting MariaDB ..."
+
+# Start MariaDB
+..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$MARIADB_STARTER_PS1_PATH" "-WindowStyle Minimized"
+# Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-ExecutionPolicy Bypass", "-File", "..\..\..\$MARIADB_STARTER_PS1_PATH" -WindowStyle Minimized
+
+echo "Starting Signum Node Testnet ..."
+
+Start-Sleep -Seconds 10
+
+# missing
+
+echo "Starting Signum Pool Testnet ..."
+
+Start-Sleep -Seconds 10
+
+# Start Signum Pool
+# Start-Process -FilePath "jre\${JAVA_POOL_TESTNET_UNZIP}\bin\java" -ArgumentList "-jar", "signum-pool.jar" -WindowStyle Minimized
+Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java -jar signum-pool.jar"
+
+# TODO check
+# & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
+# "jre\bin\java" "-jar" "signum-node.jar" -WindowStyle Minimized
+# Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "Set-Title 'Signum Mainnet Node'; Start-Process -NoNewWindow -FilePath 'jre\bin\java' -ArgumentList '-jar', 'signum-node.jar'"
+
+exit
+"@
+
+		$content | Out-File -FilePath $SIGNUM_POOL_TESTNET_STARTER_PS1_PATH -Force
+
+		Write-Host "${SIGNUM_POOL_TESTNET_STARTER_PS1_PATH} successfully created."
+	} else {
+		Write-Host "File already exists: ${SIGNUM_POOL_TESTNET_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${SIGNUM_POOL_STARTER_PS1} ${SIGNUM_POOL_STARTER_EXEC} ${SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH}
+
+    # Install MariaDB
+    install_mariadb
+
+    # Setup MariaDB for Testnet
+    question-prompt "Setup" "MariaDB for Signum Pool Testnet" {setup_mariadb "Signum Pool Testnet" "signum-pool-testnet" "signumuser" "signumpassword"}
+	
+	# Update database information in node.properties
+	setup_db_pool_properties ${SIGNUM_POOL_TESTNET_PROPERTIES_PATH}
+	
+	# Setup pool.properties
+
+	# TODO Create start-signum-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
+	# TODO start-signum-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
+
+    Write-Host "Signum Pool Testnet Installation complete."
+    # Pause
+
+    if (-not (Test-Path -Path "${SIGNUM_POOL_TESTNET_STARTER_PS1_PATH}")) {
+        question-prompt "Install" "Signum Pool Mainnet" Install-SignumPoolTestnet
     }
 }
 
@@ -1432,7 +1818,7 @@ exit
 	Write-Host "MariaDB installed successfully."
 }
 
-function setup_mariadb ($name, $database) {
+function setup_mariadb ($name, $database, $user, $password) {
 	
 	$DATABASE_NAME = ""
 	$DATABASE_USERNAME = ""
@@ -1443,11 +1829,11 @@ function setup_mariadb ($name, $database) {
     Write-Host "Database name: ${database}"
 
     $DATABASE_USERNAME = Read-Host "Enter the username (or press Enter for default 'signumuser')"
-    if (-not $DATABASE_USERNAME) { $DATABASE_USERNAME = "signumuser" }
+    if (-not $DATABASE_USERNAME) { $DATABASE_USERNAME = $user }
     Write-Host "Username: ${DATABASE_USERNAME}"
 
     $DATABASE_PASSWORD = Read-Host "Enter the password (or press Enter for default 'signumpassword')"
-    if (-not $DATABASE_PASSWORD) { $DATABASE_PASSWORD = "signumpassword" }
+    if (-not $DATABASE_PASSWORD) { $DATABASE_PASSWORD = $password }
     Write-Host "Password: ${DATABASE_PASSWORD}"
 
     Write-Host "Starting MariaDB server ..."
@@ -1486,12 +1872,23 @@ function setup_db_node_properties($file) {
 	
 }
 
-function install-prompt($name, $installFunction) {
-    $userChoice = Read-Host "Do you want to install ${name} (yes/no)"
+function setup_db_pool_properties($file) {
+	
+	Write-Host "Updating pool.properties with new database configurations ..."
+    (Get-Content -Path $file) -replace '# DB.Url=jdbc:mariadb:.*', "DB.Url=jdbc:mariadb://localhost:3306/${DATABASE_NAME}" `
+        -replace '# DB.Username=.*', "DB.Username=${DATABASE_USERNAME}" `
+        -replace '# DB.Password=.*', "DB.Password=${DATABASE_PASSWORD}" | Set-Content -Path $file
+
+    Write-Host "Update complete."
+	
+}
+
+function question-prompt($process, $name, $installFunction) {
+    $userChoice = Read-Host "Do you want to ${process} ${name} (yes/no)"
     if ($userChoice -match '^(yes|y|Y)$') {
         &$installFunction
     } else {
-        Write-Host "${name} Installation canceled."
+        Write-Host "${name} ${process} canceled."
     }
 }
 
@@ -1508,15 +1905,6 @@ function download-prompt($name, $url, $target_path, $file) {
 		# Invoke-RestMethod -Uri $url -OutFile $file
     } else {
         Write-Host "${name} download canceled."
-    }
-}
-
-function reinstall-prompt($name, $installFunction) {
-    $userChoice = Read-Host "Do you want to reinstall ${name} (yes/no)"
-    if ($userChoice -match '^(yes|y|Y)$') {
-        &$installFunction
-    } else {
-        Write-Host "${name} Installation canceled."
     }
 }
 
