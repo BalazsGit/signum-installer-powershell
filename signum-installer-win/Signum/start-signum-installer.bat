@@ -48,7 +48,7 @@ set "POWERSHELL_URL=https://github.com/PowerShell/PowerShell/releases/download/v
 		echo PowerShell installed successfully.
 	)
 	
-	pause
+REM	pause
 	
 :: Start signum installer using portable PowerShell
 :start_installer

@@ -10,14 +10,13 @@ $POWERSHELL_EXEC_PATH = "${POWERSHELL_DIR}\${POWERSHELL_UNZIP}\${POWERSHELL_EXEC
 $POWERSHELL_URL = "https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/PowerShell-${POWERSHELL_VERSION}-win-x64.zip"
 
 $SIGNUM_NODE_DIR = "Node"
-# TODO rename: $SIGNUM_MAINNET_VERSION -> $SIGNUM_MAINNET_NODE_VERSION?
-# TODO MAINNET_POOL
-# TODO TESTNET_POOL
+# TODO rename: $SIGNUM_MAINNET_VERSION -> $SIGNUM_NODE_MAINNET_VERSION?
+# TODO very important to stop all processes before stop mariadb or run mariadb in the background to solve
 
 $SIGNUM_STARTER_PS1 = "start-signum.ps1"
 $SIGNUM_STARTER_EXEC = "start-signum.bat"
 
-$SIGNUM_MAINNET_VERSION = "v3.8.2"
+$SIGNUM_MAINNET_VERSION = "v3.8.3"
 $SIGNUM_MAINNET_DIR = "Mainnet"
 $SIGNUM_MAINNET_DIR_PATH = "${SIGNUM_MAINNET_DIR}\${SIGNUM_NODE_DIR}"
 $SIGNUM_MAINNET_ZIP = "signum-node-${SIGNUM_MAINNET_VERSION}-win_x64.zip"
@@ -26,7 +25,7 @@ $SIGNUM_MAINNET_STARTER_PS1_PATH = "${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_
 $SIGNUM_MAINNET_STARTER_EXEC_PATH = "${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_UNZIP}\${SIGNUM_STARTER_EXEC}"
 $SIGNUM_MAINNET_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_MAINNET_VERSION}/${SIGNUM_MAINNET_ZIP}"
 
-$SIGNUM_TESTNET_VERSION = "v3.8.2"
+$SIGNUM_TESTNET_VERSION = "v3.8.3"
 $SIGNUM_TESTNET_DIR = "Testnet"
 $SIGNUM_TESTNET_DIR_PATH = "${SIGNUM_TESTNET_DIR}\${SIGNUM_NODE_DIR}"
 $SIGNUM_TESTNET_ZIP = "signum-node-${SIGNUM_TESTNET_VERSION}-win_x64.zip"
@@ -43,10 +42,11 @@ $TESTNET_PROPERTIES = ".\${SIGNUM_TESTNET_DIR_PATH}\${SIGNUM_TESTNET_UNZIP}\conf
 
 $SIGNUM_POOL_STARTER_PS1 = "start-pool.ps1"
 $SIGNUM_POOL_STARTER_EXEC = "start-pool.bat"
+$SIGNUM_POOL_PROPERTIES = "pool.properties"
+$SIGNUM_POOL_PROPERTIES_ORIGINAL = "pool-original.properties"
 
 $POOL_JRE_URL = "https://cdn.azul.com/zulu/bin/zulu11.56.19-ca-fx-jre11.0.15-win_x64.zip"
 
-$SIGNUM_MAINNET_POOL_PROPERTIES = "pool.properties"
 $SIGNUM_POOL_MAINNET_VERSION = "v2.2.1"
 $SIGNUM_POOL_MAINNET_DIR = "Pool"
 $SIGNUM_POOL_MAINNET_DIR_PATH = "${SIGNUM_MAINNET_DIR}\${SIGNUM_POOL_MAINNET_DIR}"
@@ -54,12 +54,12 @@ $SIGNUM_POOL_MAINNET_UNZIP = "signum-pool-${SIGNUM_POOL_MAINNET_VERSION}"
 $SIGNUM_POOL_MAINNET_ZIP = "${SIGNUM_POOL_MAINNET_UNZIP}.zip"
 $SIGNUM_POOL_MAINNET_ZIP_PATH = "${SIGNUM_POOL_MAINNET_DIR_PATH}\${SIGNUM_POOL_MAINNET_ZIP}"
 $SIGNUM_POOL_MAINNET_UNZIP_PATH = "${SIGNUM_POOL_MAINNET_DIR_PATH}\${SIGNUM_POOL_MAINNET_UNZIP}"
-$SIGNUM_POOL_MAINNET_PROPERTIES_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_MAINNET_POOL_PROPERTIES"
+$SIGNUM_POOL_MAINNET_PROPERTIES_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES"
+$SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_ORIGINAL"
 $SIGNUM_POOL_MAINNET_STARTER_PS1_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_PS1}"
 $SIGNUM_POOL_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_EXEC}"
 $SIGNUM_POOL_MAINNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_MAINNET_VERSION}/${SIGNUM_POOL_MAINNET_ZIP}"
 
-$SIGNUM_TESTNET_POOL_PROPERTIES = "pool.properties"
 $SIGNUM_POOL_TESTNET_VERSION = "v2.2.1"
 $SIGNUM_POOL_TESTNET_DIR = "Pool"
 $SIGNUM_POOL_TESTNET_DIR_PATH = "${SIGNUM_TESTNET_DIR}\${SIGNUM_POOL_TESTNET_DIR}"
@@ -67,7 +67,8 @@ $SIGNUM_POOL_TESTNET_UNZIP = "signum-pool-${SIGNUM_POOL_TESTNET_VERSION}"
 $SIGNUM_POOL_TESTNET_ZIP = "${SIGNUM_POOL_TESTNET_UNZIP}.zip"
 $SIGNUM_POOL_TESTNET_ZIP_PATH = "${SIGNUM_POOL_TESTNET_DIR_PATH}\${SIGNUM_POOL_TESTNET_ZIP}"
 $SIGNUM_POOL_TESTNET_UNZIP_PATH = "${SIGNUM_POOL_TESTNET_DIR_PATH}\${SIGNUM_POOL_TESTNET_UNZIP}"
-$SIGNUM_POOL_TESTNET_PROPERTIES_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\$SIGNUM_TESTNET_POOL_PROPERTIES"
+$SIGNUM_POOL_TESTNET_PROPERTIES_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES"
+$SIGNUM_POOL_TESTNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_ORIGINAL"
 $SIGNUM_POOL_TESTNET_STARTER_PS1_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_PS1}"
 $SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_EXEC}"
 $SIGNUM_POOL_TESTNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_TESTNET_VERSION}/${SIGNUM_POOL_TESTNET_ZIP}"
@@ -296,6 +297,8 @@ $NOTEPAD_STARTER_PS1_PATH = "${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_UNZIP}\${NOTE
 $NOTEPAD_STARTER_EXEC_PATH = "${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_UNZIP}\${NOTEPAD_STARTER_EXEC}"
 $NOTEPAD_URL = "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.7.1/npp.8.7.1.portable.x64.zip"
 
+# TODO change between databases to install
+
 function Show-InstallMenu {
     Clear-Host
     Write-Host "====================================================="
@@ -319,13 +322,13 @@ function Show-InstallMenu {
 	# TODO add signum explorer
     Write-Host "[9] `tInstall Signum Pool Mainnet with MariaDB"
     Write-Host "[10] `tInstall Signum Pool Testnet with MariaDB"
-	Write-Host "====================================================="
-	Write-Host "            		 Databases	 			         "
-	Write-Host "====================================================="
+	# Write-Host "====================================================="
+	# Write-Host "            		 Databases	 			         "
+	# Write-Host "====================================================="
     Write-Host "[11] `tInstall MariaDB"
-	Write-Host "====================================================="
-	Write-Host "            		 Tools	 			             "
-	Write-Host "====================================================="
+	# Write-Host "====================================================="
+	# Write-Host "            		 Tools	 			             "
+	# Write-Host "====================================================="
     Write-Host "[12] `tInstall HeidiSQL"
     Write-Host "[13] `tInstall NGINX"
 	Write-Host "[14] `tInstall Notepad++"
@@ -333,7 +336,7 @@ function Show-InstallMenu {
 	Write-Host "            	  Developer Tools 			         "
 	Write-Host "====================================================="
 	Write-Host "[8] `tInstall Signum SmartC Smart Contract Compiler" #>
-	Write-Host "-----------------------------------------------------"
+	# Write-Host "-----------------------------------------------------"
 	Write-Host "[15] `tDownload Whitepaper"
     Write-Host "-----------------------------------------------------"
 	# TODO Signum pages menu
@@ -347,7 +350,7 @@ function Show-InstallMenu {
     Write-Host "====================================================="
 
 	# Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
-    $choice = Read-Host "Enter your choice (1-14)"
+    $choice = Read-Host "Enter your choice (1-17)"
 
 	function install-process($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -393,25 +396,25 @@ function Show-InstallMenu {
 		"10" {
 			install-process $SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH "Signum Pool Testnet" {Install-SignumPoolTestnet}
         }
-        "9" {
+        "11" {
 			install-process $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
         }
-        "10" {
+        "12" {
 			install-process $HEIDISQL_EXEC_PATH "HeidiSQL" {install_heidisql}
         }
-		"11" {
+		"13" {
 			install-process $NGINX_EXEC_PATH "NGINX" {install_nginx}
         }
-		"12" {
+		"14" {
 			install-process $NOTEPAD_EXEC_PATH "Notepad" {install_notepad}
         }
-		"13" {
+		"15" {
 			install-doc $WHITEPAPER_DOC_PATH "Whitepaper" $WHITEPAPER_DOC_PATH $WHITEPAPER_URL
         }
-        "14" {
+        "16" {
             Show-StartMenu
         }
-        "15" {
+        "17" {
             Exit-Script
         }
         default {
@@ -436,17 +439,19 @@ function Show-StartMenu {
 	Write-Host "[6] `tStart SignumPlotter"
 	Write-Host "[7] `tStart Signum Miner Mainnet"
 	Write-Host "[8] `tStart Signum Miner Testnet"
-    Write-Host "[9] `tStart MariaDB"
-    Write-Host "[10] `tStart HeidiSQL"
-	Write-Host "[11] `tStart NGINX"
-	Write-Host "[12] `tStart Notepad++"
-	Write-Host "[13] `tOpen Whitepaper"
+	Write-Host "[9] `tStart Signum Pool Mainnet"
+	Write-Host "[10] `tStart Signum Pool Testnet"
+    Write-Host "[11] `tStart MariaDB"
+    Write-Host "[12] `tStart HeidiSQL"
+	Write-Host "[13] `tStart NGINX"
+	Write-Host "[14] `tStart Notepad++"
+	Write-Host "[15] `tOpen Whitepaper"
     Write-Host "-----------------------------------------------------"
-    Write-Host "[14] `tSignum Installer Menu"
-    Write-Host "[15] `tExit"
+    Write-Host "[16] `tSignum Installer Menu"
+    Write-Host "[17] `tExit"
     Write-Host "====================================================="
 
-    $choice = Read-Host "Enter your choice (1-14)"
+    $choice = Read-Host "Enter your choice (1-17)"
 
 	function start-process-menu($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -489,25 +494,31 @@ function Show-StartMenu {
 		"8" {
 			start-process-menu $SIGNUM_MINER_TESTNET_STARTER_PS1_PATH "Signum Miner Testnet" {install_signumminer_testnet}
         }
-        "9" {
+		"9" {
+			start-process-menu $SIGNUM_POOL_MAINNET_STARTER_PS1_PATH "Signum Pool Mainnet" {Install-SignumPoolMainnet}
+        }
+		"10" {
+			start-process-menu $SIGNUM_POOL_TESTNET_STARTER_PS1_PATH "Signum Pool Testnet" {Install-SignumPoolTestnet}
+        }
+        "11" {
 			start-process-menu $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
         }
-        "10" {
+        "12" {
 			start-process-menu $HEIDISQL_STARTER_PS1_PATH "HeidiSQL" {install_heidisql}
         }
-		"11" {
+		"13" {
 			start-process-menu $NGINX_STARTER_PS1_PATH "NGINX" {install_nginx}
         }
-		"12" {
+		"14" {
 			start-process-menu $NOTEPAD_STARTER_PS1_PATH "Notepad" {install_notepad}
         }
-		"13" {
+		"15" {
             open-doc $WHITEPAPER_DOC_PATH "Whitepaper" $WHITEPAPER_DIR_PATH $WHITEPAPER_URL
 		}
-        "14" {
+        "16" {
             Show-InstallMenu
         }
-        "15" {
+        "17" {
             Exit-Script
         }
         default {
@@ -619,11 +630,11 @@ function Install-SignumMainnet {
 	# TODO Create start-signum-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
 	# TODO start-signum-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
 
-    Write-Host "Signum Mainnet Installation complete."
+    Write-Host "Signum Mainnet Node Installation complete."
     # Pause
 
     if (-not (Test-Path -Path "${SIGNUM_TESTNET_STARTER_PS1_PATH}")) {
-        question-prompt "Install" "Signum Testnet" Install-SignumTestnet
+        question-prompt "Install" "Signum Node Testnet" Install-SignumTestnet
     }
 }
 
@@ -687,7 +698,7 @@ function Install-SignumTestnet {
 	# Update database information in node.properties
 	setup_db_node_properties ${TESTNET_PROPERTIES}
 
-    Write-Host "Signum Testnet Installation complete."
+    Write-Host "Signum Testnet Node Installation complete."
     # Pause
 
     if (-not (Test-Path -Path "${SIGNUM_MAINNET_STARTER_PS1_PATH}")) {
@@ -697,15 +708,6 @@ function Install-SignumTestnet {
 
 function Install-SignumPoolMainnet {
     Write-Host "Installing Signum Pool Mainnet ..."
-	
-	# Insall Signum Mainnet if not installed yet
-
-		if (Test-Path $SIGNUM_MAINNET_STARTER_PS1_PATH) {
-			Write-Host "${SIGNUM_MAINNET_STARTER_PS1_PATH} already installed."
-		} else {
-			question-prompt "Install" "Signum Node Mainnet" {Install-SignumMainnet}
-			Pause
-		}
 
 	# install-process $SIGNUM_MAINNET_STARTER_PS1_PATH "Signum Mainnet" {Install-SignumMainnet}
 
@@ -774,6 +776,11 @@ function Install-SignumPoolMainnet {
         Write-Host "Unzipping Java to ${JAVA_POOL_MAINNET_UNZIP_PATH} ..."
         Expand-Archive -Path "${JAVA_POOL_MAINNET_ZIP_PATH}" -DestinationPath "${JAVA_POOL_MAINNET_DIR_PATH}" -Force
     }
+	
+	# Copy poopl.properties to pool-original.properties
+	Write-Host "Copying ${SIGNUM_POOL_MAINNET_PROPERTIES_PATH} to ${SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH} ..."
+    Copy-Item -Path "${SIGNUM_POOL_MAINNET_PROPERTIES_PATH}" -Destination "${SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH}"
+	
 
 	# Create starter ps1
 	if (-not (Test-Path $SIGNUM_POOL_MAINNET_STARTER_PS1_PATH)) {
@@ -793,7 +800,7 @@ echo "Starting Signum Node Mainnet ..."
 
 Start-Sleep -Seconds 10
 
-# missing
+..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_TESTNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
 
 echo "Starting Signum Pool Mainnet ..."
 
@@ -824,36 +831,41 @@ exit
     # Install MariaDB
     install_mariadb
 
-    # Setup MariaDB for Mainnet
+    # Setup MariaDB for Signum Pool Mainnet
     question-prompt "Setup" "MariaDB for Signum Pool Mainnet" {setup_mariadb "Signum Pool Mainnet" "signum-pool-mainnet" "signumuser" "signumpassword"}
 	
-	# Update database information in node.properties
+	# Update database information in pool.properties
 	setup_db_pool_properties ${SIGNUM_POOL_MAINNET_PROPERTIES_PATH}
 	
 	# Setup pool.properties
+	setup_signumpool $SIGNUM_POOL_MAINNET_PROPERTIES_PATH  $SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH "mainnet"
 
 	# TODO Create start-signum-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
 	# TODO start-signum-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
 
     Write-Host "Signum Pool Mainnet Installation complete."
     # Pause
+	
+	# Insall Signum Mainnet if not installed yet
 
-    if (-not (Test-Path -Path "${SIGNUM_POOL_TESTNET_STARTER_PS1_PATH}")) {
+	if (Test-Path $SIGNUM_MAINNET_STARTER_PS1_PATH) {
+		Write-Host "${SIGNUM_MAINNET_STARTER_PS1_PATH} already installed."
+	} else {
+		question-prompt "Install" "Signum Node Mainnet" {Install-SignumMainnet}
+		# Pause
+	}
+	
+	if (-not (Test-Path -Path "${SIGNUM_POOL_TESTNET_STARTER_PS1_PATH}")) {
         question-prompt "Install" "Signum Pool Testnet" Install-SignumPoolTestnet
     }
+	
 }
+
+# TODO parameterize every function to use only once
+# Currently by default installer use MariaDB -> maybe later multiple installation could be configured assigne with specific application
 
 function Install-SignumPoolTestnet {
     Write-Host "Installing Signum Pool Testnet ..."
-	
-	# Insall Signum Testnet if not installed yet
-
-		if (Test-Path $SIGNUM_TESTNET_STARTER_PS1_PATH) {
-			Write-Host "${SIGNUM_TESTNET_STARTER_PS1_PATH} already installed."
-		} else {
-			question-prompt "Install" "Signum Node Testnet" {Install-SignumTestnet}
-			Pause
-		}
 
 	# install-process $SIGNUM_MAINNET_STARTER_PS1_PATH "Signum Testnet" {Install-SignumMainnet}
 
@@ -922,6 +934,10 @@ function Install-SignumPoolTestnet {
         Write-Host "Unzipping Java to ${JAVA_POOL_TESTNET_UNZIP_PATH} ..."
         Expand-Archive -Path "${JAVA_POOL_TESTNET_ZIP_PATH}" -DestinationPath "${JAVA_POOL_TESTNET_DIR_PATH}" -Force
     }
+	
+	# Copy poopl.properties to pool-original.properties
+	Write-Host "Copying ${SIGNUM_POOL_TESTNET_PROPERTIES_PATH} to ${SIGNUM_POOL_TESTNET_PROPERTIES_ORIGINAL_PATH} ..."
+    Copy-Item -Path "${SIGNUM_POOL_TESTNET_PROPERTIES_PATH}" -Destination "${SIGNUM_POOL_TESTNET_PROPERTIES_ORIGINAL_PATH}"
 
 	# Create starter ps1
 	if (-not (Test-Path $SIGNUM_POOL_TESTNET_STARTER_PS1_PATH)) {
@@ -941,7 +957,7 @@ echo "Starting Signum Node Testnet ..."
 
 Start-Sleep -Seconds 10
 
-# missing
+..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_TESTNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
 
 echo "Starting Signum Pool Testnet ..."
 
@@ -972,23 +988,34 @@ exit
     # Install MariaDB
     install_mariadb
 
-    # Setup MariaDB for Testnet
+    # Setup MariaDB for  Signum Pool Testnet
     question-prompt "Setup" "MariaDB for Signum Pool Testnet" {setup_mariadb "Signum Pool Testnet" "signum-pool-testnet" "signumuser" "signumpassword"}
 	
-	# Update database information in node.properties
+	# Update database information in pool.properties
 	setup_db_pool_properties ${SIGNUM_POOL_TESTNET_PROPERTIES_PATH}
 	
 	# Setup pool.properties
+	setup_signumpool $SIGNUM_POOL_TESTNET_PROPERTIES_PATH $SIGNUM_POOL_TESTNET_PROPERTIES_ORIGINAL_PATH "testnet"
 
 	# TODO Create start-signum-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
 	# TODO start-signum-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
 
     Write-Host "Signum Pool Testnet Installation complete."
     # Pause
+	
+	# Insall Signum Testnet if not installed yet
 
-    if (-not (Test-Path -Path "${SIGNUM_POOL_TESTNET_STARTER_PS1_PATH}")) {
-        question-prompt "Install" "Signum Pool Mainnet" Install-SignumPoolTestnet
+	if (Test-Path $SIGNUM_TESTNET_STARTER_PS1_PATH) {
+		Write-Host "${SIGNUM_TESTNET_STARTER_PS1_PATH} already installed."
+	} else {
+		question-prompt "Install" "Signum Node Testnet" {Install-SignumTestnet}
+		Pause
+	}
+	
+	if (-not (Test-Path -Path "${SIGNUM_POOL_MAINNET_STARTER_PS1_PATH}")) {
+        question-prompt "Install" "Signum Pool Mainnet" Install-SignumPoolMainnet
     }
+		
 }
 
 function signum-starter-ps1 ($name, $file){
@@ -1287,11 +1314,11 @@ exit
 		
     Write-Host "Signum Miner Mainnet installed successfully."
 	
-	setup_signumminer "$SIGNUM_MINER_MAINNET_VERSION_DIR_PATH\config.yaml" $SIGNUM_MINER_MAINNET_CONF_URL
+	setup_signumminer "$SIGNUM_MINER_MAINNET_VERSION_DIR_PATH\config.yaml" $SIGNUM_MINER_MAINNET_CONF_URL "mainnet"
 	
 }
 
-function setup_signumminer($config_path, $config_url) {
+function setup_signumminer($config_path, $config_url, $net_type) {
 	
 	Clear-Host
     Write-Host "====================================================="
@@ -1350,10 +1377,20 @@ function setup_signumminer($config_path, $config_url) {
 					Write-Host "Solo miner config"
 					$choice_account_id = Read-Host "Enter Account Id"
 					$choice_passphrase = Read-Host "Enter Passphrase"
-					$choice_node_url = Read-Host "Enter Signum node url (default: http://localhost:8125)"
+					if ($net_type -eq "mainnet") {
+						$choice_node_url = "http://localhost:8125"
+					} else {
+						$choice_node_url = "http://localhost:6876"
+					}
+					$choice_node_url = Read-Host "Enter Signum node url (default: $choice_node_url)"
 					if ($choice_node_url -eq "")
 					{
-						$choice_node_url = "http://localhost:8125"
+						if ($net_type -eq "mainnet") {
+							$choice_node_url = "http://localhost:8125"
+						} else {
+							$choice_node_url = "http://localhost:6876"
+						}
+							
 					}
 					if ($choice_account_id -ne "") {
 						$lines = Get-Content -Path $config_path
@@ -1392,7 +1429,7 @@ function setup_signumminer($config_path, $config_url) {
 						# Write the modified lines back to the file
 						$lines | Set-Content -Path $config_path
 						Pause
-						setup_signumminer $config_path $config_url
+						setup_signumminer $config_path $config_url $net_type
 					}
 				}
 				"2" {
@@ -1430,12 +1467,12 @@ function setup_signumminer($config_path, $config_url) {
 					# Write the modified lines back to the file
 					$lines | Set-Content -Path $config_path
 					Pause
-					setup_signumminer $config_path $config_url
+					setup_signumminer $config_path $config_url $net_type
 				}
 				default {
 					Write-Host "Invalid choice! Please try again."
 					Pause
-					setup_signumminer $config_path $config_url
+					setup_signumminer $config_path $config_url $net_type
 				}
 			}
         }
@@ -1448,12 +1485,12 @@ function setup_signumminer($config_path, $config_url) {
 				Write-Host "Error: Failed to download Configuration file."
 				Read-Host "Press Enter to continue"
 				Pause
-				setup_signumminer $config_path $config_url
+				setup_signumminer $config_path $config_url $net_type
 				return
 			}
 			Write-Host "Configuration restored"
 			Pause
-            setup_signumminer $config_path $config_url
+            setup_signumminer $config_path $config_url $net_type
 			Return
         }
 		"4" {
@@ -1463,7 +1500,291 @@ function setup_signumminer($config_path, $config_url) {
         default {
             Write-Host "Invalid choice! Please try again."
             Pause
-            setup_signumminer $config_path $config_url
+            setup_signumminer $config_path $config_url $net_type
+        }
+    }
+}
+
+# TODO make a setup menu entry from main menu to open setup menu
+# TODO after installation ask for start the installed application
+function setup_signumpool($config_path, $config_original_path, $net_type) {
+	
+	Clear-Host
+    Write-Host "====================================================="
+
+	if ($net_type -eq "mainnet") {
+	Write-Host "            Setup Signum Pool Mainnet                "
+	} else {
+	Write-Host "            Setup Signum Pool Testnet                "
+	}
+
+    Write-Host "====================================================="
+    Write-Host "Please select an option:"
+    Write-Host "[1] `tEdit Configuration file"
+    Write-Host "[2] `tSetup Pool Configuration"
+	Write-Host "[3] `tRestore Configuration"
+	Write-Host "====================================================="
+	Write-Host "[4] `tExit Setup"
+    Write-Host "====================================================="
+	
+	
+    $choice = Read-Host "Enter your choice (1-4)"
+
+    switch ($choice) {
+        "1" {
+			# Download notepad++
+			# Open Configuration with notepad++
+			install_notepad
+			# Start-Process -FilePath "$NOTEPAD_EXEC_PATH"
+			& $NOTEPAD_EXEC_PATH $config_path
+			Return
+        }
+        "2" {
+			# init configuration.yaml with commenting out lines
+			# Load the content of the file
+			<#$content = Get-Content -Path $config_path
+
+			# Process each line using regex to add '#' only if there's no '#' before the target
+			$content = $content | ForEach-Object {
+				$_ -replace "^\s*10282355196851764065:", "# 10282355196851764065:" `
+				   -replace "^\s*1796535821016683299:", "# 1796535821016683299:" `
+				   -replace "^\s*- 'D:\\plot\\dir'", "# - 'D:\plot\dir'" `
+				   -replace "^\s*- 'E:\\plot\\dir'", "# - 'E:\plot\dir'" `
+				   -replace "^\s*- '/mnt/hd1/plot/dir'", "# - '/mnt/hd1/plot/dir'" `
+				   -replace "^\s*url: 'https://pool.burstcoin.ro'", "#url: 'https://pool.burstcoin.ro'"
+			}
+
+			# Write the changes back to the file
+			$content | Set-Content -Path $config_path
+			
+			Write-Host "Configuration initialized"	
+			
+			# add user inputs
+			Write-Host "Please select an option:"
+			# Would you like to [1] solo mine or [1] pool mine?
+			Write-Host "[1] Setup Solo Miner"
+			Write-Host "[2] Setup Pool Miner"
+			
+			$choice_mining = Read-Host "Enter your choice (1-2)"
+			
+			switch ($choice_mining) {
+				"1" {
+					Write-Host "Solo miner config"
+					$choice_account_id = Read-Host "Enter Account Id"
+					$choice_passphrase = Read-Host "Enter Passphrase"
+					if ($net_type -eq "mainnet") {
+						$choice_node_url = "http://localhost:8125"
+					} else {
+						$choice_node_url = "http://localhost:6876"
+					}
+					$choice_node_url = Read-Host "Enter Signum node url (default: $choice_node_url)"
+					if ($choice_node_url -eq "")
+					{
+						if ($net_type -eq "mainnet") {
+							$choice_node_url = "http://localhost:8125"
+						} else {
+							$choice_node_url = "http://localhost:6876"
+						}
+							
+					}
+					if ($choice_account_id -ne "") {
+						$lines = Get-Content -Path $config_path
+
+						# Loop through each line and add a new line after the target line
+						for ($i = 0; $i -lt $lines.Count; $i++) {
+							if ($lines[$i] -match "^account_id_to_secret_phrase:") {
+								# Insert a new empty line after the detected line
+								$lines = $lines[0..$i] + "$choice_account_id`: $choice_passphrase" + $lines[($i + 1)..($lines.Count - 1)]
+								break
+							}
+						}
+						
+						# Loop through each line and add a new line after the target line
+						for ($i = 0; $i -lt $lines.Count; $i++) {
+							if ($lines[$i] -match "url:") {
+								# Insert a new empty line after the detected line
+								$lines = $lines[0..$i] + "url`: $choice_node_url" + $lines[($i + 1)..($lines.Count - 1)]
+								break
+							}
+						}
+						
+						$choice_plot_path = Read-Host "Enter Plot path (D:\plot\dir)"
+						while ($choice_plot_path -ne "") {		
+							# Loop through each line and add a new line after the target line
+							for ($i = 0; $i -lt $lines.Count; $i++) {
+								if ($lines[$i] -match "^plot_dirs:") {
+									# Insert a new empty line after the detected line
+									$lines = $lines[0..$i] + "  - '$choice_plot_path'" + $lines[($i + 1)..($lines.Count - 1)]
+									break
+								}
+							}
+							$choice_plot_path = Read-Host "Enter Plot path (empty path exit)"
+						}
+						
+						# Write the modified lines back to the file
+						$lines | Set-Content -Path $config_path
+						Pause
+						setup_signumpool $config_path $config_original_path $net_type
+					}
+				}
+				"2" {
+					Write-Host "Pool miner config"
+					# Enter pool URL
+					$choice_pool_url = Read-Host "Enter Signum pool url (default: https://opensignumpool.ddns.net:8129)"
+					if ($choice_pool_url -eq "")
+					{
+						$choice_pool_url = "https://opensignumpool.ddns.net:8129"
+					}
+					
+					$lines = Get-Content -Path $config_path
+					# Loop through each line and add a new line after the target line
+					for ($i = 0; $i -lt $lines.Count; $i++) {
+						if ($lines[$i] -match "url:") {
+							# Insert a new empty line after the detected line
+							$lines = $lines[0..$i] + "url: $choice_pool_url" + $lines[($i + 1)..($lines.Count - 1)]
+							break
+						}
+					}
+					
+					$choice_plot_path = Read-Host "Enter Plot path (empty path: exit)"
+					while ($choice_plot_path -ne "") {
+						# Loop through each line and add a new line after the target line
+						for ($i = 0; $i -lt $lines.Count; $i++) {
+							if ($lines[$i] -match "^plot_dirs:") {
+								# Insert a new empty line after the detected line
+								$lines = $lines[0..$i] + "  - '$choice_plot_path'" + $lines[($i + 1)..($lines.Count - 1)]
+								break
+							}
+						}
+						$choice_plot_path = Read-Host "Enter Plot path (empty path: exit)"
+					}
+					
+					# Write the modified lines back to the file
+					$lines | Set-Content -Path $config_path
+					Pause
+					setup_signumpool $config_path $config_original_path $net_type
+				}
+				default {
+					Write-Host "Invalid choice! Please try again."
+					Pause
+					setup_signumpool $config_path $config_original_path $net_type
+				}
+			}#>
+			# The port to run the server on, use 443 if you enalbe the letsencrypt thing (see below)
+			$serverPort = "8000"
+			$nodeAddresses = "http://localhost:8125"
+			$poolName = "SIGNUM POOL"
+			$miningURL = "http://localhost:8000"
+			$passphrase = "YOUR POOL PASSPHRASE GOES HERE"
+			$feeRecipient = "S-W5YR-ZZQC-KUBJ-G78KB"
+			$donationRecipient = "S-JJQS-MMA4-GHB4-4ZNZU"
+			
+			if ($net_type -eq "mainnet") {
+				$serverPort = "8000" 
+			} else {
+					$serverPort = "8001" 
+			}
+			
+			$serverPort = Read-Host "Enter Signum Pool Server Port to run the server (or press Enter for default ${serverPort})"
+			if (-not $serverPort) { 
+				if ($net_type -eq "mainnet") {
+					$serverPort = "8000" 
+				} else {
+					$serverPort = "8001" 
+				}
+			}
+			Write-Host "serverPort = $serverPort"
+
+			if ($net_type -eq "mainnet") {
+				$nodeAddresses = "http://localhost:8125"
+			} else {
+				$nodeAddresses = "http://localhost:6876"
+			}
+			
+			$nodeAddresses = Read-Host "Enter Signum Node Address (or press Enter for default $nodeAddresses)"
+			if (-not $nodeAddresses) { 
+				if ($net_type -eq "mainnet") {
+					$nodeAddresses = "http://localhost:8125"
+				} else {
+					$nodeAddresses = "http://localhost:6876"
+				}
+			}
+			Write-Host "Signum Node Address: $nodeAddresses"
+
+			# The name of the pool
+			$poolName = Read-Host "Enter the name of the pool (or press Enter for default $poolName)"
+			if (-not $poolName) { $poolName = "SIGNUM POOL" }
+			Write-Host "The name of the pool: ${poolName}"
+
+			if ($net_type -eq "mainnet") {
+				$miningURL = "http://localhost:8000"
+			} else {
+				$miningURL = "http://localhost:8001"
+			}
+
+			# The URL miners should point their miner to
+			$miningURL = Read-Host "Enter URL miners should point their miner to (or press Enter for skip)"
+			if (-not $miningURL) { 
+				if ($net_type -eq "mainnet") {
+					$miningURL = "http://localhost:8000"
+				} else {
+					$miningURL = "http://localhost:8001"
+				}
+			}
+			Write-Host "The URL miners should point their miner to: ${miningURL}"
+
+			# The passphrase of the pool account
+			$passphrase = Read-Host "Enter the passphrase of the pool account (or press Enter for skip)"
+			if (-not $passphrase) { $passphrase = "YOUR POOL PASSPHRASE GOES HERE" }
+			Write-Host "Passphrase of the pool account: ${passphrase}"
+			
+			# Recipient of pool fees
+			$feeRecipient = Read-Host "Enter the recipient of pool fees (or press Enter for skip)"
+			if (-not $feeRecipient) { $feeRecipient = "S-W5YR-ZZQC-KUBJ-G78KB" }
+			Write-Host "Recipient of pool fees: ${feeRecipient}"
+			
+			# Recipient of donations
+			$donationRecipient = Read-Host "Enter the recipient of donations (or press Enter for skip)"
+			if (-not $donationRecipient) { $donationRecipient = "S-JJQS-MMA4-GHB4-4ZNZU" }
+			Write-Host "Recipient of donations: ${donationRecipient}"
+			
+			Write-Host "Updating pool.properties with new configurations ..."
+			(Get-Content -Path $config_path) -replace '^serverPort = 8000', "serverPort = $serverPort" `
+				-replace '^nodeAddresses = http://localhost:8125;', "nodeAddresses = $nodeAddresses;" `
+				-replace '^poolName = SIGNUM POOL', "poolName = $poolName" `
+				-replace '^miningURL = http://testnet.btfg.space:9000', "miningURL = $miningURL" `
+				-replace '^passphrase = YOUR POOL PASSPHRASE GOES HERE', "passphrase = $passphrase" `
+				-replace '^feeRecipient=S-W5YR-ZZQC-KUBJ-G78KB', "feeRecipient=$feeRecipient" `
+				-replace '^donationRecipient=S-JJQS-MMA4-GHB4-4ZNZU', "donationRecipient=$donationRecipient" | Set-Content -Path $config_path
+
+			if ($net_type -eq "mainnet") {
+				
+			} else {
+				"testnet = true" | Out-File -FilePath $config_path -Append
+			}
+			Write-Host "Update complete."
+        }
+		"3" {
+			# Restore Configuration
+			Write-Host "Restore Configuration file ..."
+			
+			# Copy poopl.properties to pool-original.properties
+			Write-Host "Copying ${config_original_path} to ${config_path} ..."
+			Copy-Item -Path "${config_original_path}" -Destination "${config_path}"
+
+			Write-Host "Configuration restored"
+			Pause
+            setup_signumpool $config_path $config_original_path $net_type
+			Return
+        }
+		"4" {
+			# Exit Setup
+			Return
+        }
+        default {
+            Write-Host "Invalid choice! Please try again."
+            Pause
+            setup_signumpool $config_path $config_original_path $net_type
         }
     }
 }
@@ -1532,7 +1853,7 @@ exit
 		
     Write-Host "Signum Miner Testnet installed successfully."
 	
-	setup_signumminer "$SIGNUM_MINER_TESTNET_VERSION_DIR_PATH\config.yaml" $SIGNUM_MINER_TESTNET_CONF_URL
+	setup_signumminer "$SIGNUM_MINER_TESTNET_VERSION_DIR_PATH\config.yaml" $SIGNUM_MINER_TESTNET_CONF_URL "testnet"
 	
 }
 
@@ -1875,9 +2196,12 @@ function setup_db_node_properties($file) {
 function setup_db_pool_properties($file) {
 	
 	Write-Host "Updating pool.properties with new database configurations ..."
-    (Get-Content -Path $file) -replace '# DB.Url=jdbc:mariadb:.*', "DB.Url=jdbc:mariadb://localhost:3306/${DATABASE_NAME}" `
-        -replace '# DB.Username=.*', "DB.Username=${DATABASE_USERNAME}" `
-        -replace '# DB.Password=.*', "DB.Password=${DATABASE_PASSWORD}" | Set-Content -Path $file
+    (Get-Content -Path $file) -replace 'dbUrl=jdbc:h2:file*', "# dbUrl=jdbc:h2:file:./db/pooldb.h2;DB_CLOSE_ON_EXIT=FALSE" `
+        -replace '^dbUsername=', "# dbUsername=" `
+        -replace '^dbPassword=', "# dbPassword=" `
+		-replace '^#dbUrl=jdbc:mariadb://localhost:3306/pooldb*', "dbUrl=jdbc:mariadb://localhost:3306/${DATABASE_NAME}" `
+        -replace '^#dbUsername=root', "dbUsername=${DATABASE_USERNAME}" `
+        -replace '^#dbPassword=passw', "dbPassword=${DATABASE_PASSWORD}" | Set-Content -Path $file
 
     Write-Host "Update complete."
 	
