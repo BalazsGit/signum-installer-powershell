@@ -12,6 +12,18 @@ $POWERSHELL_URL = "https://github.com/PowerShell/PowerShell/releases/download/v$
 $SIGNUM_NODE_DIR = "Node"
 # TODO rename: $SIGNUM_MAINNET_VERSION -> $SIGNUM_NODE_MAINNET_VERSION?
 # TODO very important to stop all processes before stop mariadb or run mariadb in the background to solve
+# TODO mention or notify recommended menu items
+# TODO download explorer https://github.com/signum-network/signum-explorer/archive/refs/heads/master.zip
+# TODO download python https://www.python.org/ftp/python/3.13.1/python-3.13.1-embed-amd64.zip not full
+# TODO download full pytjon pakage https://www.python.org/ftp/python/3.13.1/Python-3.13.1.tar.xz not ok
+
+# TODO try to use portable wls
+# Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
+# If the download is taking a long time, turn off the progress bar by setting $ProgressPreference = 'SilentlyContinue'
+# TODO unzip python-3.13.1-embed-amd64.zip
+# TODO unzip python-3.13.1-embed-amd64/python313.zip
+
+# Run mariadb in the background to not shut down it unintentianally
 
 $SIGNUM_STARTER_PS1 = "start-signum.ps1"
 $SIGNUM_STARTER_EXEC = "start-signum.bat"
@@ -72,6 +84,34 @@ $SIGNUM_POOL_TESTNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH
 $SIGNUM_POOL_TESTNET_STARTER_PS1_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_PS1}"
 $SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_EXEC}"
 $SIGNUM_POOL_TESTNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_TESTNET_VERSION}/${SIGNUM_POOL_TESTNET_ZIP}"
+
+$SIGNUM_EXPLORER_STARTER_PS1 = "start-explorer.ps1"
+$SIGNUM_EXPLORER_STARTER_EXEC = "start-explorer.bat"
+$SIGNUM_EXPLORER_PROPERTIES = "pool.properties"
+$SIGNUM_EXPLORER_PROPERTIES_ORIGINAL = "pool-original.properties"
+
+# $EXPLORER_JRE_URL = "https://cdn.azul.com/zulu/bin/zulu11.56.19-ca-fx-jre11.0.15-win_x64.zip"
+
+# $SIGNUM_EXPLORER_MAINNET_VERSION = "v2.2.1"
+$SIGNUM_EXPLORER_MAINNET_DIR = "Explorer"
+$SIGNUM_EXPLORER_MAINNET_DIR_PATH = "${SIGNUM_MAINNET_DIR}\${SIGNUM_EXPLORER_MAINNET_DIR}"
+$SIGNUM_EXPLORER_MAINNET_UNZIP = "signum-explorer-master"
+$SIGNUM_EXPLORER_MAINNET_ZIP = "${SIGNUM_EXPLORER_MAINNET_UNZIP}.zip"
+$SIGNUM_EXPLORER_MAINNET_ZIP_PATH = "${SIGNUM_EXPLORER_MAINNET_DIR_PATH}\${SIGNUM_EXPLORER_MAINNET_ZIP}"
+$SIGNUM_EXPLORER_MAINNET_UNZIP_PATH = "${SIGNUM_EXPLORER_MAINNET_DIR_PATH}\${SIGNUM_EXPLORER_MAINNET_UNZIP}"
+
+# $SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP = "master"
+$SIGNUM_EXPLORER_MAINNET_PYTHON_VERSION = "3.10.11"
+$SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP = "python-${SIGNUM_EXPLORER_MAINNET_PYTHON_VERSION}-embed-amd64}.zip"
+$SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_PATH = "${SIGNUM_EXPLORER_MAINNET_DIR_PATH}\${SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP}"
+$SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH = "${SIGNUM_EXPLORER_MAINNET_DIR_PATH}\${SIGNUM_EXPLORER_MAINNET_UNZIP}"
+# $SIGNUM_EXPLORER_MAINNET_GUNICORN_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES"
+# $SIGNUM_EXPLORER_MAINNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_ORIGINAL"
+$SIGNUM_EXPLORER_MAINNET_STARTER_PS1_PATH = "$SIGNUM_EXPLORER_MAINNET_UNZIP_PATH\${SIGNUM_EXPLORER_STARTER_PS1}"
+$SIGNUM_EXPLORER_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_EXPLORER_MAINNET_UNZIP_PATH\${SIGNUM_EXPLORER_STARTER_EXEC}"
+$SIGNUM_EXPLORER_MAINNET_URL = "https://github.com/signum-network/signum-explorer/archive/refs/heads/master.zip"
+$SIGNUM_EXPLORER_MAINNET_PYTHON_URL = "https://www.python.org/ftp/python/${SIGNUM_EXPLORER_MAINNET_PYTHON_VERSION}/python-${SIGNUM_EXPLORER_MAINNET_PYTHON_VERSION}-embed-amd64.zip"
+$SIGNUM_EXPLORER_MAINNET_PYTHON_GETPIP_URL = "https://bootstrap.pypa.io/get-pip.py"
 
 $JAVA_POOL_MAINNET_DIR = "jre"
 $JAVA_POOL_MAINNET_BIN = "jre\bin\java"
@@ -186,6 +226,10 @@ $SIGNUMPLOTTER_URL = "https://github.com/signum-network/signum-plotter/releases/
 # https://www.youtube.com/playlist?list=PLyu0NNtb1eg3Gcg2JCrOle8MjtuFPb-Gi
 # https://github.com/signum-network
 # https://github.com/signum-network/signum-pool/releases/tag/v2.2.1
+
+# https://deleterium.info/SmartC/stable/
+# https://deleterium.info/sc-simulator/
+# https://deleterium.info/smartc-retro-ui/
 
 # jre\bin\java
 # https://cdn.azul.com/zulu/bin/zulu11.56.19-ca-fx-jre11.0.15-win_x64.zip
@@ -322,22 +366,24 @@ function Show-InstallMenu {
 	# TODO add signum explorer
     Write-Host "[9] `tInstall Signum Pool Mainnet with MariaDB"
     Write-Host "[10] `tInstall Signum Pool Testnet with MariaDB"
+    Write-Host "[11] `tInstall Signum Explorer Mainnet with MariaDB"
+    Write-Host "[12] `tInstall Signum Explorer Testnet with MariaDB"
 	# Write-Host "====================================================="
 	# Write-Host "            		 Databases	 			         "
 	# Write-Host "====================================================="
-    Write-Host "[11] `tInstall MariaDB"
+    Write-Host "[13] `tInstall MariaDB"
 	# Write-Host "====================================================="
 	# Write-Host "            		 Tools	 			             "
 	# Write-Host "====================================================="
-    Write-Host "[12] `tInstall HeidiSQL"
-    Write-Host "[13] `tInstall NGINX"
-	Write-Host "[14] `tInstall Notepad++"
+    Write-Host "[14] `tInstall HeidiSQL"
+    Write-Host "[15] `tInstall NGINX"
+	Write-Host "[16] `tInstall Notepad++"
 	<# Write-Host "====================================================="
 	Write-Host "            	  Developer Tools 			         "
 	Write-Host "====================================================="
 	Write-Host "[8] `tInstall Signum SmartC Smart Contract Compiler" #>
 	# Write-Host "-----------------------------------------------------"
-	Write-Host "[15] `tDownload Whitepaper"
+	Write-Host "[17] `tDownload Whitepaper"
     Write-Host "-----------------------------------------------------"
 	# TODO Signum pages menu
 	# TODO add usefull signum pages wiki, official page, github stb. coinmarcetcap, bft portal, explorer
@@ -345,8 +391,8 @@ function Show-InstallMenu {
 	# Signum provider menu
 	# letsencrypt with ACME challege
 	# open readme how to use the installer
-    Write-Host "[16] `tSignum Starter Menu"
-    Write-Host "[17] `tExit"
+    Write-Host "[18] `tSignum Starter Menu"
+    Write-Host "[19] `tExit"
     Write-Host "====================================================="
 
 	# Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
@@ -396,25 +442,31 @@ function Show-InstallMenu {
 		"10" {
 			install-process $SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH "Signum Pool Testnet" {Install-SignumPoolTestnet}
         }
-        "11" {
+		"11" {
+			install-process $SIGNUM_EXPLORER_MAINNET_STARTER_EXEC_PATH "Signum Explorer Mainnet" {Install-SignumExplorerMainnet}
+        }
+		"12" {
+			install-process $SIGNUM_EXPLORER_TESTNET_STARTER_EXEC_PATH "Signum Explorer Testnet" {Install-SignumExplorerTestnet}
+        }
+        "13" {
 			install-process $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
         }
-        "12" {
+        "14" {
 			install-process $HEIDISQL_EXEC_PATH "HeidiSQL" {install_heidisql}
         }
-		"13" {
+		"15" {
 			install-process $NGINX_EXEC_PATH "NGINX" {install_nginx}
         }
-		"14" {
+		"16" {
 			install-process $NOTEPAD_EXEC_PATH "Notepad" {install_notepad}
         }
-		"15" {
+		"17" {
 			install-doc $WHITEPAPER_DOC_PATH "Whitepaper" $WHITEPAPER_DOC_PATH $WHITEPAPER_URL
         }
-        "16" {
+        "18" {
             Show-StartMenu
         }
-        "17" {
+        "19" {
             Exit-Script
         }
         default {
@@ -1016,6 +1068,508 @@ exit
         question-prompt "Install" "Signum Pool Mainnet" Install-SignumPoolMainnet
     }
 		
+}
+
+function Install-SignumExplorerMainnet {
+    Write-Host "Installing Signum Exporer Mainnet ..."
+
+	# install-process $SIGNUM_MAINNET_STARTER_PS1_PATH "Signum Mainnet" {Install-SignumMainnet}
+
+    # Create Explorer directory
+    if (-not (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_DIR_PATH}")) {
+        New-Item -Path "${SIGNUM_EXPLORER_MAINNET_DIR_PATH}" -ItemType Directory | Out-Null
+        Write-Host "Created directory: ${SIGNUM_EXPLORER_MAINNET_DIR_PATH}"
+    } else {
+        Write-Host "Directory already exists: ${SIGNUM_EXPLORER_MAINNET_DIR_PATH}"
+    }
+
+    if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_ZIP_PATH}") {
+        Write-Host "${SIGNUM_EXPLORER_MAINNET_ZIP_PATH} already downloaded."
+    } else {
+        # Download the Signum Explorer Mainnet zip file
+        Write-Host "Downloading Signum Explorer from GitHub ..."
+        Start-BitsTransfer -Source "${SIGNUM_EXPLORER_MAINNET_URL}" -Destination "${SIGNUM_EXPLORER_MAINNET_ZIP_PATH}"
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download Signum Explorer."
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+
+    if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}") {
+        Write-Host "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH} already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Signum Explorer to ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH} ..."
+        Expand-Archive -Path "${SIGNUM_EXPLORER_MAINNET_ZIP_PATH}" -DestinationPath "${SIGNUM_EXPLORER_MAINNET_DIR_PATH}" -Force
+    }
+	<#
+	# Create python directory
+    if (-not (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_PATH}")) {
+        New-Item -Path "${JAVA_POOL_MAINNET_DIR_PATH}" -ItemType Directory | Out-Null
+        Write-Host "Created directory: ${JAVA_POOL_MAINNET_DIR_PATH}"
+    } else {
+        Write-Host "Directory already exists: ${JAVA_POOL_MAINNET_DIR_PATH}"
+    }
+	#>
+	
+	# download python
+	if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_PATH}") {
+        Write-Host "${SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_PATH} already downloaded."
+    } else {
+        # Download the python zip file
+        Write-Host "Downloading Python ..."
+        Start-BitsTransfer -Source "${SIGNUM_EXPLORER_MAINNET_PYTHON_URL}" -Destination "${SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_PATH}"
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download Python."
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+	
+	# unzip python
+	if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\python.exe") {
+        Write-Host "${SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_PATH} already unzipped."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Python to ${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH} ..."
+        Expand-Archive -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_PATH}" -DestinationPath "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}" -Force
+    }
+	
+	# unzip python310.zip
+	if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\python310") {
+        Write-Host "${SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_PATH}\python310.zip already unzipped."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Python310.zip to ${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH} ..."
+        Expand-Archive -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\python310.zip" -DestinationPath "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\python310" -Force
+    }
+	
+	# download get-pip.py from here: https://bootstrap.pypa.io/get-pip.py
+	if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\get-pip.py") {
+        Write-Host "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\get-pip.py already downloaded."
+    } else {
+        # Download the get-pip.py file
+        Write-Host "Downloading get-pip.py ..."
+        Start-BitsTransfer -Source "${SIGNUM_EXPLORER_MAINNET_PYTHON_GETPIP_URL}" -Destination "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\get-pip.py"
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\get-pip.py")) {
+            Write-Host "Error: Failed to download get-pip.py."
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+	
+	# TODO download and unzipdownload and unzip to .\static
+	# https://github.com/FortAwesome/Font-Awesome/releases/download/6.5.2/fontawesome-free-6.5.2-web.zip
+	# https://github.com/FortAwesome/Font-Awesome/releases/download/6.2.1/fontawesome-free-6.2.1-web.zip	
+	
+	# download fontawesome-free-6.5.2-web.zip
+	if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web.zip") {
+        Write-Host "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web.zip already downloaded."
+    } else {
+        # Download the fontawesome-free-6.5.2-web.zip file
+        Write-Host "Downloading fontawesome-free-6.5.2-web.zip ..."
+        Start-BitsTransfer -Source "https://github.com/FortAwesome/Font-Awesome/releases/download/6.5.2/fontawesome-free-6.5.2-web.zip" -Destination "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web.zip"
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web.zip")) {
+            Write-Host "Error: Failed to download fontawesome-free-6.5.2-web.zip"
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+	
+	# unzip fontawesome-free-6.5.2-web.zip
+	if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web") {
+        Write-Host "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web already unzipped."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping fontawesome-free-6.5.2-web to ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\static ..."
+        Expand-Archive -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web.zip" -DestinationPath "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static" -Force
+    }
+	
+		# download fontawesome-free-6.2.1-web.zip
+	if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web.zip") {
+        Write-Host "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web.zip already downloaded."
+    } else {
+        # Download the fontawesome-free-6.2.1-web.zip file
+        Write-Host "Downloading fontawesome-free-6.2.1-web.zip ..."
+        Start-BitsTransfer -Source "https://github.com/FortAwesome/Font-Awesome/releases/download/6.2.1/fontawesome-free-6.2.1-web.zip" -Destination "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web.zip"
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web.zip")) {
+            Write-Host "Error: Failed to download fontawesome-free-6.2.1-web.zip"
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+	
+	# unzip fontawesome-free-6.2.1-web.zip
+	if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web") {
+        Write-Host "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web already unzipped."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping fontawesome-free-6.2.1-web to ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\static ..."
+        Expand-Archive -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web.zip" -DestinationPath "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\static" -Force
+    }
+	
+	# run pyton get-pip.py command
+	echo "Installing get-pip.py"
+	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\python.exe" "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\get-pip.py"
+	
+	# uncomment import site from python310._pth
+	echo "Setup python310._pth file"
+	$content = Get-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\python310._pth
+	
+	$content = $content | ForEach-Object {
+		$_ -replace "#import site", "import site"
+	}
+
+	# Write the changes back to the file
+	$content | Set-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\python310._pth
+	
+	# installation
+	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install setuptools
+	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install maturin
+	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install supervisor-win
+	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install waitress
+	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install -r ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\requirements.txt
+	
+	# create ./tmp/supervisord.pid if not exists
+	if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\tmp\supervisord.pid") {
+        Write-Host "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\tmp\supervisord.pid already exists."
+    } else {
+		echo "Create ./tmp/supervisord.pid file"
+		New-Item -ItemType Directory -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\tmp" -Force | Out-Null
+		New-Item -ItemType File -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\tmp\supervisord.pid" -Force | Out-Null
+    }
+
+	# copy supervisord.conf to supervisord_original.conf
+	if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\supervisord_original.conf") {
+        Write-Host "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\supervisord_original.conf already exists."
+    } else {
+		echo "Copy supervisord.conf to supervisord_original.conf file"
+		Copy-Item -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\supervisord.conf" -Destination "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\supervisord_original.conf"
+    }
+	
+	# change supervisord.conf file
+	echo "Setup supervisord.conf file"
+	
+	$foundProgramSNR = $false
+	$content = Get-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\supervisord.conf
+	
+	$content = $content | ForEach-Object {
+		if ($_ -match "^\[program:SNR\]") {
+			$foundProgramSNR = $true
+			$_	-replace "^\[program:SNR\]", ";[program:SNR]"
+		}
+		elseif ($foundProgramSNR) {
+			$_  -replace "^command =bash -c ""/path/to/your/snr/runSNR.sh\""", ";command =bash -c ""/path/to/your/snr/runSNR.sh""" `
+				-replace "^autostart = true", ";autostart = true" `
+				-replace "^autorestart = true", ";autorestart = true" `
+				-replace "^startsecs = 1", ";startsecs = 1" `
+				-replace "^redirect_stderr = true", ";redirect_stderr = true" `
+				-replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout" `
+				-replace "^stdout_logfile_maxbytes = 0", ";stdout_logfile_maxbytes = 0"
+		}
+		elseif ($_ -match "^stdout_logfile = /dev/stdout") {
+			($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile=explorer_stdout.log"
+		} else {
+			$_  -replace "^\[unix_http_server\]", ";[unix_http_server]" `
+				-replace "^file = /tmp/supervisor.sock", ";file = ./tmp/supervisor.sock" `
+				-replace "^pidfile = /tmp/supervisord.pid", "pidfile = ./tmp/supervisord.pid" `
+				-replace "^chmod = 0700", ";chmod = 0700" `
+				-replace "^serverurl = unix:///tmp/supervisor.sock", "serverurl = ./tmp/supervisor.sock" `
+				-replace "^directory=.*", "directory=./" `
+				-replace "^command = gunicorn config.wsgi -c gunicorn.conf.py", "command = ./python.exe run_waitress.py" `
+				-replace "^command = python3 manage.py peers", "command = ./python.exe manage.py peers" `
+				-replace "^command = python3 manage.py tasks", "command = ./python.exe manage.py tasks" `
+				-replace "^logfile = /dev/null", ";logfile = /dev/null"
+		}
+	}
+	
+	# Write the changes back to the file
+	$content | Set-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\supervisord.conf
+	
+	# Create run_waitress.py
+	if (-not (Test-Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\run_waitress.py)) {
+		# Create run_waitress.py file with the desired content
+		$content = 
+@"
+import os
+import multiprocessing
+from waitress import serve
+from dotenv import load_dotenv
+load_dotenv()
+from config.wsgi import application  # Adjust this import to point to your WSGI application
+
+# Calculate optimal workers and threads
+cpu_count = multiprocessing.cpu_count()
+threads = 3 * cpu_count
+timeout = 60
+
+# Start waitress server
+serve(
+	application,
+	host="0.0.0.0",
+	port=5000,
+	threads=threads,
+	connection_limit=1000,  # Equivalent to Gunicorn's max_requests
+	asyncore_use_poll=True,
+	channel_timeout=timeout,
+)
+"@
+
+		$content | Out-File -FilePath ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\run_waitress.py -Force
+
+	Write-Host "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\run_waitress.py successfully created."
+	} else {
+		Write-Host "File already exists: ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\run_waitress.py"
+	}	
+	
+	# Create .env file
+	if (-not (Test-Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\.env)) {
+		# Create .env file with the desired content
+		$content = 
+@"
+#APP_ENV=development
+APP_ENV=production
+
+# change secret key!
+SECRET_KEY=secret_key
+
+# mysql configuration
+## ENGINE=django.db.backends.mysql
+## OPTIONS={"init_command": "SET sql_mode='STRICT_TRANS_TABLES'", "charset": "utf8mb4"}
+# DB_JAVA_WALLET required read-only access.
+
+COINGECKO_PRICE_ID=SIGNUM
+
+COINGECKO_PRICE_USD=0.000
+COINGECKO_PRICE_BTC=0.000
+COINGECKO_MKT_USD=0.000
+
+COIN_SYMBOL=SIGNA
+ADDRESS_PREFIX=S-
+
+SITE_TITLE=Signum Explorer
+#TEST_NET=true
+
+DB_DEFAULT_ENGINE=django.db.backends.mysql
+DB_DEFAULT_HOST=127.0.0.1
+DB_DEFAULT_PORT=3306
+DB_DEFAULT_NAME=signum-explorer-mainnet
+DB_DEFAULT_USER=signumuser
+DB_DEFAULT_PASSWORD=signumpassword
+DB_DEFAULT_OPTIONS={"init_command": "SET sql_mode='STRICT_TRANS_TABLES'", "charset": "utf8mb4"}
+
+DB_JAVA_WALLET_ENGINE=django.db.backends.mysql
+DB_JAVA_WALLET_HOST=127.0.0.1
+DB_JAVA_WALLET_PORT=3306
+DB_JAVA_WALLET_NAME=signum-node-mainnet
+DB_JAVA_WALLET_USER=signumuser
+DB_JAVA_WALLET_PASSWORD=signumpassword
+DB_JAVA_WALLET_OPTIONS={}
+
+CACHE_DEFAULT_HOST=localhost
+CACHE_DEFAULT_PORT=6379
+CACHE_DEFAULT_DB=0
+
+CELERY_BROKER_HOST=localhost
+CELERY_BROKER_PORT=6379
+CELERY_BROKER_DB=1
+
+GOOGLE_TRACKING_ID=
+SENTRY_DSN=
+SIGNUM_NODE=localhost
+WALLET_URL=https://signumwallet.ddns.net:8128/
+BRS_BOOTSTRAP_PEERS=["signumwallet.ddns.net:8123", "taylorforce.synology.me:8123", "zwurg.feste-ip.net:51940", "zmail.cloudns.ph:8123"]
+DEFAULT_P2P_PORT=8123
+DEFAULT_API_V1_PORT=8125
+
+#FEATURED_ASSETS=["12402415494995249540", "13240027460799312630", "11955007191311588286"]
+#PHISHING_ASSETS=["SIGNA", "SIGNUM", "BTC", "USDT", "BNB", "BURST", "SIGNAINU"]
+#BLOCKED_ASSETS=["NIGGERS", "CHLDPORN", "YWNBAW"]
+
+PEERS_SCAN_DELAY=900
+MIN_PEER_VERSION = 1.1.1
+
+# Delay between task.py execution
+TASKS_SCAN_DELAY=60
+"@
+
+		$content | Out-File -FilePath ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\.env -Force
+
+		Write-Host "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\.env successfully created."
+	} else {
+		Write-Host "File already exists: ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\.env"
+	}
+	
+	# Comment out redis from settings.py
+	echo "Setup settings.py"
+	
+	$foundProgramSNR = $false
+	$content = Get-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\config\settings.py
+	
+	for ($i = 0; $i -lt $content.Count; $i++) {
+		$line = $content[$i]  # Get the current line
+
+		if ($line -match '^\s*"OPTIONS": \{"CLIENT_CLASS": "django_redis\.client\.DefaultClient"\},') {
+			if ($content[$i+2] -match "\}$")
+				{
+					$content[$i+2] = "$($content[$i + 2])'''"
+				}
+		}
+
+		# Apply replacements to the line
+		$content[$i] = $line `
+			-replace "^\s*from sentry_sdk.integrations.redis import RedisIntegration", "#    from sentry_sdk.integrations.redis import RedisIntegration" `
+			-replace "^\s*RedisIntegration\(\),", "#            RedisIntegration()," `
+			-replace "^CACHES = \{", "'''CACHES = {" 
+	}
+
+	# Write the changes back to the file
+	$content | Set-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\config\settings.py
+
+	# Create starter ps1
+	if (-not (Test-Path $SIGNUM_EXPLORER_MAINNET_STARTER_PS1_PATH)) {
+		# Create start-explorer.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start Signum Node
+Set-Location -Path `$PSScriptRoot
+
+echo "Starting MariaDB ..."
+
+# Start MariaDB
+..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$MARIADB_STARTER_PS1_PATH" "-WindowStyle Minimized"
+# Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-ExecutionPolicy Bypass", "-File", "..\..\..\$MARIADB_STARTER_PS1_PATH" -WindowStyle Minimized
+
+echo "Starting Signum Node Mainnet ..."
+
+Start-Sleep -Seconds 10
+
+..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_MAINNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
+
+echo "Starting Signum Explorer Mainnet ..."
+
+Start-Sleep -Seconds 10
+
+# Start Signum Explorer
+# Start-Process -FilePath "jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java" -ArgumentList "-jar", "signum-pool.jar" -WindowStyle Minimized
+Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", ".\Scripts\supervisord.exe -c .\supervisord.conf"
+
+# TODO check
+# & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
+# "jre\bin\java" "-jar" "signum-node.jar" -WindowStyle Minimized
+# Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "Set-Title 'Signum Mainnet Node'; Start-Process -NoNewWindow -FilePath 'jre\bin\java' -ArgumentList '-jar', 'signum-node.jar'"
+
+exit
+"@
+
+		$content | Out-File -FilePath $SIGNUM_EXPLORER_MAINNET_STARTER_PS1_PATH -Force
+
+		Write-Host "${SIGNUM_EXPLORER_MAINNET_STARTER_PS1_PATH} successfully created."
+	} else {
+		Write-Host "File already exists: ${SIGNUM_EXPLORER_MAINNET_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${SIGNUM_EXPLORER_STARTER_PS1} ${SIGNUM_EXPLORER_STARTER_EXEC} ${SIGNUM_EXPLORER_MAINNET_STARTER_EXEC_PATH}
+
+    # Install MariaDB
+    install_mariadb
+
+    # Setup MariaDB for Signum Pool Mainnet
+    question-prompt "Setup" "MariaDB for Signum Explorer Mainnet" {setup_mariadb_explorer "Signum Explorer Mainnet" "signum-explorer-mainnet" "signumuser" "signumpassword"}
+	
+	# At this point you have to have Signum Node to install
+	if (Test-Path $SIGNUM_MAINNET_STARTER_PS1_PATH) {
+		Write-Host "${SIGNUM_MAINNET_STARTER_PS1_PATH} already installed."
+	} else {
+		question-prompt "Install" "Signum Node Mainnet" {Install-SignumMainnet}
+		# Pause
+	}
+	Write-Host "Populate database informations from installed Signum Node Mainnet properties."
+	# TODO make readonly user for node to explorer not using full access read out mainnet node database
+	# Setup .env file with explorer database informations
+	# If signum node mainnet is already installed check the database name and users to make the readonly ones for explorer
+	# create readonly user
+	
+	# Setup .env file with node database informations and readonly user for node database
+
+	
+	# thinking to make a dedicated signum node for explorer?
+	
+	<#
+	
+	# create readonly USER for signum node
+	
+	CREATE USER 'signumnodereadonly'@'localhost' IDENTIFIED BY 'signumjelszoreadonly';
+GRANT SELECT, SHOW VIEW ON signum_node_mainnet.* TO 'signumnodereadonly'@'localhost';
+GRANT SELECT, SHOW VIEW ON signum_node_testnet.* TO 'signumnodereadonly'@'localhost';
+	
+	# make indexing
+	USE signum_node_mainnet;
+
+CREATE INDEX transaction_height_timestamp ON transaction(height, timestamp);
+CREATE INDEX asset_height ON asset(height);
+CREATE INDEX account_latest ON account(latest);
+#>
+	
+
+<#
+CREATE DATABASE signum_node_mainnet;
+CREATE DATABASE signum_node_testnet;
+CREATE DATABASE signum_explorer_mainnet;
+CREATE DATABASE signum_explorer_testnet;
+
+CREATE USER 'signumnode'@'localhost' IDENTIFIED BY 'signumjelszo';
+GRANT ALL PRIVILEGES ON signum_node_mainnet.* TO 'signumnode'@'localhost';
+GRANT ALL PRIVILEGES ON signum_node_testnet.* TO 'signumnode'@'localhost';
+
+CREATE USER 'signumnodereadonly'@'localhost' IDENTIFIED BY 'signumjelszoreadonly';
+GRANT SELECT, SHOW VIEW ON signum_node_mainnet.* TO 'signumnodereadonly'@'localhost';
+GRANT SELECT, SHOW VIEW ON signum_node_testnet.* TO 'signumnodereadonly'@'localhost';
+
+CREATE USER 'signumexplorer'@'localhost' IDENTIFIED BY 'signumexplorerjelszo';
+GRANT ALL PRIVILEGES ON signum_explorer_mainnet.* TO 'signumexplorer'@'localhost';
+GRANT ALL PRIVILEGES ON signum_explorer_testnet.* TO 'signumexplorer'@'localhost';
+#>
+	
+	# Update database information in .env file
+	setup_db_explorer_env ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\.env
+	
+	# TODO setup gunicorn.conf.py bind = "0.0.0.0:5000"
+	
+	# Setup pool.properties
+	setup_signumpool $SIGNUM_POOL_MAINNET_PROPERTIES_PATH  $SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH "mainnet"
+
+	# TODO Create start-signum-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
+	# TODO start-signum-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
+
+    Write-Host "Signum Explorer Mainnet Installation complete."
+    # Pause
+	
+	# Insall Signum Mainnet if not installed yet
+
+	
+	if (-not (Test-Path -Path "${SIGNUM_POOL_TESTNET_STARTER_PS1_PATH}")) {
+        question-prompt "Install" "Signum Pool Testnet" Install-SignumPoolTestnet
+    }
+	#>
+	
 }
 
 function signum-starter-ps1 ($name, $file){
@@ -2175,6 +2729,85 @@ function setup_mariadb ($name, $database, $user, $password) {
     & "${MARIADB_BIN}\${MARIADB_EXEC}" --user=root --password= -e $grantPermissionsQuery
     & "${MARIADB_BIN}\${MARIADB_EXEC}" --user=root --password= -e "FLUSH PRIVILEGES;"
 
+	$global:DATABASE_NAME = $DATABASE_NAME
+	$global:DATABASE_USERNAME = $DATABASE_USERNAME
+	$global:DATABASE_PASSWORD = $DATABASE_PASSWORD
+
+    Write-Host "MariaDB setup complete."
+}
+
+
+function setup_mariadb_explorer ($name, $database, $user, $password) {
+	
+	$DATABASE_NAME = ""
+	$DATABASE_USERNAME = ""
+	$DATABASE_PASSWORD = ""
+	
+    $DATABASE_NAME = Read-Host "Enter Signum ${name} database name (or press Enter for default ${database})"
+    if (-not $DATABASE_NAME) { $DATABASE_NAME = $database }
+    Write-Host "Database name: ${database}"
+
+    $DATABASE_USERNAME = Read-Host "Enter the username (or press Enter for default 'signumuser')"
+    if (-not $DATABASE_USERNAME) { $DATABASE_USERNAME = $user }
+    Write-Host "Username: ${DATABASE_USERNAME}"
+
+    $DATABASE_PASSWORD = Read-Host "Enter the password (or press Enter for default 'signumpassword')"
+    if (-not $DATABASE_PASSWORD) { $DATABASE_PASSWORD = $password }
+    Write-Host "Password: ${DATABASE_PASSWORD}"
+
+    Write-Host "Starting MariaDB server ..."
+    Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+
+    Start-Sleep -Seconds 10
+
+    Write-Host "Creating database: ${DATABASE_NAME}"
+	$createDatabaseQuery = "CREATE DATABASE IF NOT EXISTS ``${DATABASE_NAME}``;"
+    & "${MARIADB_BIN}\${MARIADB_EXEC}" --user=root --password= -e $createDatabaseQuery
+
+    Write-Host "Creating user: ${DATABASE_USERNAME}"
+	$createUserQuery = "CREATE USER IF NOT EXISTS '${DATABASE_USERNAME}'@'localhost' IDENTIFIED BY '${DATABASE_PASSWORD}';"
+    & "${MARIADB_BIN}\${MARIADB_EXEC}" --user=root --password= -e $createUserQuery
+
+    Write-Host "Granting permissions to user ${DATABASE_USERNAME} on database ${DATABASE_NAME} ..."
+	$grantPermissionsQuery = "GRANT ALL PRIVILEGES ON ``${DATABASE_NAME}``.* TO '${DATABASE_USERNAME}'@'localhost';"
+    & "${MARIADB_BIN}\${MARIADB_EXEC}" --user=root --password= -e $grantPermissionsQuery
+
+	# Define the SQL queries
+	$sqlQueryGetUser = "SELECT '$DATABASE_USERNAME' FROM mysql.user;"
+
+	$sqlQueryCreateTable = 
+@"
+USE $DATABASE_NAME;
+
+CREATE TABLE scan_peermonitor (
+	announced_address VARCHAR(255) PRIMARY KEY,
+	real_ip VARCHAR(255),
+	platform VARCHAR(255),
+	application VARCHAR(255),
+	version VARCHAR(255),
+	height INTEGER,
+	cumulative_difficulty VARCHAR(255),
+	country_code CHAR(2),
+	state SMALLINT,
+	downtime INTEGER DEFAULT 0,
+	lifetime INTEGER DEFAULT 0,
+	availability FLOAT DEFAULT 0,
+	last_online_at TIMESTAMP,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	reward_state VARCHAR(255) DEFAULT 'none',
+	reward_time TIMESTAMP
+);
+"@
+
+	# Run the queries
+	Write-Host "Executing query to retrieve user details..."
+	& "${MARIADB_BIN}\${MARIADB_EXEC}" --user=root --password= -e $sqlQueryGetUser
+
+	Write-Host "Creating table in the Signum ${name} database..."
+	& "${MARIADB_BIN}\${MARIADB_EXEC}" --user=root --password= -e $sqlQueryCreateTable
+	& "${MARIADB_BIN}\${MARIADB_EXEC}" --user=root --password= -e "FLUSH PRIVILEGES;"
+	
 	$global:DATABASE_NAME = $DATABASE_NAME
 	$global:DATABASE_USERNAME = $DATABASE_USERNAME
 	$global:DATABASE_PASSWORD = $DATABASE_PASSWORD
