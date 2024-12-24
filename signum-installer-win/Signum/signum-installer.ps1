@@ -1,6 +1,14 @@
 # Change directory to the script's location
 cd $PSScriptRoot
 
+# global variables
+$global:UserResponse = $null
+
+$global:DATABASE_NAME = $null
+$global:DATABASE_USERNAME = $null
+$global:DATABASE_PASSWORD = $null
+
+
 $POWERSHELL_VERSION = "7.4.6"
 $POWERSHELL_DIR = "PowerShell"
 $POWERSHELL_ZIP = "PowerShell-${POWERSHELL_VERSION}-win-x64.zip"
@@ -25,10 +33,13 @@ $SIGNUM_NODE_DIR = "Node"
 
 # Run mariadb in the background to not shut down it unintentianally
 
+# TODO DBEAVER install to tools?
+# https://dbeaver.io/files/dbeaver-ce-latest-win32.win32.x86_64.zip
+
 $SIGNUM_STARTER_PS1 = "start-signum.ps1"
 $SIGNUM_STARTER_EXEC = "start-signum.bat"
 
-$SIGNUM_MAINNET_VERSION = "v3.8.3"
+$SIGNUM_MAINNET_VERSION = "v3.8.4"
 $SIGNUM_MAINNET_DIR = "Mainnet"
 $SIGNUM_MAINNET_DIR_PATH = "${SIGNUM_MAINNET_DIR}\${SIGNUM_NODE_DIR}"
 $SIGNUM_MAINNET_ZIP = "signum-node-${SIGNUM_MAINNET_VERSION}-win_x64.zip"
@@ -37,7 +48,7 @@ $SIGNUM_MAINNET_STARTER_PS1_PATH = "${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_
 $SIGNUM_MAINNET_STARTER_EXEC_PATH = "${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_UNZIP}\${SIGNUM_STARTER_EXEC}"
 $SIGNUM_MAINNET_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_MAINNET_VERSION}/${SIGNUM_MAINNET_ZIP}"
 
-$SIGNUM_TESTNET_VERSION = "v3.8.3"
+$SIGNUM_TESTNET_VERSION = "v3.8.4"
 $SIGNUM_TESTNET_DIR = "Testnet"
 $SIGNUM_TESTNET_DIR_PATH = "${SIGNUM_TESTNET_DIR}\${SIGNUM_NODE_DIR}"
 $SIGNUM_TESTNET_ZIP = "signum-node-${SIGNUM_TESTNET_VERSION}-win_x64.zip"
@@ -251,6 +262,17 @@ $SIGNUMPLOTTER_URL = "https://github.com/signum-network/signum-plotter/releases/
 # TODO 1 notepad++ installer
 # TODO Documents Menu
 # TODO makr recommended applications
+
+# TODO add NeoClassic to nodes https://github.com/deleterium/neoclassic-wallet
+# TODO add link to html/ui/index.html
+<#
+		<a class="card" id="neoclassic-link" href="./neoclassic/index.html" onclick="selectedWallet('neoclassic')">
+            <div class="center-text">
+                <img src="./assets/signum-logomark-white.svg">
+                <h2 class="card__title">NeoClassic</h2>
+            </div>
+        </a>
+#>
 
 $MINER_DIR = "Miner"
 $SIGNUM_MINER_DIR = "Signum Miner"
@@ -681,6 +703,26 @@ function Install-SignumMainnet {
     # Copy node-default.properties to node.properties
     Write-Host "Copying ${MAINNET_DEFAULT_PROPERTIES} to ${MAINNET_PROPERTIES} ..."
     Copy-Item -Path "${MAINNET_DEFAULT_PROPERTIES}" -Destination "${MAINNET_PROPERTIES}"
+	
+<# #this true by default	
+	# Add node.indirectIncomingService.enable = true propertie
+	$content = Get-Content -Path $MAINNET_PROPERTIES
+	
+	$content = $content | ForEach-Object {
+        if ($_ -match "node.indirectIncomingService.enable = true") {
+            $matchFound = $true
+            Write-Host "node.indirectIncomingService.enable = true already set"
+		}
+    }
+
+    if (-not $matchFound) {
+        Write-Host "Add inode.indirectIncomingService.enable = true to node.properties"
+        $content += "node.indirectIncomingService.enable = true"
+    }
+
+	# Write the updated content back to the file
+	Set-Content -Path $MAINNET_PROPERTIES -Value $content
+#>
 
     # Create starter ps1
     signum-starter-ps1 "Mainnet" ${SIGNUM_MAINNET_STARTER_PS1_PATH}
@@ -695,8 +737,10 @@ function Install-SignumMainnet {
     # setup_mariadb "Mainnet" "signum-mainnet"
 	question-prompt "Setup" "MariaDB for Signum Mainnet Node" {setup_mariadb "Signum Node Mainnet" "signum-node-mainnet" "signumuser_node_mainnet" "signumpassword"}
 	
-	# Update database information in node.properties
-	setup_db_node_properties ${MAINNET_PROPERTIES}
+	if ($global:UserResponse -eq "yes") {	
+		# Update database information in node.properties
+		setup_db_node_properties ${MAINNET_PROPERTIES}
+	}
 
 	# TODO Create start-signum-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
 	# TODO start-signum-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
@@ -750,6 +794,26 @@ function Install-SignumTestnet {
     # Update node.properties with new database information
     Write-Host "Updating ${TESTNET_PROPERTIES} with Testnet configurations ..."
     (Get-Content -Path $TESTNET_PROPERTIES) -replace '# node.network = signum.net.TestnetNetwork', 'node.network = signum.net.TestnetNetwork' | Set-Content -Path $TESTNET_PROPERTIES
+	
+<# #this true by default
+	# Add node.indirectIncomingService.enable = true propertie
+	$content = Get-Content -Path $TESTNET_PROPERTIES
+	
+	$content = $content | ForEach-Object {
+        if ($_ -match "node.indirectIncomingService.enable = true") {
+            $matchFound = $true
+            Write-Host "node.indirectIncomingService.enable = true already set"
+		}
+    }
+
+    if (-not $matchFound) {
+        Write-Host "Add node.indirectIncomingService.enable = true to node.properties"
+        $content += "node.indirectIncomingService.enable = true"
+    }
+
+	# Write the updated content back to the file
+	Set-Content -Path $TESTNET_PROPERTIES -Value $content
+#>
 
     Write-Host "Update complete."
 
@@ -905,8 +969,10 @@ exit
     # Setup MariaDB for Signum Pool Mainnet
     question-prompt "Setup" "MariaDB for Signum Pool Mainnet" {setup_mariadb "Signum Pool Mainnet" "signum-pool-mainnet" "signumuser_pool_mainnet" "signumpassword"}
 	
-	# Update database information in pool.properties
-	setup_db_pool_properties ${SIGNUM_POOL_MAINNET_PROPERTIES_PATH}
+	if ($global:UserResponse -eq "yes") {	
+		# Update database information in pool.properties
+		setup_db_pool_properties ${SIGNUM_POOL_MAINNET_PROPERTIES_PATH}
+	}
 	
 	# Setup pool.properties
 	setup_signumpool $SIGNUM_POOL_MAINNET_PROPERTIES_PATH  $SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH "mainnet"
@@ -1062,8 +1128,10 @@ exit
     # Setup MariaDB for  Signum Pool Testnet
     question-prompt "Setup" "MariaDB for Signum Pool Testnet" {setup_mariadb "Signum Pool Testnet" "signum-pool-testnet" "signumuser_pool_testnet" "signumpassword"}
 	
-	# Update database information in pool.properties
-	setup_db_pool_properties ${SIGNUM_POOL_TESTNET_PROPERTIES_PATH}
+	if ($global:UserResponse -eq "yes") {	
+		# Update database information in pool.properties
+		setup_db_pool_properties ${SIGNUM_POOL_TESTNET_PROPERTIES_PATH}
+	}
 	
 	# Setup pool.properties
 	setup_signumpool $SIGNUM_POOL_TESTNET_PROPERTIES_PATH $SIGNUM_POOL_TESTNET_PROPERTIES_ORIGINAL_PATH "testnet"
@@ -1282,6 +1350,14 @@ function Install-SignumExplorerMainnet {
 		Copy-Item -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\supervisord.conf" -Destination "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\supervisord_original.conf"
     }
 	
+	# TODO setup supervisord username and password and change port if testnet is also running
+<#
+	[inet_http_server]
+	port = 9001
+	username = dummy
+	password = changeme
+#>
+	
 	# change supervisord.conf file
 	echo "Setup supervisord.conf file"
 	
@@ -1305,7 +1381,8 @@ function Install-SignumExplorerMainnet {
 		elseif ($_ -match "^stdout_logfile = /dev/stdout") {
 			($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile=explorer_stdout.log"
 		} else {
-			$_  -replace "^\[unix_http_server\]", ";[unix_http_server]" `
+			$_  -replace "^port = 9001", "port = 9000" `
+				-replace "^\[unix_http_server\]", ";[unix_http_server]" `
 				-replace "^file = /tmp/supervisor.sock", ";file = ./tmp/supervisor.sock" `
 				-replace "^pidfile = /tmp/supervisord.pid", "pidfile = ./tmp/supervisord.pid" `
 				-replace "^chmod = 0700", ";chmod = 0700" `
@@ -1516,60 +1593,74 @@ exit
     # Setup MariaDB for Signum Pool Mainnet
     question-prompt "Setup" "MariaDB for Signum Explorer Mainnet" {setup_mariadb_explorer "Signum Explorer Mainnet" "signum-explorer-mainnet" "signumuser_explorer_mainnet" "signumpassword"}
 	
-	# Setup .env file with the Signum Explorer database values
-	$content = Get-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\.env
-	
-	$content = $content | ForEach-Object {
-				$_  -replace "^DB_DEFAULT_NAME=signum-explorer-mainnet", "DB_DEFAULT_NAME=$global:DATABASE_NAME" `
-					-replace "^DB_DEFAULT_USER=signumuser_explorer_mainnet", "DB_DEFAULT_NAME=$global:DATABASE_USERNAME" `
-					-replace "^DB_DEFAULT_PASSWORD=signumpassword", "DB_DEFAULT_NAME=$global:DATABASE_PASSWORD"
-			}
+	if ($global:UserResponse -eq "yes") {
+		# Setup .env file with the Signum Explorer database values
+		$content = Get-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\.env
+		
+		$content = $content | ForEach-Object {
+					$_  -replace "^DB_DEFAULT_NAME=.*", "DB_DEFAULT_NAME=$global:DATABASE_NAME" `
+						-replace "^DB_DEFAULT_USER=.*", "DB_DEFAULT_USER=$global:DATABASE_USERNAME" `
+						-replace "^DB_DEFAULT_PASSWORD=.*", "DB_DEFAULT_PASSWORD=$global:DATABASE_PASSWORD"
+				}
 
-	# Write the changes back to the file
-	$content | Set-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\.env
+		# Write the changes back to the file
+		$content | Set-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\.env
+	}
 	
 	# At this point you have to have Signum Node to install
 	if (Test-Path $SIGNUM_MAINNET_STARTER_PS1_PATH) {
 		Write-Host "${SIGNUM_MAINNET_STARTER_PS1_PATH} already installed."
 	} else {
+		# TODO You have to install and setup node for explorer
 		question-prompt "Install" "Signum Node Mainnet" {Install-SignumMainnet}
 		# Pause
 	}
-	Write-Host "Populate database informations from installed Signum Node Mainnet properties."
 	
+	Write-Host "Populate database informations from installed Signum Node Mainnet properties."
+
 	# Read the node.properties file content
 	$content = Get-Content -Path $MAINNET_PROPERTIES
-
-	# Extract the database information
-	$dbUrl = $content -match '^DB\.Url=jdbc:mariadb://[^/]+/([^?]+)' | Out-Null
-	$dbName = $matches[1]
-
-	$dbUsername = $content -match '^DB\.Username=(.+)' | Out-Null
-	$username = $matches[1]
-
-	$dbPassword = $content -match '^DB\.Password=(.+)' | Out-Null
-	$password = $matches[1]
+	
+	# Initialize variables
+	$dbName = $null
+	$username = $null
+	$password = $null
+	
+	# Extract the database information fom node.properties
+	$content | ForEach-Object {
+		if ($_ -match '^DB\.Url=jdbc:mariadb://.+/(.+)') {
+			$dbName = $matches[1]
+		}
+		elseif ($_ -match '^DB\.Username=(.+)') {
+			$username = $matches[1]
+		}
+		elseif ($_ -match '^DB\.Password=(.+)') {
+			$password = $matches[1]
+		}
+	}
 
 	# Display the extracted information
 	Write-Output "Signum Mainnet Node Database Name: $dbName"
-	
+	# Write-Output "Signum Mainnet Node Database Username: $username"
+	# Write-Output "Signum Mainnet Node Database Password: $password"
+
+	# Create Read Only User for Signum Node Mainnet database access for explorer
 	Write-Host "Create Read Only User for Signum Node Mainnet database access for explorer"
 	question-prompt "Setup" "MariaDB for Signum Explorer Mainnet Read Only Node connection" {setup_mariadb_readonly "Signum Explorer Mainnet Node connection" "$dbName" "signumuser_node_mainnet_readonly" "signumpassword"}
-	
-	# Setup .env file with the Signum Explorer database values
-	$content = Get-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\.env
-	
-	$content = $content | ForEach-Object {
-				$_  -replace "^DB_JAVA_WALLET_NAME=signum-node-mainnet", "DB_JAVA_WALLET_NAME=$global:DATABASE_NAME" `
-					-replace "^DB_JAVA_WALLET_USER=signumuser_node_mainnet_readonly", "DB_JAVA_WALLET_USER=$global:DATABASE_USERNAME" `
-					-replace "^DB_JAVA_WALLET_PASSWORD=signumpassword", "DB_JAVA_WALLET_PASSWORD=$global:DATABASE_PASSWORD"
-			}
+
+	if ($global:UserResponse -eq "yes") {	
+		# Setup .env file with the Signum Explorer database values
+		$content = Get-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\.env
+		
+		$content = $content | ForEach-Object {
+					$_  -replace "^DB_JAVA_WALLET_NAME=.*", "DB_JAVA_WALLET_NAME=$global:DATABASE_NAME" `
+						-replace "^DB_JAVA_WALLET_USER=.*", "DB_JAVA_WALLET_USER=$global:DATABASE_USERNAME" `
+						-replace "^DB_JAVA_WALLET_PASSWORD=.*", "DB_JAVA_WALLET_PASSWORD=$global:DATABASE_PASSWORD"
+				}
 			
-	# Write the changes back to the file
-	$content | Set-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\.env
-	
-	# Update database information in .env file
-	setup_db_explorer_env ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\.env
+		# Write the changes back to the file
+		$content | Set-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\.env
+	}
 	
 	# TODO further setup of .env and run_waitress.py if want
 
@@ -2004,60 +2095,74 @@ exit
     # Setup MariaDB for Signum Pool Testnet
     question-prompt "Setup" "MariaDB for Signum Explorer Testnet" {setup_mariadb_explorer "Signum Explorer Testnet" "signum-explorer-testnet" "signumuser_explorer_testnet" "signumpassword"}
 	
-	# Setup .env file with the Signum Explorer database values
-	$content = Get-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\.env
-	
-	$content = $content | ForEach-Object {
-				$_  -replace "^DB_DEFAULT_NAME=signum-explorer-testnet", "DB_DEFAULT_NAME=$global:DATABASE_NAME" `
-					-replace "^DB_DEFAULT_USER=signumuser_explorer_testnet", "DB_DEFAULT_NAME=$global:DATABASE_USERNAME" `
-					-replace "^DB_DEFAULT_PASSWORD=signumpassword", "DB_DEFAULT_NAME=$global:DATABASE_PASSWORD"
-			}
+	if ($global:UserResponse -eq "yes") {	
+		# Setup .env file with the Signum Explorer database values
+		$content = Get-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\.env
+		
+		$content = $content | ForEach-Object {
+					$_  -replace "^DB_DEFAULT_NAME=.*", "DB_DEFAULT_NAME=$global:DATABASE_NAME" `
+						-replace "^DB_DEFAULT_USER=.*", "DB_DEFAULT_USER=$global:DATABASE_USERNAME" `
+						-replace "^DB_DEFAULT_PASSWORD=.*", "DB_DEFAULT_PASSWORD=$global:DATABASE_PASSWORD"
+				}
 
-	# Write the changes back to the file
-	$content | Set-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\.env
+		# Write the changes back to the file
+		$content | Set-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\.env
+	}
 	
 	# At this point you have to have Signum Node to install
 	if (Test-Path $SIGNUM_TESTNET_STARTER_PS1_PATH) {
 		Write-Host "${SIGNUM_TESTNET_STARTER_PS1_PATH} already installed."
 	} else {
+		# TODO You have to install and setup node for explorer
 		question-prompt "Install" "Signum Node Testnet" {Install-SignumTestnet}
 		# Pause
 	}
+	
 	Write-Host "Populate database informations from installed Signum Node Testnet properties."
 	
 	# Read the node.properties file content
 	$content = Get-Content -Path $TESTNET_PROPERTIES
 
+	# Initialize variables
+	$dbName = $null
+	$username = $null
+	$password = $null
+	
 	# Extract the database information
-	$dbUrl = $content -match '^DB\.Url=jdbc:mariadb://[^/]+/([^?]+)' | Out-Null
-	$dbName = $matches[1]
-
-	$dbUsername = $content -match '^DB\.Username=(.+)' | Out-Null
-	$username = $matches[1]
-
-	$dbPassword = $content -match '^DB\.Password=(.+)' | Out-Null
-	$password = $matches[1]
+	$content | ForEach-Object {
+		if ($_ -match '^DB\.Url=jdbc:mariadb://.+/(.+)') {
+			$dbName = $matches[1]
+		}
+		elseif ($_ -match '^DB\.Username=(.+)') {
+			$username = $matches[1]
+		}
+		elseif ($_ -match '^DB\.Password=(.+)') {
+			$password = $matches[1]
+		}
+	}
 
 	# Display the extracted information
-	Write-Output "Signum Testnet Node Database Name: $dbName"
+	Write-Output "Signum Mainnet Node Database Name: $dbName"
+	# Write-Output "Signum Mainnet Node Database Username: $username"
+	# Write-Output "Signum Mainnet Node Database Password: $password"
 	
+	# Create Read Only User for Signum Node Testnet database access for explorer
 	Write-Host "Create Read Only User for Signum Node Testnet database access for explorer"
 	question-prompt "Setup" "MariaDB for Signum Explorer Testnet Read Only Node connection" {setup_mariadb_readonly "Signum Explorer Testnet Node connection" "$dbName" "signumuser_node_testnet_readonly" "signumpassword"}
 	
-	# Setup .env file with the Signum Explorer database values
-	$content = Get-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\.env
-	
-	$content = $content | ForEach-Object {
-				$_  -replace "^DB_JAVA_WALLET_NAME=signum-node-mainnet", "DB_JAVA_WALLET_NAME=$global:DATABASE_NAME" `
-					-replace "^DB_JAVA_WALLET_USER=signumuser_node_testnet_readonly", "DB_JAVA_WALLET_USER=$global:DATABASE_USERNAME" `
-					-replace "^DB_JAVA_WALLET_PASSWORD=signumpassword", "DB_JAVA_WALLET_PASSWORD=$global:DATABASE_PASSWORD"
-			}
-			
-	# Write the changes back to the file
-	$content | Set-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\.env
-	
-	# Update database information in .env file
-	setup_db_explorer_env ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\.env
+	if ($global:UserResponse -eq "yes") {	
+		# Setup .env file with the Signum Explorer database values
+		$content = Get-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\.env
+		
+		$content = $content | ForEach-Object {
+					$_  -replace "^DB_JAVA_WALLET_NAME=.*", "DB_JAVA_WALLET_NAME=$global:DATABASE_NAME" `
+						-replace "^DB_JAVA_WALLET_USER=.*", "DB_JAVA_WALLET_USER=$global:DATABASE_USERNAME" `
+						-replace "^DB_JAVA_WALLET_PASSWORD=.*", "DB_JAVA_WALLET_PASSWORD=$global:DATABASE_PASSWORD"
+				}
+				
+		# Write the changes back to the file
+		$content | Set-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\.env	
+	}
 	
 	# TODO further setup of .env and run_waitress.py if want
 
@@ -3192,9 +3297,13 @@ function setup_mariadb ($name, $database, $user, $password) {
 	$DATABASE_USERNAME = ""
 	$DATABASE_PASSWORD = ""
 	
+	$global:DATABASE_NAME = $null
+	$global:DATABASE_USERNAME = $null
+	$global:DATABASE_PASSWORD = $null
+	
     $DATABASE_NAME = Read-Host "Enter Signum ${name} database name (or press Enter for default ${database})"
     if (-not $DATABASE_NAME) { $DATABASE_NAME = $database }
-    Write-Host "Database name: ${database}"
+    Write-Host "Database name: ${DATABASE_NAME}"
 
     $DATABASE_USERNAME = Read-Host "Enter the username (or press Enter for default ${user})"
     if (-not $DATABASE_USERNAME) { $DATABASE_USERNAME = $user }
@@ -3235,7 +3344,12 @@ function setup_mariadb_readonly ($name, $database, $user, $password) {
 	$DATABASE_USERNAME = ""
 	$DATABASE_PASSWORD = ""
 	
-    Write-Host "Database name: ${database}"
+	$global:DATABASE_NAME = $null
+	$global:DATABASE_USERNAME = $null
+	$global:DATABASE_PASSWORD = $null
+	
+	$DATABASE_NAME = $database
+    Write-Host "Database name: ${DATABASE_NAME}"
 
     $DATABASE_USERNAME = Read-Host "Enter the username (or press Enter for default ${user})"
     if (-not $DATABASE_USERNAME) { $DATABASE_USERNAME = $user }
@@ -3250,10 +3364,6 @@ function setup_mariadb_readonly ($name, $database, $user, $password) {
 
     Start-Sleep -Seconds 10
 
-    Write-Host "Creating database: ${DATABASE_NAME}"
-	$createDatabaseQuery = "CREATE DATABASE IF NOT EXISTS ``${DATABASE_NAME}``;"
-    & "${MARIADB_BIN}\${MARIADB_EXEC}" --user=root --password= -e $createDatabaseQuery
-
     Write-Host "Creating user: ${DATABASE_USERNAME}"
 	$createUserQuery = "CREATE USER IF NOT EXISTS '${DATABASE_USERNAME}'@'localhost' IDENTIFIED BY '${DATABASE_PASSWORD}';"
     & "${MARIADB_BIN}\${MARIADB_EXEC}" --user=root --password= -e $createUserQuery
@@ -3261,20 +3371,21 @@ function setup_mariadb_readonly ($name, $database, $user, $password) {
     Write-Host "Granting permissions to user ${DATABASE_USERNAME} on database ${DATABASE_NAME} ..."
 	$grantPermissionsQuery = "GRANT SELECT, SHOW VIEW ON ``${DATABASE_NAME}``.* TO '${DATABASE_USERNAME}'@'localhost';"
     & "${MARIADB_BIN}\${MARIADB_EXEC}" --user=root --password= -e $grantPermissionsQuery
-	
+
+<#
+	# Indexing
 	# SQL commands to execute
-	$sqlCommands = @(
-		"USE `${DATABASE_NAME}`;",
-		"CREATE INDEX transaction_height_timestamp ON transaction(height, timestamp);",
-		"CREATE INDEX asset_height ON asset(height);",
-		"CREATE INDEX account_latest ON account(latest);"
-	)
+	$sqlCommands = 
+@"
+USE ``${DATABASE_NAME}``;
+CREATE INDEX transaction_height_timestamp ON transaction(height, timestamp);
+CREATE INDEX asset_height ON asset(height);
+CREATE INDEX account_latest ON account(latest);
+"@
 	
 	# Execute each SQL command
-	foreach ($command in $sqlCommands) {
-		Write-Host "Executing SQL Command: $command"
-		& "${MARIADB_BIN}\${MARIADB_EXEC}" --user=root --password= -e $command
-	}
+	& "${MARIADB_BIN}\${MARIADB_EXEC}" --user=root --password= -e $sqlCommands
+#>	
 	
     & "${MARIADB_BIN}\${MARIADB_EXEC}" --user=root --password= -e "FLUSH PRIVILEGES;"
 
@@ -3292,9 +3403,13 @@ function setup_mariadb_explorer ($name, $database, $user, $password) {
 	$DATABASE_USERNAME = ""
 	$DATABASE_PASSWORD = ""
 	
+	$global:DATABASE_NAME = $null
+	$global:DATABASE_USERNAME = $null
+	$global:DATABASE_PASSWORD = $null
+	
     $DATABASE_NAME = Read-Host "Enter Signum ${name} database name (or press Enter for default ${database})"
     if (-not $DATABASE_NAME) { $DATABASE_NAME = $database }
-    Write-Host "Database name: ${database}"
+    Write-Host "Database name: ${DATABASE_NAME}"
 
     $DATABASE_USERNAME = Read-Host "Enter the username (or press Enter for default ${user})"
     if (-not $DATABASE_USERNAME) { $DATABASE_USERNAME = $user }
@@ -3390,10 +3505,14 @@ function setup_db_pool_properties($file) {
 }
 
 function question-prompt($process, $name, $installFunction) {
+	# Initialize the global variable
+	$global:UserResponse = $null
     $userChoice = Read-Host "Do you want to ${process} ${name} (yes/no)"
     if ($userChoice -match '^(yes|y|Y)$') {
+		$global:UserResponse = "yes"
         &$installFunction
     } else {
+		$global:UserResponse = "no"
         Write-Host "${name} ${process} canceled."
     }
 }
