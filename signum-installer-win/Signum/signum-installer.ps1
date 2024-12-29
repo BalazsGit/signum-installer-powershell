@@ -1,5 +1,6 @@
 # Change directory to the script's location
 cd $PSScriptRoot
+$host.UI.RawUI.WindowTitle = "Signum Installer"
 
 # global variables
 $global:UserResponse = $null
@@ -17,8 +18,7 @@ $POWERSHELL_EXEC = "pwsh.exe"
 $POWERSHELL_EXEC_PATH = "${POWERSHELL_DIR}\${POWERSHELL_UNZIP}\${POWERSHELL_EXEC}"
 $POWERSHELL_URL = "https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/PowerShell-${POWERSHELL_VERSION}-win-x64.zip"
 
-$SIGNUM_NODE_DIR = "Node"
-# TODO rename: $SIGNUM_MAINNET_VERSION -> $SIGNUM_NODE_MAINNET_VERSION?
+# TODO rename: $SIGNUM_NODE_MAINNET_VERSION -> $SIGNUM_NODE_MAINNET_VERSION?
 # TODO very important to stop all processes before stop mariadb or run mariadb in the background to solve
 # TODO mention or notify recommended menu items
 # TODO download explorer https://github.com/signum-network/signum-explorer/archive/refs/heads/master.zip
@@ -34,34 +34,56 @@ $SIGNUM_NODE_DIR = "Node"
 # Run mariadb in the background to not shut down it unintentianally
 
 # TODO DBEAVER install to tools?
-# https://dbeaver.io/files/dbeaver-ce-latest-win32.win32.x86_64.zip
+# https://dbeaver.io/files/dbeaver-ce-latest-win32.win32.x86_64.
 
-$SIGNUM_STARTER_PS1 = "start-signum.ps1"
-$SIGNUM_STARTER_EXEC = "start-signum.bat"
+$SIGNUM_NODE_DIR = "Node"
 
-$SIGNUM_MAINNET_VERSION = "v3.8.4"
-$SIGNUM_MAINNET_DIR = "Mainnet"
-$SIGNUM_MAINNET_DIR_PATH = "${SIGNUM_MAINNET_DIR}\${SIGNUM_NODE_DIR}"
-$SIGNUM_MAINNET_ZIP = "signum-node-${SIGNUM_MAINNET_VERSION}-win_x64.zip"
-$SIGNUM_MAINNET_UNZIP = "signum-node-${SIGNUM_MAINNET_VERSION}-win_x64"
-$SIGNUM_MAINNET_STARTER_PS1_PATH = "${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_UNZIP}\${SIGNUM_STARTER_PS1}"
-$SIGNUM_MAINNET_STARTER_EXEC_PATH = "${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_UNZIP}\${SIGNUM_STARTER_EXEC}"
-$SIGNUM_MAINNET_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_MAINNET_VERSION}/${SIGNUM_MAINNET_ZIP}"
+$SIGNUM_NODE_STARTER_PS1 = "start-node.ps1"
+$SIGNUM_NODE_STARTER_EXEC = "start-node.bat"
 
-$SIGNUM_TESTNET_VERSION = "v3.8.4"
-$SIGNUM_TESTNET_DIR = "Testnet"
-$SIGNUM_TESTNET_DIR_PATH = "${SIGNUM_TESTNET_DIR}\${SIGNUM_NODE_DIR}"
-$SIGNUM_TESTNET_ZIP = "signum-node-${SIGNUM_TESTNET_VERSION}-win_x64.zip"
-$SIGNUM_TESTNET_UNZIP = "signum-node-${SIGNUM_TESTNET_VERSION}-win_x64"
-$SIGNUM_TESTNET_STARTER_PS1_PATH = "${SIGNUM_TESTNET_DIR_PATH}\${SIGNUM_TESTNET_UNZIP}\${SIGNUM_STARTER_PS1}"
-$SIGNUM_TESTNET_STARTER_EXEC_PATH = "${SIGNUM_TESTNET_DIR_PATH}\${SIGNUM_TESTNET_UNZIP}\${SIGNUM_STARTER_EXEC}"
-$SIGNUM_TESTNET_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_TESTNET_VERSION}/${SIGNUM_TESTNET_ZIP}"
+$SIGNUM_NODE_MAINNET_VERSION = "v3.8.4"
+$SIGNUM_NODE_MAINNET_DIR = "Mainnet"
+$SIGNUM_NODE_MAINNET_DIR_PATH = "${SIGNUM_NODE_MAINNET_DIR}\${SIGNUM_NODE_DIR}"
+$SIGNUM_NODE_MAINNET_ZIP = "signum-node-${SIGNUM_NODE_MAINNET_VERSION}-win_x64.zip"
+$SIGNUM_NODE_MAINNET_UNZIP = "signum-node-${SIGNUM_NODE_MAINNET_VERSION}-win_x64"
+$SIGNUM_NODE_MAINNET_UNZIP_PATH = "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP}"
+$SIGNUM_NODE_MAINNET_STARTER_PS1_PATH = "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP}\${SIGNUM_NODE_STARTER_PS1}"
+$SIGNUM_NODE_MAINNET_STARTER_EXEC_PATH = "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP}\${SIGNUM_NODE_STARTER_EXEC}"
+$SIGNUM_NODE_MAINNET_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_MAINNET_VERSION}/${SIGNUM_NODE_MAINNET_ZIP}"
 
-$MAINNET_DEFAULT_PROPERTIES = ".\${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_UNZIP}\conf\node-default.properties"
-$MAINNET_PROPERTIES = ".\${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_UNZIP}\conf\node.properties"
+$SIGNUM_NODE_TESTNET_VERSION = "v3.8.4"
+$SIGNUM_NODE_TESTNET_DIR = "Testnet"
+$SIGNUM_NODE_TESTNET_DIR_PATH = "${SIGNUM_NODE_TESTNET_DIR}\${SIGNUM_NODE_DIR}"
+$SIGNUM_NODE_TESTNET_ZIP = "signum-node-${SIGNUM_NODE_TESTNET_VERSION}-win_x64.zip"
+$SIGNUM_NODE_TESTNET_UNZIP = "signum-node-${SIGNUM_NODE_TESTNET_VERSION}-win_x64"
+$SIGNUM_NODE_TESTNET_UNZIP_PATH = "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_UNZIP}"
+$SIGNUM_NODE_TESTNET_STARTER_PS1_PATH = "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_UNZIP}\${SIGNUM_NODE_STARTER_PS1}"
+$SIGNUM_NODE_TESTNET_STARTER_EXEC_PATH = "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_UNZIP}\${SIGNUM_NODE_STARTER_EXEC}"
+$SIGNUM_NODE_TESTNET_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_TESTNET_VERSION}/${SIGNUM_NODE_TESTNET_ZIP}"
 
-$TESTNET_DEFAULT_PROPERTIES = ".\${SIGNUM_TESTNET_DIR_PATH}\${SIGNUM_TESTNET_UNZIP}\conf\node-default.properties"
-$TESTNET_PROPERTIES = ".\${SIGNUM_TESTNET_DIR_PATH}\${SIGNUM_TESTNET_UNZIP}\conf\node.properties"
+$SIGNUM_NODE_MAINNET_DEFAULT_PROPERTIES_PATH = ".\${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP}\conf\node-default.properties"
+$SIGNUM_NODE_MAINNET_PROPERTIES_PATH = ".\${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP}\conf\node.properties"
+
+$SIGNUM_NODE_TESTNET_DEFAULT_PROPERTIES_PATH = ".\${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_UNZIP}\conf\node-default.properties"
+$SIGNUM_NODE_TESTNET_PROPERTIES_PATH = ".\${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_UNZIP}\conf\node.properties"
+
+# TODO add NeoClassic to nodes https://github.com/deleterium/neoclassic-wallet
+# TODO add link to html/ui/index.html
+
+$SIGNUM_WALLET_NEOCLASSIC_ZIP = "neoclassic.zip"
+$SIGNUM_WALLET_NEOCLASSIC_DIR = "neoclassic"
+
+$SIGNUM_WALLET_MAINNET_NEOCLASSIC_VERSION = "v3.8.4"
+$SIGNUM_WALLET_MAINNET_UI_DIR_PATH = "${SIGNUM_NODE_MAINNET_UNZIP_PATH}\html\ui"
+$SIGNUM_WALLET_MAINNET_NEOCLASSIC_ZIP_PATH = "${SIGNUM_WALLET_MAINNET_UI_DIR_PATH}\${SIGNUM_WALLET_NEOCLASSIC_ZIP}"
+$SIGNUM_WALLET_MAINNET_NEOCLASSIC_UNZIP_PATH = "${SIGNUM_WALLET_MAINNET_UI_DIR_PATH}\${SIGNUM_WALLET_NEOCLASSIC_DIR}"
+$SIGNUM_WALLET_MAINNET_NEOCLASSIC_URL = "https://github.com/deleterium/neoclassic-wallet/archive/refs/heads/main.zip"
+
+$SIGNUM_WALLET_TESTNET_NEOCLASSIC_VERSION = "v3.8.4"
+$SIGNUM_WALLET_TESTNET_UI_DIR_PATH = "${SIGNUM_NODE_TESTNET_UNZIP_PATH}\html\ui"
+$SIGNUM_WALLET_TESTNET_NEOCLASSIC_ZIP_PATH = "${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}\${SIGNUM_WALLET_NEOCLASSIC_ZIP}"
+$SIGNUM_WALLET_TESTNET_NEOCLASSIC_UNZIP_PATH = "${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}\${SIGNUM_WALLET_NEOCLASSIC_DIR}"
+$SIGNUM_WALLET_TESTNET_NEOCLASSIC_URL = "https://github.com/deleterium/neoclassic-wallet/archive/refs/heads/main.zip"
 
 $SIGNUM_POOL_STARTER_PS1 = "start-pool.ps1"
 $SIGNUM_POOL_STARTER_EXEC = "start-pool.bat"
@@ -72,26 +94,26 @@ $POOL_JRE_URL = "https://cdn.azul.com/zulu/bin/zulu11.56.19-ca-fx-jre11.0.15-win
 
 $SIGNUM_POOL_MAINNET_VERSION = "v2.2.1"
 $SIGNUM_POOL_MAINNET_DIR = "Pool"
-$SIGNUM_POOL_MAINNET_DIR_PATH = "${SIGNUM_MAINNET_DIR}\${SIGNUM_POOL_MAINNET_DIR}"
+$SIGNUM_POOL_MAINNET_DIR_PATH = "${SIGNUM_NODE_MAINNET_DIR}\${SIGNUM_POOL_MAINNET_DIR}"
 $SIGNUM_POOL_MAINNET_UNZIP = "signum-pool-${SIGNUM_POOL_MAINNET_VERSION}"
 $SIGNUM_POOL_MAINNET_ZIP = "${SIGNUM_POOL_MAINNET_UNZIP}.zip"
 $SIGNUM_POOL_MAINNET_ZIP_PATH = "${SIGNUM_POOL_MAINNET_DIR_PATH}\${SIGNUM_POOL_MAINNET_ZIP}"
 $SIGNUM_POOL_MAINNET_UNZIP_PATH = "${SIGNUM_POOL_MAINNET_DIR_PATH}\${SIGNUM_POOL_MAINNET_UNZIP}"
-$SIGNUM_POOL_MAINNET_PROPERTIES_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES"
-$SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_ORIGINAL"
+$SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES"
+$SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_ORIGINAL"
 $SIGNUM_POOL_MAINNET_STARTER_PS1_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_PS1}"
 $SIGNUM_POOL_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_EXEC}"
 $SIGNUM_POOL_MAINNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_MAINNET_VERSION}/${SIGNUM_POOL_MAINNET_ZIP}"
 
 $SIGNUM_POOL_TESTNET_VERSION = "v2.2.1"
 $SIGNUM_POOL_TESTNET_DIR = "Pool"
-$SIGNUM_POOL_TESTNET_DIR_PATH = "${SIGNUM_TESTNET_DIR}\${SIGNUM_POOL_TESTNET_DIR}"
+$SIGNUM_POOL_TESTNET_DIR_PATH = "${SIGNUM_NODE_TESTNET_DIR}\${SIGNUM_POOL_TESTNET_DIR}"
 $SIGNUM_POOL_TESTNET_UNZIP = "signum-pool-${SIGNUM_POOL_TESTNET_VERSION}"
 $SIGNUM_POOL_TESTNET_ZIP = "${SIGNUM_POOL_TESTNET_UNZIP}.zip"
 $SIGNUM_POOL_TESTNET_ZIP_PATH = "${SIGNUM_POOL_TESTNET_DIR_PATH}\${SIGNUM_POOL_TESTNET_ZIP}"
 $SIGNUM_POOL_TESTNET_UNZIP_PATH = "${SIGNUM_POOL_TESTNET_DIR_PATH}\${SIGNUM_POOL_TESTNET_UNZIP}"
-$SIGNUM_POOL_TESTNET_PROPERTIES_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES"
-$SIGNUM_POOL_TESTNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_ORIGINAL"
+$SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES"
+$SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_ORIGINAL"
 $SIGNUM_POOL_TESTNET_STARTER_PS1_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_PS1}"
 $SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_EXEC}"
 $SIGNUM_POOL_TESTNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_TESTNET_VERSION}/${SIGNUM_POOL_TESTNET_ZIP}"
@@ -100,7 +122,7 @@ $SIGNUM_EXPLORER_STARTER_PS1 = "start-explorer.ps1"
 $SIGNUM_EXPLORER_STARTER_EXEC = "start-explorer.bat"
 
 $SIGNUM_EXPLORER_MAINNET_DIR = "Explorer"
-$SIGNUM_EXPLORER_MAINNET_DIR_PATH = "${SIGNUM_MAINNET_DIR}\${SIGNUM_EXPLORER_MAINNET_DIR}"
+$SIGNUM_EXPLORER_MAINNET_DIR_PATH = "${SIGNUM_NODE_MAINNET_DIR}\${SIGNUM_EXPLORER_MAINNET_DIR}"
 $SIGNUM_EXPLORER_MAINNET_UNZIP = "signum-explorer-master"
 $SIGNUM_EXPLORER_MAINNET_ZIP = "${SIGNUM_EXPLORER_MAINNET_UNZIP}.zip"
 $SIGNUM_EXPLORER_MAINNET_ZIP_PATH = "${SIGNUM_EXPLORER_MAINNET_DIR_PATH}\${SIGNUM_EXPLORER_MAINNET_ZIP}"
@@ -118,7 +140,7 @@ $SIGNUM_EXPLORER_MAINNET_PYTHON_URL = "https://www.python.org/ftp/python/${SIGNU
 $SIGNUM_EXPLORER_MAINNET_PYTHON_GETPIP_URL = "https://bootstrap.pypa.io/get-pip.py"
 
 $SIGNUM_EXPLORER_TESTNET_DIR = "Explorer"
-$SIGNUM_EXPLORER_TESTNET_DIR_PATH = "${SIGNUM_TESTNET_DIR}\${SIGNUM_EXPLORER_TESTNET_DIR}"
+$SIGNUM_EXPLORER_TESTNET_DIR_PATH = "${SIGNUM_NODE_TESTNET_DIR}\${SIGNUM_EXPLORER_TESTNET_DIR}"
 $SIGNUM_EXPLORER_TESTNET_UNZIP = "signum-explorer-master"
 $SIGNUM_EXPLORER_TESTNET_ZIP = "${SIGNUM_EXPLORER_TESTNET_UNZIP}.zip"
 $SIGNUM_EXPLORER_TESTNET_ZIP_PATH = "${SIGNUM_EXPLORER_TESTNET_DIR_PATH}\${SIGNUM_EXPLORER_TESTNET_ZIP}"
@@ -218,8 +240,8 @@ $TURBOPLOTTER_STARTER_PS1_PATH = "$TURBOPLOTTER_VERSION_UNZIP\${TURBOPLOTTER_STA
 $TURBOPLOTTER_STARTER_EXEC_PATH = "$TURBOPLOTTER_VERSION_UNZIP\${TURBOPLOTTER_STARTER_EXEC}"
 $TURBOPLOTTER_URL = "https://blackpawn.com/tp/drop/TurboPlotter_$TURBOPLOTTER_VERSION.zip"
 
-$SIGNUMPLOTTER_STARTER_PS1 = "start-signumplotter.ps1"
-$SIGNUMPLOTTER_STARTER_EXEC = "start-signumplotter.bat"
+$SIGNUMPLOTTER_STARTER_PS1 = "start-nodeplotter.ps1"
+$SIGNUMPLOTTER_STARTER_EXEC = "start-nodeplotter.bat"
 $SIGNUMPLOTTER_VERSION = "v2.5.0"
 $SIGNUMPLOTTER_DIR = "SignumPlotter"
 $SIGNUMPLOTTER_VERSION_DIR = "$PLOTTER_DIR\$SIGNUMPLOTTER_DIR\$SIGNUMPLOTTER_VERSION"
@@ -263,16 +285,7 @@ $SIGNUMPLOTTER_URL = "https://github.com/signum-network/signum-plotter/releases/
 # TODO Documents Menu
 # TODO makr recommended applications
 
-# TODO add NeoClassic to nodes https://github.com/deleterium/neoclassic-wallet
-# TODO add link to html/ui/index.html
-<#
-		<a class="card" id="neoclassic-link" href="./neoclassic/index.html" onclick="selectedWallet('neoclassic')">
-            <div class="center-text">
-                <img src="./assets/signum-logomark-white.svg">
-                <h2 class="card__title">NeoClassic</h2>
-            </div>
-        </a>
-#>
+
 
 $MINER_DIR = "Miner"
 $SIGNUM_MINER_DIR = "Signum Miner"
@@ -281,7 +294,7 @@ $SIGNUM_MINER_MAINNET_STARTER_PS1 = "start-miner.ps1"
 $SIGNUM_MINER_MAINNET_STARTER_EXEC = "start-miner.bat"
 $SIGNUM_MINER_MAINNET_VERSION = "v1.8.0"
 $SIGNUM_MINER_MAINNET_VERSION_DIR = "$SIGNUM_MINER_MAINNET_VERSION"
-$SIGNUM_MINER_MAINNET_VERSION_DIR_PATH = "$SIGNUM_MAINNET_DIR\$MINER_DIR\$SIGNUM_MINER_DIR\$SIGNUM_MINER_MAINNET_VERSION_DIR"
+$SIGNUM_MINER_MAINNET_VERSION_DIR_PATH = "$SIGNUM_NODE_MAINNET_DIR\$MINER_DIR\$SIGNUM_MINER_DIR\$SIGNUM_MINER_MAINNET_VERSION_DIR"
 $SIGNUM_MINER_MAINNET_EXEC = "signum-miner.exe"
 $SIGNUM_MINER_MAINNET_EXEC_PATH = "$SIGNUM_MINER_MAINNET_VERSION_DIR_PATH\${SIGNUM_MINER_MAINNET_EXEC}"
 $SIGNUM_MINER_MAINNET_STARTER_PS1_PATH = "$SIGNUM_MINER_MAINNET_VERSION_DIR_PATH\${SIGNUM_MINER_MAINNET_STARTER_PS1}"
@@ -294,7 +307,7 @@ $SIGNUM_MINER_TESTNET_STARTER_PS1 = "start-miner.ps1"
 $SIGNUM_MINER_TESTNET_STARTER_EXEC = "start-miner.bat"
 $SIGNUM_MINER_TESTNET_VERSION = "v1.8.0"
 $SIGNUM_MINER_TESTNET_VERSION_DIR = "$SIGNUM_MINER_TESTNET_VERSION"
-$SIGNUM_MINER_TESTNET_VERSION_DIR_PATH = "$SIGNUM_TESTNET_DIR\$MINER_DIR\$SIGNUM_MINER_DIR\$SIGNUM_MINER_TESTNET_VERSION_DIR"
+$SIGNUM_MINER_TESTNET_VERSION_DIR_PATH = "$SIGNUM_NODE_TESTNET_DIR\$MINER_DIR\$SIGNUM_MINER_DIR\$SIGNUM_MINER_TESTNET_VERSION_DIR"
 $SIGNUM_MINER_TESTNET_EXEC = "signum-miner.exe"
 $SIGNUM_MINER_TESTNET_EXEC_PATH = "$SIGNUM_MINER_TESTNET_VERSION_DIR_PATH\${SIGNUM_MINER_TESTNET_EXEC}"
 $SIGNUM_MINER_TESTNET_STARTER_PS1_PATH = "$SIGNUM_MINER_TESTNET_VERSION_DIR_PATH\${SIGNUM_MINER_TESTNET_STARTER_PS1}"
@@ -429,7 +442,7 @@ function Show-InstallMenu {
     Write-Host "====================================================="
 
 	# Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
-    $choice = Read-Host "Enter your choice (1-17)"
+    $choice = Read-Host "Enter your choice (1-19)"
 
 	function install-process($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -446,10 +459,10 @@ function Show-InstallMenu {
 
     switch ($choice) {
         "1" {
-			install-process $SIGNUM_MAINNET_STARTER_PS1_PATH "Signum Mainnet Node" {Install-SignumMainnet}
+			install-process $SIGNUM_NODE_MAINNET_STARTER_PS1_PATH "Signum Mainnet Node" {Install-SignumMainnet}
         }
         "2" {
-			install-process $SIGNUM_TESTNET_STARTER_PS1_PATH "Signum Testnet Node" {Install-SignumTestnet}
+			install-process $SIGNUM_NODE_TESTNET_STARTER_PS1_PATH "Signum Testnet Node" {Install-SignumTestnet}
         }
         "3" {
 			install-process $BTDEX_EXEC_PATH "BTDEX" {install_btdex}
@@ -558,10 +571,10 @@ function Show-StartMenu {
 
     switch ($choice) {
         "1" {
-			start-process-menu $SIGNUM_MAINNET_STARTER_PS1_PATH "Signum Node Mainnet" {Install-SignumMainnet} 
+			start-process-menu $SIGNUM_NODE_MAINNET_STARTER_PS1_PATH "Signum Node Mainnet" {Install-SignumMainnet} 
         }
         "2" {
-			start-process-menu $SIGNUM_TESTNET_STARTER_PS1_PATH "Signum Node Testnet" {Install-SignumTestnet}
+			start-process-menu $SIGNUM_NODE_TESTNET_STARTER_PS1_PATH "Signum Node Testnet" {Install-SignumTestnet}
         }
         "3" {
 			start-process-menu $BTDEX_STARTER_PS1_PATH "BTDEX" {install_btdex}
@@ -669,22 +682,23 @@ function Install-SignumMainnet {
     Write-Host "Installing Signum Mainnet ..."
 
     # Create mainnet/testnet directory
-    if (-not (Test-Path -Path "${SIGNUM_MAINNET_DIR_PATH}")) {
-        New-Item -Path "${SIGNUM_MAINNET_DIR_PATH}" -ItemType Directory | Out-Null
-        Write-Host "Created directory: ${SIGNUM_MAINNET_DIR_PATH}"
+    if (-not (Test-Path -Path "${SIGNUM_NODE_MAINNET_DIR_PATH}")) {
+        New-Item -Path "${SIGNUM_NODE_MAINNET_DIR_PATH}" -ItemType Directory | Out-Null
+        Write-Host "Created directory: ${SIGNUM_NODE_MAINNET_DIR_PATH}"
     } else {
-        Write-Host "Directory already exists: ${SIGNUM_MAINNET_DIR_PATH}"
+        Write-Host "Directory already exists: ${SIGNUM_NODE_MAINNET_DIR_PATH}"
     }
 
-    if (Test-Path -Path "${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_ZIP}") {
-        Write-Host "${SIGNUM_MAINNET_ZIP} already downloaded."
+    if (Test-Path -Path "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_ZIP}") {
+        Write-Host "${SIGNUM_NODE_MAINNET_ZIP} already downloaded."
     } else {
         # Download the Signum mainnet zip file
         Write-Host "Downloading Signum from GitHub ..."
-        Start-BitsTransfer -Source "${SIGNUM_MAINNET_URL}" -Destination "${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_ZIP}"
+        # Start-BitsTransfer -Source "${SIGNUM_NODE_MAINNET_URL}" -Destination "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_ZIP}"
+		Invoke-WebRequest -Uri ${SIGNUM_NODE_MAINNET_URL} -OutFile ${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_ZIP}
 
         # Check if download was successful
-        if (-not (Test-Path -Path "${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_ZIP}")) {
+        if (-not (Test-Path -Path "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_ZIP}")) {
             Write-Host "Error: Failed to download Signum."
             Pause
             # Install-Menu
@@ -692,21 +706,25 @@ function Install-SignumMainnet {
         }
     }
 
-    if (Test-Path -Path "${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_UNZIP}") {
-        Write-Host "${SIGNUM_MAINNET_UNZIP} already installed."
+    if (Test-Path -Path "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP}") {
+        Write-Host "${SIGNUM_NODE_MAINNET_UNZIP} already installed."
     } else {
         # Unzip the downloaded file to the installation directory
-        Write-Host "Unzipping Signum to ${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_UNZIP} ..."
-        Expand-Archive -Path "${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_ZIP}" -DestinationPath "${SIGNUM_MAINNET_DIR_PATH}\${SIGNUM_MAINNET_UNZIP}" -Force
+        Write-Host "Unzipping Signum to ${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP} ..."
+        Expand-Archive -Path "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_ZIP}" -DestinationPath "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP}" -Force
     }
 
-    # Copy node-default.properties to node.properties
-    Write-Host "Copying ${MAINNET_DEFAULT_PROPERTIES} to ${MAINNET_PROPERTIES} ..."
-    Copy-Item -Path "${MAINNET_DEFAULT_PROPERTIES}" -Destination "${MAINNET_PROPERTIES}"
+	if (Test-Path -Path "${SIGNUM_NODE_MAINNET_PROPERTIES_PATH}") {
+        Write-Host "${SIGNUM_NODE_MAINNET_PROPERTIES_PATH} already exists."
+    } else {
+        # Copy node-default.properties to node.properties
+		Write-Host "Copying ${SIGNUM_NODE_MAINNET_DEFAULT_PROPERTIES_PATH} to ${SIGNUM_NODE_MAINNET_PROPERTIES_PATH} ..."
+		Copy-Item -Path "${SIGNUM_NODE_MAINNET_DEFAULT_PROPERTIES_PATH}" -Destination "${SIGNUM_NODE_MAINNET_PROPERTIES_PATH}"
+	}
 	
 <# #this true by default	
 	# Add node.indirectIncomingService.enable = true propertie
-	$content = Get-Content -Path $MAINNET_PROPERTIES
+	$content = Get-Content -Path $SIGNUM_NODE_MAINNET_PROPERTIES_PATH
 	
 	$content = $content | ForEach-Object {
         if ($_ -match "node.indirectIncomingService.enable = true") {
@@ -721,83 +739,265 @@ function Install-SignumMainnet {
     }
 
 	# Write the updated content back to the file
-	Set-Content -Path $MAINNET_PROPERTIES -Value $content
+	Set-Content -Path $SIGNUM_NODE_MAINNET_PROPERTIES_PATH -Value $content
 #>
+<#
+	# Install NeoClassic wallet
+	Write-Host "Install NeoClassic wallet."
+	if (-not (Test-Path -Path "${SIGNUM_WALLET_MAINNET_NEOCLASSIC_UNZIP_PATH}")) {
+        New-Item -Path "${SIGNUM_WALLET_MAINNET_NEOCLASSIC_UNZIP_PATH}" -ItemType Directory | Out-Null
+        Write-Host "Created directory: ${SIGNUM_WALLET_MAINNET_NEOCLASSIC_UNZIP_PATH}"
+    } else {
+        Write-Host "Directory already exists: ${SIGNUM_WALLET_MAINNET_NEOCLASSIC_UNZIP_PATH}"
+    }
+#>
+	
+	# Insall Signum NeoClassic Wallet if not installed yet
+	if (Test-Path $SIGNUM_WALLET_MAINNET_NEOCLASSIC_UNZIP_PATH) {
+		Write-Host "Signum NeoClassic Wallet already installed."
+		question-prompt "Reinstall" "NeoClassic Wallet" {Install-NeoClassic-MAINNET-Wallet}
+	} else {
+		Write-Host "Signum NeoClassic Wallet is not yet installed."
+		question-prompt "Install" "NeoClassic Wallet" {Install-NeoClassic-MAINNET-Wallet}
+		# Pause
+	}
 
     # Create starter ps1
-    signum-starter-ps1 "Mainnet" ${SIGNUM_MAINNET_STARTER_PS1_PATH}
+    signum-starter-ps1 "Mainnet" ${SIGNUM_NODE_MAINNET_STARTER_PS1_PATH} 8125
 	
 	# Create starter batch
-	create-starter-ps1-exec ${SIGNUM_STARTER_PS1} ${SIGNUM_STARTER_EXEC} ${SIGNUM_MAINNET_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${SIGNUM_NODE_STARTER_PS1} ${SIGNUM_NODE_STARTER_EXEC} ${SIGNUM_NODE_MAINNET_STARTER_EXEC_PATH}
 
     # Install MariaDB
-    install_mariadb
+	if (Test-Path $MARIADB_STARTER_PS1_PATH) {
+        Write-Host "MariaDB already installed!"
+		question-prompt "Reinstall" "MariaDB" {install_mariadb}
+    } else {
+		Write-Host "MariaDB is not yet installed."
+		question-prompt "Install" "MariaDB" {install_mariadb}
+	}
 
     # Setup MariaDB for Mainnet
-    # setup_mariadb "Mainnet" "signum-mainnet"
 	question-prompt "Setup" "MariaDB for Signum Mainnet Node" {setup_mariadb "Signum Node Mainnet" "signum-node-mainnet" "signumuser_node_mainnet" "signumpassword"}
 	
 	if ($global:UserResponse -eq "yes") {	
 		# Update database information in node.properties
-		setup_db_node_properties ${MAINNET_PROPERTIES}
+		setup_db_node_properties ${SIGNUM_NODE_MAINNET_PROPERTIES_PATH}
 	}
 
-	# TODO Create start-signum-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
-	# TODO start-signum-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
+	# TODO Create start-node-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
+	# TODO start-node-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
+	
+	# Question prompt check if installed
 
     Write-Host "Signum Mainnet Node Installation complete."
     # Pause
-
-    if (-not (Test-Path -Path "${SIGNUM_TESTNET_STARTER_PS1_PATH}")) {
+<#
+    if (-not (Test-Path -Path "${SIGNUM_NODE_TESTNET_STARTER_PS1_PATH}")) {
         question-prompt "Install" "Signum Node Testnet" Install-SignumTestnet
     }
+#>
+}
+
+function Install-NeoClassic-MAINNET-Wallet {
+		# Download NeoClassic
+    if (Test-Path -Path "${SIGNUM_WALLET_MAINNET_NEOCLASSIC_ZIP_PATH}") {
+        Write-Host "${SIGNUM_WALLET_NEOCLASSIC_ZIP} already downloaded."
+    } else {
+        # Download the Signum mainnet zip file
+        Write-Host "Downloading Signum NeoClassic Wallet from GitHub ..."
+		Invoke-WebRequest -Uri $SIGNUM_WALLET_MAINNET_NEOCLASSIC_URL -OutFile $SIGNUM_WALLET_MAINNET_NEOCLASSIC_ZIP_PATH
+		
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SIGNUM_WALLET_MAINNET_NEOCLASSIC_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download Signum NeoClassic Wallet."
+            Pause
+            # Install-Menu
+            # return
+        }
+    }
+	
+	# Unzip NeoClassic
+	if (Test-Path -Path "${SIGNUM_WALLET_MAINNET_NEOCLASSIC_UNZIP_PATH}\src") {
+        Write-Host "Signum NeoClassic Wallet already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Signum NeoClassic Wallet to ${SIGNUM_WALLET_MAINNET_UI_DIR_PATH} ..."
+        Expand-Archive -Path "${SIGNUM_WALLET_MAINNET_NEOCLASSIC_ZIP_PATH}" -DestinationPath "${SIGNUM_WALLET_MAINNET_UI_DIR_PATH}" -Force
+		# Rename the folder
+		Rename-Item -Path ${SIGNUM_WALLET_MAINNET_UI_DIR_PATH}\neoclassic-wallet-main -NewName "neoclassic"
+	
+		# Setup index.html
+		Write-Host "Setup index.html"
+		
+		# Check index.html if NeoClassic is added
+		$foundNeoClassic = $false
+		$content = Get-Content -Path ${SIGNUM_WALLET_MAINNET_UI_DIR_PATH}\index.html
+		
+		$content = $content | ForEach-Object {
+			if ($_ -match $SIGNUM_WALLET_NEOCLASSIC_DIR) {
+				$foundNeoClassic = $true
+				Write-Host "index.html setup is ready"
+			}
+		}
+		
+		if (-not $foundNeoClassic) {
+			$content = Get-Content -Path ${SIGNUM_WALLET_MAINNET_UI_DIR_PATH}\index.html
+			
+			# Define the HTML content to insert
+			$newLine = 
+@'
+		<a class="card" id="neoclassic-link" href="./neoclassic/index.html" onclick="selectedWallet('neoclassic')">
+			<div class="center-text">
+				<img src="./assets/signum-logomark-white.svg">
+				<h2 class="card__title">NeoClassic</h2>
+			</div>
+		</a>
+'@
+			
+			for ($i = 0; $i -lt $content.Count; $i++) {
+				$line = $content[$i]  # Get the current line
+
+				if ($line -match '^\s*</div>') {
+					if ($content[$i+1] -match "^\s*</a>") {
+						# Insert the new line after $content[$i+1]
+						$content = $content[0..($i+1)] + $newLine + $content[($i+2)..($content.Count - 1)]
+						break
+					}
+				}
+			}
+
+			# Write the changes back to the file
+			$content | Set-Content -Path ${SIGNUM_WALLET_MAINNET_UI_DIR_PATH}\index.html
+		}
+	}
+}
+
+function Install-NeoClassic-TESTNET-Wallet {
+		# Download NeoClassic
+    if (Test-Path -Path "${SIGNUM_WALLET_TESTNET_NEOCLASSIC_ZIP_PATH}") {
+        Write-Host "${SIGNUM_WALLET_NEOCLASSIC_ZIP} already downloaded."
+    } else {
+        # Download the Signum mainnet zip file
+        Write-Host "Downloading Signum NeoClassic Wallet from GitHub ..."
+		Invoke-WebRequest -Uri $SIGNUM_WALLET_TESTNET_NEOCLASSIC_URL -OutFile $SIGNUM_WALLET_TESTNET_NEOCLASSIC_ZIP_PATH
+		
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SIGNUM_WALLET_TESTNET_NEOCLASSIC_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download Signum NeoClassic Wallet."
+            Pause
+            # Install-Menu
+            # return
+        }
+    }
+	
+	# Unzip NeoClassic
+	if (Test-Path -Path "${SIGNUM_WALLET_TESTNET_NEOCLASSIC_UNZIP_PATH}\src") {
+        Write-Host "Signum NeoClassic Wallet already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Signum NeoClassic Wallet to ${SIGNUM_WALLET_TESTNET_UI_DIR_PATH} ..."
+        Expand-Archive -Path "${SIGNUM_WALLET_TESTNET_NEOCLASSIC_ZIP_PATH}" -DestinationPath "${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}" -Force
+		# Rename the folder
+		Rename-Item -Path ${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}\neoclassic-wallet-main -NewName "neoclassic"
+	
+		# Setup index.html
+		Write-Host "Setup index.html"
+		
+		# Check index.html if NeoClassic is added
+		$foundNeoClassic = $false
+		$content = Get-Content -Path ${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}\index.html
+		
+		$content = $content | ForEach-Object {
+			if ($_ -match $SIGNUM_WALLET_NEOCLASSIC_DIR) {
+				$foundNeoClassic = $true
+				Write-Host "index.html setup is ready"
+			}
+		}
+		
+		if (-not $foundNeoClassic) {
+			$content = Get-Content -Path ${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}\index.html
+			
+		# Define the HTML content to insert
+		$newLine = 
+@'
+		<a class="card" id="neoclassic-link" href="./neoclassic/index.html" onclick="selectedWallet('neoclassic')">
+			<div class="center-text">
+				<img src="./assets/signum-logomark-white.svg">
+				<h2 class="card__title">NeoClassic</h2>
+			</div>
+		</a>
+'@
+			
+			for ($i = 0; $i -lt $content.Count; $i++) {
+				$line = $content[$i]  # Get the current line
+
+				if ($line -match '^\s*</div>') {
+					if ($content[$i+1] -match "^\s*</a>") {
+						# Insert the new line after $content[$i+1]
+						$content = $content[0..($i+1)] + $newLine + $content[($i+2)..($content.Count - 1)]
+						break
+					}
+				}
+			}
+
+			# Write the changes back to the file
+			$content | Set-Content -Path ${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}\index.html
+		}
+	}
 }
 
 function Install-SignumTestnet {
     Write-Host "Installing Signum Testnet ..."
 
     # Create mainnet/testnet directory
-    if (-not (Test-Path -Path "${SIGNUM_TESTNET_DIR_PATH}")) {
-        New-Item -Path "${SIGNUM_TESTNET_DIR_PATH}" -ItemType Directory | Out-Null
-        Write-Host "Created directory: ${SIGNUM_TESTNET_DIR_PATH}"
+    if (-not (Test-Path -Path "${SIGNUM_NODE_TESTNET_DIR_PATH}")) {
+        New-Item -Path "${SIGNUM_NODE_TESTNET_DIR_PATH}" -ItemType Directory | Out-Null
+        Write-Host "Created directory: ${SIGNUM_NODE_TESTNET_DIR_PATH}"
     } else {
-        Write-Host "Directory already exists: ${SIGNUM_TESTNET_DIR_PATH}"
+        Write-Host "Directory already exists: ${SIGNUM_NODE_TESTNET_DIR_PATH}"
     }
 
-    if (Test-Path -Path "${SIGNUM_TESTNET_DIR_PATH}\${SIGNUM_TESTNET_ZIP}") {
-        Write-Host "${SIGNUM_TESTNET_ZIP} already downloaded."
+    if (Test-Path -Path "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_ZIP}") {
+        Write-Host "${SIGNUM_NODE_TESTNET_ZIP} already downloaded."
     } else {
         # Download the Signum testnet zip file
         Write-Host "Downloading Signum from GitHub ..."
 		# TODO try out Invoke-WebRequest or System.Net.Http.HttpClient
-        Start-BitsTransfer -Source "${SIGNUM_TESTNET_URL}" -Destination "${SIGNUM_TESTNET_DIR_PATH}\${SIGNUM_TESTNET_ZIP}"
+        # Start-BitsTransfer -Source "${SIGNUM_NODE_TESTNET_URL}" -Destination "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_ZIP}"
+		Invoke-WebRequest -Uri $SIGNUM_NODE_TESTNET_URL -OutFile ${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_ZIP}
 
         # Check if download was successful
-        if (-not (Test-Path -Path "${SIGNUM_TESTNET_DIR_PATH}\${SIGNUM_TESTNET_ZIP}")) {
+        if (-not (Test-Path -Path "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_ZIP}")) {
             Write-Host "Error: Failed to download Signum."
             Exit
         }
     }
 
-    if (Test-Path -Path "${SIGNUM_TESTNET_DIR_PATH}\${SIGNUM_TESTNET_UNZIP}") {
-        Write-Host "${SIGNUM_TESTNET_UNZIP} already installed."
+    if (Test-Path -Path "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_UNZIP}") {
+        Write-Host "${SIGNUM_NODE_TESTNET_UNZIP} already installed."
     } else {
         # Unzip the downloaded file to the installation directory
-        Write-Host "Unzipping Signum to ${SIGNUM_TESTNET_DIR_PATH}\${SIGNUM_TESTNET_UNZIP} ..."
-        Expand-Archive -Path "${SIGNUM_TESTNET_DIR_PATH}\${SIGNUM_TESTNET_ZIP}" -DestinationPath "${SIGNUM_TESTNET_DIR_PATH}\${SIGNUM_TESTNET_UNZIP}" -Force
+        Write-Host "Unzipping Signum to ${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_UNZIP} ..."
+        Expand-Archive -Path "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_ZIP}" -DestinationPath "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_UNZIP}" -Force
     }
 
-    # Copy node-default.properties to node.properties
-    Write-Host "Copying ${TESTNET_DEFAULT_PROPERTIES} to ${TESTNET_PROPERTIES} ..."
-    Copy-Item -Path "${TESTNET_DEFAULT_PROPERTIES}" -Destination "${TESTNET_PROPERTIES}"
+	if (Test-Path -Path "${SIGNUM_NODE_TESTNET_PROPERTIES_PATH}") {
+        Write-Host "${SIGNUM_NODE_TESTNET_PROPERTIES_PATH} already exists."
+    } else {
+        # Copy node-default.properties to node.properties
+		Write-Host "Copying ${SIGNUM_NODE_TESTNET_DEFAULT_PROPERTIES_PATH} to ${SIGNUM_NODE_TESTNET_PROPERTIES_PATH} ..."
+		Copy-Item -Path "${SIGNUM_NODE_TESTNET_DEFAULT_PROPERTIES_PATH}" -Destination "${SIGNUM_NODE_TESTNET_PROPERTIES_PATH}"
+	}
+
 
     # Update node.properties with new database information
-    Write-Host "Updating ${TESTNET_PROPERTIES} with Testnet configurations ..."
-    (Get-Content -Path $TESTNET_PROPERTIES) -replace '# node.network = signum.net.TestnetNetwork', 'node.network = signum.net.TestnetNetwork' | Set-Content -Path $TESTNET_PROPERTIES
+    Write-Host "Updating ${SIGNUM_NODE_TESTNET_PROPERTIES_PATH} with Testnet configurations ..."
+    (Get-Content -Path $SIGNUM_NODE_TESTNET_PROPERTIES_PATH) -replace '# node.network = signum.net.TestnetNetwork', 'node.network = signum.net.TestnetNetwork' | Set-Content -Path $SIGNUM_NODE_TESTNET_PROPERTIES_PATH
 	
 <# #this true by default
 	# Add node.indirectIncomingService.enable = true propertie
-	$content = Get-Content -Path $TESTNET_PROPERTIES
+	$content = Get-Content -Path $SIGNUM_NODE_TESTNET_PROPERTIES_PATH
 	
 	$content = $content | ForEach-Object {
         if ($_ -match "node.indirectIncomingService.enable = true") {
@@ -812,39 +1012,57 @@ function Install-SignumTestnet {
     }
 
 	# Write the updated content back to the file
-	Set-Content -Path $TESTNET_PROPERTIES -Value $content
+	Set-Content -Path $SIGNUM_NODE_TESTNET_PROPERTIES_PATH -Value $content
 #>
 
     Write-Host "Update complete."
+	
+	# Insall Signum NeoClassic Wallet if not installed yet
+	if (Test-Path $SIGNUM_WALLET_TESTNET_NEOCLASSIC_UNZIP_PATH) {
+		Write-Host "Signum NeoClassic Wallet already installed."
+		question-prompt "Reinstall" "NeoClassic Wallet" {Install-NeoClassic-TESTNET-Wallet}
+	} else {
+		Write-Host "Signum NeoClassic Wallet is not yet installed."
+		question-prompt "Install" "NeoClassic Wallet" {Install-NeoClassic-TESTNET-Wallet}
+		# Pause
+	}
 
     # Install Signum Testnet starter batch
-    signum-starter-ps1 "Testnet" $SIGNUM_TESTNET_STARTER_PS1_PATH
+    signum-starter-ps1 "Testnet" ${SIGNUM_NODE_TESTNET_STARTER_PS1_PATH} 6876
 	
-	# OS dependent start-signum
+	# OS dependent start-node
 	# Create starter batch
-	create-starter-ps1-exec ${SIGNUM_STARTER_PS1} ${SIGNUM_STARTER_EXEC} ${SIGNUM_TESTNET_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${SIGNUM_NODE_STARTER_PS1} ${SIGNUM_NODE_STARTER_EXEC} ${SIGNUM_NODE_TESTNET_STARTER_EXEC_PATH}
 
     # Install MariaDB
-    install_mariadb
+	if (Test-Path $MARIADB_STARTER_PS1_PATH) {
+        Write-Host "MariaDB already installed!"
+		question-prompt "Reinstall" "MariaDB" {install_mariadb}
+    } else {
+		Write-Host "MariaDB is not yet installed."
+		question-prompt "Install" "MariaDB" {install_mariadb}
+	}
 
     # Setup MariaDB for Testnet
-    setup_mariadb "Signum Node Testnet" "signum-node-testnet" "signumuser_node_testnet" "signumpassword"
+    question-prompt "Setup" "MariaDB for Signum Testnet Node" {setup_mariadb "Signum Node Testnet" "signum-node-testnet" "signumuser_node_testnet" "signumpassword"}
 	
 	# Update database information in node.properties
-	setup_db_node_properties ${TESTNET_PROPERTIES}
+	setup_db_node_properties ${SIGNUM_NODE_TESTNET_PROPERTIES_PATH}
 
     Write-Host "Signum Testnet Node Installation complete."
     # Pause
 
-    if (-not (Test-Path -Path "${SIGNUM_MAINNET_STARTER_PS1_PATH}")) {
+<#
+    if (-not (Test-Path -Path "${SIGNUM_NODE_MAINNET_STARTER_PS1_PATH}")) {
         question-prompt "Install" "Signum Node Mainnet" {Install-SignumMainnet}
     }
+#>
 }
 
 function Install-SignumPoolMainnet {
     Write-Host "Installing Signum Pool Mainnet ..."
 
-	# install-process $SIGNUM_MAINNET_STARTER_PS1_PATH "Signum Mainnet" {Install-SignumMainnet}
+	# install-process $SIGNUM_NODE_MAINNET_STARTER_PS1_PATH "Signum Mainnet" {Install-SignumMainnet}
 
     # Create Pool directory
     if (-not (Test-Path -Path "${SIGNUM_POOL_MAINNET_DIR_PATH}")) {
@@ -859,7 +1077,8 @@ function Install-SignumPoolMainnet {
     } else {
         # Download the Signum Pool Mainnet zip file
         Write-Host "Downloading Signum Pool from GitHub ..."
-        Start-BitsTransfer -Source "${SIGNUM_POOL_MAINNET_URL}" -Destination "${SIGNUM_POOL_MAINNET_ZIP_PATH}"
+        # Start-BitsTransfer -Source "${SIGNUM_POOL_MAINNET_URL}" -Destination "${SIGNUM_POOL_MAINNET_ZIP_PATH}"
+		Invoke-WebRequest -Uri $SIGNUM_POOL_MAINNET_URL -OutFile $SIGNUM_POOL_MAINNET_ZIP_PATH
 
         # Check if download was successful
         if (-not (Test-Path -Path "${SIGNUM_POOL_MAINNET_ZIP_PATH}")) {
@@ -892,7 +1111,8 @@ function Install-SignumPoolMainnet {
     } else {
         # Download the Signum Pool Mainnet zip file
         Write-Host "Downloading Java ..."
-        Start-BitsTransfer -Source "${JAVA_POOL_MAINNET_URL}" -Destination "${JAVA_POOL_MAINNET_ZIP_PATH}"
+        # Start-BitsTransfer -Source "${JAVA_POOL_MAINNET_URL}" -Destination "${JAVA_POOL_MAINNET_ZIP_PATH}"
+		Invoke-WebRequest -Uri $JAVA_POOL_MAINNET_URL -OutFile $JAVA_POOL_MAINNET_ZIP_PATH
 
         # Check if download was successful
         if (-not (Test-Path -Path "${JAVA_POOL_MAINNET_ZIP_PATH}")) {
@@ -913,9 +1133,10 @@ function Install-SignumPoolMainnet {
     }
 	
 	# Copy poopl.properties to pool-original.properties
-	Write-Host "Copying ${SIGNUM_POOL_MAINNET_PROPERTIES_PATH} to ${SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH} ..."
-    Copy-Item -Path "${SIGNUM_POOL_MAINNET_PROPERTIES_PATH}" -Destination "${SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH}"
+	Write-Host "Copying ${SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_PATH} to ${SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_ORIGINAL_PATH} ..."
+    Copy-Item -Path "${SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_PATH}" -Destination "${SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_ORIGINAL_PATH}"
 	
+	$port = 8000
 
 	# Create starter ps1
 	if (-not (Test-Path $SIGNUM_POOL_MAINNET_STARTER_PS1_PATH)) {
@@ -925,25 +1146,48 @@ function Install-SignumPoolMainnet {
 # PowerShell script to start Signum Node
 Set-Location -Path `$PSScriptRoot
 
-echo "Starting MariaDB ..."
+Write-Host 'Starting MariaDB ...'
 
 # Start MariaDB
 ..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$MARIADB_STARTER_PS1_PATH" "-WindowStyle Minimized"
 # Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-ExecutionPolicy Bypass", "-File", "..\..\..\$MARIADB_STARTER_PS1_PATH" -WindowStyle Minimized
 
-echo "Starting Signum Node Mainnet ..."
+Write-Host 'Starting Signum Node Mainnet ...'
 
 Start-Sleep -Seconds 10
 
-..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_TESTNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
+..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_NODE_MAINNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
 
-echo "Starting Signum Pool Mainnet ..."
+Write-Host 'Starting Signum Pool Mainnet ...'
 
 Start-Sleep -Seconds 10
 
 # Start Signum Pool
 # Start-Process -FilePath "jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java" -ArgumentList "-jar", "signum-pool.jar" -WindowStyle Minimized
-Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java -jar signum-pool.jar"
+# Last OK
+# Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "```$host.UI.RawUI.WindowTitle = 'Signum Pool Mainnet'; jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java -jar signum-pool.jar"
+
+Write-Host 'Starting Signum Pool Mainnet ...'
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
+    -ArgumentList "-NoExit", "-Command", `@"
+    try {
+        ```$host.UI.RawUI.WindowTitle = 'Signum Pool Mainnet'
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+        if (```$portInUse) {
+			Write-Host 'Signum Pool Mainnet is already running.'
+			exit
+		} else {
+			# Start Signum Pool Mainnet
+			& .\jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java -jar signum-pool.jar
+		}
+    } catch {
+        Write-Host 'An error occurred while starting Signum Pool Mainnet: `$_'
+    } finally {
+        # Always set the title to 'Signum Pool Mainnet Stopped' after Signum Pool Mainnet exits
+        ```$host.UI.RawUI.WindowTitle = 'Signum Pool Mainnet Stopped'
+    }
+"`@ ``
+    -WindowStyle Minimized
 
 # TODO check
 # & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
@@ -964,38 +1208,46 @@ exit
 	create-starter-ps1-exec ${SIGNUM_POOL_STARTER_PS1} ${SIGNUM_POOL_STARTER_EXEC} ${SIGNUM_POOL_MAINNET_STARTER_EXEC_PATH}
 
     # Install MariaDB
-    install_mariadb
+	if (Test-Path $MARIADB_STARTER_PS1_PATH) {
+        Write-Host "MariaDB already installed!"
+		question-prompt "Reinstall" "MariaDB" {install_mariadb}
+    } else {
+		Write-Host "MariaDB is not yet installed."
+		question-prompt "Install" "MariaDB" {install_mariadb}
+	}
 
     # Setup MariaDB for Signum Pool Mainnet
     question-prompt "Setup" "MariaDB for Signum Pool Mainnet" {setup_mariadb "Signum Pool Mainnet" "signum-pool-mainnet" "signumuser_pool_mainnet" "signumpassword"}
 	
 	if ($global:UserResponse -eq "yes") {	
 		# Update database information in pool.properties
-		setup_db_pool_properties ${SIGNUM_POOL_MAINNET_PROPERTIES_PATH}
+		setup_db_pool_properties ${SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_PATH}
 	}
 	
 	# Setup pool.properties
-	setup_signumpool $SIGNUM_POOL_MAINNET_PROPERTIES_PATH  $SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH "mainnet"
+	question-prompt "Setup" "Signum Pool Mainnet Properties" {setup_signumpool $SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_PATH  $SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_ORIGINAL_PATH "mainnet"}
 
-	# TODO Create start-signum-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
-	# TODO start-signum-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
+	# TODO Create start-node-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
+	# TODO start-node-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
 
     Write-Host "Signum Pool Mainnet Installation complete."
     # Pause
 	
 	# Insall Signum Mainnet if not installed yet
-
-	if (Test-Path $SIGNUM_MAINNET_STARTER_PS1_PATH) {
-		Write-Host "${SIGNUM_MAINNET_STARTER_PS1_PATH} already installed."
+	if (Test-Path $SIGNUM_NODE_MAINNET_STARTER_PS1_PATH) {
+		Write-Host "Signum Node Mainnet $SIGNUM_NODE_MAINNET_VERSION already installed."
+		question-prompt "Reinstall" "Signum Node Mainnet" {Install-SignumMainnet}
 	} else {
+		Write-Host "Signum Node Mainnet $SIGNUM_NODE_MAINNET_VERSION is not yet installed."
 		question-prompt "Install" "Signum Node Mainnet" {Install-SignumMainnet}
 		# Pause
 	}
-	
+
+<#	
 	if (-not (Test-Path -Path "${SIGNUM_POOL_TESTNET_STARTER_PS1_PATH}")) {
         question-prompt "Install" "Signum Pool Testnet" Install-SignumPoolTestnet
     }
-	
+#>	
 }
 
 # TODO parameterize every function to use only once
@@ -1004,7 +1256,7 @@ exit
 function Install-SignumPoolTestnet {
     Write-Host "Installing Signum Pool Testnet ..."
 
-	# install-process $SIGNUM_MAINNET_STARTER_PS1_PATH "Signum Testnet" {Install-SignumMainnet}
+	# install-process $SIGNUM_NODE_MAINNET_STARTER_PS1_PATH "Signum Testnet" {Install-SignumMainnet}
 
     # Create Pool directory
     if (-not (Test-Path -Path "${SIGNUM_POOL_TESTNET_DIR_PATH}")) {
@@ -1019,7 +1271,8 @@ function Install-SignumPoolTestnet {
     } else {
         # Download the Signum Pool Testnet zip file
         Write-Host "Downloading Signum Pool from GitHub ..."
-        Start-BitsTransfer -Source "${SIGNUM_POOL_TESTNET_URL}" -Destination "${SIGNUM_POOL_TESTNET_ZIP_PATH}"
+        # Start-BitsTransfer -Source "${SIGNUM_POOL_TESTNET_URL}" -Destination "${SIGNUM_POOL_TESTNET_ZIP_PATH}"
+		Invoke-WebRequest -Uri $SIGNUM_POOL_TESTNET_URL -OutFile $SIGNUM_POOL_TESTNET_ZIP_PATH
 
         # Check if download was successful
         if (-not (Test-Path -Path "${SIGNUM_POOL_TESTNET_ZIP_PATH}")) {
@@ -1052,7 +1305,8 @@ function Install-SignumPoolTestnet {
     } else {
         # Download the Signum Pool Testnet zip file
         Write-Host "Downloading Java ..."
-        Start-BitsTransfer -Source "${JAVA_POOL_TESTNET_URL}" -Destination "${JAVA_POOL_TESTNET_ZIP_PATH}"
+        # Start-BitsTransfer -Source "${JAVA_POOL_TESTNET_URL}" -Destination "${JAVA_POOL_TESTNET_ZIP_PATH}"
+		Invoke-WebRequest -Uri $JAVA_POOL_TESTNET_URL -OutFile $JAVA_POOL_TESTNET_ZIP_PATH
 
         # Check if download was successful
         if (-not (Test-Path -Path "${JAVA_POOL_TESTNET_ZIP_PATH}")) {
@@ -1073,8 +1327,10 @@ function Install-SignumPoolTestnet {
     }
 	
 	# Copy poopl.properties to pool-original.properties
-	Write-Host "Copying ${SIGNUM_POOL_TESTNET_PROPERTIES_PATH} to ${SIGNUM_POOL_TESTNET_PROPERTIES_ORIGINAL_PATH} ..."
-    Copy-Item -Path "${SIGNUM_POOL_TESTNET_PROPERTIES_PATH}" -Destination "${SIGNUM_POOL_TESTNET_PROPERTIES_ORIGINAL_PATH}"
+	Write-Host "Copying ${SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_PATH} to ${SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_ORIGINAL_PATH} ..."
+    Copy-Item -Path "${SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_PATH}" -Destination "${SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_ORIGINAL_PATH}"
+
+	$port = 8001
 
 	# Create starter ps1
 	if (-not (Test-Path $SIGNUM_POOL_TESTNET_STARTER_PS1_PATH)) {
@@ -1084,30 +1340,53 @@ function Install-SignumPoolTestnet {
 # PowerShell script to start Signum Pool Testnet
 Set-Location -Path `$PSScriptRoot
 
-echo "Starting MariaDB ..."
+Write-Host 'Starting MariaDB ...'
 
 # Start MariaDB
 ..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$MARIADB_STARTER_PS1_PATH" "-WindowStyle Minimized"
 # Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-ExecutionPolicy Bypass", "-File", "..\..\..\$MARIADB_STARTER_PS1_PATH" -WindowStyle Minimized
 
-echo "Starting Signum Node Testnet ..."
+Write-Host 'Starting Signum Node Testnet ...'
 
 Start-Sleep -Seconds 10
 
-..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_TESTNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
+..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_NODE_TESTNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
 
-echo "Starting Signum Pool Testnet ..."
+Write-Host 'Starting Signum Pool Testnet ...'
 
 Start-Sleep -Seconds 10
 
 # Start Signum Pool
 # Start-Process -FilePath "jre\${JAVA_POOL_TESTNET_UNZIP}\bin\java" -ArgumentList "-jar", "signum-pool.jar" -WindowStyle Minimized
-Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java -jar signum-pool.jar"
+# Last OK
+# Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "```$host.UI.RawUI.WindowTitle = 'Signum Pool Testnet'; jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java -jar signum-pool.jar"
+
+Write-Host 'Starting Signum Pool Testnet ...'
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
+    -ArgumentList "-NoExit", "-Command", `@"
+    try {
+        ```$host.UI.RawUI.WindowTitle = 'Signum Pool Testnet'
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+        if (```$portInUse) {
+			Write-Host 'Signum Pool Testnet is already running.'
+			exit
+		} else {
+			# Start Signum Pool Testnet
+			& .\jre\${JAVA_POOL_TESTNET_UNZIP}\bin\java -jar signum-pool.jar
+		}
+    } catch {
+        Write-Host 'An error occurred while starting Signum Pool Testnet: `$_'
+    } finally {
+        # Always set the title to 'Signum Pool Testnet Stopped' after Signum Pool Testnet exits
+        ```$host.UI.RawUI.WindowTitle = 'Signum Pool Testnet Stopped'
+    }
+"`@ ``
+    -WindowStyle Minimized
 
 # TODO check
 # & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
 # "jre\bin\java" "-jar" "signum-node.jar" -WindowStyle Minimized
-# Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "Set-Title 'Signum Mainnet Node'; Start-Process -NoNewWindow -FilePath 'jre\bin\java' -ArgumentList '-jar', 'signum-node.jar'"
+# Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "Set-Title 'Signum Testnet Node'; Start-Process -NoNewWindow -FilePath 'jre\bin\java' -ArgumentList '-jar', 'signum-node.jar'"
 
 exit
 "@
@@ -1123,44 +1402,52 @@ exit
 	create-starter-ps1-exec ${SIGNUM_POOL_STARTER_PS1} ${SIGNUM_POOL_STARTER_EXEC} ${SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH}
 
     # Install MariaDB
-    install_mariadb
+	if (Test-Path $MARIADB_STARTER_PS1_PATH) {
+        Write-Host "MariaDB already installed!"
+		question-prompt "Reinstall" "MariaDB" {install_mariadb}
+    } else {
+		Write-Host "MariaDB is not yet installed."
+		question-prompt "Install" "MariaDB" {install_mariadb}
+	}
 
-    # Setup MariaDB for  Signum Pool Testnet
+    # Setup MariaDB for Signum Pool Testnet
     question-prompt "Setup" "MariaDB for Signum Pool Testnet" {setup_mariadb "Signum Pool Testnet" "signum-pool-testnet" "signumuser_pool_testnet" "signumpassword"}
 	
 	if ($global:UserResponse -eq "yes") {	
 		# Update database information in pool.properties
-		setup_db_pool_properties ${SIGNUM_POOL_TESTNET_PROPERTIES_PATH}
+		setup_db_pool_properties ${SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_PATH}
 	}
 	
 	# Setup pool.properties
-	setup_signumpool $SIGNUM_POOL_TESTNET_PROPERTIES_PATH $SIGNUM_POOL_TESTNET_PROPERTIES_ORIGINAL_PATH "testnet"
+	question-prompt "Setup" "Signum Pool Testnet Properties" {setup_signumpool $SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_PATH $SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_ORIGINAL_PATH "testnet"}
 
-	# TODO Create start-signum-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
-	# TODO start-signum-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
+	# TODO Create start-node-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
+	# TODO start-node-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
 
     Write-Host "Signum Pool Testnet Installation complete."
     # Pause
 	
 	# Insall Signum Testnet if not installed yet
-
-	if (Test-Path $SIGNUM_TESTNET_STARTER_PS1_PATH) {
-		Write-Host "${SIGNUM_TESTNET_STARTER_PS1_PATH} already installed."
+	if (Test-Path $SIGNUM_NODE_TESTNET_STARTER_PS1_PATH) {
+		Write-Host "Signum Node Testnet $SIGNUM_NODE_TESTNET_VERSION already installed."
+		question-prompt "Reinstall" "Signum Node Testnet" {Install-SignumTestnet}
 	} else {
+		Write-Host "Signum Node Testnet $SIGNUM_NODE_TESTNET_VERSION is not yet installed."
 		question-prompt "Install" "Signum Node Testnet" {Install-SignumTestnet}
 		Pause
 	}
 	
+<#	
 	if (-not (Test-Path -Path "${SIGNUM_POOL_MAINNET_STARTER_PS1_PATH}")) {
         question-prompt "Install" "Signum Pool Mainnet" Install-SignumPoolMainnet
     }
-		
+#>		
 }
 
 function Install-SignumExplorerMainnet {
     Write-Host "Installing Signum Exporer Mainnet ..."
 
-	# install-process $SIGNUM_MAINNET_STARTER_PS1_PATH "Signum Mainnet" {Install-SignumMainnet}
+	# install-process $SIGNUM_NODE_MAINNET_STARTER_PS1_PATH "Signum Mainnet" {Install-SignumMainnet}
 
     # Create Explorer directory
     if (-not (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_DIR_PATH}")) {
@@ -1175,7 +1462,8 @@ function Install-SignumExplorerMainnet {
     } else {
         # Download the Signum Explorer Mainnet zip file
         Write-Host "Downloading Signum Explorer from GitHub ..."
-        Start-BitsTransfer -Source "${SIGNUM_EXPLORER_MAINNET_URL}" -Destination "${SIGNUM_EXPLORER_MAINNET_ZIP_PATH}"
+        # Start-BitsTransfer -Source "${SIGNUM_EXPLORER_MAINNET_URL}" -Destination "${SIGNUM_EXPLORER_MAINNET_ZIP_PATH}"
+		Invoke-WebRequest -Uri $SIGNUM_EXPLORER_MAINNET_URL -OutFile $SIGNUM_EXPLORER_MAINNET_ZIP_PATH
 
         # Check if download was successful
         if (-not (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_ZIP_PATH}")) {
@@ -1209,7 +1497,8 @@ function Install-SignumExplorerMainnet {
     } else {
         # Download the python zip file
         Write-Host "Downloading Python ..."
-        Start-BitsTransfer -Source "${SIGNUM_EXPLORER_MAINNET_PYTHON_URL}" -Destination "${SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_PATH}"
+        # Start-BitsTransfer -Source "${SIGNUM_EXPLORER_MAINNET_PYTHON_URL}" -Destination "${SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_PATH}"
+		Invoke-WebRequest -Uri $SIGNUM_EXPLORER_MAINNET_PYTHON_URL -OutFile $SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_PATH
 
         # Check if download was successful
         if (-not (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_PATH}")) {
@@ -1244,7 +1533,8 @@ function Install-SignumExplorerMainnet {
     } else {
         # Download the get-pip.py file
         Write-Host "Downloading get-pip.py ..."
-        Start-BitsTransfer -Source "${SIGNUM_EXPLORER_MAINNET_PYTHON_GETPIP_URL}" -Destination "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\get-pip.py"
+        # Start-BitsTransfer -Source "${SIGNUM_EXPLORER_MAINNET_PYTHON_GETPIP_URL}" -Destination "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\get-pip.py"
+		Invoke-WebRequest -Uri $SIGNUM_EXPLORER_MAINNET_PYTHON_GETPIP_URL -OutFile ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\get-pip.py
 
         # Check if download was successful
         if (-not (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\get-pip.py")) {
@@ -1265,7 +1555,8 @@ function Install-SignumExplorerMainnet {
     } else {
         # Download the fontawesome-free-6.5.2-web.zip file
         Write-Host "Downloading fontawesome-free-6.5.2-web.zip ..."
-        Start-BitsTransfer -Source "https://github.com/FortAwesome/Font-Awesome/releases/download/6.5.2/fontawesome-free-6.5.2-web.zip" -Destination "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web.zip"
+        # Start-BitsTransfer -Source "https://github.com/FortAwesome/Font-Awesome/releases/download/6.5.2/fontawesome-free-6.5.2-web.zip" -Destination "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web.zip"
+		Invoke-WebRequest -Uri "https://github.com/FortAwesome/Font-Awesome/releases/download/6.5.2/fontawesome-free-6.5.2-web.zip" -OutFile ${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web.zip
 
         # Check if download was successful
         if (-not (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web.zip")) {
@@ -1291,7 +1582,8 @@ function Install-SignumExplorerMainnet {
     } else {
         # Download the fontawesome-free-6.2.1-web.zip file
         Write-Host "Downloading fontawesome-free-6.2.1-web.zip ..."
-        Start-BitsTransfer -Source "https://github.com/FortAwesome/Font-Awesome/releases/download/6.2.1/fontawesome-free-6.2.1-web.zip" -Destination "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web.zip"
+        # Start-BitsTransfer -Source "https://github.com/FortAwesome/Font-Awesome/releases/download/6.2.1/fontawesome-free-6.2.1-web.zip" -Destination "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web.zip"
+		Invoke-WebRequest -Uri "https://github.com/FortAwesome/Font-Awesome/releases/download/6.2.1/fontawesome-free-6.2.1-web.zip" -OutFile ${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web.zip
 
         # Check if download was successful
         if (-not (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web.zip")) {
@@ -1312,11 +1604,11 @@ function Install-SignumExplorerMainnet {
     }
 	
 	# run pyton get-pip.py command
-	echo "Installing get-pip.py"
+	Write-Host "Installing get-pip.py"
 	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\python.exe" "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\get-pip.py"
 	
 	# uncomment import site from python310._pth
-	echo "Setup python310._pth file"
+	Write-Host "Setup python310._pth file"
 	$content = Get-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\python310._pth
 	
 	$content = $content | ForEach-Object {
@@ -1337,7 +1629,7 @@ function Install-SignumExplorerMainnet {
 	if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\tmp\supervisord.pid") {
         Write-Host "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\tmp\supervisord.pid already exists."
     } else {
-		echo "Create ./tmp/supervisord.pid file"
+		Write-Host "Create ./tmp/supervisord.pid file"
 		New-Item -ItemType Directory -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\tmp" -Force | Out-Null
 		New-Item -ItemType File -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\tmp\supervisord.pid" -Force | Out-Null
     }
@@ -1346,53 +1638,101 @@ function Install-SignumExplorerMainnet {
 	if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\supervisord_original.conf") {
         Write-Host "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\supervisord_original.conf already exists."
     } else {
-		echo "Copy supervisord.conf to supervisord_original.conf file"
+		Write-Host "Copy supervisord.conf to supervisord_original.conf file"
 		Copy-Item -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\supervisord.conf" -Destination "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\supervisord_original.conf"
     }
 	
 	# TODO setup supervisord username and password and change port if testnet is also running
 <#
 	[inet_http_server]
-	port = 9001
+	port = 9000
 	username = dummy
 	password = changeme
 #>
 	
 	# change supervisord.conf file
-	echo "Setup supervisord.conf file"
+	Write-Host "Setup supervisord.conf file"
 	
-	$foundProgramSNR = $false
+	$foundExplorer = $false
+	$foundPeers = $false
+	$foundTasks = $false
+	$foundSNR = $false
+	
 	$content = Get-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\supervisord.conf
 	
 	$content = $content | ForEach-Object {
+				
+		if ($_ -match "^\[program:Explorer\]") {
+			$foundExplorer = $true
+			$foundPeers = $false
+			$foundTasks = $false
+			$foundSNR = $false
+		}
+		
+		if ($_ -match "^\[program:Peers\]") {	
+			$foundExplorer = $false
+			$foundPeers = $true
+			$foundTasks = $false
+			$foundSNR = $false
+		}
+		
+		if ($_ -match "^\[program:Tasks\]") {
+			$foundExplorer = $false
+			$foundPeers = $false
+			$foundTasks = $true
+			$foundSNR = $false
+		}
+		
 		if ($_ -match "^\[program:SNR\]") {
-			$foundProgramSNR = $true
-			$_	-replace "^\[program:SNR\]", ";[program:SNR]"
+			$foundExplorer = $false
+			$foundPeers = $false
+			$foundTasks = $false
+			$foundSNR = $true
+			$_ = $_ -replace "^\[program:SNR\]", ";[program:SNR]"
 		}
-		elseif ($foundProgramSNR) {
-			$_  -replace "^command =bash -c ""/path/to/your/snr/runSNR.sh\""", ";command =bash -c ""/path/to/your/snr/runSNR.sh""" `
-				-replace "^autostart = true", ";autostart = true" `
-				-replace "^autorestart = true", ";autorestart = true" `
-				-replace "^startsecs = 1", ";startsecs = 1" `
-				-replace "^redirect_stderr = true", ";redirect_stderr = true" `
-				-replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout" `
-				-replace "^stdout_logfile_maxbytes = 0", ";stdout_logfile_maxbytes = 0"
+		
+		if ($foundExplorer) {
+			if ($_ -match "^stdout_logfile = /dev/stdout") {
+				$_ = ($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = explorer_stdout.log" + "`n;stdout_logfile = CON"
+			}
 		}
-		elseif ($_ -match "^stdout_logfile = /dev/stdout") {
-			($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile=explorer_stdout.log"
-		} else {
-			$_  -replace "^port = 9001", "port = 9000" `
-				-replace "^\[unix_http_server\]", ";[unix_http_server]" `
-				-replace "^file = /tmp/supervisor.sock", ";file = ./tmp/supervisor.sock" `
-				-replace "^pidfile = /tmp/supervisord.pid", "pidfile = ./tmp/supervisord.pid" `
-				-replace "^chmod = 0700", ";chmod = 0700" `
-				-replace "^serverurl = unix:///tmp/supervisor.sock", "serverurl = ./tmp/supervisor.sock" `
-				-replace "^directory=.*", "directory=./" `
-				-replace "^command = gunicorn config.wsgi -c gunicorn.conf.py", "command = ./python.exe run_waitress.py" `
-				-replace "^command = python3 manage.py peers", "command = ./python.exe manage.py peers" `
-				-replace "^command = python3 manage.py tasks", "command = ./python.exe manage.py tasks" `
-				-replace "^logfile = /dev/null", ";logfile = /dev/null"
+		
+		if ($foundPeers) {
+			if ($_ -match "^stdout_logfile = /dev/stdout") {
+				$_ = ($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = peers_stdout.log" + "`n;stdout_logfile = CON"
+			}
 		}
+		
+		if ($foundTasks) {
+			if ($_ -match "^stdout_logfile = /dev/stdout") {
+				$_ = ($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = tasks_stdout.log" + "`n;stdout_logfile = CON"
+			}
+		}
+		
+		if ($foundSNR) {
+			
+			$_ = $_ -replace "^command =bash -c ""/path/to/your/snr/runSNR.sh\""", ";command =bash -c ""/path/to/your/snr/runSNR.sh"""
+			$_ = $_ -replace "^autostart = true", ";autostart = true"
+			$_ = $_ -replace "^autorestart = true", ";autorestart = true"
+			$_ = $_ -replace "^startsecs = 1", ";startsecs = 1"
+			$_ = $_ -replace "^redirect_stderr = true", ";redirect_stderr = true"
+			$_ = $_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout"
+			$_ = $_ -replace "^stdout_logfile_maxbytes = 0", ";stdout_logfile_maxbytes = 0"
+		
+		}
+
+		$_  -replace "^\[unix_http_server\]", ";[unix_http_server]" `
+			-replace "^port = 9001", "port = 9000" `
+			-replace "^file = /tmp/supervisor.sock", ";file = ./tmp/supervisor.sock" `
+			-replace "^pidfile = /tmp/supervisord.pid", "pidfile = ./tmp/supervisord.pid" `
+			-replace "^chmod = 0700", ";chmod = 0700" `
+			-replace "^serverurl = unix:///tmp/supervisor.sock", "serverurl = ./tmp/supervisor.sock" `
+			-replace "^directory=.*", "directory=./" `
+			-replace "^command = gunicorn config.wsgi -c gunicorn.conf.py", "command = ./python.exe run_waitress.py" `
+			-replace "^command = python3 manage.py peers", "command = ./python.exe manage.py peers" `
+			-replace "^command = python3 manage.py tasks", "command = ./python.exe manage.py tasks" `
+			-replace "^logfile = /dev/null", ";logfile = /dev/null"
+
 	}
 	
 	# Write the changes back to the file
@@ -1494,14 +1834,14 @@ BRS_BOOTSTRAP_PEERS=["signumwallet.ddns.net:8123", "taylorforce.synology.me:8123
 DEFAULT_P2P_PORT=8123
 DEFAULT_API_V1_PORT=8125
 
-BRS_P2P_VERSION = $SIGNUM_MAINNET_VERSION
+BRS_P2P_VERSION = $SIGNUM_NODE_MAINNET_VERSION
 MIN_PEER_VERSION = 3.8.0
 
 #FEATURED_ASSETS=["12402415494995249540", "13240027460799312630", "11955007191311588286"]
 #PHISHING_ASSETS=["SIGNA", "SIGNUM", "BTC", "USDT", "BNB", "BURST", "SIGNAINU"]
 #BLOCKED_ASSETS=["NIGGERS", "CHLDPORN", "YWNBAW"]
 
-PEERS_SCAN_DELAY=900
+PEERS_SCAN_DELAY=90
 MIN_PEER_VERSION = 1.1.1
 
 # Delay between task.py execution
@@ -1516,9 +1856,9 @@ TASKS_SCAN_DELAY=60
 	}
 	
 	# Comment out redis from settings.py
-	echo "Setup settings.py"
+	Write-Host "Setup settings.py"
 	
-	$foundProgramSNR = $false
+	$foundSNR = $false
 	$content = Get-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\config\settings.py
 	
 	for ($i = 0; $i -lt $content.Count; $i++) {
@@ -1541,6 +1881,8 @@ TASKS_SCAN_DELAY=60
 	# Write the changes back to the file
 	$content | Set-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\config\settings.py
 
+	$port = 5000
+
 	# Create starter ps1
 	if (-not (Test-Path $SIGNUM_EXPLORER_MAINNET_STARTER_PS1_PATH)) {
 		# Create start-explorer.ps1 file with the desired content
@@ -1549,25 +1891,50 @@ TASKS_SCAN_DELAY=60
 # PowerShell script to start Signum Node
 Set-Location -Path `$PSScriptRoot
 
-echo "Starting MariaDB ..."
+Write-Host 'Starting MariaDB ...'
 
 # Start MariaDB
 ..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$MARIADB_STARTER_PS1_PATH" "-WindowStyle Minimized"
 # Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-ExecutionPolicy Bypass", "-File", "..\..\..\$MARIADB_STARTER_PS1_PATH" -WindowStyle Minimized
 
-echo "Starting Signum Node Mainnet ..."
+Write-Host 'Starting Signum Node Mainnet ...'
 
 Start-Sleep -Seconds 10
 
-..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_MAINNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
+..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_NODE_MAINNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
 
-echo "Starting Signum Explorer Mainnet ..."
+Write-Host 'Starting Signum Explorer Mainnet ...'
 
 Start-Sleep -Seconds 10
 
 # Start Signum Explorer
 # Start-Process -FilePath "jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java" -ArgumentList "-jar", "signum-pool.jar" -WindowStyle Minimized
-Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", ".\Scripts\supervisord.exe -c .\supervisord.conf"
+# Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", ".\Scripts\supervisord.exe -n -c .\supervisord.conf" -WindowStyle Hidden
+# Last OK
+# Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "```$host.UI.RawUI.WindowTitle = 'Signum Explorer Mainnet'; .\Scripts\supervisord.exe -n -c .\supervisord.conf" -WindowStyle Minimized
+# Start-Process -FilePath ".\Scripts\supervisord.exe -n -c .\supervisord.conf" -WindowStyle Minimized
+
+Write-Host 'Starting Signum Explorer Mainnet ...'
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
+    -ArgumentList "-NoExit", "-Command", `@"
+    try {
+        ```$host.UI.RawUI.WindowTitle = 'Signum Explorer Mainnet'
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+        if (```$portInUse) {
+			Write-Host 'Signum Explorer Mainnet is already running.'
+			exit
+		} else {
+			# Start Signum Explorer Mainnet
+			& .\Scripts\supervisord.exe -n -c .\supervisord.conf
+		}
+    } catch {
+        Write-Host 'An error occurred while starting Signum Explorer Mainnet: `$_'
+    } finally {
+        # Always set the title to 'Signum Explorer Mainnet Stopped' after Signum Explorer Mainnet exits
+        ```$host.UI.RawUI.WindowTitle = 'Signum Explorer Mainnet Stopped'
+    }
+"`@ ``
+    -WindowStyle Minimized
 
 # TODO check
 # & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
@@ -1588,7 +1955,13 @@ exit
 	create-starter-ps1-exec ${SIGNUM_EXPLORER_STARTER_PS1} ${SIGNUM_EXPLORER_STARTER_EXEC} ${SIGNUM_EXPLORER_MAINNET_STARTER_EXEC_PATH}
 
     # Install MariaDB
-    install_mariadb
+	if (Test-Path $MARIADB_STARTER_PS1_PATH) {
+        Write-Host "MariaDB already installed!"
+		question-prompt "Reinstall" "MariaDB" {install_mariadb}
+    } else {
+		Write-Host "MariaDB is not yet installed."
+		question-prompt "Install" "MariaDB" {install_mariadb}
+	}
 
     # Setup MariaDB for Signum Pool Mainnet
     question-prompt "Setup" "MariaDB for Signum Explorer Mainnet" {setup_mariadb_explorer "Signum Explorer Mainnet" "signum-explorer-mainnet" "signumuser_explorer_mainnet" "signumpassword"}
@@ -1608,10 +1981,11 @@ exit
 	}
 	
 	# At this point you have to have Signum Node to install
-	if (Test-Path $SIGNUM_MAINNET_STARTER_PS1_PATH) {
-		Write-Host "${SIGNUM_MAINNET_STARTER_PS1_PATH} already installed."
+	if (Test-Path $SIGNUM_NODE_MAINNET_STARTER_PS1_PATH) {
+		Write-Host "Signum Node Mainnet $SIGNUM_NODE_MAINNET_VERSION already installed."
+		question-prompt "Reinstall" "Signum Node Mainnet" {Install-SignumMainnet}
 	} else {
-		# TODO You have to install and setup node for explorer
+		Write-Host "Signum Node Mainnet $SIGNUM_NODE_MAINNET_VERSION is not yet installed."
 		question-prompt "Install" "Signum Node Mainnet" {Install-SignumMainnet}
 		# Pause
 	}
@@ -1619,7 +1993,7 @@ exit
 	Write-Host "Populate database informations from installed Signum Node Mainnet properties."
 
 	# Read the node.properties file content
-	$content = Get-Content -Path $MAINNET_PROPERTIES
+	$content = Get-Content -Path $SIGNUM_NODE_MAINNET_PROPERTIES_PATH
 	
 	# Initialize variables
 	$dbName = $null
@@ -1671,7 +2045,7 @@ exit
 function Install-SignumExplorerTestnet {
     Write-Host "Installing Signum Exporer Testnet ..."
 
-	# install-process $SIGNUM_TESTNET_STARTER_PS1_PATH "Signum Testnet" {Install-SignumTestnet}
+	# install-process $SIGNUM_NODE_TESTNET_STARTER_PS1_PATH "Signum Testnet" {Install-SignumTestnet}
 
     # Create Explorer directory
     if (-not (Test-Path -Path "${SIGNUM_EXPLORER_TESTNET_DIR_PATH}")) {
@@ -1686,7 +2060,8 @@ function Install-SignumExplorerTestnet {
     } else {
         # Download the Signum Explorer Testnet zip file
         Write-Host "Downloading Signum Explorer from GitHub ..."
-        Start-BitsTransfer -Source "${SIGNUM_EXPLORER_TESTNET_URL}" -Destination "${SIGNUM_EXPLORER_TESTNET_ZIP_PATH}"
+        # Start-BitsTransfer -Source "${SIGNUM_EXPLORER_TESTNET_URL}" -Destination "${SIGNUM_EXPLORER_TESTNET_ZIP_PATH}"
+		Invoke-WebRequest -Uri ${SIGNUM_EXPLORER_TESTNET_URL} -OutFile ${SIGNUM_EXPLORER_TESTNET_ZIP_PATH}
 
         # Check if download was successful
         if (-not (Test-Path -Path "${SIGNUM_EXPLORER_TESTNET_ZIP_PATH}")) {
@@ -1720,7 +2095,8 @@ function Install-SignumExplorerTestnet {
     } else {
         # Download the python zip file
         Write-Host "Downloading Python ..."
-        Start-BitsTransfer -Source "${SIGNUM_EXPLORER_TESTNET_PYTHON_URL}" -Destination "${SIGNUM_EXPLORER_TESTNET_PYTHON_ZIP_PATH}"
+        # Start-BitsTransfer -Source "${SIGNUM_EXPLORER_TESTNET_PYTHON_URL}" -Destination "${SIGNUM_EXPLORER_TESTNET_PYTHON_ZIP_PATH}"
+		Invoke-WebRequest -Uri ${SIGNUM_EXPLORER_TESTNET_PYTHON_URL} -OutFile ${SIGNUM_EXPLORER_TESTNET_PYTHON_ZIP_PATH}
 
         # Check if download was successful
         if (-not (Test-Path -Path "${SIGNUM_EXPLORER_TESTNET_PYTHON_ZIP_PATH}")) {
@@ -1755,7 +2131,8 @@ function Install-SignumExplorerTestnet {
     } else {
         # Download the get-pip.py file
         Write-Host "Downloading get-pip.py ..."
-        Start-BitsTransfer -Source "${SIGNUM_EXPLORER_TESTNET_PYTHON_GETPIP_URL}" -Destination "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\get-pip.py"
+        # Start-BitsTransfer -Source "${SIGNUM_EXPLORER_TESTNET_PYTHON_GETPIP_URL}" -Destination "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\get-pip.py"
+		Invoke-WebRequest -Uri ${SIGNUM_EXPLORER_TESTNET_PYTHON_GETPIP_URL} -OutFile ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\get-pip.py
 
         # Check if download was successful
         if (-not (Test-Path -Path "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\get-pip.py")) {
@@ -1776,8 +2153,9 @@ function Install-SignumExplorerTestnet {
     } else {
         # Download the fontawesome-free-6.5.2-web.zip file
         Write-Host "Downloading fontawesome-free-6.5.2-web.zip ..."
-        Start-BitsTransfer -Source "https://github.com/FortAwesome/Font-Awesome/releases/download/6.5.2/fontawesome-free-6.5.2-web.zip" -Destination "${SIGNUM_EXPLORER_TESTNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web.zip"
-
+        # Start-BitsTransfer -Source "https://github.com/FortAwesome/Font-Awesome/releases/download/6.5.2/fontawesome-free-6.5.2-web.zip" -Destination "${SIGNUM_EXPLORER_TESTNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web.zip"
+		Invoke-WebRequest -Uri "https://github.com/FortAwesome/Font-Awesome/releases/download/6.5.2/fontawesome-free-6.5.2-web.zip" -OutFile ${SIGNUM_EXPLORER_TESTNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web.zip
+		
         # Check if download was successful
         if (-not (Test-Path -Path "${SIGNUM_EXPLORER_TESTNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.5.2-web.zip")) {
             Write-Host "Error: Failed to download fontawesome-free-6.5.2-web.zip"
@@ -1802,8 +2180,9 @@ function Install-SignumExplorerTestnet {
     } else {
         # Download the fontawesome-free-6.2.1-web.zip file
         Write-Host "Downloading fontawesome-free-6.2.1-web.zip ..."
-        Start-BitsTransfer -Source "https://github.com/FortAwesome/Font-Awesome/releases/download/6.2.1/fontawesome-free-6.2.1-web.zip" -Destination "${SIGNUM_EXPLORER_TESTNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web.zip"
-
+        # Start-BitsTransfer -Source "https://github.com/FortAwesome/Font-Awesome/releases/download/6.2.1/fontawesome-free-6.2.1-web.zip" -Destination "${SIGNUM_EXPLORER_TESTNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web.zip"
+		Invoke-WebRequest -Uri "https://github.com/FortAwesome/Font-Awesome/releases/download/6.2.1/fontawesome-free-6.2.1-web.zip" -OutFile ${SIGNUM_EXPLORER_TESTNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web.zip
+		
         # Check if download was successful
         if (-not (Test-Path -Path "${SIGNUM_EXPLORER_TESTNET_PYTHON_UNZIP_PATH}\static\fontawesome-free-6.2.1-web.zip")) {
             Write-Host "Error: Failed to download fontawesome-free-6.2.1-web.zip"
@@ -1823,11 +2202,11 @@ function Install-SignumExplorerTestnet {
     }
 	
 	# run pyton get-pip.py command
-	echo "Installing get-pip.py"
+	Write-Host "Installing get-pip.py"
 	& "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\python.exe" "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\get-pip.py"
 	
 	# uncomment import site from python310._pth
-	echo "Setup python310._pth file"
+	Write-Host "Setup python310._pth file"
 	$content = Get-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\python310._pth
 	
 	$content = $content | ForEach-Object {
@@ -1848,7 +2227,7 @@ function Install-SignumExplorerTestnet {
 	if (Test-Path -Path "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\tmp\supervisord.pid") {
         Write-Host "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\tmp\supervisord.pid already exists."
     } else {
-		echo "Create ./tmp/supervisord.pid file"
+		Write-Host "Create ./tmp/supervisord.pid file"
 		New-Item -ItemType Directory -Path "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\tmp" -Force | Out-Null
 		New-Item -ItemType File -Path "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\tmp\supervisord.pid" -Force | Out-Null
     }
@@ -1857,44 +2236,92 @@ function Install-SignumExplorerTestnet {
 	if (Test-Path -Path "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\supervisord_original.conf") {
         Write-Host "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\supervisord_original.conf already exists."
     } else {
-		echo "Copy supervisord.conf to supervisord_original.conf file"
+		Write-Host "Copy supervisord.conf to supervisord_original.conf file"
 		Copy-Item -Path "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\supervisord.conf" -Destination "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\supervisord_original.conf"
     }
 	
 	# change supervisord.conf file
-	echo "Setup supervisord.conf file"
+	Write-Host "Setup supervisord.conf file"
 	
-	$foundProgramSNR = $false
+	$foundExplorer = $false
+	$foundPeers = $false
+	$foundTasks = $false
+	$foundSNR = $false
+	
 	$content = Get-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\supervisord.conf
 	
 	$content = $content | ForEach-Object {
+				
+		if ($_ -match "^\[program:Explorer\]") {
+			$foundExplorer = $true
+			$foundPeers = $false
+			$foundTasks = $false
+			$foundSNR = $false
+		}
+		
+		if ($_ -match "^\[program:Peers\]") {	
+			$foundExplorer = $false
+			$foundPeers = $true
+			$foundTasks = $false
+			$foundSNR = $false
+		}
+		
+		if ($_ -match "^\[program:Tasks\]") {
+			$foundExplorer = $false
+			$foundPeers = $false
+			$foundTasks = $true
+			$foundSNR = $false
+		}
+		
 		if ($_ -match "^\[program:SNR\]") {
-			$foundProgramSNR = $true
-			$_	-replace "^\[program:SNR\]", ";[program:SNR]"
+			$foundExplorer = $false
+			$foundPeers = $false
+			$foundTasks = $false
+			$foundSNR = $true
+			$_ = $_ -replace "^\[program:SNR\]", ";[program:SNR]"
 		}
-		elseif ($foundProgramSNR) {
-			$_  -replace "^command =bash -c ""/path/to/your/snr/runSNR.sh\""", ";command =bash -c ""/path/to/your/snr/runSNR.sh""" `
-				-replace "^autostart = true", ";autostart = true" `
-				-replace "^autorestart = true", ";autorestart = true" `
-				-replace "^startsecs = 1", ";startsecs = 1" `
-				-replace "^redirect_stderr = true", ";redirect_stderr = true" `
-				-replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout" `
-				-replace "^stdout_logfile_maxbytes = 0", ";stdout_logfile_maxbytes = 0"
+		
+		if ($foundExplorer) {
+			if ($_ -match "^stdout_logfile = /dev/stdout") {
+				$_ = ($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = explorer_stdout.log" + "`n;stdout_logfile = CON"
+			}
 		}
-		elseif ($_ -match "^stdout_logfile = /dev/stdout") {
-			($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile=explorer_stdout.log"
-		} else {
-			$_  -replace "^\[unix_http_server\]", ";[unix_http_server]" `
-				-replace "^file = /tmp/supervisor.sock", ";file = ./tmp/supervisor.sock" `
-				-replace "^pidfile = /tmp/supervisord.pid", "pidfile = ./tmp/supervisord.pid" `
-				-replace "^chmod = 0700", ";chmod = 0700" `
-				-replace "^serverurl = unix:///tmp/supervisor.sock", "serverurl = ./tmp/supervisor.sock" `
-				-replace "^directory=.*", "directory=./" `
-				-replace "^command = gunicorn config.wsgi -c gunicorn.conf.py", "command = ./python.exe run_waitress.py" `
-				-replace "^command = python3 manage.py peers", "command = ./python.exe manage.py peers" `
-				-replace "^command = python3 manage.py tasks", "command = ./python.exe manage.py tasks" `
-				-replace "^logfile = /dev/null", ";logfile = /dev/null"
+		
+		if ($foundPeers) {
+			if ($_ -match "^stdout_logfile = /dev/stdout") {
+				$_ = ($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = peers_stdout.log" + "`n;stdout_logfile = CON"
+			}
 		}
+		
+		if ($foundTasks) {
+			if ($_ -match "^stdout_logfile = /dev/stdout") {
+				$_ = ($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = tasks_stdout.log" + "`n;stdout_logfile = CON"
+			}
+		}
+		
+		if ($foundSNR) {
+			
+			$_ = $_ -replace "^command =bash -c ""/path/to/your/snr/runSNR.sh\""", ";command =bash -c ""/path/to/your/snr/runSNR.sh"""
+			$_ = $_ -replace "^autostart = true", ";autostart = true"
+			$_ = $_ -replace "^autorestart = true", ";autorestart = true"
+			$_ = $_ -replace "^startsecs = 1", ";startsecs = 1"
+			$_ = $_ -replace "^redirect_stderr = true", ";redirect_stderr = true"
+			$_ = $_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout"
+			$_ = $_ -replace "^stdout_logfile_maxbytes = 0", ";stdout_logfile_maxbytes = 0"
+		
+		}
+
+		$_  -replace "^\[unix_http_server\]", ";[unix_http_server]" `
+			-replace "^file = /tmp/supervisor.sock", ";file = ./tmp/supervisor.sock" `
+			-replace "^pidfile = /tmp/supervisord.pid", "pidfile = ./tmp/supervisord.pid" `
+			-replace "^chmod = 0700", ";chmod = 0700" `
+			-replace "^serverurl = unix:///tmp/supervisor.sock", "serverurl = ./tmp/supervisor.sock" `
+			-replace "^directory=.*", "directory=./" `
+			-replace "^command = gunicorn config.wsgi -c gunicorn.conf.py", "command = ./python.exe run_waitress.py" `
+			-replace "^command = python3 manage.py peers", "command = ./python.exe manage.py peers" `
+			-replace "^command = python3 manage.py tasks", "command = ./python.exe manage.py tasks" `
+			-replace "^logfile = /dev/null", ";logfile = /dev/null"
+
 	}
 	
 	# Write the changes back to the file
@@ -1993,17 +2420,17 @@ SENTRY_DSN=
 SIGNUM_NODE=localhost
 WALLET_URL=https://signumwallet.ddns.net:8128/
 BRS_BOOTSTRAP_PEERS=["signumwallet.ddns.net:8123", "taylorforce.synology.me:8123", "zwurg.feste-ip.net:51940", "zmail.cloudns.ph:8123"]
-DEFAULT_P2P_PORT=8123
-DEFAULT_API_V1_PORT=8125
+DEFAULT_P2P_PORT=7123
+DEFAULT_API_V1_PORT=6876
 
-BRS_P2P_VERSION = $SIGNUM_TESTNET_VERSION
+BRS_P2P_VERSION = $SIGNUM_NODE_TESTNET_VERSION
 MIN_PEER_VERSION = 3.8.0
 
 #FEATURED_ASSETS=["12402415494995249540", "13240027460799312630", "11955007191311588286"]
 #PHISHING_ASSETS=["SIGNA", "SIGNUM", "BTC", "USDT", "BNB", "BURST", "SIGNAINU"]
 #BLOCKED_ASSETS=["NIGGERS", "CHLDPORN", "YWNBAW"]
 
-PEERS_SCAN_DELAY=900
+PEERS_SCAN_DELAY=90
 MIN_PEER_VERSION = 1.1.1
 
 # Delay between task.py execution
@@ -2018,9 +2445,9 @@ TASKS_SCAN_DELAY=60
 	}
 	
 	# Comment out redis from settings.py
-	echo "Setup settings.py"
+	Write-Host "Setup settings.py"
 	
-	$foundProgramSNR = $false
+	$foundSNR = $false
 	$content = Get-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\config\settings.py
 	
 	for ($i = 0; $i -lt $content.Count; $i++) {
@@ -2043,6 +2470,8 @@ TASKS_SCAN_DELAY=60
 	# Write the changes back to the file
 	$content | Set-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\config\settings.py
 
+	$port = 5001
+
 	# Create starter ps1
 	if (-not (Test-Path $SIGNUM_EXPLORER_TESTNET_STARTER_PS1_PATH)) {
 		# Create start-explorer.ps1 file with the desired content
@@ -2051,25 +2480,50 @@ TASKS_SCAN_DELAY=60
 # PowerShell script to start Signum Node
 Set-Location -Path `$PSScriptRoot
 
-echo "Starting MariaDB ..."
+Write-Host 'Starting MariaDB ...'
 
 # Start MariaDB
 ..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$MARIADB_STARTER_PS1_PATH" "-WindowStyle Minimized"
 # Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-ExecutionPolicy Bypass", "-File", "..\..\..\$MARIADB_STARTER_PS1_PATH" -WindowStyle Minimized
 
-echo "Starting Signum Node Testnet ..."
+Write-Host 'Starting Signum Node Testnet ...'
 
 Start-Sleep -Seconds 10
 
-..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_TESTNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
+..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_NODE_TESTNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
 
-echo "Starting Signum Explorer Testnet ..."
+Write-Host 'Starting Signum Explorer Testnet ...'
 
 Start-Sleep -Seconds 10
 
 # Start Signum Explorer
 # Start-Process -FilePath "jre\${JAVA_POOL_TESTNET_UNZIP}\bin\java" -ArgumentList "-jar", "signum-pool.jar" -WindowStyle Minimized
-Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", ".\Scripts\supervisord.exe -c .\supervisord.conf"
+# Last OK
+# Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "```$host.UI.RawUI.WindowTitle = 'Signum Explorer Testnet'; .\Scripts\supervisord.exe -n -c .\supervisord.conf" -WindowStyle Minimized
+# & ..\..\..\$POWERSHELL_EXEC_PATH -ArgumentList "-NoExit", "-Command", "```$host.UI.RawUI.WindowTitle = 'Signum Explorer Testnet'; .\Scripts\supervisord.exe -n -c .\supervisord.conf" -WindowStyle Minimized
+# Start-Process -FilePath ".\Scripts\supervisord.exe -n -c .\supervisord.conf" -WindowStyle Minimized
+
+Write-Host 'Starting Signum Explorer Testnet ...'
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
+    -ArgumentList "-NoExit", "-Command", `@"
+    try {
+        ```$host.UI.RawUI.WindowTitle = 'Signum Explorer Testnet'
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+        if (```$portInUse) {
+			Write-Host 'Signum Explorer Testnet is already running.'
+			exit
+		} else {
+			# Start Signum Explorer Testnet
+			& .\Scripts\supervisord.exe -n -c .\supervisord.conf
+		}
+    } catch {
+        Write-Host 'An error occurred while starting Signum Explorer Testnet: `$_'
+    } finally {
+        # Always set the title to 'Signum Explorer Testnet Stopped' after Signum Explorer Testnet exits
+        ```$host.UI.RawUI.WindowTitle = 'Signum Explorer Testnet Stopped'
+    }
+"`@ ``
+    -WindowStyle Minimized
 
 # TODO check
 # & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
@@ -2090,7 +2544,13 @@ exit
 	create-starter-ps1-exec ${SIGNUM_EXPLORER_STARTER_PS1} ${SIGNUM_EXPLORER_STARTER_EXEC} ${SIGNUM_EXPLORER_TESTNET_STARTER_EXEC_PATH}
 
     # Install MariaDB
-    install_mariadb
+	if (Test-Path $MARIADB_STARTER_PS1_PATH) {
+        Write-Host "MariaDB already installed!"
+		question-prompt "Reinstall" "MariaDB" {install_mariadb}
+    } else {
+		Write-Host "MariaDB is not yet installed."
+		question-prompt "Install" "MariaDB" {install_mariadb}
+	}
 
     # Setup MariaDB for Signum Pool Testnet
     question-prompt "Setup" "MariaDB for Signum Explorer Testnet" {setup_mariadb_explorer "Signum Explorer Testnet" "signum-explorer-testnet" "signumuser_explorer_testnet" "signumpassword"}
@@ -2110,18 +2570,19 @@ exit
 	}
 	
 	# At this point you have to have Signum Node to install
-	if (Test-Path $SIGNUM_TESTNET_STARTER_PS1_PATH) {
-		Write-Host "${SIGNUM_TESTNET_STARTER_PS1_PATH} already installed."
+	if (Test-Path $SIGNUM_NODE_TESTNET_STARTER_PS1_PATH) {
+		Write-Host "Signum Node Testnet $SIGNUM_NODE_TESTNET_VERSION already installed."
+		question-prompt "Reinstall" "Signum Node Testnet" {Install-SignumTestnet}
 	} else {
-		# TODO You have to install and setup node for explorer
+		Write-Host "Signum Node Testnet $SIGNUM_NODE_TESTNET_VERSION is not yet installed."
 		question-prompt "Install" "Signum Node Testnet" {Install-SignumTestnet}
-		# Pause
+		Pause
 	}
 	
 	Write-Host "Populate database informations from installed Signum Node Testnet properties."
 	
 	# Read the node.properties file content
-	$content = Get-Content -Path $TESTNET_PROPERTIES
+	$content = Get-Content -Path $SIGNUM_NODE_TESTNET_PROPERTIES_PATH
 
 	# Initialize variables
 	$dbName = $null
@@ -2170,16 +2631,18 @@ exit
 	
 }
 
-function signum-starter-ps1 ($name, $file){
+function signum-starter-ps1 ($name, $file, $port) {
 
     if (-not (Test-Path $file)) {
-        # Create start-signum.ps1 file with the desired content
+
+        # Create start-node.ps1 file with the desired content
         $content = 
 @"
 # PowerShell script to start Signum Node
 Set-Location -Path `$PSScriptRoot
 
 # Start MariaDB
+Write-Host 'Starting MariaDB ...'
 ..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$MARIADB_STARTER_PS1_PATH" "-WindowStyle Minimized"
 # Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-ExecutionPolicy Bypass", "-File", "..\..\..\$MARIADB_STARTER_PS1_PATH" -WindowStyle Minimized
 
@@ -2187,13 +2650,35 @@ Start-Sleep -Seconds 10
 
 # Start Signum Node
 # Start-Process -FilePath "jre\bin\java" -ArgumentList "-jar", "signum-node.jar" -WindowStyle Minimized
-Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "jre\bin\java -jar signum-node.jar"
+# Last OK
+# Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "```$host.UI.RawUI.WindowTitle = 'Signum Node $name'; jre\bin\java -jar signum-node.jar"
 
 # TODO check
 # & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
 # "jre\bin\java" "-jar" "signum-node.jar" -WindowStyle Minimized
 # Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "Set-Title 'Signum Mainnet Node'; Start-Process -NoNewWindow -FilePath 'jre\bin\java' -ArgumentList '-jar', 'signum-node.jar'"
 
+Write-Host 'Starting Signum Node $name ...'
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
+    -ArgumentList "-NoExit", "-Command", `@"
+    try {
+        ```$host.UI.RawUI.WindowTitle = 'Signum Node $name'
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+        if (```$portInUse) {
+			Write-Host 'Signum Node $name is already running.'
+			exit
+		} else {
+			# Start Signum Node $name
+			& .\jre\bin\java -jar signum-node.jar
+		}
+    } catch {
+        Write-Host 'An error occurred while starting Signum Node ${name}: `$_'
+    } finally {
+        # Always set the title to 'Signum Node $name Stopped' after Signum Node $name exits
+        ```$host.UI.RawUI.WindowTitle = 'Signum Node $name Stopped'
+    }
+"`@ ``
+    -WindowStyle Minimized
 exit
 "@
 
@@ -2208,7 +2693,7 @@ exit
 function create-starter-ps1-exec (${file-ps1}, ${file-exec}, ${file-exec-path}){
 
     if (-not (Test-Path ${file-exec-path})) {
-        # Create start-signum batch file with the desired content
+        # Create start-node batch file with the desired content
         $content = 
 @"
 cd %~dp0
@@ -2236,7 +2721,8 @@ function install_heidisql {
     } else {
         # Download HeidiSQL
         Write-Host "Downloading HeidiSQL ..."
-        Start-BitsTransfer -Source "${HEIDISQL_URL}" -Destination "${TOOLS_DIR}\${HEIDISQL_DIR}\${HEIDISQL_ZIP}"
+        # Start-BitsTransfer -Source "${HEIDISQL_URL}" -Destination "${TOOLS_DIR}\${HEIDISQL_DIR}\${HEIDISQL_ZIP}"
+		Invoke-WebRequest -Uri ${HEIDISQL_URL} -OutFile ${TOOLS_DIR}\${HEIDISQL_DIR}\${HEIDISQL_ZIP}
 
         # Check if download was successful
         if (-not (Test-Path "${TOOLS_DIR}\${HEIDISQL_DIR}\${HEIDISQL_ZIP}")) {
@@ -2256,7 +2742,7 @@ function install_heidisql {
 		
 	# Create starter ps1
 	if (-not (Test-Path $HEIDISQL_STARTER_PS1_PATH)) {
-		# Create start-signum.ps1 file with the desired content
+		# Create start-node.ps1 file with the desired content
 		$content = 
 @"
 # PowerShell script to start HeidiSQL
@@ -2296,7 +2782,8 @@ function install_notepad {
     } else {
         # Download Notepad
         Write-Host "Downloading Notepad ..."
-        Start-BitsTransfer -Source "${NOTEPAD_URL}" -Destination "${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_ZIP}"
+        # Start-BitsTransfer -Source "${NOTEPAD_URL}" -Destination "${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_ZIP}"
+		Invoke-WebRequest -Uri ${NOTEPAD_URL} -OutFile ${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_ZIP}
 
         # Check if download was successful
         if (-not (Test-Path "${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_ZIP}")) {
@@ -2356,7 +2843,8 @@ function install_nginx {
     } else {
         # Download NGINX
         Write-Host "Downloading NGINX ..."
-        Start-BitsTransfer -Source "${NGINX_URL}" -Destination "${TOOLS_DIR}\${NGINX_DIR}\${NGINX_ZIP}"
+        # Start-BitsTransfer -Source "${NGINX_URL}" -Destination "${TOOLS_DIR}\${NGINX_DIR}\${NGINX_ZIP}"
+		Invoke-WebRequest -Uri ${NGINX_URL} -OutFile ${TOOLS_DIR}\${NGINX_DIR}\${NGINX_ZIP}
 
         # Check if download was successful
         if (-not (Test-Path "${TOOLS_DIR}\${NGINX_DIR}\${NGINX_ZIP}")) {
@@ -2415,7 +2903,8 @@ function install_signumminer_mainnet {
         Write-Host "${SIGNUM_MINER_MAINNET_EXEC} already installed."
     } else {
         Write-Host "Downloading Signum Miner Mainnet ..."
-        Start-BitsTransfer -Source $SIGNUM_MINER_MAINNET_URL -Destination $SIGNUM_MINER_MAINNET_EXEC_PATH
+        # Start-BitsTransfer -Source $SIGNUM_MINER_MAINNET_URL -Destination $SIGNUM_MINER_MAINNET_EXEC_PATH
+		Invoke-WebRequest -Uri ${SIGNUM_MINER_MAINNET_URL} -OutFile ${SIGNUM_MINER_MAINNET_EXEC_PATH}
 
         if (-not (Test-Path $SIGNUM_MINER_MAINNET_EXEC_PATH)) {
             Write-Host "Error: Failed to download Signum Miner Mainnet."
@@ -2428,7 +2917,8 @@ function install_signumminer_mainnet {
         Write-Host "Configuration file already downloaded."
     } else {
         Write-Host "Downloading Configuration file ..."
-        Start-BitsTransfer -Source $SIGNUM_MINER_MAINNET_CONF_URL -Destination $SIGNUM_MINER_MAINNET_CONF_PATH
+        # Start-BitsTransfer -Source $SIGNUM_MINER_MAINNET_CONF_URL -Destination $SIGNUM_MINER_MAINNET_CONF_PATH
+		Invoke-WebRequest -Uri ${SIGNUM_MINER_MAINNET_CONF_URL} -OutFile ${SIGNUM_MINER_MAINNET_CONF_PATH}
 
         if (-not (Test-Path $SIGNUM_MINER_MAINNET_CONF_PATH)) {
             Write-Host "Error: Failed to download Configuration file."
@@ -2630,8 +3120,9 @@ function setup_signumminer($config_path, $config_url, $net_type) {
         }
 		"3" {
 			# Restore Configuration
-			 Write-Host "Downloading Configuration file ..."
-			Start-BitsTransfer -Source $config_url -Destination $config_path
+			Write-Host "Downloading Configuration file ..."
+			# Start-BitsTransfer -Source $config_url -Destination $config_path
+			Invoke-WebRequest -Uri ${config_url} -OutFile ${config_path}
 
 			if (-not (Test-Path $config_path)) {
 				Write-Host "Error: Failed to download Configuration file."
@@ -2954,7 +3445,8 @@ function install_signumminer_testnet {
         Write-Host "${SIGNUM_MINER_TESTNET_EXEC} already installed."
     } else {
         Write-Host "Downloading Signum Miner Testnet ..."
-        Start-BitsTransfer -Source $SIGNUM_MINER_TESTNET_URL -Destination $SIGNUM_MINER_TESTNET_EXEC_PATH
+        # Start-BitsTransfer -Source $SIGNUM_MINER_TESTNET_URL -Destination $SIGNUM_MINER_TESTNET_EXEC_PATH
+		Invoke-WebRequest -Uri ${SIGNUM_MINER_TESTNET_URL} -OutFile ${SIGNUM_MINER_TESTNET_EXEC_PATH}
 
         if (-not (Test-Path $SIGNUM_MINER_TESTNET_EXEC_PATH)) {
             Write-Host "Error: Failed to download Signum Miner Testnet."
@@ -2967,7 +3459,8 @@ function install_signumminer_testnet {
         Write-Host "Configuration file already downloaded."
     } else {
         Write-Host "Downloading Configuration file ..."
-        Start-BitsTransfer -Source $SIGNUM_MINER_TESTNET_CONF_URL -Destination $SIGNUM_MINER_TESTNET_CONF_PATH
+        # Start-BitsTransfer -Source $SIGNUM_MINER_TESTNET_CONF_URL -Destination $SIGNUM_MINER_TESTNET_CONF_PATH
+		Invoke-WebRequest -Uri ${SIGNUM_MINER_TESTNET_CONF_URL} -OutFile ${SIGNUM_MINER_TESTNET_CONF_PATH}
 
         if (-not (Test-Path $SIGNUM_MINER_TESTNET_CONF_PATH)) {
             Write-Host "Error: Failed to download Configuration file."
@@ -3023,7 +3516,8 @@ function install_btdex {
     } else {
         # Download BTDEX exe file
         Write-Host "Downloading BTDEX ..."
-        Start-BitsTransfer -Source $BTDEX_URL -Destination $BTDEX_EXEC_PATH
+        # Start-BitsTransfer -Source $BTDEX_URL -Destination $BTDEX_EXEC_PATH
+		Invoke-WebRequest -Uri ${BTDEX_URL} -OutFile ${BTDEX_EXEC_PATH}
 
         # Check if download was successful
         if (-not (Test-Path $BTDEX_EXEC_PATH)) {
@@ -3073,7 +3567,8 @@ function install_phoenix {
         Write-Host "${PHOENIX_EXEC} already installed."
     } else {
         Write-Host "Downloading Phoenix ..."
-        Start-BitsTransfer -Source $PHOENIX_URL -Destination $PHOENIX_EXEC_PATH
+        # Start-BitsTransfer -Source $PHOENIX_URL -Destination $PHOENIX_EXEC_PATH
+		Invoke-WebRequest -Uri ${PHOENIX_URL} -OutFile ${PHOENIX_EXEC_PATH}
 
         if (-not (Test-Path $PHOENIX_EXEC_PATH)) {
             Write-Host "Error: Failed to download Phoenix."
@@ -3123,7 +3618,8 @@ function install_signumplotter {
         Write-Host "${SIGNUMPLOTTER_EXEC} already installed."
     } else {
         Write-Host "Downloading SignumPlotter ..."
-        Start-BitsTransfer -Source $SIGNUMPLOTTER_URL -Destination $SIGNUMPLOTTER_EXEC_PATH
+        # Start-BitsTransfer -Source $SIGNUMPLOTTER_URL -Destination $SIGNUMPLOTTER_EXEC_PATH
+		Invoke-WebRequest -Uri ${SIGNUMPLOTTER_URL} -OutFile ${SIGNUMPLOTTER_EXEC_PATH}
 
         if (-not (Test-Path $SIGNUMPLOTTER_EXEC_PATH)) {
             Write-Host "Error: Failed to download SignumPlotter."
@@ -3178,7 +3674,8 @@ function install_turboplotter {
         # Download the TurboPlotter testnet zip file
         Write-Host "Downloading TurboPlotter ..."
 		# TODO try out Invoke-WebRequest or System.Net.Http.HttpClient
-        Start-BitsTransfer -Source "${TURBOPLOTTER_URL}" -Destination "${TURBOPLOTTER_VERSION_ZIP}"
+        # Start-BitsTransfer -Source "${TURBOPLOTTER_URL}" -Destination "${TURBOPLOTTER_VERSION_ZIP}"
+		Invoke-WebRequest -Uri ${TURBOPLOTTER_URL} -OutFile ${TURBOPLOTTER_VERSION_ZIP}
 
         # Check if download was successful
         if (-not (Test-Path -Path "${TURBOPLOTTER_VERSION_ZIP}")) {
@@ -3227,11 +3724,6 @@ exit
 function install_mariadb {
     install_heidisql
 
-    if (Test-Path $MARIADB_STARTER_PS1_PATH) {
-        Write-Host "MariaDB already installed!"
-        return
-    }
-
     if (-not (Test-Path "${DATABASE_DIR}\${MARIADB_DIR}")) {
         New-Item -ItemType Directory -Force -Path "${DATABASE_DIR}\${MARIADB_DIR}" | Out-Null
     } else {
@@ -3242,7 +3734,8 @@ function install_mariadb {
         Write-Host "${MARIADB_ZIP} already downloaded."
     } else {
         Write-Host "Downloading MariaDB version ${MARIADB_VERSION} ..."
-        Start-BitsTransfer -Source $MARIADB_URL -Destination "${DATABASE_DIR}\${MARIADB_DIR}\${MARIADB_ZIP}"
+        # Start-BitsTransfer -Source $MARIADB_URL -Destination "${DATABASE_DIR}\${MARIADB_DIR}\${MARIADB_ZIP}"
+		Invoke-WebRequest -Uri ${MARIADB_URL} -OutFile ${DATABASE_DIR}\${MARIADB_DIR}\${MARIADB_ZIP}
 
         if (-not (Test-Path "${DATABASE_DIR}\${MARIADB_DIR}\${MARIADB_ZIP}")) {
             Write-Host "Error: Failed to download MariaDB version ${MARIADB_VERSION}."
@@ -3264,19 +3757,48 @@ function install_mariadb {
         Write-Host "MariaDB data directory already initialized."
     }
 
+	$port = 3306
+
     if (-not (Test-Path $MARIADB_STARTER_PS1_PATH)) {
         $content = 
 @"
 # PowerShell script to start MariaDB
 Set-Location -Path `$PSScriptRoot
+
 # TODO find out how to run mariadb 1 within a powershell window, or 2 without powershell within mariadb own terminal window. Use the chosen soluton for 
 # mariadb setup as well currently mariadb within powershell is used in mariadb setup
 # 1:
-Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" "-Command", ".\bin\${MARIADBD_EXEC} --no-defaults --console"
+# Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" "-Command", ".\bin\${MARIADBD_EXEC} --no-defaults" -WindowStyle Hidden
+# Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" "-Command", ".\bin\${MARIADBD_EXEC} --no-defaults --console" -WindowStyle Hidden
+# Last OK
+# Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" "-NoExit", "-Command", "```$host.UI.RawUI.WindowTitle = 'MariaDB'; .\bin\${MARIADBD_EXEC} --no-defaults --console" -WindowStyle Minimized
+# Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" "-Command", ".\bin\${MARIADBD_EXEC} --no-defaults"
 # 2: If I can set powershell window title it is ok as well
-# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+# Start-Process -FilePath ".\bin\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
 
 # & .\bin\${MARIADBD_EXEC} --no-defaults --console
+
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
+    -ArgumentList "-NoExit", "-Command", `@"
+    try {
+        ```$host.UI.RawUI.WindowTitle = 'MariaDB'
+        # Check if MariaDB is already running
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+        if (```$portInUse) {
+            Write-Host 'MariaDB is already running.'
+			exit
+        } else {
+			# Start MariaDB
+			& .\bin\mariadbd.exe --no-defaults --console
+		}
+    } catch {
+        Write-Host 'An error occurred while starting MariaDB: ```$_'
+    } finally {
+        # Always set the title to 'MariaDB Stopped' after MariaDB exits
+        ```$host.UI.RawUI.WindowTitle = 'MariaDB Stopped'
+    }
+"`@ ``
+    -WindowStyle Minimized
 exit
 "@
         $content | Out-File -FilePath $MARIADB_STARTER_PS1_PATH -Force
@@ -3314,7 +3836,13 @@ function setup_mariadb ($name, $database, $user, $password) {
     Write-Host "Password: ${DATABASE_PASSWORD}"
 
     Write-Host "Starting MariaDB server ..."
-    Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+	# Last OK
+    # Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults" -WindowStyle Minimized
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Hidden
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+	
+	.\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
 
     Start-Sleep -Seconds 10
 
@@ -3360,7 +3888,13 @@ function setup_mariadb_readonly ($name, $database, $user, $password) {
     Write-Host "Password: ${DATABASE_PASSWORD}"
 
     Write-Host "Starting MariaDB server ..."
-    Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+	# Last OK
+    # Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults" -WindowStyle Minimized
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Hidden
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+	
+	.\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
 
     Start-Sleep -Seconds 10
 
@@ -3420,7 +3954,13 @@ function setup_mariadb_explorer ($name, $database, $user, $password) {
     Write-Host "Password: ${DATABASE_PASSWORD}"
 
     Write-Host "Starting MariaDB server ..."
-    Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+	# Last OK
+    # Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults" -WindowStyle Minimized
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Hidden
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+	
+	.\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
 
     Start-Sleep -Seconds 10
 
@@ -3482,10 +4022,27 @@ CREATE TABLE scan_peermonitor (
 function setup_db_node_properties($file) {
 	
 	Write-Host "Updating node.properties with new database configurations ..."
+	$content = Get-Content -Path $file
+	
+		for ($i = 0; $i -lt $content.Count; $i++) {
+			$line = $content[$i]  # Get the current line
+
+			if ($content[$i] -match '# DB.Url=jdbc:mariadb:.*') {
+				$content[$i] = "DB.Url=jdbc:mariadb://localhost:3306/${DATABASE_NAME}"
+				$content[$i+1] = "DB.Username=${DATABASE_USERNAME}"
+				$content[$i+2] = "DB.Password=${DATABASE_PASSWORD}"
+				break
+			}
+		}
+
+	# Write the changes back to the file
+	$content | Set-Content -Path ${file}
+
+	<#
     (Get-Content -Path $file) -replace '# DB.Url=jdbc:mariadb:.*', "DB.Url=jdbc:mariadb://localhost:3306/${DATABASE_NAME}" `
         -replace '# DB.Username=.*', "DB.Username=${DATABASE_USERNAME}" `
         -replace '# DB.Password=.*', "DB.Password=${DATABASE_PASSWORD}" | Set-Content -Path $file
-
+	#>
     Write-Host "Update complete."
 	
 }
@@ -3524,7 +4081,8 @@ function download-prompt($name, $url, $target_path, $file) {
 			New-Item -Path "${target_path}" -ItemType Directory | Out-Null
 		}
 		Write-Host "Downloading ${name} ..."
-		Start-BitsTransfer -Source $url -Destination $file
+		# Start-BitsTransfer -Source $url -Destination $file
+		Invoke-WebRequest -Uri ${url} -OutFile ${file}
 		Write-Host "${name} downloaded successfully."
 		# Invoke-WebRequest -Uri $url -OutFile $file
 		# Invoke-RestMethod -Uri $url -OutFile $file
