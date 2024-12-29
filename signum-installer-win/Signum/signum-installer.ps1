@@ -9,6 +9,7 @@ $global:DATABASE_NAME = $null
 $global:DATABASE_USERNAME = $null
 $global:DATABASE_PASSWORD = $null
 
+$SLEEP_SECONDS = 20
 
 $POWERSHELL_VERSION = "7.4.6"
 $POWERSHELL_DIR = "PowerShell"
@@ -73,17 +74,17 @@ $SIGNUM_NODE_TESTNET_PROPERTIES_PATH = ".\${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGN
 $SIGNUM_WALLET_NEOCLASSIC_ZIP = "neoclassic.zip"
 $SIGNUM_WALLET_NEOCLASSIC_DIR = "neoclassic"
 
-$SIGNUM_WALLET_MAINNET_NEOCLASSIC_VERSION = "v3.8.4"
+$SIGNUM_WALLET_MAINNET_NEOCLASSIC_VERSION = "1.0.0"
 $SIGNUM_WALLET_MAINNET_UI_DIR_PATH = "${SIGNUM_NODE_MAINNET_UNZIP_PATH}\html\ui"
 $SIGNUM_WALLET_MAINNET_NEOCLASSIC_ZIP_PATH = "${SIGNUM_WALLET_MAINNET_UI_DIR_PATH}\${SIGNUM_WALLET_NEOCLASSIC_ZIP}"
 $SIGNUM_WALLET_MAINNET_NEOCLASSIC_UNZIP_PATH = "${SIGNUM_WALLET_MAINNET_UI_DIR_PATH}\${SIGNUM_WALLET_NEOCLASSIC_DIR}"
-$SIGNUM_WALLET_MAINNET_NEOCLASSIC_URL = "https://github.com/deleterium/neoclassic-wallet/archive/refs/heads/main.zip"
+$SIGNUM_WALLET_MAINNET_NEOCLASSIC_URL = "https://github.com/deleterium/neoclassic-wallet/releases/download/v${SIGNUM_WALLET_MAINNET_NEOCLASSIC_VERSION}/neoclassic-wallet-${SIGNUM_WALLET_MAINNET_NEOCLASSIC_VERSION}.zip"
 
-$SIGNUM_WALLET_TESTNET_NEOCLASSIC_VERSION = "v3.8.4"
+$SIGNUM_WALLET_TESTNET_NEOCLASSIC_VERSION = "1.0.0"
 $SIGNUM_WALLET_TESTNET_UI_DIR_PATH = "${SIGNUM_NODE_TESTNET_UNZIP_PATH}\html\ui"
 $SIGNUM_WALLET_TESTNET_NEOCLASSIC_ZIP_PATH = "${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}\${SIGNUM_WALLET_NEOCLASSIC_ZIP}"
 $SIGNUM_WALLET_TESTNET_NEOCLASSIC_UNZIP_PATH = "${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}\${SIGNUM_WALLET_NEOCLASSIC_DIR}"
-$SIGNUM_WALLET_TESTNET_NEOCLASSIC_URL = "https://github.com/deleterium/neoclassic-wallet/archive/refs/heads/main.zip"
+$SIGNUM_WALLET_TESTNET_NEOCLASSIC_URL = "https://github.com/deleterium/neoclassic-wallet/releases/download/v${SIGNUM_WALLET_MAINNET_NEOCLASSIC_VERSION}/neoclassic-wallet-${SIGNUM_WALLET_MAINNET_NEOCLASSIC_VERSION}.zip"
 
 $SIGNUM_POOL_STARTER_PS1 = "start-pool.ps1"
 $SIGNUM_POOL_STARTER_EXEC = "start-pool.bat"
@@ -823,9 +824,7 @@ function Install-NeoClassic-MAINNET-Wallet {
     } else {
         # Unzip the downloaded file to the installation directory
         Write-Host "Unzipping Signum NeoClassic Wallet to ${SIGNUM_WALLET_MAINNET_UI_DIR_PATH} ..."
-        Expand-Archive -Path "${SIGNUM_WALLET_MAINNET_NEOCLASSIC_ZIP_PATH}" -DestinationPath "${SIGNUM_WALLET_MAINNET_UI_DIR_PATH}" -Force
-		# Rename the folder
-		Rename-Item -Path ${SIGNUM_WALLET_MAINNET_UI_DIR_PATH}\neoclassic-wallet-main -NewName "neoclassic"
+        Expand-Archive -Path "${SIGNUM_WALLET_MAINNET_NEOCLASSIC_ZIP_PATH}" -DestinationPath "${SIGNUM_WALLET_MAINNET_UI_DIR_PATH}\${SIGNUM_WALLET_NEOCLASSIC_DIR}" -Force
 	
 		# Setup index.html
 		Write-Host "Setup index.html"
@@ -846,14 +845,14 @@ function Install-NeoClassic-MAINNET-Wallet {
 			
 			# Define the HTML content to insert
 			$newLine = 
-@'
-		<a class="card" id="neoclassic-link" href="./neoclassic/index.html" onclick="selectedWallet('neoclassic')">
+@"
+		<a class="card" id="neoclassic-link" href="./${SIGNUM_WALLET_NEOCLASSIC_DIR}/index.html" onclick="selectedWallet('neoclassic')">
 			<div class="center-text">
 				<img src="./assets/signum-logomark-white.svg">
 				<h2 class="card__title">NeoClassic</h2>
 			</div>
 		</a>
-'@
+"@
 			
 			for ($i = 0; $i -lt $content.Count; $i++) {
 				$line = $content[$i]  # Get the current line
@@ -897,9 +896,7 @@ function Install-NeoClassic-TESTNET-Wallet {
     } else {
         # Unzip the downloaded file to the installation directory
         Write-Host "Unzipping Signum NeoClassic Wallet to ${SIGNUM_WALLET_TESTNET_UI_DIR_PATH} ..."
-        Expand-Archive -Path "${SIGNUM_WALLET_TESTNET_NEOCLASSIC_ZIP_PATH}" -DestinationPath "${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}" -Force
-		# Rename the folder
-		Rename-Item -Path ${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}\neoclassic-wallet-main -NewName "neoclassic"
+        Expand-Archive -Path "${SIGNUM_WALLET_TESTNET_NEOCLASSIC_ZIP_PATH}" -DestinationPath "${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}\${SIGNUM_WALLET_NEOCLASSIC_DIR}" -Force
 	
 		# Setup index.html
 		Write-Host "Setup index.html"
@@ -918,16 +915,16 @@ function Install-NeoClassic-TESTNET-Wallet {
 		if (-not $foundNeoClassic) {
 			$content = Get-Content -Path ${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}\index.html
 			
-		# Define the HTML content to insert
-		$newLine = 
-@'
-		<a class="card" id="neoclassic-link" href="./neoclassic/index.html" onclick="selectedWallet('neoclassic')">
+			# Define the HTML content to insert
+			$newLine = 
+@"
+		<a class="card" id="neoclassic-link" href="./${SIGNUM_WALLET_NEOCLASSIC_DIR}/index.html" onclick="selectedWallet('neoclassic')">
 			<div class="center-text">
 				<img src="./assets/signum-logomark-white.svg">
 				<h2 class="card__title">NeoClassic</h2>
 			</div>
 		</a>
-'@
+"@
 			
 			for ($i = 0; $i -lt $content.Count; $i++) {
 				$line = $content[$i]  # Get the current line
@@ -1154,13 +1151,13 @@ Write-Host 'Starting MariaDB ...'
 
 Write-Host 'Starting Signum Node Mainnet ...'
 
-Start-Sleep -Seconds 10
+Start-Sleep -Seconds $SLEEP_SECONDS
 
 ..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_NODE_MAINNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
 
 Write-Host 'Starting Signum Pool Mainnet ...'
 
-Start-Sleep -Seconds 10
+Start-Sleep -Seconds $SLEEP_SECONDS
 
 # Start Signum Pool
 # Start-Process -FilePath "jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java" -ArgumentList "-jar", "signum-pool.jar" -WindowStyle Minimized
@@ -1178,7 +1175,8 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
 		} else {
 			# Start Signum Pool Mainnet
-			& .\jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java -jar signum-pool.jar
+			Start-Process "http://localhost:$port"
+			.\jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java -jar signum-pool.jar
 		}
     } catch {
         Write-Host 'An error occurred while starting Signum Pool Mainnet: `$_'
@@ -1348,13 +1346,13 @@ Write-Host 'Starting MariaDB ...'
 
 Write-Host 'Starting Signum Node Testnet ...'
 
-Start-Sleep -Seconds 10
+Start-Sleep -Seconds $SLEEP_SECONDS
 
 ..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_NODE_TESTNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
 
 Write-Host 'Starting Signum Pool Testnet ...'
 
-Start-Sleep -Seconds 10
+Start-Sleep -Seconds $SLEEP_SECONDS
 
 # Start Signum Pool
 # Start-Process -FilePath "jre\${JAVA_POOL_TESTNET_UNZIP}\bin\java" -ArgumentList "-jar", "signum-pool.jar" -WindowStyle Minimized
@@ -1372,7 +1370,8 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
 		} else {
 			# Start Signum Pool Testnet
-			& .\jre\${JAVA_POOL_TESTNET_UNZIP}\bin\java -jar signum-pool.jar
+			Start-Process "http://localhost:$port"
+			.\jre\${JAVA_POOL_TESTNET_UNZIP}\bin\java -jar signum-pool.jar
 		}
     } catch {
         Write-Host 'An error occurred while starting Signum Pool Testnet: `$_'
@@ -1899,13 +1898,13 @@ Write-Host 'Starting MariaDB ...'
 
 Write-Host 'Starting Signum Node Mainnet ...'
 
-Start-Sleep -Seconds 10
+Start-Sleep -Seconds $SLEEP_SECONDS
 
 ..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_NODE_MAINNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
 
 Write-Host 'Starting Signum Explorer Mainnet ...'
 
-Start-Sleep -Seconds 10
+Start-Sleep -Seconds $SLEEP_SECONDS
 
 # Start Signum Explorer
 # Start-Process -FilePath "jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java" -ArgumentList "-jar", "signum-pool.jar" -WindowStyle Minimized
@@ -1925,7 +1924,8 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
 		} else {
 			# Start Signum Explorer Mainnet
-			& .\Scripts\supervisord.exe -n -c .\supervisord.conf
+			Start-Process "http://localhost:$port"
+			.\Scripts\supervisord.exe -n -c .\supervisord.conf
 		}
     } catch {
         Write-Host 'An error occurred while starting Signum Explorer Mainnet: `$_'
@@ -2488,13 +2488,13 @@ Write-Host 'Starting MariaDB ...'
 
 Write-Host 'Starting Signum Node Testnet ...'
 
-Start-Sleep -Seconds 10
+Start-Sleep -Seconds $SLEEP_SECONDS
 
 ..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$SIGNUM_NODE_TESTNET_STARTER_PS1_PATH" "-WindowStyle Minimized"
 
 Write-Host 'Starting Signum Explorer Testnet ...'
 
-Start-Sleep -Seconds 10
+Start-Sleep -Seconds $SLEEP_SECONDS
 
 # Start Signum Explorer
 # Start-Process -FilePath "jre\${JAVA_POOL_TESTNET_UNZIP}\bin\java" -ArgumentList "-jar", "signum-pool.jar" -WindowStyle Minimized
@@ -2514,7 +2514,8 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
 		} else {
 			# Start Signum Explorer Testnet
-			& .\Scripts\supervisord.exe -n -c .\supervisord.conf
+			Start-Process "http://localhost:$port"
+			.\Scripts\supervisord.exe -n -c .\supervisord.conf
 		}
     } catch {
         Write-Host 'An error occurred while starting Signum Explorer Testnet: `$_'
@@ -2646,7 +2647,7 @@ Write-Host 'Starting MariaDB ...'
 ..\..\..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "..\..\..\$MARIADB_STARTER_PS1_PATH" "-WindowStyle Minimized"
 # Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-ExecutionPolicy Bypass", "-File", "..\..\..\$MARIADB_STARTER_PS1_PATH" -WindowStyle Minimized
 
-Start-Sleep -Seconds 10
+Start-Sleep -Seconds $SLEEP_SECONDS
 
 # Start Signum Node
 # Start-Process -FilePath "jre\bin\java" -ArgumentList "-jar", "signum-node.jar" -WindowStyle Minimized
@@ -2669,7 +2670,8 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
 		} else {
 			# Start Signum Node $name
-			& .\jre\bin\java -jar signum-node.jar
+			Start-Process "http://localhost:$port"
+			.\jre\bin\java -jar signum-node.jar
 		}
     } catch {
         Write-Host 'An error occurred while starting Signum Node ${name}: `$_'
@@ -3789,7 +3791,7 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
         } else {
 			# Start MariaDB
-			& .\bin\mariadbd.exe --no-defaults --console
+			.\bin\mariadbd.exe --no-defaults --console
 		}
     } catch {
         Write-Host 'An error occurred while starting MariaDB: ```$_'
@@ -3844,7 +3846,7 @@ function setup_mariadb ($name, $database, $user, $password) {
 	
 	.\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
 
-    Start-Sleep -Seconds 10
+    Start-Sleep -Seconds $SLEEP_SECONDS
 
     Write-Host "Creating database: ${DATABASE_NAME}"
 	$createDatabaseQuery = "CREATE DATABASE IF NOT EXISTS ``${DATABASE_NAME}``;"
@@ -3896,7 +3898,7 @@ function setup_mariadb_readonly ($name, $database, $user, $password) {
 	
 	.\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
 
-    Start-Sleep -Seconds 10
+    Start-Sleep -Seconds $SLEEP_SECONDS
 
     Write-Host "Creating user: ${DATABASE_USERNAME}"
 	$createUserQuery = "CREATE USER IF NOT EXISTS '${DATABASE_USERNAME}'@'localhost' IDENTIFIED BY '${DATABASE_PASSWORD}';"
@@ -3962,7 +3964,7 @@ function setup_mariadb_explorer ($name, $database, $user, $password) {
 	
 	.\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
 
-    Start-Sleep -Seconds 10
+    Start-Sleep -Seconds $SLEEP_SECONDS
 
     Write-Host "Creating database: ${DATABASE_NAME}"
 	$createDatabaseQuery = "CREATE DATABASE IF NOT EXISTS ``${DATABASE_NAME}``;"
