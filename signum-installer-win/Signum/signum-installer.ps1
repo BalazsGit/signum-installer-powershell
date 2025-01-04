@@ -35,7 +35,8 @@ $POWERSHELL_URL = "https://github.com/PowerShell/PowerShell/releases/download/v$
 # Run mariadb in the background to not shut down it unintentianally
 
 # TODO DBEAVER install to tools?
-# https://dbeaver.io/files/dbeaver-ce-latest-win32.win32.x86_64.
+# https://dbeaver.io/files/dbeaver-ce-latest-win32.win32.x86_64.zip
+# https://dbeaver.io/download/
 
 $SIGNUM_NODE_DIR = "Node"
 
@@ -347,6 +348,50 @@ $DATABASE_NAME = ""
 $DATABASE_USERNAME = ""
 $DATABASE_PASSWORD = ""
 
+$SMART_CONTRACT_DIR = "SmartContract"
+
+$SMARTC_WEB_UI_STARTER_PS1 = "start-smartc.ps1"
+$SMARTC_WEB_UI_STARTER_EXEC = "start-smartc.bat"
+
+$SMARTC_WEB_UI_ZIP_NAME_PATH = "${SMART_CONTRACT_DIR}\smartc-web-ui-main"
+$SMARTC_WEB_UI_ZIP = "SmartC-WEB-UI.zip"
+$SMARTC_WEB_UI_UNZIP = "SmartC-WEB-UI"
+$SMARTC_WEB_UI_ZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_WEB_UI_ZIP}"
+$SMARTC_WEB_UI_UNZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_WEB_UI_UNZIP}"
+$SMARTC_WEB_UI_EXEC = "heidisql.exe"
+$SMARTC_WEB_UI_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_WEB_UI_UNZIP}\${SMARTC_WEB_UI_EXEC}"
+$SMARTC_WEB_UI_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_WEB_UI_UNZIP}\${SMARTC_WEB_UI_STARTER_PS1}"
+$SMARTC_WEB_UI_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_WEB_UI_UNZIP}\${SMARTC_WEB_UI_STARTER_EXEC}"
+$SMARTC_WEB_UI_URL = "https://github.com/deleterium/smartc-web-ui/archive/refs/heads/main.zip"
+
+$SMARTC_RETRO_UI_STARTER_PS1 = "start-smartc.ps1"
+$SMARTC_RETRO_UI_STARTER_EXEC = "start-smartc.bat"
+
+$SMARTC_RETRO_UI_ZIP_NAME_PATH = "${SMART_CONTRACT_DIR}\smartc-retro-ui-main"
+$SMARTC_RETRO_UI_ZIP = "SmartC-RETRO-UI.zip"
+$SMARTC_RETRO_UI_UNZIP = "SmartC-RETRO-UI"
+$SMARTC_RETRO_UI_ZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_RETRO_UI_ZIP}"
+$SMARTC_RETRO_UI_UNZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_RETRO_UI_UNZIP}"
+$SMARTC_RETRO_UI_EXEC = "heidisql.exe"
+$SMARTC_RETRO_UI_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_RETRO_UI_UNZIP}\${SMARTC_RETRO_UI_EXEC}"
+$SMARTC_RETRO_UI_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_RETRO_UI_UNZIP}\${SMARTC_RETRO_UI_STARTER_PS1}"
+$SMARTC_RETRO_UI_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_RETRO_UI_UNZIP}\${SMARTC_RETRO_UI_STARTER_EXEC}"
+$SMARTC_RETRO_UI_URL = "https://github.com/deleterium/smartc-retro-ui/archive/refs/heads/main.zip"
+
+$SMARTC_SIGNUM_DECOMPILER_STARTER_PS1 = "start-smartc-decompiler.ps1"
+$SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC = "start-smartc-decompiler.bat"
+
+$SMARTC_SIGNUM_DECOMPILER_ZIP_NAME_PATH = "${SMART_CONTRACT_DIR}\smartc-signum-decompiler-main"
+$SMARTC_SIGNUM_DECOMPILER_ZIP = "SmartC-SIGNUM-DECOMPILER.zip"
+$SMARTC_SIGNUM_DECOMPILER_UNZIP = "SmartC-SIGNUM-DECOMPILER"
+$SMARTC_SIGNUM_DECOMPILER_ZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DECOMPILER_ZIP}"
+$SMARTC_SIGNUM_DECOMPILER_UNZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DECOMPILER_UNZIP}"
+$SMARTC_SIGNUM_DECOMPILER_EXEC = "heidisql.exe"
+$SMARTC_SIGNUM_DECOMPILER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DECOMPILER_UNZIP}\${SMARTC_SIGNUM_DECOMPILER_EXEC}"
+$SMARTC_SIGNUM_DECOMPILER_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DECOMPILER_UNZIP}\${SMARTC_SIGNUM_DECOMPILER_STARTER_PS1}"
+$SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DECOMPILER_UNZIP}\${SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC}"
+$SMARTC_SIGNUM_DECOMPILER_URL = "https://github.com/deleterium/smartc-signum-decompiler/archive/refs/heads/main.zip"
+
 $TOOLS_DIR = "Tools"
 
 $HEIDISQL_STARTER_PS1 = "start-heidisql.ps1"
@@ -361,6 +406,35 @@ $HEIDISQL_EXEC_PATH = "${TOOLS_DIR}\${HEIDISQL_DIR}\${HEIDISQL_UNZIP}\${HEIDISQL
 $HEIDISQL_STARTER_PS1_PATH = "${TOOLS_DIR}\${HEIDISQL_DIR}\${HEIDISQL_UNZIP}\${HEIDISQL_STARTER_PS1}"
 $HEIDISQL_STARTER_EXEC_PATH = "${TOOLS_DIR}\${HEIDISQL_DIR}\${HEIDISQL_UNZIP}\${HEIDISQL_STARTER_EXEC}"
 $HEIDISQL_URL = "https://www.heidisql.com/downloads/releases/HeidiSQL_${HEIDISQL_VERSION}_64_Portable.zip"
+
+$DBEAVER_STARTER_PS1 = "start-dbeaver.ps1"
+$DBEAVER_STARTER_EXEC = "start-dbeaver.bat"
+
+$DBEAVER_VERSION = "24.3.1"
+$DBEAVER_DIR = "DBeaver"
+$DBEAVER_ZIP = "dbeaver-ce-${DBEAVER_VERSION}-win32.win32.x86_64.zip"
+$DBEAVER_UNZIP = "dbeaver-ce-${DBEAVER_VERSION}-win32.win32.x86_64"
+$DBEAVER_EXEC = "dbeaver.exe"
+$DBEAVER_EXEC_PATH = "${TOOLS_DIR}\${DBEAVER_DIR}\${DBEAVER_UNZIP}\${DBEAVER_EXEC}"
+$DBEAVER_STARTER_PS1_PATH = "${TOOLS_DIR}\${DBEAVER_DIR}\${DBEAVER_UNZIP}\${DBEAVER_STARTER_PS1}"
+$DBEAVER_STARTER_EXEC_PATH = "${TOOLS_DIR}\${DBEAVER_DIR}\${DBEAVER_UNZIP}\${DBEAVER_STARTER_EXEC}"
+$DBEAVER_URL = "https://dbeaver.io/files/${DBEAVER_VERSION}/${DBEAVER_ZIP}"
+
+$NODEJS_STARTER_PS1 = "start-nodejs.ps1"
+$NODEJS_STARTER_EXEC = "start-nodejs.bat"
+
+$NODEJS_VERSION = "22.12.0"
+$NODEJS_DIR = "NodeJS"
+$NODEJS_DIR_PATH = "${TOOLS_DIR}\${NODEJS_DIR}"
+$NODEJS_ZIP = "node-v${NODEJS_VERSION}-win-x64.zip"
+$NODEJS_UNZIP = "node-v${NODEJS_VERSION}-win-x64"
+$NODEJS_ZIP_PATH = "${NODEJS_DIR_PATH}\${NODEJS_ZIP}"
+$NODEJS_UNZIP_PATH = "${NODEJS_DIR_PATH}\${NODEJS_UNZIP}"
+$NODEJS_EXEC = "node.exe"
+$NODEJS_EXEC_PATH = "${NODEJS_UNZIP_PATH}\${NODEJS_EXEC}"
+$NODEJS_STARTER_PS1_PATH = "${NODEJS_UNZIP_PATH}\${NODEJS_STARTER_PS1}"
+$NODEJS_STARTER_EXEC_PATH = "${NODEJS_UNZIP_PATH}\${NODEJS_STARTER_EXEC}"
+$NODEJS_URL = "https://nodejs.org/dist/v${NODEJS_VERSION}/${NODEJS_ZIP}"
 
 $NGINX_STARTER_PS1 = "start-nginx.ps1"
 $NGINX_STARTER_EXEC = "start-nginx.bat"
@@ -415,22 +489,27 @@ function Show-InstallMenu {
     Write-Host "[10] `tInstall Signum Pool Testnet with MariaDB"
     Write-Host "[11] `tInstall Signum Explorer Mainnet with MariaDB"
     Write-Host "[12] `tInstall Signum Explorer Testnet with MariaDB"
+	Write-Host "[13] `tInstall SmartC [WEB-UI]"
+	Write-Host "[14] `tInstall SmartC [RETRO-UI]"
+	Write-Host "[15] `tInstall SmartC Signum Decompiler"
 	# Write-Host "====================================================="
 	# Write-Host "            		 Databases	 			         "
 	# Write-Host "====================================================="
-    Write-Host "[13] `tInstall MariaDB"
+    Write-Host "[16] `tInstall MariaDB"
 	# Write-Host "====================================================="
 	# Write-Host "            		 Tools	 			             "
 	# Write-Host "====================================================="
-    Write-Host "[14] `tInstall HeidiSQL"
-    Write-Host "[15] `tInstall NGINX"
-	Write-Host "[16] `tInstall Notepad++"
+    Write-Host "[17] `tInstall HeidiSQL"
+	Write-Host "[18] `tInstall DBeaver"
+    Write-Host "[19] `tInstall NGINX"
+	Write-Host "[20] `tInstall NodeJS"
+	Write-Host "[21] `tInstall Notepad++"
 	<# Write-Host "====================================================="
 	Write-Host "            	  Developer Tools 			         "
 	Write-Host "====================================================="
 	Write-Host "[8] `tInstall Signum SmartC Smart Contract Compiler" #>
 	# Write-Host "-----------------------------------------------------"
-	Write-Host "[17] `tDownload Whitepaper"
+	Write-Host "[22] `tDownload Whitepaper"
     Write-Host "-----------------------------------------------------"
 	# TODO Signum pages menu
 	# TODO add usefull signum pages wiki, official page, github stb. coinmarcetcap, bft portal, explorer
@@ -438,12 +517,12 @@ function Show-InstallMenu {
 	# Signum provider menu
 	# letsencrypt with ACME challege
 	# open readme how to use the installer
-    Write-Host "[18] `tSignum Starter Menu"
-    Write-Host "[19] `tExit"
+    Write-Host "[23] `tSignum Starter Menu"
+    Write-Host "[24] `tExit"
     Write-Host "====================================================="
 
 	# Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
-    $choice = Read-Host "Enter your choice (1-19)"
+    $choice = Read-Host "Enter your choice (1-24)"
 
 	function install-process($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -495,25 +574,40 @@ function Show-InstallMenu {
 		"12" {
 			install-process $SIGNUM_EXPLORER_TESTNET_STARTER_EXEC_PATH "Signum Explorer Testnet" {Install-SignumExplorerTestnet}
         }
-        "13" {
-			install-process $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+		"13" {
+			install-process $SMARTC_WEB_UI_STARTER_EXEC_PATH "SmartC [WEB-UI]" {install-smartc-web-ui}
         }
-        "14" {
-			install-process $HEIDISQL_EXEC_PATH "HeidiSQL" {install_heidisql}
+		"14" {
+			install-process $SMARTC_RETRO_UI_STARTER_EXEC_PATH "SmartC [RETRO-UI]" {install-smartc-retro-ui}
         }
 		"15" {
+			install-process $SMARTC_SIGNUM_DECOMPILER_EXEC_PATH "SmartC Signum Decompiler" {install-smartc-signum-decompiler}
+        }
+        "16" {
+			install-process $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+        }
+        "17" {
+			install-process $HEIDISQL_EXEC_PATH "HeidiSQL" {install_heidisql}
+        }
+		"18" {
+			install-process $DBEAVER_EXEC_PATH "DBeaver" {install_DBeaver}
+        }
+		"19" {
 			install-process $NGINX_EXEC_PATH "NGINX" {install_nginx}
         }
-		"16" {
+		"20" {
+			install-process $NODEJS_EXEC_PATH "NodeJs" {install_nodejs}
+        }
+		"21" {
 			install-process $NOTEPAD_EXEC_PATH "Notepad" {install_notepad}
         }
-		"17" {
+		"22" {
 			install-doc $WHITEPAPER_DOC_PATH "Whitepaper" $WHITEPAPER_DOC_PATH $WHITEPAPER_URL
         }
-        "18" {
+        "23" {
             Show-StartMenu
         }
-        "19" {
+        "24" {
             Exit-Script
         }
         default {
@@ -542,17 +636,22 @@ function Show-StartMenu {
 	Write-Host "[10] `tStart Signum Pool Testnet"
 	Write-Host "[11] `tStart Signum Explorer Mainnet"
 	Write-Host "[12] `tStart Signum Explorer Testnet"
-    Write-Host "[13] `tStart MariaDB"
-    Write-Host "[14] `tStart HeidiSQL"
-	Write-Host "[15] `tStart NGINX"
-	Write-Host "[16] `tStart Notepad++"
-	Write-Host "[17] `tOpen Whitepaper"
+	Write-Host "[13] `tStart SmartC [WEB-UI]"
+	Write-Host "[14] `tStart SmartC [RETRO-UI]"
+	Write-Host "[15] `tStart SmartC Signum Decompiler"
+    Write-Host "[16] `tStart MariaDB"
+    Write-Host "[17] `tStart HeidiSQL"
+	Write-Host "[18] `tStart DBeaver"
+	Write-Host "[19] `tStart NGINX"
+	Write-Host "[20] `tStart NodeJS"
+	Write-Host "[21] `tStart Notepad++"
+	Write-Host "[22] `tOpen Whitepaper"
     Write-Host "-----------------------------------------------------"
-    Write-Host "[18] `tSignum Installer Menu"
-    Write-Host "[19] `tExit"
+    Write-Host "[23] `tSignum Installer Menu"
+    Write-Host "[24] `tExit"
     Write-Host "====================================================="
 
-    $choice = Read-Host "Enter your choice (1-19)"
+    $choice = Read-Host "Enter your choice (1-24)"
 
 	function start-process-menu($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -607,25 +706,40 @@ function Show-StartMenu {
 		"12" {
 			start-process-menu $SIGNUM_EXPLORER_TESTNET_STARTER_PS1_PATH "Signum Explorer Testnet" {Install-SignumExplorerTestnet}
         }
-        "13" {
-			start-process-menu $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+		"13" {
+			start-process-menu $SMARTC_WEB_UI_STARTER_PS1_PATH "SmartC [WEB-UI]" {install-smartc-web-ui}
         }
-        "14" {
-			start-process-menu $HEIDISQL_STARTER_PS1_PATH "HeidiSQL" {install_heidisql}
+		"14" {
+			start-process-menu $SMARTC_RETRO_UI_STARTER_PS1_PATH "SmartC [RETRO-UI]" {install-smartc-retro-ui}
         }
 		"15" {
+			start-process-menu $SMARTC_SIGNUM_DECOMPILER_STARTER_PS1_PATH "SmartC Signum Decompiler" {install-smartc-signum-decompiler}
+        }
+        "16" {
+			start-process-menu $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+        }
+        "17" {
+			start-process-menu $HEIDISQL_STARTER_PS1_PATH "HeidiSQL" {install_heidisql}
+		}
+		"18" {
+			start-process-menu $DBEAVER_STARTER_PS1_PATH "DBeaver" {install_DBeaver}
+        }
+		"19" {
 			start-process-menu $NGINX_STARTER_PS1_PATH "NGINX" {install_nginx}
         }
-		"16" {
+		"20" {
+			start-process-menu $NODEJS_STARTER_PS1_PATH "NodeJs" {install_nodejs}
+        }
+		"21" {
 			start-process-menu $NOTEPAD_STARTER_PS1_PATH "Notepad" {install_notepad}
         }
-		"17" {
+		"22" {
             open-doc $WHITEPAPER_DOC_PATH "Whitepaper" $WHITEPAPER_DIR_PATH $WHITEPAPER_URL
 		}
-        "18" {
+        "23" {
             Show-InstallMenu
         }
-        "19" {
+        "24" {
             Exit-Script
         }
         default {
@@ -767,7 +881,7 @@ function Install-SignumMainnet {
     signum-starter-ps1 "Mainnet" ${SIGNUM_NODE_MAINNET_STARTER_PS1_PATH} 8125
 	
 	# Create starter batch
-	create-starter-ps1-exec ${SIGNUM_NODE_STARTER_PS1} ${SIGNUM_NODE_STARTER_EXEC} ${SIGNUM_NODE_MAINNET_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${SIGNUM_NODE_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${SIGNUM_NODE_STARTER_EXEC} ${SIGNUM_NODE_MAINNET_STARTER_EXEC_PATH}
 
     # Install MariaDB
 	if (Test-Path $MARIADB_STARTER_PS1_PATH) {
@@ -1029,7 +1143,7 @@ function Install-SignumTestnet {
 	
 	# OS dependent start-node
 	# Create starter batch
-	create-starter-ps1-exec ${SIGNUM_NODE_STARTER_PS1} ${SIGNUM_NODE_STARTER_EXEC} ${SIGNUM_NODE_TESTNET_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${SIGNUM_NODE_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${SIGNUM_NODE_STARTER_EXEC} ${SIGNUM_NODE_TESTNET_STARTER_EXEC_PATH}
 
     # Install MariaDB
 	if (Test-Path $MARIADB_STARTER_PS1_PATH) {
@@ -1203,7 +1317,7 @@ exit
 	}
 
 	# Create starter batch
-	create-starter-ps1-exec ${SIGNUM_POOL_STARTER_PS1} ${SIGNUM_POOL_STARTER_EXEC} ${SIGNUM_POOL_MAINNET_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${SIGNUM_POOL_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${SIGNUM_POOL_STARTER_EXEC} ${SIGNUM_POOL_MAINNET_STARTER_EXEC_PATH}
 
     # Install MariaDB
 	if (Test-Path $MARIADB_STARTER_PS1_PATH) {
@@ -1398,7 +1512,7 @@ exit
 	}
 
 	# Create starter batch
-	create-starter-ps1-exec ${SIGNUM_POOL_STARTER_PS1} ${SIGNUM_POOL_STARTER_EXEC} ${SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${SIGNUM_POOL_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${SIGNUM_POOL_STARTER_EXEC} ${SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH}
 
     # Install MariaDB
 	if (Test-Path $MARIADB_STARTER_PS1_PATH) {
@@ -1952,7 +2066,7 @@ exit
 	}
 
 	# Create starter batch
-	create-starter-ps1-exec ${SIGNUM_EXPLORER_STARTER_PS1} ${SIGNUM_EXPLORER_STARTER_EXEC} ${SIGNUM_EXPLORER_MAINNET_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${SIGNUM_EXPLORER_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${SIGNUM_EXPLORER_STARTER_EXEC} ${SIGNUM_EXPLORER_MAINNET_STARTER_EXEC_PATH}
 
     # Install MariaDB
 	if (Test-Path $MARIADB_STARTER_PS1_PATH) {
@@ -2542,7 +2656,7 @@ exit
 	}
 
 	# Create starter batch
-	create-starter-ps1-exec ${SIGNUM_EXPLORER_STARTER_PS1} ${SIGNUM_EXPLORER_STARTER_EXEC} ${SIGNUM_EXPLORER_TESTNET_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${SIGNUM_EXPLORER_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${SIGNUM_EXPLORER_STARTER_EXEC} ${SIGNUM_EXPLORER_TESTNET_STARTER_EXEC_PATH}
 
     # Install MariaDB
 	if (Test-Path $MARIADB_STARTER_PS1_PATH) {
@@ -2632,6 +2746,362 @@ exit
 	
 }
 
+function install-smartc-web-ui {
+    Write-Host "Installing SmartC WEB UI ..."
+	
+	# Create SmartContract directory
+    if (-not (Test-Path "${SMART_CONTRACT_DIR}")) {
+        New-Item -ItemType Directory -Path "${SMART_CONTRACT_DIR}" | Out-Null
+        Write-Host "Created directory: ${SMART_CONTRACT_DIR}"
+    } else {
+        Write-Host "Directory already exists: ${SMART_CONTRACT_DIR}"
+    }
+
+    if (Test-Path -Path "${SMARTC_WEB_UI_ZIP_PATH}") {
+        Write-Host "${SMARTC_WEB_UI_ZIP_PATH} already downloaded."
+    } else {
+        # Download SmartC zip file
+        Write-Host "Downloading SmartC WEB UI from GitHub ..."
+        # Start-BitsTransfer -Source "${SMARTC_WEB_UI_URL}" -Destination "${SMARTC_WEB_UI_ZIP_PATH}"
+		Invoke-WebRequest -Uri $SMARTC_WEB_UI_URL -OutFile $SMARTC_WEB_UI_ZIP_PATH
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SMARTC_WEB_UI_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download SMARTC WEB UI."
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+
+    if (Test-Path -Path "${SMARTC_WEB_UI_UNZIP_PATH}") {
+        Write-Host "${SMARTC_WEB_UI_UNZIP_PATH} already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Signum to ${SMARTC_WEB_UI_UNZIP_PATH} ..."
+        Expand-Archive -Path "${SMARTC_WEB_UI_ZIP_PATH}" -DestinationPath "${SMART_CONTRACT_DIR}" -Force
+		Rename-Item -Path $SMARTC_WEB_UI_ZIP_NAME_PATH -NewName $SMARTC_WEB_UI_UNZIP
+    }
+	
+	# Initialize package.json
+	Write-Host "Initialize package.json"	
+	$content = Get-Content -Path $SMARTC_WEB_UI_UNZIP_PATH\package.json
+
+		# Process each line using regex to add '#' only if there's no '#' before the target
+		$content = $content | ForEach-Object {
+			$_ 	-replace "npm run dev", "npm run build" `
+				-replace '"dev": "TARGET=dev', '"dev": "set TARGET=dev'
+		}
+
+		# Write the changes back to the file
+		$content | Set-Content -Path $SMARTC_WEB_UI_UNZIP_PATH\package.json
+			
+	Write-Host "package.json configuration initialized"	
+	
+	# Install node.js portable with npm
+	install_nodejs
+	
+	Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+	# $NODEJS_UNZIP_PATH\npm config set prefix ./npm-global
+	# $NODEJS_UNZIP_PATH\npm config set cache ./npm-cache
+	
+	# npm istall smarc web ui
+	Write-Host "npm install SmarC packages"
+
+	cd .\$SMARTC_WEB_UI_UNZIP_PATH
+	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
+	
+	Set-Location -Path $PSScriptRoot
+	
+	$port = 7000
+
+	# Create starter ps1
+	if (-not (Test-Path $SMARTC_WEB_UI_STARTER_PS1_PATH)) {
+		# Create start-smartc.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start SmartC WEB UI
+Set-Location -Path `$PSScriptRoot
+
+Write-Host 'Starting SmartC WEB UI ...'
+
+Write-Host 'Starting Signum Pool Mainnet ...'
+Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
+    -ArgumentList "-NoExit", "-Command", `@"
+    try {
+        ```$host.UI.RawUI.WindowTitle = 'Signum Pool Mainnet'
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+        if (```$portInUse) {
+			Write-Host 'SmartC WEB UI is already running.'
+			exit
+		} else {
+			# Start SmartC WEB UI
+			Start-Process "http://localhost:$port"
+			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+			..\..\$NODEJS_UNZIP_PATH\npm.cmd run start
+		}
+    } catch {
+        Write-Host 'An error occurred while starting SmartC WEB UI: `$_'
+    } finally {
+        # Always set the title to 'Signum Pool Mainnet Stopped' after Signum Pool Mainnet exits
+        ```$host.UI.RawUI.WindowTitle = 'SmartC WEB UI Stopped'
+    }
+"`@ ``
+    -WindowStyle Minimized
+
+exit
+"@
+
+		$content | Out-File -FilePath $SMARTC_WEB_UI_STARTER_PS1_PATH -Force
+
+		Write-Host "${SMARTC_WEB_UI_STARTER_PS1_PATH} successfully created."
+	} else {
+		Write-Host "File already exists: ${SMARTC_WEB_UI_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${SMARTC_WEB_UI_STARTER_PS1} ..\..\${POWERSHELL_EXEC_PATH} ${SMARTC_WEB_UI_STARTER_EXEC} ${SMARTC_WEB_UI_STARTER_EXEC_PATH}
+
+}
+
+function install-smartc-retro-ui {
+    Write-Host "Installing SmartC RETRO UI ..."
+	
+	# Create SmartContract directory
+    if (-not (Test-Path "${SMART_CONTRACT_DIR}")) {
+        New-Item -ItemType Directory -Path "${SMART_CONTRACT_DIR}" | Out-Null
+        Write-Host "Created directory: ${SMART_CONTRACT_DIR}"
+    } else {
+        Write-Host "Directory already exists: ${SMART_CONTRACT_DIR}"
+    }
+
+    if (Test-Path -Path "${SMARTC_RETRO_UI_ZIP_PATH}") {
+        Write-Host "${SMARTC_RETRO_UI_ZIP_PATH} already downloaded."
+    } else {
+        # Download SmartC zip file
+        Write-Host "Downloading SmartC RETRO UI from GitHub ..."
+        # Start-BitsTransfer -Source "${SMARTC_RETRO_UI_URL}" -Destination "${SMARTC_RETRO_UI_ZIP_PATH}"
+		Invoke-WebRequest -Uri $SMARTC_RETRO_UI_URL -OutFile $SMARTC_RETRO_UI_ZIP_PATH
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SMARTC_RETRO_UI_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download SMARTC RETRO UI."
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+
+    if (Test-Path -Path "${SMARTC_RETRO_UI_UNZIP_PATH}") {
+        Write-Host "${SMARTC_RETRO_UI_UNZIP_PATH} already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Signum to ${SMARTC_RETRO_UI_UNZIP_PATH} ..."
+        Expand-Archive -Path "${SMARTC_RETRO_UI_ZIP_PATH}" -DestinationPath "${SMART_CONTRACT_DIR}" -Force
+		Rename-Item -Path $SMARTC_RETRO_UI_ZIP_NAME_PATH -NewName $SMARTC_RETRO_UI_UNZIP
+    }
+	
+	# Chanage port from 7000 to 7001
+	Write-Host "Initialize package.json"	
+	$content = Get-Content -Path $SMARTC_RETRO_UI_UNZIP_PATH\package.json
+
+		# Process each line using regex to add '#' only if there's no '#' before the target
+		$content = $content | ForEach-Object {
+			$_ 	-replace "-p 7000", "-p 7001" `
+				-replace "npm run dev", "npm run build" `
+				-replace '"dev": "TARGET=dev', '"dev": "set TARGET=dev'
+		}
+
+		# Write the changes back to the file
+		$content | Set-Content -Path $SMARTC_RETRO_UI_UNZIP_PATH\package.json
+			
+	Write-Host "package.json configuration initialized"	
+	
+	# Install node.js portable with npm
+	install_nodejs
+	
+	Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+	# $NODEJS_UNZIP_PATH\npm config set prefix ./npm-global
+	# $NODEJS_UNZIP_PATH\npm config set cache ./npm-cache
+	
+	# npm istall smarc web ui
+	Write-Host "npm install SmarC packages"
+
+	cd .\$SMARTC_RETRO_UI_UNZIP_PATH
+	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
+	
+	Set-Location -Path $PSScriptRoot
+	
+	$port = 7001
+
+	# Create starter ps1
+	if (-not (Test-Path $SMARTC_RETRO_UI_STARTER_PS1_PATH)) {
+		# Create start-smartc.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start SmartC RETRO UI
+Set-Location -Path `$PSScriptRoot
+
+Write-Host 'Starting SmartC RETRO UI ...'
+
+Write-Host 'Starting Signum Pool Mainnet ...'
+Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
+    -ArgumentList "-NoExit", "-Command", `@"
+    try {
+        ```$host.UI.RawUI.WindowTitle = 'Signum Pool Mainnet'
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+        if (```$portInUse) {
+			Write-Host 'SmartC RETRO UI is already running.'
+			exit
+		} else {
+			# Start SmartC RETRO UI
+			Start-Process "http://localhost:$port"
+			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+			..\..\$NODEJS_UNZIP_PATH\npm.cmd run start
+		}
+    } catch {
+        Write-Host 'An error occurred while starting SmartC RETRO UI: `$_'
+    } finally {
+        # Always set the title to 'Signum Pool Mainnet Stopped' after Signum Pool Mainnet exits
+        ```$host.UI.RawUI.WindowTitle = 'SmartC RETRO UI Stopped'
+    }
+"`@ ``
+    -WindowStyle Minimized
+
+exit
+"@
+
+		$content | Out-File -FilePath $SMARTC_RETRO_UI_STARTER_PS1_PATH -Force
+
+		Write-Host "${SMARTC_RETRO_UI_STARTER_PS1_PATH} successfully created."
+	} else {
+		Write-Host "File already exists: ${SMARTC_RETRO_UI_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${SMARTC_RETRO_UI_STARTER_PS1} ..\..\${POWERSHELL_EXEC_PATH} ${SMARTC_RETRO_UI_STARTER_EXEC} ${SMARTC_RETRO_UI_STARTER_EXEC_PATH}
+
+}
+
+function install-smartc-signum-decompiler {
+    Write-Host "Installing SmartC SIGNUM DECOMPILER ..."
+	
+	# Create SmartContract directory
+    if (-not (Test-Path "${SMART_CONTRACT_DIR}")) {
+        New-Item -ItemType Directory -Path "${SMART_CONTRACT_DIR}" | Out-Null
+        Write-Host "Created directory: ${SMART_CONTRACT_DIR}"
+    } else {
+        Write-Host "Directory already exists: ${SMART_CONTRACT_DIR}"
+    }
+
+    if (Test-Path -Path "${SMARTC_SIGNUM_DECOMPILER_ZIP_PATH}") {
+        Write-Host "${SMARTC_SIGNUM_DECOMPILER_ZIP_PATH} already downloaded."
+    } else {
+        # Download SmartC zip file
+        Write-Host "Downloading SmartC SIGNUM DECOMPILER from GitHub ..."
+        # Start-BitsTransfer -Source "${SMARTC_SIGNUM_DECOMPILER_URL}" -Destination "${SMARTC_SIGNUM_DECOMPILER_ZIP_PATH}"
+		Invoke-WebRequest -Uri $SMARTC_SIGNUM_DECOMPILER_URL -OutFile $SMARTC_SIGNUM_DECOMPILER_ZIP_PATH
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SMARTC_SIGNUM_DECOMPILER_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download SMARTC SIGNUM DECOMPILER."
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+
+    if (Test-Path -Path "${SMARTC_SIGNUM_DECOMPILER_UNZIP_PATH}") {
+        Write-Host "${SMARTC_SIGNUM_DECOMPILER_UNZIP_PATH} already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Signum to ${SMARTC_SIGNUM_DECOMPILER_UNZIP_PATH} ..."
+        Expand-Archive -Path "${SMARTC_SIGNUM_DECOMPILER_ZIP_PATH}" -DestinationPath "${SMART_CONTRACT_DIR}" -Force
+		Rename-Item -Path $SMARTC_SIGNUM_DECOMPILER_ZIP_NAME_PATH -NewName $SMARTC_SIGNUM_DECOMPILER_UNZIP
+    }
+	
+	# Initialize package.json
+	Write-Host "Initialize package.json"	
+	$content = Get-Content -Path $SMARTC_SIGNUM_DECOMPILER_UNZIP_PATH\package.json
+
+		# Process each line using regex to add '#' only if there's no '#' before the target
+		$content = $content | ForEach-Object {
+			$_ 	-replace "-p 7001", "-p 7002" `
+				-replace "npm run dev", "npm run build" `
+				-replace '"dev": "TARGET=dev', '"dev": "set TARGET=dev'
+		}
+
+		# Write the changes back to the file
+		$content | Set-Content -Path $SMARTC_SIGNUM_DECOMPILER_UNZIP_PATH\package.json
+			
+	Write-Host "package.json configuration initialized"	
+	
+	# Install node.js portable with npm
+	install_nodejs
+	
+	Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+	# $NODEJS_UNZIP_PATH\npm config set prefix ./npm-global
+	# $NODEJS_UNZIP_PATH\npm config set cache ./npm-cache
+	
+	# npm istall smarc web ui
+	Write-Host "npm install SmarC decompiler packages"
+
+	cd .\$SMARTC_SIGNUM_DECOMPILER_UNZIP_PATH
+	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
+	
+	Set-Location -Path $PSScriptRoot
+	
+	$port = 7002
+
+	# Create starter ps1
+	if (-not (Test-Path $SMARTC_SIGNUM_DECOMPILER_STARTER_PS1_PATH)) {
+		# Create start-smartc-decompiler.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start SmartC SIGNUM DECOMPILER
+Set-Location -Path `$PSScriptRoot
+
+Write-Host 'Starting SmartC SIGNUM DECOMPILER ...'
+
+Write-Host 'Starting Signum Pool Mainnet ...'
+Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
+    -ArgumentList "-NoExit", "-Command", `@"
+    try {
+        ```$host.UI.RawUI.WindowTitle = 'Signum Pool Mainnet'
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+        if (```$portInUse) {
+			Write-Host 'SmartC SIGNUM DECOMPILER is already running.'
+			exit
+		} else {
+			# Start SmartC SIGNUM DECOMPILER
+			Start-Process "http://localhost:$port/tester.html"
+			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+			..\..\$NODEJS_UNZIP_PATH\npm.cmd run webpage
+		}
+    } catch {
+        Write-Host 'An error occurred while starting SmartC SIGNUM DECOMPILER: `$_'
+    } finally {
+        # Always set the title to 'Signum Pool Mainnet Stopped' after Signum Pool Mainnet exits
+        ```$host.UI.RawUI.WindowTitle = 'SmartC SIGNUM DECOMPILER Stopped'
+    }
+"`@ ``
+    -WindowStyle Minimized
+
+exit
+"@
+
+		$content | Out-File -FilePath $SMARTC_SIGNUM_DECOMPILER_STARTER_PS1_PATH -Force
+
+		Write-Host "${SMARTC_SIGNUM_DECOMPILER_STARTER_PS1_PATH} successfully created."
+	} else {
+		Write-Host "File already exists: ${SMARTC_SIGNUM_DECOMPILER_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${SMARTC_SIGNUM_DECOMPILER_STARTER_PS1} ..\..\${POWERSHELL_EXEC_PATH} ${SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC} ${SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC_PATH}
+
+}
+
 function signum-starter-ps1 ($name, $file, $port) {
 
     if (-not (Test-Path $file)) {
@@ -2692,14 +3162,14 @@ exit
     }
 }
 
-function create-starter-ps1-exec (${file-ps1}, ${file-exec}, ${file-exec-path}){
+function create-starter-ps1-exec (${file-ps1}, ${powershell_exec_path}, ${file-exec}, ${file-exec-path}){
 
     if (-not (Test-Path ${file-exec-path})) {
         # Create start-node batch file with the desired content
         $content = 
 @"
 cd %~dp0
-..\..\..\${POWERSHELL_EXEC_PATH} -ExecutionPolicy Bypass -File ".\${file-ps1}"
+${powershell_exec_path} -ExecutionPolicy Bypass -File ".\${file-ps1}"
 "@
         $content | Out-File -FilePath ${file-exec-path} -Force
 
@@ -2764,9 +3234,72 @@ exit
 	}
 
 	# Create starter batch
-	create-starter-ps1-exec ${HEIDISQL_STARTER_PS1} ${HEIDISQL_STARTER_EXEC} ${HEIDISQL_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${HEIDISQL_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${HEIDISQL_STARTER_EXEC} ${HEIDISQL_STARTER_EXEC_PATH}
 
 	Write-Host "HeidiSQL installed successfully."
+		
+}
+
+function install_DBeaver {
+    # Create DBeaver directory
+    if (-not (Test-Path "${TOOLS_DIR}\${DBEAVER_DIR}")) {
+        New-Item -ItemType Directory -Path "${TOOLS_DIR}\${DBEAVER_DIR}" | Out-Null
+        Write-Host "Created directory: ${DBEAVER_DIR}"
+    } else {
+        Write-Host "Directory already exists: ${DBEAVER_DIR}"
+    }
+
+    if (Test-Path "${TOOLS_DIR}\${DBEAVER_DIR}\${DBEAVER_ZIP}") {
+        Write-Host "${DBEAVER_ZIP} already downloaded."
+    } else {
+        # Download DBeaver
+        Write-Host "Downloading DBeaver ..."
+        # Start-BitsTransfer -Source "${DBEAVER_URL}" -Destination "${TOOLS_DIR}\${DBEAVER_DIR}\${DBEAVER_ZIP}"
+		Invoke-WebRequest -Uri ${DBEAVER_URL} -OutFile ${TOOLS_DIR}\${DBEAVER_DIR}\${DBEAVER_ZIP}
+
+        # Check if download was successful
+        if (-not (Test-Path "${TOOLS_DIR}\${DBEAVER_DIR}\${DBEAVER_ZIP}")) {
+            Write-Host "Error: Failed to download DBeaver."
+            Pause
+            return
+        }
+    }
+
+    if (Test-Path "${TOOLS_DIR}\${DBEAVER_DIR}\${DBEAVER_UNZIP}") {
+        Write-Host "${DBEAVER_UNZIP} already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping DBeaver to $TOOLS_DIR\$DBEAVER_DIR\$DBEAVER_UNZIP ..."
+        Expand-Archive -Path "$TOOLS_DIR\$DBEAVER_DIR\$DBEAVER_ZIP" -DestinationPath "$TOOLS_DIR\$DBEAVER_DIR" -Force
+		# Rename the folder
+		Rename-Item -Path $TOOLS_DIR\$DBEAVER_DIR\dbeaver -NewName "$DBEAVER_UNZIP"
+	}
+		
+	# Create starter ps1
+	if (-not (Test-Path $DBEAVER_STARTER_PS1_PATH)) {
+		# Create start-node.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start DBeaver
+Set-Location -Path `$PSScriptRoot
+
+# Start DBeaver
+Start-Process -FilePath "$DBEAVER_EXEC"
+
+exit
+"@
+
+		$content | Out-File -FilePath $DBEAVER_STARTER_PS1_PATH -Force
+
+		Write-Host "${DBEAVER_STARTER_PS1_PATH} successfully created."
+	} else {
+			Write-Host "File already exists: ${DBEAVER_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${DBEAVER_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${DBEAVER_STARTER_EXEC} ${DBEAVER_STARTER_EXEC_PATH}
+
+	Write-Host "DBeaver installed successfully."
 		
 }
 
@@ -2825,9 +3358,70 @@ exit
 	}
 
 	# Create starter batch
-	create-starter-ps1-exec ${NOTEPAD_STARTER_PS1} ${NOTEPAD_STARTER_EXEC} ${NOTEPAD_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${NOTEPAD_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${NOTEPAD_STARTER_EXEC} ${NOTEPAD_STARTER_EXEC_PATH}
 
 	Write-Host "Notepad installed successfully."
+	
+}
+
+function install_nodejs {
+    # Create NodeJS directory
+    if (-not (Test-Path "${NODEJS_DIR_PATH}")) {
+        New-Item -ItemType Directory -Path "${NODEJS_DIR_PATH}" | Out-Null
+        Write-Host "Created directory: ${NODEJS_DIR}"
+    } else {
+        Write-Host "Directory already exists: ${NODEJS_DIR}"
+    }
+
+    if (Test-Path "${NODEJS_ZIP_PATH}") {
+        Write-Host "${NODEJS_ZIP_PATH} already downloaded."
+    } else {
+        # Download NodeJs
+        Write-Host "Downloading NodeJS ..."
+        # Start-BitsTransfer -Source "${NODEJS_URL}" -Destination "${NODEJS_ZIP_PATH}"
+		Invoke-WebRequest -Uri ${NODEJS_URL} -OutFile ${NODEJS_ZIP_PATH}
+
+        # Check if download was successful
+        if (-not (Test-Path "${NODEJS_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download Notepad."
+            Pause
+            return
+        }
+    }
+
+    if (Test-Path "${NODEJS_UNZIP_PATH}") {
+        Write-Host "${NODEJS_UNZIP} already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Notepad to $NODEJS_UNZIP_PATH ..."
+        Expand-Archive -Path "$NODEJS_ZIP_PATH" -DestinationPath "$NODEJS_DIR_PATH" -Force
+    }
+
+	# Create starter ps1
+	if (-not (Test-Path $NODEJS_STARTER_PS1_PATH)) {
+		# Create start-nodejs.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start NodeJS
+Set-Location -Path `$PSScriptRoot
+
+# Start NodeJS
+Start-Process -FilePath "$NODEJS_EXEC"
+
+exit
+"@
+
+		$content | Out-File -FilePath $NODEJS_STARTER_PS1_PATH -Force
+
+		Write-Host "${NODEJS_STARTER_PS1_PATH} successfully created."
+	} else {
+			Write-Host "File already exists: ${NODEJS_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${NODEJS_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${NODEJS_STARTER_EXEC} ${NODEJS_STARTER_EXEC_PATH}
+
+	Write-Host "NodeJS installed successfully."
 	
 }
 
@@ -2886,7 +3480,7 @@ exit
 	}
 
 	# Create starter batch
-	create-starter-ps1-exec ${NGINX_STARTER_PS1} ${NGINX_STARTER_EXEC} ${NGINX_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${NGINX_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${NGINX_STARTER_EXEC} ${NGINX_STARTER_EXEC_PATH}
 
 	Write-Host "NGINX installed successfully."
 	
@@ -2954,7 +3548,7 @@ exit
 	}
 
 	# Create starter batch
-	create-starter-ps1-exec ${SIGNUM_MINER_MAINNET_STARTER_PS1} ${SIGNUM_MINER_MAINNET_EXEC} ${SIGNUM_MINER_MAINNET_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${SIGNUM_MINER_MAINNET_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${SIGNUM_MINER_MAINNET_EXEC} ${SIGNUM_MINER_MAINNET_STARTER_EXEC_PATH}
 		
     Write-Host "Signum Miner Mainnet installed successfully."
 	
@@ -3496,7 +4090,7 @@ exit
 	}
 
 	# Create starter batch
-	create-starter-ps1-exec ${SIGNUM_MINER_TESTNET_STARTER_PS1} ${SIGNUM_MINER_TESTNET_EXEC} ${SIGNUM_MINER_TESTNET_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${SIGNUM_MINER_TESTNET_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${SIGNUM_MINER_TESTNET_EXEC} ${SIGNUM_MINER_TESTNET_STARTER_EXEC_PATH}
 		
     Write-Host "Signum Miner Testnet installed successfully."
 	
@@ -3551,7 +4145,7 @@ exit
 	}
 
 	# Create starter batch
-	create-starter-ps1-exec ${BTDEX_STARTER_PS1} ${BTDEX_STARTER_EXEC} ${BTDEX_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${BTDEX_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${BTDEX_STARTER_EXEC} ${BTDEX_STARTER_EXEC_PATH}
 	
 	Write-Host "BTDEX installed successfully."
 
@@ -3602,7 +4196,7 @@ exit
 	}
 
 	# Create starter batch
-	create-starter-ps1-exec ${PHOENIX_STARTER_PS1} ${PHOENIX_STARTER_EXEC} ${PHOENIX_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${PHOENIX_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${PHOENIX_STARTER_EXEC} ${PHOENIX_STARTER_EXEC_PATH}
 		
     Write-Host "Phoenix installed successfully."
         
@@ -3655,7 +4249,7 @@ exit
 	}
 
 	# Create starter batch
-	create-starter-ps1-exec ${SIGNUMPLOTTER_STARTER_PS1} ${SIGNUMPLOTTER_STARTER_EXEC} ${SIGNUMPLOTTER_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${SIGNUMPLOTTER_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${SIGNUMPLOTTER_STARTER_EXEC} ${SIGNUMPLOTTER_STARTER_EXEC_PATH}
 		
     Write-Host "SignumPlotter installed successfully."
         
@@ -3717,7 +4311,7 @@ exit
 	}
 
 	# Create starter batch
-	create-starter-ps1-exec ${TURBOPLOTTER_STARTER_PS1} ${TURBOPLOTTER_STARTER_EXEC} ${TURBOPLOTTER_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${TURBOPLOTTER_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${TURBOPLOTTER_STARTER_EXEC} ${TURBOPLOTTER_STARTER_EXEC_PATH}
 		
     Write-Host "TurboPlotter installed successfully."
         
@@ -3810,7 +4404,7 @@ exit
     }
 	
 	# Create OS specific starter
-	create-starter-ps1-exec ${MARIADB_STARTER_PS1} ${MARIADB_STARTER_EXEC} ${MARIADB_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${MARIADB_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${MARIADB_STARTER_EXEC} ${MARIADB_STARTER_EXEC_PATH}
 	
 	Write-Host "MariaDB installed successfully."
 }
