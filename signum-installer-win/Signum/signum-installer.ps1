@@ -354,12 +354,10 @@ $SMARTC_WEB_UI_STARTER_PS1 = "start-smartc.ps1"
 $SMARTC_WEB_UI_STARTER_EXEC = "start-smartc.bat"
 
 $SMARTC_WEB_UI_ZIP_NAME_PATH = "${SMART_CONTRACT_DIR}\smartc-web-ui-main"
-$SMARTC_WEB_UI_ZIP = "SmartC-WEB-UI.zip"
 $SMARTC_WEB_UI_UNZIP = "SmartC-WEB-UI"
+$SMARTC_WEB_UI_ZIP = "$SMARTC_WEB_UI_UNZIP.zip"
 $SMARTC_WEB_UI_ZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_WEB_UI_ZIP}"
 $SMARTC_WEB_UI_UNZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_WEB_UI_UNZIP}"
-$SMARTC_WEB_UI_EXEC = "heidisql.exe"
-$SMARTC_WEB_UI_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_WEB_UI_UNZIP}\${SMARTC_WEB_UI_EXEC}"
 $SMARTC_WEB_UI_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_WEB_UI_UNZIP}\${SMARTC_WEB_UI_STARTER_PS1}"
 $SMARTC_WEB_UI_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_WEB_UI_UNZIP}\${SMARTC_WEB_UI_STARTER_EXEC}"
 $SMARTC_WEB_UI_URL = "https://github.com/deleterium/smartc-web-ui/archive/refs/heads/main.zip"
@@ -368,12 +366,10 @@ $SMARTC_RETRO_UI_STARTER_PS1 = "start-smartc.ps1"
 $SMARTC_RETRO_UI_STARTER_EXEC = "start-smartc.bat"
 
 $SMARTC_RETRO_UI_ZIP_NAME_PATH = "${SMART_CONTRACT_DIR}\smartc-retro-ui-main"
-$SMARTC_RETRO_UI_ZIP = "SmartC-RETRO-UI.zip"
 $SMARTC_RETRO_UI_UNZIP = "SmartC-RETRO-UI"
+$SMARTC_RETRO_UI_ZIP = "$SMARTC_RETRO_UI_UNZIP.zip"
 $SMARTC_RETRO_UI_ZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_RETRO_UI_ZIP}"
 $SMARTC_RETRO_UI_UNZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_RETRO_UI_UNZIP}"
-$SMARTC_RETRO_UI_EXEC = "heidisql.exe"
-$SMARTC_RETRO_UI_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_RETRO_UI_UNZIP}\${SMARTC_RETRO_UI_EXEC}"
 $SMARTC_RETRO_UI_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_RETRO_UI_UNZIP}\${SMARTC_RETRO_UI_STARTER_PS1}"
 $SMARTC_RETRO_UI_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_RETRO_UI_UNZIP}\${SMARTC_RETRO_UI_STARTER_EXEC}"
 $SMARTC_RETRO_UI_URL = "https://github.com/deleterium/smartc-retro-ui/archive/refs/heads/main.zip"
@@ -386,11 +382,33 @@ $SMARTC_SIGNUM_DECOMPILER_ZIP = "SmartC-SIGNUM-DECOMPILER.zip"
 $SMARTC_SIGNUM_DECOMPILER_UNZIP = "SmartC-SIGNUM-DECOMPILER"
 $SMARTC_SIGNUM_DECOMPILER_ZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DECOMPILER_ZIP}"
 $SMARTC_SIGNUM_DECOMPILER_UNZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DECOMPILER_UNZIP}"
-$SMARTC_SIGNUM_DECOMPILER_EXEC = "heidisql.exe"
-$SMARTC_SIGNUM_DECOMPILER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DECOMPILER_UNZIP}\${SMARTC_SIGNUM_DECOMPILER_EXEC}"
 $SMARTC_SIGNUM_DECOMPILER_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DECOMPILER_UNZIP}\${SMARTC_SIGNUM_DECOMPILER_STARTER_PS1}"
 $SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DECOMPILER_UNZIP}\${SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC}"
 $SMARTC_SIGNUM_DECOMPILER_URL = "https://github.com/deleterium/smartc-signum-decompiler/archive/refs/heads/main.zip"
+
+$SMARTJ_STARTER_PS1 = "start-smartj.ps1"
+$SMARTJ_STARTER_EXEC = "start-smartj.bat"
+
+$SMARTJ_ZIP_NAME_PATH = "${SMART_CONTRACT_DIR}\signum-smartj-master"
+$SMARTJ_UNZIP = "Signum-SmartJ"
+$SMARTJ_ZIP = "$SMARTJ_UNZIP.zip"
+$SMARTJ_ZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTJ_ZIP}"
+$SMARTJ_UNZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTJ_UNZIP}"
+$SMARTJ_EXEC = "heidisql.exe"
+$SMARTJ_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTJ_UNZIP}\${SMARTJ_EXEC}"
+$SMARTJ_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SMARTJ_UNZIP}\${SMARTJ_STARTER_PS1}"
+$SMARTJ_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTJ_UNZIP}\${SMARTJ_STARTER_EXEC}"
+$SMARTJ_URL = "https://github.com/signum-network/signum-smartj/archive/refs/heads/master.zip"
+
+$JAVA_SMARTJ_DIR = "jre"
+$JAVA_SMARTJ_BIN = "jre\bin\java"
+$JAVA_SMARTJ_UNZIP = "openlogic-openjdk-8u432-b06-windows-x64"
+$JAVA_SMARTJ_ZIP = "$JAVA_SMARTJ_UNZIP.zip"
+$JAVA_SMARTJ_DIR_PATH = "$SMARTJ_UNZIP_PATH\$JAVA_SMARTJ_DIR"
+$JAVA_SMARTJ_BIN_PATH = "$JAVA_SMARTJ_DIR_PATH\bin\java"
+$JAVA_SMARTJ_ZIP_PATH = "${JAVA_SMARTJ_DIR_PATH}\${JAVA_SMARTJ_ZIP}"
+$JAVA_SMARTJ_UNZIP_PATH = "${JAVA_SMARTJ_DIR_PATH}\${JAVA_SMARTJ_UNZIP}"
+$JAVA_SMARTJ_URL = "https://builds.openlogic.com/downloadJDK/openlogic-openjdk/8u432-b06/$JAVA_SMARTJ_ZIP"
 
 $TOOLS_DIR = "Tools"
 
@@ -489,27 +507,28 @@ function Show-InstallMenu {
     Write-Host "[10] `tInstall Signum Pool Testnet with MariaDB"
     Write-Host "[11] `tInstall Signum Explorer Mainnet with MariaDB"
     Write-Host "[12] `tInstall Signum Explorer Testnet with MariaDB"
-	Write-Host "[13] `tInstall SmartC [WEB-UI]"
-	Write-Host "[14] `tInstall SmartC [RETRO-UI]"
-	Write-Host "[15] `tInstall SmartC Signum Decompiler"
+	Write-Host "[13] `tInstall SmartC Signum Smart Contract Compiler [WEB-UI]"
+	Write-Host "[14] `tInstall SmartC Signum Smart Contract Compiler [RETRO-UI]"
+	Write-Host "[15] `tInstall SmartC Signum Smart Decompiler"
+	Write-Host "[16] `tInstall SmartJ Signum Smart Contract Compiler"
 	# Write-Host "====================================================="
 	# Write-Host "            		 Databases	 			         "
 	# Write-Host "====================================================="
-    Write-Host "[16] `tInstall MariaDB"
+    Write-Host "[17] `tInstall MariaDB"
 	# Write-Host "====================================================="
 	# Write-Host "            		 Tools	 			             "
 	# Write-Host "====================================================="
-    Write-Host "[17] `tInstall HeidiSQL"
-	Write-Host "[18] `tInstall DBeaver"
-    Write-Host "[19] `tInstall NGINX"
-	Write-Host "[20] `tInstall NodeJS"
-	Write-Host "[21] `tInstall Notepad++"
+    Write-Host "[18] `tInstall HeidiSQL"
+	Write-Host "[19] `tInstall DBeaver"
+    Write-Host "[20] `tInstall NGINX"
+	Write-Host "[21] `tInstall NodeJS"
+	Write-Host "[22] `tInstall Notepad++"
 	<# Write-Host "====================================================="
 	Write-Host "            	  Developer Tools 			         "
 	Write-Host "====================================================="
 	Write-Host "[8] `tInstall Signum SmartC Smart Contract Compiler" #>
 	# Write-Host "-----------------------------------------------------"
-	Write-Host "[22] `tDownload Whitepaper"
+	Write-Host "[23] `tDownload Whitepaper"
     Write-Host "-----------------------------------------------------"
 	# TODO Signum pages menu
 	# TODO add usefull signum pages wiki, official page, github stb. coinmarcetcap, bft portal, explorer
@@ -517,12 +536,12 @@ function Show-InstallMenu {
 	# Signum provider menu
 	# letsencrypt with ACME challege
 	# open readme how to use the installer
-    Write-Host "[23] `tSignum Starter Menu"
-    Write-Host "[24] `tExit"
+    Write-Host "[24] `tSignum Starter Menu"
+    Write-Host "[25] `tExit"
     Write-Host "====================================================="
 
 	# Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
-    $choice = Read-Host "Enter your choice (1-24)"
+    $choice = Read-Host "Enter your choice (1-25)"
 
 	function install-process($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -575,39 +594,42 @@ function Show-InstallMenu {
 			install-process $SIGNUM_EXPLORER_TESTNET_STARTER_EXEC_PATH "Signum Explorer Testnet" {Install-SignumExplorerTestnet}
         }
 		"13" {
-			install-process $SMARTC_WEB_UI_STARTER_EXEC_PATH "SmartC [WEB-UI]" {install-smartc-web-ui}
+			install-process $SMARTC_WEB_UI_STARTER_EXEC_PATH "SmartC Signum Smart Contract Compiler [WEB-UI]" {install-smartc-web-ui}
         }
 		"14" {
-			install-process $SMARTC_RETRO_UI_STARTER_EXEC_PATH "SmartC [RETRO-UI]" {install-smartc-retro-ui}
+			install-process $SMARTC_RETRO_UI_STARTER_EXEC_PATH "SmartC Signum Smart Contract Compiler [RETRO-UI]" {install-smartc-retro-ui}
         }
 		"15" {
-			install-process $SMARTC_SIGNUM_DECOMPILER_EXEC_PATH "SmartC Signum Decompiler" {install-smartc-signum-decompiler}
+			install-process $SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC_PATH "SmartC Signum Smart Contract Decompiler" {install-smartc-signum-decompiler}
         }
-        "16" {
-			install-process $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+		"16" {
+			install-process $SMARTJ_STARTER_EXEC_PATH "SmartJ Signum Smart Contract Compiler" {install-smartj-compiler}
         }
         "17" {
+			install-process $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+        }
+        "18" {
 			install-process $HEIDISQL_EXEC_PATH "HeidiSQL" {install_heidisql}
         }
-		"18" {
+		"19" {
 			install-process $DBEAVER_EXEC_PATH "DBeaver" {install_DBeaver}
         }
-		"19" {
+		"20" {
 			install-process $NGINX_EXEC_PATH "NGINX" {install_nginx}
         }
-		"20" {
+		"21" {
 			install-process $NODEJS_EXEC_PATH "NodeJs" {install_nodejs}
         }
-		"21" {
+		"22" {
 			install-process $NOTEPAD_EXEC_PATH "Notepad" {install_notepad}
         }
-		"22" {
+		"23" {
 			install-doc $WHITEPAPER_DOC_PATH "Whitepaper" $WHITEPAPER_DOC_PATH $WHITEPAPER_URL
         }
-        "23" {
+        "24" {
             Show-StartMenu
         }
-        "24" {
+        "25" {
             Exit-Script
         }
         default {
@@ -636,22 +658,23 @@ function Show-StartMenu {
 	Write-Host "[10] `tStart Signum Pool Testnet"
 	Write-Host "[11] `tStart Signum Explorer Mainnet"
 	Write-Host "[12] `tStart Signum Explorer Testnet"
-	Write-Host "[13] `tStart SmartC [WEB-UI]"
-	Write-Host "[14] `tStart SmartC [RETRO-UI]"
-	Write-Host "[15] `tStart SmartC Signum Decompiler"
-    Write-Host "[16] `tStart MariaDB"
-    Write-Host "[17] `tStart HeidiSQL"
-	Write-Host "[18] `tStart DBeaver"
-	Write-Host "[19] `tStart NGINX"
-	Write-Host "[20] `tStart NodeJS"
-	Write-Host "[21] `tStart Notepad++"
-	Write-Host "[22] `tOpen Whitepaper"
+	Write-Host "[13] `tStart SmartC Signum Smart Contract [WEB-UI]"
+	Write-Host "[14] `tStart SmartC Signum Smart Contract [RETRO-UI]"
+	Write-Host "[15] `tStart SmartC Signum Smart Contract Decompiler"
+	Write-Host "[16] `tStart SmartJ Signum Smart Contract Compiler"
+    Write-Host "[17] `tStart MariaDB"
+    Write-Host "[18] `tStart HeidiSQL"
+	Write-Host "[19] `tStart DBeaver"
+	Write-Host "[20] `tStart NGINX"
+	Write-Host "[21] `tStart NodeJS"
+	Write-Host "[22] `tStart Notepad++"
+	Write-Host "[23] `tOpen Whitepaper"
     Write-Host "-----------------------------------------------------"
-    Write-Host "[23] `tSignum Installer Menu"
-    Write-Host "[24] `tExit"
+    Write-Host "[24] `tSignum Installer Menu"
+    Write-Host "[25] `tExit"
     Write-Host "====================================================="
 
-    $choice = Read-Host "Enter your choice (1-24)"
+    $choice = Read-Host "Enter your choice (1-25)"
 
 	function start-process-menu($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -707,39 +730,42 @@ function Show-StartMenu {
 			start-process-menu $SIGNUM_EXPLORER_TESTNET_STARTER_PS1_PATH "Signum Explorer Testnet" {Install-SignumExplorerTestnet}
         }
 		"13" {
-			start-process-menu $SMARTC_WEB_UI_STARTER_PS1_PATH "SmartC [WEB-UI]" {install-smartc-web-ui}
+			start-process-menu $SMARTC_WEB_UI_STARTER_PS1_PATH "SmartC Signum Smart Contract Compiler [WEB-UI]" {install-smartc-web-ui}
         }
 		"14" {
-			start-process-menu $SMARTC_RETRO_UI_STARTER_PS1_PATH "SmartC [RETRO-UI]" {install-smartc-retro-ui}
+			start-process-menu $SMARTC_RETRO_UI_STARTER_PS1_PATH "SmartC Signum Smart Contract Compiler [RETRO-UI]" {install-smartc-retro-ui}
         }
 		"15" {
-			start-process-menu $SMARTC_SIGNUM_DECOMPILER_STARTER_PS1_PATH "SmartC Signum Decompiler" {install-smartc-signum-decompiler}
+			start-process-menu $SMARTC_SIGNUM_DECOMPILER_STARTER_PS1_PATH "SmartC Signum Signum Smart Contract Decompiler" {install-smartc-signum-decompiler}
         }
-        "16" {
-			start-process-menu $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+		"16" {
+			start-process-menu $SMARTJ_STARTER_PS1_PATH "SmartJ Signum Smart Contract Compiler" {install-smartj-compiler}
         }
         "17" {
+			start-process-menu $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+        }
+        "18" {
 			start-process-menu $HEIDISQL_STARTER_PS1_PATH "HeidiSQL" {install_heidisql}
 		}
-		"18" {
+		"19" {
 			start-process-menu $DBEAVER_STARTER_PS1_PATH "DBeaver" {install_DBeaver}
         }
-		"19" {
+		"20" {
 			start-process-menu $NGINX_STARTER_PS1_PATH "NGINX" {install_nginx}
         }
-		"20" {
+		"21" {
 			start-process-menu $NODEJS_STARTER_PS1_PATH "NodeJs" {install_nodejs}
         }
-		"21" {
+		"22" {
 			start-process-menu $NOTEPAD_STARTER_PS1_PATH "Notepad" {install_notepad}
         }
-		"22" {
+		"23" {
             open-doc $WHITEPAPER_DOC_PATH "Whitepaper" $WHITEPAPER_DIR_PATH $WHITEPAPER_URL
 		}
-        "23" {
+        "24" {
             Show-InstallMenu
         }
-        "24" {
+        "25" {
             Exit-Script
         }
         default {
@@ -1220,7 +1246,7 @@ function Install-SignumPoolMainnet {
 	if (Test-Path -Path "${JAVA_POOL_MAINNET_ZIP_PATH}") {
         Write-Host "${JAVA_POOL_MAINNET_ZIP_PATH} already downloaded."
     } else {
-        # Download the Signum Pool Mainnet zip file
+        # Download Java zip file
         Write-Host "Downloading Java ..."
         # Start-BitsTransfer -Source "${JAVA_POOL_MAINNET_URL}" -Destination "${JAVA_POOL_MAINNET_ZIP_PATH}"
 		Invoke-WebRequest -Uri $JAVA_POOL_MAINNET_URL -OutFile $JAVA_POOL_MAINNET_ZIP_PATH
@@ -1836,6 +1862,8 @@ function Install-SignumExplorerMainnet {
 
 		$_  -replace "^\[unix_http_server\]", ";[unix_http_server]" `
 			-replace "^port = 9001", "port = 9000" `
+			-replace "^username = dummy", ";username = dummy" `
+			-replace "^password = changeme", ";password = changeme" `
 			-replace "^file = /tmp/supervisor.sock", ";file = ./tmp/supervisor.sock" `
 			-replace "^pidfile = /tmp/supervisord.pid", "pidfile = ./tmp/supervisord.pid" `
 			-replace "^chmod = 0700", ";chmod = 0700" `
@@ -1995,6 +2023,7 @@ TASKS_SCAN_DELAY=60
 	$content | Set-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\config\settings.py
 
 	$port = 5000
+	$port1 = 9000
 
 	# Create starter ps1
 	if (-not (Test-Path $SIGNUM_EXPLORER_MAINNET_STARTER_PS1_PATH)) {
@@ -2038,6 +2067,7 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
 		} else {
 			# Start Signum Explorer Mainnet
+			Start-Process "http://localhost:$port1"
 			Start-Process "http://localhost:$port"
 			.\Scripts\supervisord.exe -n -c .\supervisord.conf
 		}
@@ -2426,6 +2456,8 @@ function Install-SignumExplorerTestnet {
 		}
 
 		$_  -replace "^\[unix_http_server\]", ";[unix_http_server]" `
+			-replace "^username = dummy", ";username = dummy" `
+			-replace "^password = changeme", ";password = changeme" `
 			-replace "^file = /tmp/supervisor.sock", ";file = ./tmp/supervisor.sock" `
 			-replace "^pidfile = /tmp/supervisord.pid", "pidfile = ./tmp/supervisord.pid" `
 			-replace "^chmod = 0700", ";chmod = 0700" `
@@ -2532,8 +2564,8 @@ CELERY_BROKER_DB=1
 GOOGLE_TRACKING_ID=
 SENTRY_DSN=
 SIGNUM_NODE=localhost
-WALLET_URL=https://signumwallet.ddns.net:8128/
-BRS_BOOTSTRAP_PEERS=["signumwallet.ddns.net:8123", "taylorforce.synology.me:8123", "zwurg.feste-ip.net:51940", "zmail.cloudns.ph:8123"]
+WALLET_URL=https://signumwallettestnet.ddns.net:8138/
+BRS_BOOTSTRAP_PEERS=["signumwallettestnet.ddns.net:8138"]
 DEFAULT_P2P_PORT=7123
 DEFAULT_API_V1_PORT=6876
 
@@ -2585,6 +2617,7 @@ TASKS_SCAN_DELAY=60
 	$content | Set-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\config\settings.py
 
 	$port = 5001
+	$port1 = 9001
 
 	# Create starter ps1
 	if (-not (Test-Path $SIGNUM_EXPLORER_TESTNET_STARTER_PS1_PATH)) {
@@ -2628,6 +2661,7 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
 		} else {
 			# Start Signum Explorer Testnet
+			Start-Process "http://localhost:$port1"
 			Start-Process "http://localhost:$port"
 			.\Scripts\supervisord.exe -n -c .\supervisord.conf
 		}
@@ -2747,7 +2781,7 @@ exit
 }
 
 function install-smartc-web-ui {
-    Write-Host "Installing SmartC WEB UI ..."
+    Write-Host "Installing SmartC WEB UI Smart Contract Compiler ..."
 	
 	# Create SmartContract directory
     if (-not (Test-Path "${SMART_CONTRACT_DIR}")) {
@@ -2865,7 +2899,7 @@ exit
 }
 
 function install-smartc-retro-ui {
-    Write-Host "Installing SmartC RETRO UI ..."
+    Write-Host "Installing SmartC RETRO UI Smart Contract Compiler ..."
 	
 	# Create SmartContract directory
     if (-not (Test-Path "${SMART_CONTRACT_DIR}")) {
@@ -2984,7 +3018,7 @@ exit
 }
 
 function install-smartc-signum-decompiler {
-    Write-Host "Installing SmartC SIGNUM DECOMPILER ..."
+    Write-Host "Installing SmartC SIGNUM Smart Contract Decompiler ..."
 	
 	# Create SmartContract directory
     if (-not (Test-Path "${SMART_CONTRACT_DIR}")) {
@@ -3081,7 +3115,7 @@ Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
     } catch {
         Write-Host 'An error occurred while starting SmartC SIGNUM DECOMPILER: `$_'
     } finally {
-        # Always set the title to 'Signum Pool Mainnet Stopped' after Signum Pool Mainnet exits
+        # Always set the title to 'Signum SmartC Decompiler Stopped' after Signum Pool Mainnet exits
         ```$host.UI.RawUI.WindowTitle = 'SmartC SIGNUM DECOMPILER Stopped'
     }
 "`@ ``
@@ -3099,6 +3133,207 @@ exit
 
 	# Create starter batch
 	create-starter-ps1-exec ${SMARTC_SIGNUM_DECOMPILER_STARTER_PS1} ..\..\${POWERSHELL_EXEC_PATH} ${SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC} ${SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC_PATH}
+
+}
+
+function install-smartj-compiler {
+    Write-Host "Installing SmartJ SIGNUM Smart Contract Compiler ..."
+	
+	# Create SmartContract directory
+    if (-not (Test-Path "${SMART_CONTRACT_DIR}")) {
+        New-Item -ItemType Directory -Path "${SMART_CONTRACT_DIR}" | Out-Null
+        Write-Host "Created directory: ${SMART_CONTRACT_DIR}"
+    } else {
+        Write-Host "Directory already exists: ${SMART_CONTRACT_DIR}"
+    }
+
+    if (Test-Path -Path "${SMARTJ_ZIP_PATH}") {
+        Write-Host "${SMARTJ_ZIP_PATH} already downloaded."
+    } else {
+        # Download SmartC zip file
+        Write-Host "Downloading SmartJ SIGNUM COMPILER from GitHub ..."
+        # Start-BitsTransfer -Source "${SMARTJ_URL}" -Destination "${SMARTJ_ZIP_PATH}"
+		Invoke-WebRequest -Uri $SMARTJ_URL -OutFile $SMARTJ_ZIP_PATH
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SMARTJ_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download SMARTC SIGNUM DECOMPILER."
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+
+    if (Test-Path -Path "${SMARTJ_UNZIP_PATH}") {
+        Write-Host "${SMARTJ_UNZIP_PATH} already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Signum to ${SMARTJ_UNZIP_PATH} ..."
+        Expand-Archive -Path "${SMARTJ_ZIP_PATH}" -DestinationPath "${SMART_CONTRACT_DIR}" -Force
+		Rename-Item -Path $SMARTJ_ZIP_NAME_PATH -NewName $SMARTJ_UNZIP
+    }
+	
+	# Rename build.gradle to build-original.gradle
+	if (Test-Path -Path "$SMARTJ_UNZIP_PATH\build-original.gradle") {
+        Write-Host "build-original.gradle already installed."
+    } else {
+        # Rename build.gradle to build-original.gradle
+        Write-Host "Rename build.gradle to build-original.gradle"
+        Rename-Item -Path $SMARTJ_UNZIP_PATH\build.gradle -NewName "build-original.gradle"
+    }
+	
+	# Initialize build.gradle
+	Write-Host "Initialize build.gradle"	
+		$content = 
+@"
+plugins {
+    id 'java'
+    id 'maven'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+}
+// Publishing stuff
+group = 'com.github.jjos2372'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+dependencies {
+    implementation 'org.ow2.asm:asm-tree:7.1'
+    implementation 'com.github.signum-network:signumj:f2522b5480'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.15'
+    implementation 'com.github.jiconfont:jiconfont-swing:1.0.0'
+    implementation 'com.github.jiconfont:jiconfont-font_awesome:4.7.0.1'
+    implementation 'org.apache.logging.log4j:log4j-api:2.15.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.15.0'
+    testImplementation 'junit:junit:4.12'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+}
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+shadowJar {
+    archiveClassifier.set('')
+    manifest {
+        attributes 'Main-Class': 'bt.sample.Auction'
+        attributes 'Multi-Release': 'true'
+    }
+}
+build.dependsOn shadowJar
+"@
+
+	$content | Out-File -FilePath $SMARTJ_UNZIP_PATH\build.gradle -Force
+	Write-Host "build.gradle successfully initialized."
+	
+	# Create jre directory
+    if (-not (Test-Path -Path "${JAVA_SMARTJ_DIR_PATH}")) {
+        New-Item -Path "${JAVA_SMARTJ_DIR_PATH}" -ItemType Directory | Out-Null
+        Write-Host "Created directory: ${JAVA_SMARTJ_DIR_PATH}"
+    } else {
+        Write-Host "Directory already exists: ${JAVA_SMARTJ_DIR_PATH}"
+    }
+	
+	# download java
+	if (Test-Path -Path "${JAVA_SMARTJ_ZIP_PATH}") {
+        Write-Host "${JAVA_SMARTJ_ZIP_PATH} already downloaded."
+    } else {
+        # Download Java zip file
+        Write-Host "Downloading Java ..."
+        # Start-BitsTransfer -Source "${JAVA_SMARTJ_URL}" -Destination "${JAVA_SMARTJ_ZIP_PATH}"
+		Invoke-WebRequest -Uri $JAVA_SMARTJ_URL -OutFile $JAVA_SMARTJ_ZIP_PATH
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${JAVA_SMARTJ_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download Java."
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+	
+	# unzip java
+	if (Test-Path -Path "${JAVA_SMARTJ_UNZIP_PATH}") {
+        Write-Host "${JAVA_SMARTJ_ZIP_PATH} already unzipped."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Java to ${JAVA_SMARTJ_UNZIP_PATH} ..."
+        Expand-Archive -Path "${JAVA_SMARTJ_ZIP_PATH}" -DestinationPath "${JAVA_SMARTJ_DIR_PATH}" -Force
+    }
+	
+	# Copy gradlew.bat to gradlew-original.bat
+	if (Test-Path -Path "$SMARTJ_UNZIP_PATH\gradlew-original.bat") {
+        Write-Host "gradlew-original.bat already installed."
+    } else {
+        # Copy build.gradle to build-original.gradle
+        Write-Host "Copy gradlew.bat to gradlew-original.bat"
+        Copy-Item -Path $SMARTJ_UNZIP_PATH\gradlew.bat -Destination $SMARTJ_UNZIP_PATH\gradlew-original.bat
+    }
+
+	# Initialize gradlew.bat
+	
+	# Load the content of the file
+	$content = Get-Content -Path $SMARTJ_UNZIP_PATH\gradlew.bat
+	
+	# Process each line using regex to add '#' only if there's no '#' before the target
+	$content = $content | ForEach-Object {
+		$_ -replace "^\s*if defined JAVA_HOME goto findJavaFromJavaHome", "@rem if defined JAVA_HOME goto findJavaFromJavaHome" `
+		   -replace "^\s*set JAVA_EXE=java.exe", "set JAVA_EXE=.\jre\${JAVA_SMARTJ_UNZIP}\bin\java.exe"
+	}
+
+	# Write the changes back to the file
+	$content | Set-Content -Path $SMARTJ_UNZIP_PATH\gradlew.bat
+	
+	Write-Host "gradlew.bat initialized"	
+
+	cd .\$SMARTJ_UNZIP_PATH
+	.\gradlew.bat clean shadowJar
+	
+	Set-Location -Path $PSScriptRoot
+
+	# Create starter ps1
+	if (-not (Test-Path $SMARTJ_STARTER_PS1_PATH)) {
+		# Create start-smartc-decompiler.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start SmartJ SIGNUM COMPILER
+Set-Location -Path `$PSScriptRoot
+
+# Instructions:
+# 1. You can update the line: attributes 'Main-Class': 'bt.sample.Auction' with the proper java file in build.grandle
+# 2. Run .\gradlew.bat clean shadowJar command to build java application, or select yes for the question "Do you want to build java application? (yes/no)"
+# 3. Run application
+
+`$userChoice = Read-Host "Do you want to build java application? (yes/no)"
+if (`$userChoice -match '^(yes|y|Y)$') {
+	.\gradlew.bat clean shadowJar
+}
+
+Write-Host 'Starting SmartJ SIGNUM Smart Contract Compiler ...'
+
+.\jre\${JAVA_SMARTJ_UNZIP}\bin\java -jar .\build\libs\blocktalk.jar
+
+"@
+
+		$content | Out-File -FilePath $SMARTJ_STARTER_PS1_PATH -Force
+
+		Write-Host "${SMARTJ_STARTER_PS1_PATH} successfully created."
+	} else {
+		Write-Host "File already exists: ${SMARTJ_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${SMARTJ_STARTER_PS1} ..\..\${POWERSHELL_EXEC_PATH} ${SMARTJ_STARTER_EXEC} ${SMARTJ_STARTER_EXEC_PATH}
 
 }
 
