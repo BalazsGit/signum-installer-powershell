@@ -540,6 +540,7 @@ function Show-InstallMenu {
 	Write-Host "[8] `tInstall Signum SmartC Smart Contract Compiler" #>
 	# Write-Host "-----------------------------------------------------"
 	Write-Host "[23] `tInstall Whitepaper And Documents"
+	Write-Host "[24] `tInstall Signum Link Collection"
     Write-Host "-----------------------------------------------------"
 	# TODO Signum pages menu
 	# TODO add usefull signum pages wiki, official page, github stb. coinmarcetcap, bft portal, explorer
@@ -547,12 +548,12 @@ function Show-InstallMenu {
 	# Signum provider menu
 	# letsencrypt with ACME challege
 	# open readme how to use the installer
-    Write-Host "[24] `tSignum Starter Menu"
-    Write-Host "[25] `tExit"
+    Write-Host "[25] `tSignum Starter Menu"
+    Write-Host "[26] `tExit"
     Write-Host "====================================================="
 
 	# Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
-    $choice = Read-Host "Enter your choice (1-25)"
+    $choice = Read-Host "Enter your choice (1-26)"
 
 	function install-process($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -637,10 +638,13 @@ function Show-InstallMenu {
 		"23" {
 			install-process $WHITEPAPER_DOC_PATH "Whitepaper And Documents" {install-doc}
         }
-        "24" {
-            Show-StartMenu
+		"24" {
+			install-process $SIGNUM_LINK_COLLECTION_PATH "Signum Link Collection" {install-doc}
         }
         "25" {
+            Show-StartMenu
+        }
+        "26" {
             Exit-Script
         }
         default {
@@ -680,12 +684,13 @@ function Show-StartMenu {
 	Write-Host "[21] `tStart NodeJS"
 	Write-Host "[22] `tStart Notepad++"
 	Write-Host "[23] `tOpen Whitepaper"
+	Write-Host "[24] `tOpen Signum Link Collection"
     Write-Host "-----------------------------------------------------"
-    Write-Host "[24] `tSignum Installer Menu"
-    Write-Host "[25] `tExit"
+    Write-Host "[25] `tSignum Installer Menu"
+    Write-Host "[26] `tExit"
     Write-Host "====================================================="
 
-    $choice = Read-Host "Enter your choice (1-25)"
+    $choice = Read-Host "Enter your choice (1-26)"
 
 	function start-process-menu($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -789,10 +794,13 @@ function Show-StartMenu {
 		"23" {
             open-doc-menu $WHITEPAPER_DOC_PATH "Whitepaper" {install-doc}
 		}
-        "24" {
+		"24" {
+            open-doc-menu $SIGNUM_LINK_COLLECTION_PATH "Signum Link Collection" {install-doc}
+		}
+        "25" {
             Show-InstallMenu
         }
-        "25" {
+        "26" {
             Exit-Script
         }
         default {
