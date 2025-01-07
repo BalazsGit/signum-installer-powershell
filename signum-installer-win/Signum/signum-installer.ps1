@@ -3478,12 +3478,15 @@ build.dependsOn shadowJar
 # PowerShell script to start SmartJ SIGNUM COMPILER
 Set-Location -Path `$PSScriptRoot
 
-# Instructions:
-# 1. You can update the line: attributes 'Main-Class': 'bt.sample.Auction' with the proper java file in build.grandle
-# 2. Run .\gradlew.bat clean shadowJar command to build java application, or select yes for the question "Do you want to build java application? (yes/no)"
-# 3. Run application
+Write-Host 'Instructions in case You want to run a different java Smart Contract:'
+Write-Host '1. If You want to run a different java Smart Contract You should update the line:'
+Write-Host '`tattributes ''Main-Class'': ''bt.sample.Auction'' with the proper java file within build.grandle'
+Write-Host '2. Run .\gradlew.bat clean shadowJar command from CMD to build java application, or select "yes" for the question:'
+Write-Host '`t"Do you want to build java application? (yes/no)"'
+Write-Host '3. Run application from CMD, Start SmartJ from installer, run $SMARTJ_STARTER_EXEC, or run $SMARTJ_STARTER_PS1'
+Write-Host ''
 
-`$userChoice = Read-Host "Do you want to build java application? (yes/no)"
+`$userChoice = Read-Host 'Do you want to build java application? (yes/no)'
 if (`$userChoice -match '^(yes|y|Y)$') {
 	.\gradlew.bat clean shadowJar
 }
