@@ -322,11 +322,22 @@ $DOCUMENTS_DIR = "Documents"
 
 $WHITEPAPER_VERSION = "v1"
 $WHITEPAPER_DOC = "$WHITEPAPER_VERSION.pdf"
+$WHITEPAPER_DOC_NAME = "Whitepaper_$WHITEPAPER_VERSION.pdf"
 $WHITEPAPER_DIR = "Whitepaper"
 $WHITEPAPER_DIR_PATH = "$DOCUMENTS_DIR\$WHITEPAPER_DIR"
-$WHITEPAPER_DOC_PATH = "$DOCUMENTS_DIR\$WHITEPAPER_DIR\$WHITEPAPER_VERSION.pdf"
+$WHITEPAPER_DOC_PATH = "$DOCUMENTS_DIR\$WHITEPAPER_DOC_NAME.pdf"
 $WHITEPAPER_URL = "https://signum-network.github.io/whitepaper/business/${WHITEPAPER_VERSION}.pdf"
-# $WHITEPAPER_URL = "https://github.com/signum-network/whitepaper/blob/main/business/${WHITEPAPER_VERSION}.pdf"
+
+$WHITEHOUSE_DOC_NAME = "Climate_And_Energy_Implications_Of_Crypto_Assets_In_The_United_States.pdf"
+$WHITEHOUSE_DOC_PATH = "$DOCUMENTS_DIR\$WHITEHOUSE_DOC_NAME"
+$WHITEHOUSE_URL = "https://www.whitehouse.gov/wp-content/uploads/2022/09/09-2022-Crypto-Assets-and-Climate-Report.pdf"
+
+$INDECS_DOC_NAME = "Sustainabiliy_Of_Blockchain_For_Strong_Private_Data_From_IOT_Devices.pdf"
+$INDECS_DOC_PATH = "$DOCUMENTS_DIR\$INDECS_DOC_NAME"
+$INDECS_URL = "https://indecs.eu/2024/indecs2024-pp738-762.pdf"
+
+$SIGNUM_LINK_COLLECTION = "Signum-Link-Collection.html"
+$SIGNUM_LINK_COLLECTION_PATH = "$DOCUMENTS_DIR\$SIGNUM_LINK_COLLECTION"
 
 $DATABASE_DIR = "Database"
 
@@ -528,7 +539,7 @@ function Show-InstallMenu {
 	Write-Host "====================================================="
 	Write-Host "[8] `tInstall Signum SmartC Smart Contract Compiler" #>
 	# Write-Host "-----------------------------------------------------"
-	Write-Host "[23] `tDownload Whitepaper"
+	Write-Host "[23] `tInstall Whitepaper And Documents"
     Write-Host "-----------------------------------------------------"
 	# TODO Signum pages menu
 	# TODO add usefull signum pages wiki, official page, github stb. coinmarcetcap, bft portal, explorer
@@ -624,7 +635,7 @@ function Show-InstallMenu {
 			install-process $NOTEPAD_EXEC_PATH "Notepad" {install_notepad}
         }
 		"23" {
-			install-doc $WHITEPAPER_DOC_PATH "Whitepaper" $WHITEPAPER_DOC_PATH $WHITEPAPER_URL
+			install-process $WHITEPAPER_DOC_PATH "Whitepaper And Documents" {install-doc}
         }
         "24" {
             Show-StartMenu
@@ -687,6 +698,22 @@ function Show-StartMenu {
 		} else {
 			Write-Host "${name} is not installed, please install first!"
 			question-prompt "Install" $name $installFunction
+			Pause
+			Show-StartMenu
+		}
+	}
+	
+	function open-doc-menu($file, $name, $installFunction) {
+		if (Test-Path $file) {
+			Write-Host "Opening ${name} ..."
+			# Start-Process -FilePath $file $command
+			Start-Process -FilePath "$file"
+			# Start-Process -FilePath $POWERSHELL_EXEC_PATH -ArgumentList "-ExecutionPolicy Bypass", "-File", $file
+			Pause
+			Show-StartMenu
+		} else {
+			Write-Host "${name} is not downloaded, please download first!"
+			question-prompt "Download" $name $installFunction
 			Pause
 			Show-StartMenu
 		}
@@ -760,7 +787,7 @@ function Show-StartMenu {
 			start-process-menu $NOTEPAD_STARTER_PS1_PATH "Notepad" {install_notepad}
         }
 		"23" {
-            open-doc $WHITEPAPER_DOC_PATH "Whitepaper" $WHITEPAPER_DIR_PATH $WHITEPAPER_URL
+            open-doc-menu $WHITEPAPER_DOC_PATH "Whitepaper" {install-doc}
 		}
         "24" {
             Show-InstallMenu
@@ -782,40 +809,174 @@ function Exit-Script {
     Exit
 }
 
-function open-doc ($file, $name, $target_path, $url) {
+function install-doc-init {
 	
-	# Create mainnet/testnet directory
-    if (-not (Test-Path -Path "${file}")) {
-		Write-Host "$name is not downloaded."
-		download-prompt $name $url $target_path $file
-		Pause
-		Show-StartMenu
-    } else {
-        Write-Host "Opening ${name}"
-		Start-Process -FilePath "$file"
-    }
-	Pause
-	Show-InstallMenu
+	# Create directory
+    if (-not (Test-Path -Path $DOCUMENTS_DIR)) {
+		New-Item -Path "$DOCUMENTS_DIR" -ItemType Directory | Out-Null
+	} else {
+		Write-Host "$DOCUMENTS_DIR already exists."
+	}
+	
+	$content = 
+@"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signum Cryptocurrency Resources</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin: 5px 0;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Signum Cryptocurrency Resources</h1>
+    
+    <div class="section">
+        <h2>Documentation & Development</h2>
+        <ul>
+            <li><a href="https://github.com/deleterium/SmartC/blob/v2.1/docs%2FREADME.md">SmartC README</a></li>
+            <li><a href="https://docs.signum.network/ecosystem/resources-for-developers">Developer Resources</a></li>
+            <li><a href="https://wiki.signum.network/signum-software/index.htm">Signum Software Wiki</a></li>
+            <li><a href="https://github.com/signum-network/signumj">SignumJ GitHub</a></li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Research & Papers</h2>
+        <ul>
+            <li><a href="https://www.signum.network/wp/Signum_Business_Whitepaper.pdf">Signum Business Whitepaper</a></li>
+            <li><a href="https://indecs.eu/2024/indecs2024-pp738-762.pdf">Blockchain for IoT Devices</a></li>
+            <li><a href="https://www.whitehouse.gov/wp-content/uploads/2022/09/09-2022-Crypto-Assets-and-Climate-Report.pdf">Crypto-Assets and Climate Report</a></li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Community & Social Media</h2>
+        <ul>
+            <li><a href="https://discord.com/invite/QHZkF4KHDS">Signum Discord</a></li>
+            <li><a href="https://x.com/signum_official">Signum X</a></li>
+            <li><a href="https://t.me/signumnetwork">Signum Network Telegram</a></li>
+            <li><a href="https://t.me/Signum_Russia">Signum Russia Telegram</a></li>
+            <li><a href="https://t.me/signumchain">Signum Chain Telegram</a></li>
+            <li><a href="https://t.me/Signum_HK">Signum HK Telegram</a></li>
+            <li><a href="https://t.me/signa_holders">Signa Holders Telegram</a></li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Tools & Services</h2>
+        <ul>
+            <li><a href="https://miningpoolstats.stream/signa">Mining Pool Stats</a></li>
+            <li><a href="http://ciyam.org/at/">CIYAM AT</a></li>
+            <li><a href="https://signum.dappository.world/">Signum Dappository</a></li>
+            <li><a href="https://signum-neo-node.pages.dev/">Signum Neo Node</a></li>
+            <li><a href="https://docs.signum.network/signumswap/add-a-customised-icon">SignumSwap Custom Icon</a></li>
+            <li><a href="https://explorer.signum.network/">Signum Explorer</a></li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>External Resources</h2>
+        <ul>
+            <li><a href="https://coindar.org/en/coin/signum">Coindar Signum</a></li>
+            <li><a href="https://bitcointalk.org/index.php?action=profile;u=364787">BitcoinTalk Profile</a></li>
+            <li><a href="https://xeggex.com/market/SIGNA_BTC">Xeggex Market SIGNA/BTC</a></li>
+            <li><a href="https://fomplo.com/signum-subscriptions">Signum Subscriptions</a></li>
+            <li><a href="https://signum.network/">Signum Network</a></li>
+            <li><a href="https://www.signumart.io/">NFT Portal</a></li>
+        </ul>
+    </div>
+</body>
+</html>
+"@
+	
+	# Create Signum link collection page
+	if (-not (Test-Path $SIGNUM_LINK_COLLECTION_PATH)) {
+		
+		# Create Signum-Link-Collection.html file with the desired content
+		$content | Out-File -FilePath $SIGNUM_LINK_COLLECTION_PATH -Force
+		Write-Host "${SIGNUM_LINK_COLLECTION_PATH} successfully created."
+		
+	} else {
+		
+		Write-Host "File already exists: ${SIGNUM_LINK_COLLECTION_PATH}"
+		$fileContent = Get-Content -Path $SIGNUM_LINK_COLLECTION_PATH -Raw
+		# Compare the content
+		
+		if ($fileContent.TrimEnd() -eq $content.TrimEnd()) {
+			
+			Write-Output "The contents are the same."
+			
+		} else {
+			
+			Write-Output "The contents are different."
+			Write-Output "Update $SIGNUM_LINK_COLLECTION."
+			$content | Out-File -FilePath $SIGNUM_LINK_COLLECTION_PATH -Force
+			
+		}
+	}
+	
+	if (-not (Test-Path -Path $WHITEPAPER_DOC_PATH)) {
+		Write-Host "Downloading $WHITEPAPER_DOC_NAME"
+		Invoke-WebRequest -Uri $WHITEPAPER_URL -OutFile $WHITEPAPER_DOC_PATH
+	} else {
+		Write-Host "$WHITEPAPER_DOC_PATH already exists."
+	}
+	
+	if (-not (Test-Path -Path $WHITEHOUSE_DOC_PATH)) {
+		Write-Host "Downloading $WHITEHOUSE_DOC_NAME"
+		Invoke-WebRequest -Uri $WHITEHOUSE_URL -OutFile $WHITEHOUSE_DOC_PATH
+	} else {
+		Write-Host "$WHITEHOUSE_DOC_PATH already exists."
+	}
+	
+	if (-not (Test-Path -Path $INDECS_DOC_PATH)) {
+		Write-Host "Downloading $INDECS_DOC_NAME"
+		Invoke-WebRequest -Uri $INDECS_URL -OutFile $INDECS_DOC_PATH
+	} else {
+		Write-Host "$INDECS_DOC_PATH already exists."
+	}
+
+	Write-Host "Documents downloaded successfully"
 	
 }
 
-function install-doc ($file, $name, $target_path, $url) {
+function install-doc {
 	
-	# Create mainnet/testnet directory
-    if (-not (Test-Path -Path "${file}")) {
-		download-prompt $name $url $target_path $file
-    } else {
-		Write-Host "${name} already downloaded."
-		$userChoice = Read-Host "Do you want to Open ${name} (yes/no)"
-		if ($userChoice -match '^(yes|y|Y)$') {
-			Write-Host "Opening ${name}"
-			Start-Process -FilePath "$file"
-		} else {
-			Write-Host "${name} download canceled."
-		}
-    }
+	install-doc-init
+
 	Pause
-	Show-StartMenu
+	Show-InstallMenu
 	
 }
 
@@ -4906,9 +5067,12 @@ function question-prompt($process, $name, $installFunction) {
 }
 
 function download-prompt($name, $url, $target_path, $file) {
+	# Initialize the global variable
+	$global:UserResponse = $null
     $userChoice = Read-Host "Do you want to download ${name} (yes/no)"
     if ($userChoice -match '^(yes|y|Y)$') {
 		if (-not (Test-Path "${target_path}")) {
+			$global:UserResponse = "yes"
 			New-Item -Path "${target_path}" -ItemType Directory | Out-Null
 		}
 		Write-Host "Downloading ${name} ..."
@@ -4918,6 +5082,7 @@ function download-prompt($name, $url, $target_path, $file) {
 		# Invoke-WebRequest -Uri $url -OutFile $file
 		# Invoke-RestMethod -Uri $url -OutFile $file
     } else {
+		$global:UserResponse = "no"
         Write-Host "${name} download canceled."
     }
 }
@@ -4932,4 +5097,5 @@ function download-prompt($name, $url, $target_path, $file) {
 
 # Initialize the script by showing the install menu
 # Pause
+install-doc-init
 Show-InstallMenu
