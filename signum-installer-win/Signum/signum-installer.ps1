@@ -361,6 +361,9 @@ $DATABASE_PASSWORD = ""
 
 $SMART_CONTRACT_DIR = "SmartContract"
 
+$SMARTC_SIGNUM_COMPILER_VERSION = "2.3.0"
+$SMARTC_ASSEMBLY_HIGHLIGHT_VERSION = "1.1.1"
+
 $SMARTC_WEB_UI_STARTER_PS1 = "start-smartc.ps1"
 $SMARTC_WEB_UI_STARTER_EXEC = "start-smartc.bat"
 
@@ -396,6 +399,18 @@ $SMARTC_SIGNUM_DECOMPILER_UNZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DE
 $SMARTC_SIGNUM_DECOMPILER_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DECOMPILER_UNZIP}\${SMARTC_SIGNUM_DECOMPILER_STARTER_PS1}"
 $SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DECOMPILER_UNZIP}\${SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC}"
 $SMARTC_SIGNUM_DECOMPILER_URL = "https://github.com/deleterium/smartc-signum-decompiler/archive/refs/heads/main.zip"
+
+$SC_SIMULATOR_STARTER_PS1 = "start-sc-simulator.ps1"
+$SC_SIMULATOR_STARTER_EXEC = "start-sc-simulator.bat"
+
+$SC_SIMULATOR_ZIP_NAME_PATH = "${SMART_CONTRACT_DIR}\sc-simulator-main"
+$SC_SIMULATOR_UNZIP = "SC-Simulator"
+$SC_SIMULATOR_ZIP = "$SC_SIMULATOR_UNZIP.zip"
+$SC_SIMULATOR_ZIP_PATH = "${SMART_CONTRACT_DIR}\${SC_SIMULATOR_ZIP}"
+$SC_SIMULATOR_UNZIP_PATH = "${SMART_CONTRACT_DIR}\${SC_SIMULATOR_UNZIP}"
+$SC_SIMULATOR_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SC_SIMULATOR_UNZIP}\${SC_SIMULATOR_STARTER_PS1}"
+$SC_SIMULATOR_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SC_SIMULATOR_UNZIP}\${SC_SIMULATOR_STARTER_EXEC}"
+$SC_SIMULATOR_URL = "https://github.com/deleterium/SC-Simulator/archive/refs/heads/main.zip"
 
 $SMARTJ_STARTER_PS1 = "start-smartj.ps1"
 $SMARTJ_STARTER_EXEC = "start-smartj.bat"
@@ -521,26 +536,27 @@ function Show-InstallMenu {
 	Write-Host "[13] `tInstall SmartC Signum Smart Contract Compiler [WEB-UI]"
 	Write-Host "[14] `tInstall SmartC Signum Smart Contract Compiler [RETRO-UI]"
 	Write-Host "[15] `tInstall SmartC Signum Smart Decompiler"
-	Write-Host "[16] `tInstall SmartJ Signum Smart Contract Compiler"
+	Write-Host "[16] `tInstall SC Simulator"
+	Write-Host "[17] `tInstall SmartJ Signum Smart Contract Compiler"
 	# Write-Host "====================================================="
 	# Write-Host "            		 Databases	 			         "
 	# Write-Host "====================================================="
-    Write-Host "[17] `tInstall MariaDB"
+    Write-Host "[18] `tInstall MariaDB"
 	# Write-Host "====================================================="
 	# Write-Host "            		 Tools	 			             "
 	# Write-Host "====================================================="
-    Write-Host "[18] `tInstall HeidiSQL"
-	Write-Host "[19] `tInstall DBeaver"
-    Write-Host "[20] `tInstall NGINX"
-	Write-Host "[21] `tInstall NodeJS"
-	Write-Host "[22] `tInstall Notepad++"
+    Write-Host "[19] `tInstall HeidiSQL"
+	Write-Host "[20] `tInstall DBeaver"
+    Write-Host "[21] `tInstall NGINX"
+	Write-Host "[22] `tInstall NodeJS"
+	Write-Host "[23] `tInstall Notepad++"
 	<# Write-Host "====================================================="
 	Write-Host "            	  Developer Tools 			         "
 	Write-Host "====================================================="
 	Write-Host "[8] `tInstall Signum SmartC Smart Contract Compiler" #>
 	# Write-Host "-----------------------------------------------------"
-	Write-Host "[23] `tInstall Whitepaper And Documents"
-	Write-Host "[24] `tInstall Signum Link Collection"
+	Write-Host "[24] `tInstall Whitepaper And Documents"
+	Write-Host "[25] `tInstall Signum Link Collection"
     Write-Host "-----------------------------------------------------"
 	# TODO Signum pages menu
 	# TODO add usefull signum pages wiki, official page, github stb. coinmarcetcap, bft portal, explorer
@@ -548,12 +564,12 @@ function Show-InstallMenu {
 	# Signum provider menu
 	# letsencrypt with ACME challege
 	# open readme how to use the installer
-    Write-Host "[25] `tSignum Starter Menu"
-    Write-Host "[26] `tExit"
+    Write-Host "[26] `tSignum Starter Menu"
+    Write-Host "[27] `tExit"
     Write-Host "====================================================="
 
 	# Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
-    $choice = Read-Host "Enter your choice (1-26)"
+    $choice = Read-Host "Enter your choice (1-27)"
 
 	function install-process($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -615,36 +631,39 @@ function Show-InstallMenu {
 			install-process $SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC_PATH "SmartC Signum Smart Contract Decompiler" {install-smartc-signum-decompiler}
         }
 		"16" {
+			install-process $SC_SIMULATOR_STARTER_EXEC_PATH "SC Simulator" {install-sc-simulator}
+        }
+		"17" {
 			install-process $SMARTJ_STARTER_EXEC_PATH "SmartJ Signum Smart Contract Compiler" {install-smartj-compiler}
         }
-        "17" {
+        "18" {
 			install-process $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
         }
-        "18" {
+        "19" {
 			install-process $HEIDISQL_EXEC_PATH "HeidiSQL" {install_heidisql}
         }
-		"19" {
+		"20" {
 			install-process $DBEAVER_EXEC_PATH "DBeaver" {install_DBeaver}
         }
-		"20" {
+		"21" {
 			install-process $NGINX_EXEC_PATH "NGINX" {install_nginx}
         }
-		"21" {
+		"22" {
 			install-process $NODEJS_EXEC_PATH "NodeJs" {install_nodejs}
         }
-		"22" {
+		"23" {
 			install-process $NOTEPAD_EXEC_PATH "Notepad" {install_notepad}
         }
-		"23" {
+		"24" {
 			install-process $WHITEPAPER_DOC_PATH "Whitepaper And Documents" {install-doc}
         }
-		"24" {
+		"25" {
 			install-process $SIGNUM_LINK_COLLECTION_PATH "Signum Link Collection" {install-doc}
         }
-        "25" {
+        "26" {
             Show-StartMenu
         }
-        "26" {
+        "27" {
             Exit-Script
         }
         default {
@@ -676,21 +695,22 @@ function Show-StartMenu {
 	Write-Host "[13] `tStart SmartC Signum Smart Contract [WEB-UI]"
 	Write-Host "[14] `tStart SmartC Signum Smart Contract [RETRO-UI]"
 	Write-Host "[15] `tStart SmartC Signum Smart Contract Decompiler"
-	Write-Host "[16] `tStart SmartJ Signum Smart Contract Compiler"
-    Write-Host "[17] `tStart MariaDB"
-    Write-Host "[18] `tStart HeidiSQL"
-	Write-Host "[19] `tStart DBeaver"
-	Write-Host "[20] `tStart NGINX"
-	Write-Host "[21] `tStart NodeJS"
-	Write-Host "[22] `tStart Notepad++"
-	Write-Host "[23] `tOpen Whitepaper"
-	Write-Host "[24] `tOpen Signum Link Collection"
+	Write-Host "[16] `tStart SC Simulator"
+	Write-Host "[17] `tStart SmartJ Signum Smart Contract Compiler"
+    Write-Host "[18] `tStart MariaDB"
+    Write-Host "[19] `tStart HeidiSQL"
+	Write-Host "[20] `tStart DBeaver"
+	Write-Host "[21] `tStart NGINX"
+	Write-Host "[22] `tStart NodeJS"
+	Write-Host "[23] `tStart Notepad++"
+	Write-Host "[24] `tOpen Whitepaper"
+	Write-Host "[25] `tOpen Signum Link Collection"
     Write-Host "-----------------------------------------------------"
-    Write-Host "[25] `tSignum Installer Menu"
-    Write-Host "[26] `tExit"
+    Write-Host "[26] `tSignum Installer Menu"
+    Write-Host "[27] `tExit"
     Write-Host "====================================================="
 
-    $choice = Read-Host "Enter your choice (1-26)"
+    $choice = Read-Host "Enter your choice (1-27)"
 
 	function start-process-menu($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -771,36 +791,39 @@ function Show-StartMenu {
 			start-process-menu $SMARTC_SIGNUM_DECOMPILER_STARTER_PS1_PATH "SmartC Signum Signum Smart Contract Decompiler" {install-smartc-signum-decompiler}
         }
 		"16" {
+			start-process-menu $SC_SIMULATOR_STARTER_PS1_PATH "SC Simulator" {install-sc-simulator}
+        }
+		"17" {
 			start-process-menu $SMARTJ_STARTER_PS1_PATH "SmartJ Signum Smart Contract Compiler" {install-smartj-compiler}
         }
-        "17" {
+        "18" {
 			start-process-menu $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
         }
-        "18" {
+        "19" {
 			start-process-menu $HEIDISQL_STARTER_PS1_PATH "HeidiSQL" {install_heidisql}
 		}
-		"19" {
+		"20" {
 			start-process-menu $DBEAVER_STARTER_PS1_PATH "DBeaver" {install_DBeaver}
         }
-		"20" {
+		"21" {
 			start-process-menu $NGINX_STARTER_PS1_PATH "NGINX" {install_nginx}
         }
-		"21" {
+		"22" {
 			start-process-menu $NODEJS_STARTER_PS1_PATH "NodeJs" {install_nodejs}
         }
-		"22" {
+		"23" {
 			start-process-menu $NOTEPAD_STARTER_PS1_PATH "Notepad" {install_notepad}
         }
-		"23" {
+		"24" {
             open-doc-menu $WHITEPAPER_DOC_PATH "Whitepaper" {install-doc}
 		}
-		"24" {
+		"25" {
             open-doc-menu $SIGNUM_LINK_COLLECTION_PATH "Signum Link Collection" {install-doc}
 		}
-        "25" {
+        "26" {
             Show-InstallMenu
         }
-        "26" {
+        "27" {
             Exit-Script
         }
         default {
@@ -3028,16 +3051,16 @@ Set-Location -Path `$PSScriptRoot
 
 Write-Host 'Starting SmartC WEB UI ...'
 
-Write-Host 'Starting Signum Pool Mainnet ...'
 Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
     -ArgumentList "-NoExit", "-Command", `@"
     try {
-        ```$host.UI.RawUI.WindowTitle = 'Signum Pool Mainnet'
+        ```$host.UI.RawUI.WindowTitle = 'SmartC WEB UI'
 		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
         if (```$portInUse) {
 			Write-Host 'SmartC WEB UI is already running.'
 			exit
 		} else {
+			Write-Host 'Stop SmartC WEB UI: ctrl + c'
 			# Start SmartC WEB UI
 			Start-Process "http://localhost:$port"
 			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
@@ -3046,7 +3069,7 @@ Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
     } catch {
         Write-Host 'An error occurred while starting SmartC WEB UI: `$_'
     } finally {
-        # Always set the title to 'Signum Pool Mainnet Stopped' after Signum Pool Mainnet exits
+        # Always set the title to 'SmartC WEB UI Stopped' after SmartC WEB UI exits
         ```$host.UI.RawUI.WindowTitle = 'SmartC WEB UI Stopped'
     }
 "`@ ``
@@ -3147,16 +3170,16 @@ Set-Location -Path `$PSScriptRoot
 
 Write-Host 'Starting SmartC RETRO UI ...'
 
-Write-Host 'Starting Signum Pool Mainnet ...'
 Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
     -ArgumentList "-NoExit", "-Command", `@"
     try {
-        ```$host.UI.RawUI.WindowTitle = 'Signum Pool Mainnet'
+        ```$host.UI.RawUI.WindowTitle = 'SmartC RETRO UI'
 		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
         if (```$portInUse) {
 			Write-Host 'SmartC RETRO UI is already running.'
 			exit
 		} else {
+			Write-Host 'Stop SmartC RETRO UI: ctrl + c'
 			# Start SmartC RETRO UI
 			Start-Process "http://localhost:$port"
 			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
@@ -3165,7 +3188,7 @@ Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
     } catch {
         Write-Host 'An error occurred while starting SmartC RETRO UI: `$_'
     } finally {
-        # Always set the title to 'Signum Pool Mainnet Stopped' after Signum Pool Mainnet exits
+        # Always set the title to 'SmartC RETRO UI Stopped' after SmartC RETRO UI exits
         ```$host.UI.RawUI.WindowTitle = 'SmartC RETRO UI Stopped'
     }
 "`@ ``
@@ -3266,7 +3289,6 @@ Set-Location -Path `$PSScriptRoot
 
 Write-Host 'Starting SmartC SIGNUM DECOMPILER ...'
 
-Write-Host 'Starting Signum Pool Mainnet ...'
 Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
     -ArgumentList "-NoExit", "-Command", `@"
     try {
@@ -3276,6 +3298,7 @@ Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
 			Write-Host 'SmartC SIGNUM DECOMPILER is already running.'
 			exit
 		} else {
+			Write-Host 'Stop SmartC SIGNUM DECOMPILER: ctrl + c'
 			# Start SmartC SIGNUM DECOMPILER
 			Start-Process "http://localhost:$port/tester.html"
 			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
@@ -3284,7 +3307,7 @@ Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
     } catch {
         Write-Host 'An error occurred while starting SmartC SIGNUM DECOMPILER: `$_'
     } finally {
-        # Always set the title to 'Signum SmartC Decompiler Stopped' after Signum Pool Mainnet exits
+        # Always set the title to 'Signum SmartC Decompiler Stopped' after SmartC SIGNUM DECOMPILER exits
         ```$host.UI.RawUI.WindowTitle = 'SmartC SIGNUM DECOMPILER Stopped'
     }
 "`@ ``
@@ -3302,6 +3325,140 @@ exit
 
 	# Create starter batch
 	create-starter-ps1-exec ${SMARTC_SIGNUM_DECOMPILER_STARTER_PS1} ..\..\${POWERSHELL_EXEC_PATH} ${SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC} ${SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC_PATH}
+
+}
+
+function install-sc-simulator {
+    Write-Host "Installing SC Simulator ..."
+	
+	# Create SmartContract directory
+    if (-not (Test-Path "${SMART_CONTRACT_DIR}")) {
+        New-Item -ItemType Directory -Path "${SMART_CONTRACT_DIR}" | Out-Null
+        Write-Host "Created directory: ${SMART_CONTRACT_DIR}"
+    } else {
+        Write-Host "Directory already exists: ${SMART_CONTRACT_DIR}"
+    }
+
+    if (Test-Path -Path "${SC_SIMULATOR_ZIP_PATH}") {
+        Write-Host "${SC_SIMULATOR_ZIP_PATH} already downloaded."
+    } else {
+        # Download SC Simulator zip file
+        Write-Host "Downloading SC Simulator from GitHub ..."
+        # Start-BitsTransfer -Source "${SC_SIMULATOR_URL}" -Destination "${SC_SIMULATOR_ZIP_PATH}"
+		Invoke-WebRequest -Uri $SC_SIMULATOR_URL -OutFile $SC_SIMULATOR_ZIP_PATH
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SC_SIMULATOR_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download SC Simulator."
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+
+    if (Test-Path -Path "${SC_SIMULATOR_UNZIP_PATH}") {
+        Write-Host "${SC_SIMULATOR_UNZIP_PATH} already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Signum to ${SC_SIMULATOR_UNZIP_PATH} ..."
+        Expand-Archive -Path "${SC_SIMULATOR_ZIP_PATH}" -DestinationPath "${SMART_CONTRACT_DIR}" -Force
+		Rename-Item -Path $SC_SIMULATOR_ZIP_NAME_PATH -NewName $SC_SIMULATOR_UNZIP
+    }
+	
+	# Initialize package.json
+	Write-Host "Initialize package.json"
+	$content = Get-Content -Path $SC_SIMULATOR_UNZIP_PATH\package.json
+
+		# Process each line using regex to add '#' only if there's no '#' before the target
+		$content = $content | ForEach-Object {
+			$_ 	-replace "-p 7000", "-p 7003" `
+				-replace '"dev": "TARGET=dev', '"dev": "set TARGET=dev' `
+				-replace '9999\.9\.4', $SMARTC_SIGNUM_COMPILER_VERSION
+		}
+
+		# Write the changes back to the file
+		$content | Set-Content -Path $SC_SIMULATOR_UNZIP_PATH\package.json
+			
+	Write-Host "package.json configuration initialized"
+	
+	# Initialize try.html
+	Write-Host "Initialize try.html"
+	$content = Get-Content -Path $SC_SIMULATOR_UNZIP_PATH\try.html
+
+		# Process each line using regex to add '#' only if there's no '#' before the target
+		$content = $content | ForEach-Object {
+			$_ 	-replace '9999\.9\.4', $SMARTC_SIGNUM_COMPILER_VERSION
+		}
+
+		# Write the changes back to the file
+		$content | Set-Content -Path $SC_SIMULATOR_UNZIP_PATH\try.html
+			
+	Write-Host "try.html initialized"	
+	
+	# Install node.js portable with npm
+	install_nodejs
+	
+	Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+	# $NODEJS_UNZIP_PATH\npm config set prefix ./npm-global
+	# $NODEJS_UNZIP_PATH\npm config set cache ./npm-cache
+	
+	# npm istall smarc web ui
+	Write-Host "npm install SmarC packages"
+
+	cd .\$SC_SIMULATOR_UNZIP_PATH
+	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
+	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd run build
+	
+	Set-Location -Path $PSScriptRoot
+	
+	$port = 7003
+
+	# Create starter ps1
+	if (-not (Test-Path $SC_SIMULATOR_STARTER_PS1_PATH)) {
+		# Create start-smartc.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start SC Simulator
+Set-Location -Path `$PSScriptRoot
+
+Write-Host 'Starting SC Simulator ...'
+
+Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
+    -ArgumentList "-NoExit", "-Command", `@"
+    try {
+        ```$host.UI.RawUI.WindowTitle = 'SC Simulator'
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+        if (```$portInUse) {
+			Write-Host 'SC Simulator is already running.'
+			exit
+		} else {
+			Write-Host 'Stop SC Simulator: ctrl + c'
+			# Start SC Simulator
+			Start-Process "http://localhost:$port"/try.html
+			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+			..\..\$NODEJS_UNZIP_PATH\npm.cmd run start
+		}
+    } catch {
+        Write-Host 'An error occurred while starting SC Simulator: `$_'
+    } finally {
+        # Always set the title to 'SC Simulator Stopped' after SC Simulator exits
+        ```$host.UI.RawUI.WindowTitle = 'SC Simulator Stopped'
+    }
+"`@ ``
+    -WindowStyle Minimized
+
+exit
+"@
+
+		$content | Out-File -FilePath $SC_SIMULATOR_STARTER_PS1_PATH -Force
+
+		Write-Host "${SC_SIMULATOR_STARTER_PS1_PATH} successfully created."
+	} else {
+		Write-Host "File already exists: ${SC_SIMULATOR_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${SC_SIMULATOR_STARTER_PS1} ..\..\${POWERSHELL_EXEC_PATH} ${SC_SIMULATOR_STARTER_EXEC} ${SC_SIMULATOR_STARTER_EXEC_PATH}
 
 }
 
