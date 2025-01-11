@@ -412,6 +412,18 @@ $SC_SIMULATOR_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SC_SIMULATOR_UNZIP}\${
 $SC_SIMULATOR_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SC_SIMULATOR_UNZIP}\${SC_SIMULATOR_STARTER_EXEC}"
 $SC_SIMULATOR_URL = "https://github.com/deleterium/SC-Simulator/archive/refs/heads/main.zip"
 
+$SIGNUM_D_OR_STARTER_PS1 = "start-signum-d-or.ps1"
+$SIGNUM_D_OR_STARTER_EXEC = "start-signum-d-or.bat"
+
+$SIGNUM_D_OR_ZIP_NAME_PATH = "${SMART_CONTRACT_DIR}\signum-d-or-main"
+$SIGNUM_D_OR_UNZIP = "Signum-D-OR"
+$SIGNUM_D_OR_ZIP = "$SIGNUM_D_OR_UNZIP.zip"
+$SIGNUM_D_OR_ZIP_PATH = "${SMART_CONTRACT_DIR}\${SIGNUM_D_OR_ZIP}"
+$SIGNUM_D_OR_UNZIP_PATH = "${SMART_CONTRACT_DIR}\${SIGNUM_D_OR_UNZIP}"
+$SIGNUM_D_OR_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SIGNUM_D_OR_UNZIP}\${SIGNUM_D_OR_STARTER_PS1}"
+$SIGNUM_D_OR_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SIGNUM_D_OR_UNZIP}\${SIGNUM_D_OR_STARTER_EXEC}"
+$SIGNUM_D_OR_URL = "https://github.com/deleterium/Signum-D-Or/archive/refs/heads/main.zip"
+
 $SMARTJ_STARTER_PS1 = "start-smartj.ps1"
 $SMARTJ_STARTER_EXEC = "start-smartj.bat"
 
@@ -537,26 +549,27 @@ function Show-InstallMenu {
 	Write-Host "[14] `tInstall SmartC Signum Smart Contract Compiler [RETRO-UI]"
 	Write-Host "[15] `tInstall SmartC Signum Smart Decompiler"
 	Write-Host "[16] `tInstall SC Simulator"
-	Write-Host "[17] `tInstall SmartJ Signum Smart Contract Compiler"
+	Write-Host "[17] `tInstall Signum-D-OR"
+	Write-Host "[18] `tInstall SmartJ Signum Smart Contract Compiler"
 	# Write-Host "====================================================="
 	# Write-Host "            		 Databases	 			         "
 	# Write-Host "====================================================="
-    Write-Host "[18] `tInstall MariaDB"
+    Write-Host "[19] `tInstall MariaDB"
 	# Write-Host "====================================================="
 	# Write-Host "            		 Tools	 			             "
 	# Write-Host "====================================================="
-    Write-Host "[19] `tInstall HeidiSQL"
-	Write-Host "[20] `tInstall DBeaver"
-    Write-Host "[21] `tInstall NGINX"
-	Write-Host "[22] `tInstall NodeJS"
-	Write-Host "[23] `tInstall Notepad++"
+    Write-Host "[20] `tInstall HeidiSQL"
+	Write-Host "[21] `tInstall DBeaver"
+    Write-Host "[22] `tInstall NGINX"
+	Write-Host "[23] `tInstall NodeJS"
+	Write-Host "[24] `tInstall Notepad++"
 	<# Write-Host "====================================================="
 	Write-Host "            	  Developer Tools 			         "
 	Write-Host "====================================================="
 	Write-Host "[8] `tInstall Signum SmartC Smart Contract Compiler" #>
 	# Write-Host "-----------------------------------------------------"
-	Write-Host "[24] `tInstall Whitepaper And Documents"
-	Write-Host "[25] `tInstall Signum Link Collection"
+	Write-Host "[25] `tInstall Whitepaper And Documents"
+	Write-Host "[26] `tInstall Signum Link Collection"
     Write-Host "-----------------------------------------------------"
 	# TODO Signum pages menu
 	# TODO add usefull signum pages wiki, official page, github stb. coinmarcetcap, bft portal, explorer
@@ -564,12 +577,12 @@ function Show-InstallMenu {
 	# Signum provider menu
 	# letsencrypt with ACME challege
 	# open readme how to use the installer
-    Write-Host "[26] `tSignum Starter Menu"
-    Write-Host "[27] `tExit"
+    Write-Host "[27] `tSignum Starter Menu"
+    Write-Host "[28] `tExit"
     Write-Host "====================================================="
 
 	# Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
-    $choice = Read-Host "Enter your choice (1-27)"
+    $choice = Read-Host "Enter your choice (1-28)"
 
 	function install-process($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -634,36 +647,39 @@ function Show-InstallMenu {
 			install-process $SC_SIMULATOR_STARTER_EXEC_PATH "SC Simulator" {install-sc-simulator}
         }
 		"17" {
+			install-process $SIGNUM_D_OR_STARTER_EXEC_PATH "Signum-D-OR" {install-signum-d-or}
+        }
+		"18" {
 			install-process $SMARTJ_STARTER_EXEC_PATH "SmartJ Signum Smart Contract Compiler" {install-smartj-compiler}
         }
-        "18" {
+        "19" {
 			install-process $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
         }
-        "19" {
+        "20" {
 			install-process $HEIDISQL_EXEC_PATH "HeidiSQL" {install_heidisql}
         }
-		"20" {
+		"21" {
 			install-process $DBEAVER_EXEC_PATH "DBeaver" {install_DBeaver}
         }
-		"21" {
+		"22" {
 			install-process $NGINX_EXEC_PATH "NGINX" {install_nginx}
         }
-		"22" {
+		"23" {
 			install-process $NODEJS_EXEC_PATH "NodeJs" {install_nodejs}
         }
-		"23" {
+		"24" {
 			install-process $NOTEPAD_EXEC_PATH "Notepad" {install_notepad}
         }
-		"24" {
+		"25" {
 			install-process $WHITEPAPER_DOC_PATH "Whitepaper And Documents" {install-doc}
         }
-		"25" {
+		"26" {
 			install-process $SIGNUM_LINK_COLLECTION_PATH "Signum Link Collection" {install-doc}
         }
-        "26" {
+        "27" {
             Show-StartMenu
         }
-        "27" {
+        "28" {
             Exit-Script
         }
         default {
@@ -696,21 +712,22 @@ function Show-StartMenu {
 	Write-Host "[14] `tStart SmartC Signum Smart Contract [RETRO-UI]"
 	Write-Host "[15] `tStart SmartC Signum Smart Contract Decompiler"
 	Write-Host "[16] `tStart SC Simulator"
-	Write-Host "[17] `tStart SmartJ Signum Smart Contract Compiler"
-    Write-Host "[18] `tStart MariaDB"
-    Write-Host "[19] `tStart HeidiSQL"
-	Write-Host "[20] `tStart DBeaver"
-	Write-Host "[21] `tStart NGINX"
-	Write-Host "[22] `tStart NodeJS"
-	Write-Host "[23] `tStart Notepad++"
-	Write-Host "[24] `tOpen Whitepaper"
-	Write-Host "[25] `tOpen Signum Link Collection"
+	Write-Host "[17] `tStart Signum-D-OR"
+	Write-Host "[18] `tStart SmartJ Signum Smart Contract Compiler"
+    Write-Host "[19] `tStart MariaDB"
+    Write-Host "[20] `tStart HeidiSQL"
+	Write-Host "[21] `tStart DBeaver"
+	Write-Host "[22] `tStart NGINX"
+	Write-Host "[23] `tStart NodeJS"
+	Write-Host "[24] `tStart Notepad++"
+	Write-Host "[25] `tOpen Whitepaper"
+	Write-Host "[26] `tOpen Signum Link Collection"
     Write-Host "-----------------------------------------------------"
-    Write-Host "[26] `tSignum Installer Menu"
-    Write-Host "[27] `tExit"
+    Write-Host "[27] `tSignum Installer Menu"
+    Write-Host "[28] `tExit"
     Write-Host "====================================================="
 
-    $choice = Read-Host "Enter your choice (1-27)"
+    $choice = Read-Host "Enter your choice (1-28)"
 
 	function start-process-menu($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -794,36 +811,39 @@ function Show-StartMenu {
 			start-process-menu $SC_SIMULATOR_STARTER_PS1_PATH "SC Simulator" {install-sc-simulator}
         }
 		"17" {
+			start-process-menu $SIGNUM_D_OR_STARTER_PS1_PATH "Signum-D-OR" {install-signum-d-or}
+        }
+		"18" {
 			start-process-menu $SMARTJ_STARTER_PS1_PATH "SmartJ Signum Smart Contract Compiler" {install-smartj-compiler}
         }
-        "18" {
+        "19" {
 			start-process-menu $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
         }
-        "19" {
+        "20" {
 			start-process-menu $HEIDISQL_STARTER_PS1_PATH "HeidiSQL" {install_heidisql}
 		}
-		"20" {
+		"21" {
 			start-process-menu $DBEAVER_STARTER_PS1_PATH "DBeaver" {install_DBeaver}
         }
-		"21" {
+		"22" {
 			start-process-menu $NGINX_STARTER_PS1_PATH "NGINX" {install_nginx}
         }
-		"22" {
+		"23" {
 			start-process-menu $NODEJS_STARTER_PS1_PATH "NodeJs" {install_nodejs}
         }
-		"23" {
+		"24" {
 			start-process-menu $NOTEPAD_STARTER_PS1_PATH "Notepad" {install_notepad}
         }
-		"24" {
+		"25" {
             open-doc-menu $WHITEPAPER_DOC_PATH "Whitepaper" {install-doc}
 		}
-		"25" {
+		"26" {
             open-doc-menu $SIGNUM_LINK_COLLECTION_PATH "Signum Link Collection" {install-doc}
 		}
-        "26" {
+        "27" {
             Show-InstallMenu
         }
-        "27" {
+        "28" {
             Exit-Script
         }
         default {
@@ -3459,6 +3479,70 @@ exit
 
 	# Create starter batch
 	create-starter-ps1-exec ${SC_SIMULATOR_STARTER_PS1} ..\..\${POWERSHELL_EXEC_PATH} ${SC_SIMULATOR_STARTER_EXEC} ${SC_SIMULATOR_STARTER_EXEC_PATH}
+
+}
+
+function install-signum-d-or {
+    Write-Host "Installing Signum-D-OR ..."
+	
+	# Create SmartContract directory
+    if (-not (Test-Path "${SMART_CONTRACT_DIR}")) {
+        New-Item -ItemType Directory -Path "${SMART_CONTRACT_DIR}" | Out-Null
+        Write-Host "Created directory: ${SMART_CONTRACT_DIR}"
+    } else {
+        Write-Host "Directory already exists: ${SMART_CONTRACT_DIR}"
+    }
+
+    if (Test-Path -Path "${SIGNUM_D_OR_ZIP_PATH}") {
+        Write-Host "${SIGNUM_D_OR_ZIP_PATH} already downloaded."
+    } else {
+        # Download Signum-D-OR zip file
+        Write-Host "Downloading Signum-D-OR from GitHub ..."
+        # Start-BitsTransfer -Source "${SIGNUM_D_OR_URL}" -Destination "${SIGNUM_D_OR_ZIP_PATH}"
+		Invoke-WebRequest -Uri $SIGNUM_D_OR_URL -OutFile $SIGNUM_D_OR_ZIP_PATH
+
+        # Check if download was successful
+        if (-not (Test-Path -Path "${SIGNUM_D_OR_ZIP_PATH}")) {
+            Write-Host "Error: Failed to download Signum-D-OR."
+            Pause
+            # Install-Menu
+            return
+        }
+    }
+
+    if (Test-Path -Path "${SIGNUM_D_OR_UNZIP_PATH}") {
+        Write-Host "${SIGNUM_D_OR_UNZIP_PATH} already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Signum to ${SIGNUM_D_OR_UNZIP_PATH} ..."
+        Expand-Archive -Path "${SIGNUM_D_OR_ZIP_PATH}" -DestinationPath "${SMART_CONTRACT_DIR}" -Force
+		Rename-Item -Path $SIGNUM_D_OR_ZIP_NAME_PATH -NewName $SIGNUM_D_OR_UNZIP
+    }	
+
+	# Create starter ps1
+	if (-not (Test-Path $SIGNUM_D_OR_STARTER_PS1_PATH)) {
+		# Create start-smartc.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start SC Simulator
+Set-Location -Path `$PSScriptRoot
+
+Write-Host 'Starting Signum-D-OR ...'
+
+Start-Process ./signum-d-or.html
+
+exit
+"@
+
+		$content | Out-File -FilePath $SIGNUM_D_OR_STARTER_PS1_PATH -Force
+
+		Write-Host "${SIGNUM_D_OR_STARTER_PS1_PATH} successfully created."
+	} else {
+		Write-Host "File already exists: ${SIGNUM_D_OR_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${SIGNUM_D_OR_STARTER_PS1} ..\..\${POWERSHELL_EXEC_PATH} ${SIGNUM_D_OR_STARTER_EXEC} ${SIGNUM_D_OR_STARTER_EXEC_PATH}
 
 }
 
