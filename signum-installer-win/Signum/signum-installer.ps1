@@ -1,5 +1,5 @@
 # Change directory to the script's location
-cd $PSScriptRoot
+Set-Location $PSScriptRoot
 $host.UI.RawUI.WindowTitle = "Signum Installer"
 
 # global variables
@@ -13,7 +13,8 @@ $SLEEP_SECONDS = 20
 
 $POWERSHELL_VERSION = "7.4.6"
 $POWERSHELL_DIR = "PowerShell"
-$POWERSHELL_ZIP = "PowerShell-${POWERSHELL_VERSION}-win-x64.zip"
+$POWERSHELL_UNZIP = "PowerShell-${POWERSHELL_VERSION}-win-x64"
+$POWERSHELL_ZIP = "${POWERSHELL_UNZIP}.zip"
 $POWERSHELL_UNZIP = "PowerShell-${POWERSHELL_VERSION}-win-x64"
 $POWERSHELL_EXEC = "pwsh.exe"
 $POWERSHELL_EXEC_PATH = "${POWERSHELL_DIR}\${POWERSHELL_UNZIP}\${POWERSHELL_EXEC}"
@@ -85,14 +86,12 @@ $SIGNUM_WALLET_TESTNET_NEOCLASSIC_VERSION = "1.0.0"
 $SIGNUM_WALLET_TESTNET_UI_DIR_PATH = "${SIGNUM_NODE_TESTNET_UNZIP_PATH}\html\ui"
 $SIGNUM_WALLET_TESTNET_NEOCLASSIC_ZIP_PATH = "${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}\${SIGNUM_WALLET_NEOCLASSIC_ZIP}"
 $SIGNUM_WALLET_TESTNET_NEOCLASSIC_UNZIP_PATH = "${SIGNUM_WALLET_TESTNET_UI_DIR_PATH}\${SIGNUM_WALLET_NEOCLASSIC_DIR}"
-$SIGNUM_WALLET_TESTNET_NEOCLASSIC_URL = "https://github.com/deleterium/neoclassic-wallet/releases/download/v${SIGNUM_WALLET_MAINNET_NEOCLASSIC_VERSION}/neoclassic-wallet-${SIGNUM_WALLET_MAINNET_NEOCLASSIC_VERSION}.zip"
+$SIGNUM_WALLET_TESTNET_NEOCLASSIC_URL = "https://github.com/deleterium/neoclassic-wallet/releases/download/v${SIGNUM_WALLET_MAINNET_NEOCLASSIC_VERSION}/neoclassic-wallet-${SIGNUM_WALLET_TESTNET_NEOCLASSIC_VERSION}.zip"
 
 $SIGNUM_POOL_STARTER_PS1 = "start-pool.ps1"
 $SIGNUM_POOL_STARTER_EXEC = "start-pool.bat"
 $SIGNUM_POOL_PROPERTIES = "pool.properties"
 $SIGNUM_POOL_PROPERTIES_ORIGINAL = "pool-original.properties"
-
-$POOL_JRE_URL = "https://cdn.azul.com/zulu/bin/zulu11.56.19-ca-fx-jre11.0.15-win_x64.zip"
 
 $SIGNUM_POOL_MAINNET_VERSION = "v2.2.1"
 $SIGNUM_POOL_MAINNET_DIR = "Pool"
@@ -178,30 +177,6 @@ $JAVA_POOL_TESTNET_BIN_PATH = "$JAVA_POOL_TESTNET_DIR_PATH\bin\java"
 $JAVA_POOL_TESTNET_ZIP_PATH = "${JAVA_POOL_TESTNET_DIR_PATH}\${JAVA_POOL_TESTNET_ZIP}"
 $JAVA_POOL_TESTNET_UNZIP_PATH = "${JAVA_POOL_TESTNET_DIR_PATH}\${JAVA_POOL_TESTNET_UNZIP}"
 $JAVA_POOL_TESTNET_URL = "https://cdn.azul.com/zulu/bin/$JAVA_POOL_TESTNET_ZIP"
-
-$SIGNUM_MAINNET_MINER_VERSION = ""
-$SIGNUM_MAINNET_MINER_DIR = ""
-$SIGNUM_MAINNET_MINER_ZIP = ""
-$SIGNUM_MAINNET_MINER_UNZIP = ""
-$SIGNUM_MAINNET_MINER_STARTER_PS1_PATH = ""
-$SIGNUM_MAINNET_MINER_URL = ""
-
-$SIGNUM_TESTNET_MINER_VERSION = ""
-$SIGNUM_TESTNET_MINER_DIR = ""
-$SIGNUM_TESTNET_MINER_ZIP = ""
-$SIGNUM_TESTNET_MINER_UNZIP = ""
-$SIGNUM_TESTNET_MINER_STARTER_PS1_PATH = ""
-$SIGNUM_TESTNET_MINER_URL = ""
-
-$SIGNUM_MAINNET_MINER_YAML = ""
-$SIGNUM_TESTNET_MINER_YAML = ""
-
-$SIGNUM_PLOTTER_VERSION = ""
-$SIGNUM_PLOTTER_DIR = ""
-$SIGNUM_PLOTTER_ZIP = ""
-$SIGNUM_PLOTTER_UNZIP = ""
-$SIGNUM_PLOTTER_STARTER_PS1_PATH = ""
-$SIGNUM_PLOTTER_URL = ""
 
 $BTDEX_STARTER_PS1 = "start-btdex.ps1"
 $BTDEX_STARTER_EXEC = "start-btdex.bat"
@@ -1153,7 +1128,8 @@ function Install-SignumMainnet {
 }
 
 function Install-NeoClassic-MAINNET-Wallet {
-		# Download NeoClassic
+	
+	# Download NeoClassic
     if (Test-Path -Path "${SIGNUM_WALLET_MAINNET_NEOCLASSIC_ZIP_PATH}") {
         Write-Host "${SIGNUM_WALLET_NEOCLASSIC_ZIP} already downloaded."
     } else {
@@ -1207,7 +1183,9 @@ function Install-NeoClassic-MAINNET-Wallet {
 "@
 			
 			for ($i = 0; $i -lt $content.Count; $i++) {
-				$line = $content[$i]  # Get the current line
+
+				# Get the current line
+				$line = $content[$i]
 
 				if ($line -match '^\s*</div>') {
 					if ($content[$i+1] -match "^\s*</a>") {
@@ -1225,7 +1203,8 @@ function Install-NeoClassic-MAINNET-Wallet {
 }
 
 function Install-NeoClassic-TESTNET-Wallet {
-		# Download NeoClassic
+	
+	# Download NeoClassic
     if (Test-Path -Path "${SIGNUM_WALLET_TESTNET_NEOCLASSIC_ZIP_PATH}") {
         Write-Host "${SIGNUM_WALLET_NEOCLASSIC_ZIP} already downloaded."
     } else {
@@ -1279,7 +1258,9 @@ function Install-NeoClassic-TESTNET-Wallet {
 "@
 			
 			for ($i = 0; $i -lt $content.Count; $i++) {
-				$line = $content[$i]  # Get the current line
+
+				# Get the current line
+				$line = $content[$i]
 
 				if ($line -match '^\s*</div>') {
 					if ($content[$i+1] -match "^\s*</a>") {
@@ -2010,69 +1991,73 @@ function Install-SignumExplorerMainnet {
 	$foundSNR = $false
 	
 	$content = Get-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\supervisord.conf
-	
-	$content = $content | ForEach-Object {
+	$rowCount = $content.Count
+	for ($i = 0; $i -lt $rowCount; $i++) {
+
+		# Get the current line
+		$line = $content[$i]
 				
-		if ($_ -match "^\[program:Explorer\]") {
+		if ($line -match "^\[program:Explorer\]") {
 			$foundExplorer = $true
 			$foundPeers = $false
 			$foundTasks = $false
 			$foundSNR = $false
 		}
 		
-		if ($_ -match "^\[program:Peers\]") {	
+		if ($line -match "^\[program:Peers\]") {	
 			$foundExplorer = $false
 			$foundPeers = $true
 			$foundTasks = $false
 			$foundSNR = $false
 		}
 		
-		if ($_ -match "^\[program:Tasks\]") {
+		if ($line -match "^\[program:Tasks\]") {
 			$foundExplorer = $false
 			$foundPeers = $false
 			$foundTasks = $true
 			$foundSNR = $false
 		}
 		
-		if ($_ -match "^\[program:SNR\]") {
+		if ($line -match "^\[program:SNR\]") {
 			$foundExplorer = $false
 			$foundPeers = $false
 			$foundTasks = $false
 			$foundSNR = $true
-			$_ = $_ -replace "^\[program:SNR\]", ";[program:SNR]"
+			$line = $line -replace "^\[program:SNR\]", ";[program:SNR]"
 		}
 		
 		if ($foundExplorer) {
-			if ($_ -match "^stdout_logfile = /dev/stdout") {
-				$_ = ($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = explorer_stdout.log" + "`n;stdout_logfile = CON"
+			if ($line -match "^stdout_logfile = /dev/stdout") {
+				$line = ($line -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = explorer_stdout.log" + "`n;stdout_logfile = CON"
 			}
-		}
+		} 
 		
 		if ($foundPeers) {
-			if ($_ -match "^stdout_logfile = /dev/stdout") {
-				$_ = ($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = peers_stdout.log" + "`n;stdout_logfile = CON"
+			if ($line -match "^stdout_logfile = /dev/stdout") {
+				$line = ($line -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = peers_stdout.log" + "`n;stdout_logfile = CON"
 			}
-		}
+		} 
 		
 		if ($foundTasks) {
-			if ($_ -match "^stdout_logfile = /dev/stdout") {
-				$_ = ($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = tasks_stdout.log" + "`n;stdout_logfile = CON"
+			if ($line -match "^stdout_logfile = /dev/stdout") {
+				$line = ($line -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = tasks_stdout.log" + "`n;stdout_logfile = CON"
 			}
-		}
+		} 
 		
 		if ($foundSNR) {
-			
-			$_ = $_ -replace "^command =bash -c ""/path/to/your/snr/runSNR.sh\""", ";command =bash -c ""/path/to/your/snr/runSNR.sh"""
-			$_ = $_ -replace "^autostart = true", ";autostart = true"
-			$_ = $_ -replace "^autorestart = true", ";autorestart = true"
-			$_ = $_ -replace "^startsecs = 1", ";startsecs = 1"
-			$_ = $_ -replace "^redirect_stderr = true", ";redirect_stderr = true"
-			$_ = $_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout"
-			$_ = $_ -replace "^stdout_logfile_maxbytes = 0", ";stdout_logfile_maxbytes = 0"
+			$line = $line `
+				-replace "^command =bash -c ""/path/to/your/snr/runSNR.sh\""", ";command =bash -c ""/path/to/your/snr/runSNR.sh""" `
+				-replace "^autostart = true", ";autostart = true" `
+				-replace "^autorestart = true", ";autorestart = true" `
+				-replace "^startsecs = 1", ";startsecs = 1" `
+				-replace "^redirect_stderr = true", ";redirect_stderr = true" `
+				-replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout" `
+				-replace "^stdout_logfile_maxbytes = 0", ";stdout_logfile_maxbytes = 0"
 		
 		}
 
-		$_  -replace "^\[unix_http_server\]", ";[unix_http_server]" `
+		$line = $line `
+			-replace "^\[unix_http_server\]", ";[unix_http_server]" `
 			-replace "^port = 9001", "port = 9000" `
 			-replace "^username = dummy", ";username = dummy" `
 			-replace "^password = changeme", ";password = changeme" `
@@ -2085,6 +2070,8 @@ function Install-SignumExplorerMainnet {
 			-replace "^command = python3 manage.py peers", "command = ./python.exe manage.py peers" `
 			-replace "^command = python3 manage.py tasks", "command = ./python.exe manage.py tasks" `
 			-replace "^logfile = /dev/null", ";logfile = /dev/null"
+
+		$content[$i] = $line
 
 	}
 	
@@ -2211,11 +2198,12 @@ TASKS_SCAN_DELAY=60
 	# Comment out redis from settings.py
 	Write-Host "Setup settings.py"
 	
-	$foundSNR = $false
 	$content = Get-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\config\settings.py
 	
 	for ($i = 0; $i -lt $content.Count; $i++) {
-		$line = $content[$i]  # Get the current line
+
+		# Get the current line
+		$line = $content[$i]
 
 		if ($line -match '^\s*"OPTIONS": \{"CLIENT_CLASS": "django_redis\.client\.DefaultClient"\},') {
 			if ($content[$i+2] -match "\}$")
@@ -2606,68 +2594,74 @@ function Install-SignumExplorerTestnet {
 	
 	$content = Get-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\supervisord.conf
 	
-	$content = $content | ForEach-Object {
-				
-		if ($_ -match "^\[program:Explorer\]") {
+	$rowCount = $content.Count
+	for ($i = 0; $i -lt $rowCount; $i++) {
+
+		# Get the current line
+		$line = $content[$i]
+
+		if ($line -match "^\[program:Explorer\]") {
 			$foundExplorer = $true
 			$foundPeers = $false
 			$foundTasks = $false
 			$foundSNR = $false
 		}
 		
-		if ($_ -match "^\[program:Peers\]") {	
+		if ($line -match "^\[program:Peers\]") {	
 			$foundExplorer = $false
 			$foundPeers = $true
 			$foundTasks = $false
 			$foundSNR = $false
 		}
 		
-		if ($_ -match "^\[program:Tasks\]") {
+		if ($line -match "^\[program:Tasks\]") {
 			$foundExplorer = $false
 			$foundPeers = $false
 			$foundTasks = $true
 			$foundSNR = $false
 		}
 		
-		if ($_ -match "^\[program:SNR\]") {
+		if ($line -match "^\[program:SNR\]") {
 			$foundExplorer = $false
 			$foundPeers = $false
 			$foundTasks = $false
 			$foundSNR = $true
-			$_ = $_ -replace "^\[program:SNR\]", ";[program:SNR]"
+			$line = $line -replace "^\[program:SNR\]", ";[program:SNR]"
 		}
 		
 		if ($foundExplorer) {
-			if ($_ -match "^stdout_logfile = /dev/stdout") {
-				$_ = ($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = explorer_stdout.log" + "`n;stdout_logfile = CON"
+			if ($line -match "^stdout_logfile = /dev/stdout") {
+				$line = ($line -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = explorer_stdout.log" + "`n;stdout_logfile = CON"
 			}
 		}
 		
 		if ($foundPeers) {
-			if ($_ -match "^stdout_logfile = /dev/stdout") {
-				$_ = ($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = peers_stdout.log" + "`n;stdout_logfile = CON"
+			if ($line -match "^stdout_logfile = /dev/stdout") {
+				$line = ($line -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = peers_stdout.log" + "`n;stdout_logfile = CON"
 			}
 		}
 		
 		if ($foundTasks) {
-			if ($_ -match "^stdout_logfile = /dev/stdout") {
-				$_ = ($_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = tasks_stdout.log" + "`n;stdout_logfile = CON"
+			if ($line -match "^stdout_logfile = /dev/stdout") {
+				$line = ($line -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = tasks_stdout.log" + "`n;stdout_logfile = CON"
 			}
 		}
 		
 		if ($foundSNR) {
 			
-			$_ = $_ -replace "^command =bash -c ""/path/to/your/snr/runSNR.sh\""", ";command =bash -c ""/path/to/your/snr/runSNR.sh"""
-			$_ = $_ -replace "^autostart = true", ";autostart = true"
-			$_ = $_ -replace "^autorestart = true", ";autorestart = true"
-			$_ = $_ -replace "^startsecs = 1", ";startsecs = 1"
-			$_ = $_ -replace "^redirect_stderr = true", ";redirect_stderr = true"
-			$_ = $_ -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout"
-			$_ = $_ -replace "^stdout_logfile_maxbytes = 0", ";stdout_logfile_maxbytes = 0"
+			$line = $line `
+				-replace "^command =bash -c ""/path/to/your/snr/runSNR.sh\""", ";command =bash -c ""/path/to/your/snr/runSNR.sh""" `
+				-replace "^autostart = true", ";autostart = true" `
+				-replace "^autorestart = true", ";autorestart = true" `
+				-replace "^startsecs = 1", ";startsecs = 1" `
+				-replace "^redirect_stderr = true", ";redirect_stderr = true" `
+				-replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout" `
+				-replace "^stdout_logfile_maxbytes = 0", ";stdout_logfile_maxbytes = 0"
 		
 		}
 
-		$_  -replace "^\[unix_http_server\]", ";[unix_http_server]" `
+		$line = $line `
+			-replace "^\[unix_http_server\]", ";[unix_http_server]" `
 			-replace "^username = dummy", ";username = dummy" `
 			-replace "^password = changeme", ";password = changeme" `
 			-replace "^file = /tmp/supervisor.sock", ";file = ./tmp/supervisor.sock" `
@@ -2679,6 +2673,8 @@ function Install-SignumExplorerTestnet {
 			-replace "^command = python3 manage.py peers", "command = ./python.exe manage.py peers" `
 			-replace "^command = python3 manage.py tasks", "command = ./python.exe manage.py tasks" `
 			-replace "^logfile = /dev/null", ";logfile = /dev/null"
+
+			$content[$i] = $line
 
 	}
 	
@@ -2805,11 +2801,11 @@ TASKS_SCAN_DELAY=60
 	# Comment out redis from settings.py
 	Write-Host "Setup settings.py"
 	
-	$foundSNR = $false
 	$content = Get-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\config\settings.py
 	
 	for ($i = 0; $i -lt $content.Count; $i++) {
-		$line = $content[$i]  # Get the current line
+		# Get the current line
+		$line = $content[$i] 
 
 		if ($line -match '^\s*"OPTIONS": \{"CLIENT_CLASS": "django_redis\.client\.DefaultClient"\},') {
 			if ($content[$i+2] -match "\}$")
@@ -3054,7 +3050,7 @@ function install-smartc-web-ui {
 	# npm istall smarc web ui
 	Write-Host "npm install SmarC packages"
 
-	cd .\$SMARTC_WEB_UI_UNZIP_PATH
+	Set-Location .\$SMARTC_WEB_UI_UNZIP_PATH
 	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
 	
 	Set-Location -Path $PSScriptRoot
@@ -3173,7 +3169,7 @@ function install-smartc-retro-ui {
 	# npm istall smarc web ui
 	Write-Host "npm install SmarC packages"
 
-	cd .\$SMARTC_RETRO_UI_UNZIP_PATH
+	Set-Location .\$SMARTC_RETRO_UI_UNZIP_PATH
 	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
 	
 	Set-Location -Path $PSScriptRoot
@@ -3292,7 +3288,7 @@ function install-smartc-signum-decompiler {
 	# npm istall smarc web ui
 	Write-Host "npm install SmarC decompiler packages"
 
-	cd .\$SMARTC_SIGNUM_DECOMPILER_UNZIP_PATH
+	Set-Location .\$SMARTC_SIGNUM_DECOMPILER_UNZIP_PATH
 	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
 	
 	Set-Location -Path $PSScriptRoot
@@ -3425,7 +3421,7 @@ function install-sc-simulator {
 	# npm istall smarc web ui
 	Write-Host "npm install SmarC packages"
 
-	cd .\$SC_SIMULATOR_UNZIP_PATH
+	Set-Location .\$SC_SIMULATOR_UNZIP_PATH
 	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
 	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd run build
 	
@@ -3706,7 +3702,7 @@ build.dependsOn shadowJar
 	
 	Write-Host "gradlew.bat initialized"	
 
-	cd .\$SMARTJ_UNZIP_PATH
+	Set-Location .\$SMARTJ_UNZIP_PATH
 	.\gradlew.bat clean shadowJar
 	
 	Set-Location -Path $PSScriptRoot
@@ -5269,7 +5265,9 @@ function setup_db_node_properties($file) {
 	$content = Get-Content -Path $file
 	
 		for ($i = 0; $i -lt $content.Count; $i++) {
-			$line = $content[$i]  # Get the current line
+
+			# Get the current line
+			$line = $content[$i]
 
 			if ($content[$i] -match '# DB.Url=jdbc:mariadb:.*') {
 				$content[$i] = "DB.Url=jdbc:mariadb://localhost:3306/${DATABASE_NAME}"
