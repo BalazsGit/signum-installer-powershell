@@ -53,6 +53,9 @@ $SIGNUM_NODE_MAINNET_UNZIP_PATH = "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE
 $SIGNUM_NODE_MAINNET_STARTER_PS1_PATH = "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP}\${SIGNUM_NODE_STARTER_PS1}"
 $SIGNUM_NODE_MAINNET_STARTER_EXEC_PATH = "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP}\${SIGNUM_NODE_STARTER_EXEC}"
 $SIGNUM_NODE_MAINNET_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_MAINNET_VERSION}/${SIGNUM_NODE_MAINNET_ZIP}"
+$SIGNUM_NODE_MAINNET_P2P_PORT = 8123
+$SIGNUM_NODE_MAINNET_API_PORT = 8125
+$SIGNUM_NODE_MAINNET_API_WEBSOCKET_PORT = 8126
 
 $SIGNUM_NODE_TESTNET_VERSION = "v3.8.4"
 $SIGNUM_NODE_TESTNET_DIR = "Testnet"
@@ -63,6 +66,9 @@ $SIGNUM_NODE_TESTNET_UNZIP_PATH = "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE
 $SIGNUM_NODE_TESTNET_STARTER_PS1_PATH = "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_UNZIP}\${SIGNUM_NODE_STARTER_PS1}"
 $SIGNUM_NODE_TESTNET_STARTER_EXEC_PATH = "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_UNZIP}\${SIGNUM_NODE_STARTER_EXEC}"
 $SIGNUM_NODE_TESTNET_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_TESTNET_VERSION}/${SIGNUM_NODE_TESTNET_ZIP}"
+$SIGNUM_NODE_TESTNET_P2P_PORT = 
+$SIGNUM_NODE_TESTNET_API_PORT = 6876
+$SIGNUM_NODE_TESTNET_API_WEBSOCKET_PORT = 
 
 $SIGNUM_NODE_MAINNET_DEFAULT_PROPERTIES_PATH = ".\${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP}\conf\node-default.properties"
 $SIGNUM_NODE_MAINNET_PROPERTIES_PATH = ".\${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP}\conf\node.properties"
@@ -105,6 +111,7 @@ $SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_MAINNE
 $SIGNUM_POOL_MAINNET_STARTER_PS1_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_PS1}"
 $SIGNUM_POOL_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_EXEC}"
 $SIGNUM_POOL_MAINNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_MAINNET_VERSION}/${SIGNUM_POOL_MAINNET_ZIP}"
+$SIGNUM_POOL_MAINET_PORT = 8000
 
 $SIGNUM_POOL_TESTNET_VERSION = "v2.2.1"
 $SIGNUM_POOL_TESTNET_DIR = "Pool"
@@ -118,6 +125,7 @@ $SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_TESTNE
 $SIGNUM_POOL_TESTNET_STARTER_PS1_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_PS1}"
 $SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_EXEC}"
 $SIGNUM_POOL_TESTNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_TESTNET_VERSION}/${SIGNUM_POOL_TESTNET_ZIP}"
+$SIGNUM_POOL_TESTNET_PORT = 8001
 
 $SIGNUM_EXPLORER_STARTER_PS1 = "start-explorer.ps1"
 $SIGNUM_EXPLORER_STARTER_EXEC = "start-explorer.bat"
@@ -139,6 +147,8 @@ $SIGNUM_EXPLORER_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_EXPLORER_MAINNET_UNZIP_PAT
 $SIGNUM_EXPLORER_MAINNET_URL = "https://github.com/signum-network/signum-explorer/archive/refs/heads/master.zip"
 $SIGNUM_EXPLORER_MAINNET_PYTHON_URL = "https://www.python.org/ftp/python/${SIGNUM_EXPLORER_MAINNET_PYTHON_VERSION}/python-${SIGNUM_EXPLORER_MAINNET_PYTHON_VERSION}-embed-amd64.zip"
 $SIGNUM_EXPLORER_MAINNET_PYTHON_GETPIP_URL = "https://bootstrap.pypa.io/get-pip.py"
+$SIGNUM_EXPLORER_MAINNET_PORT = 6000
+$SIGNUM_EXPLORER_MAINNET_SUPERVISOR_SATUS_PORT = 9000
 
 $SIGNUM_EXPLORER_TESTNET_DIR = "Explorer"
 $SIGNUM_EXPLORER_TESTNET_DIR_PATH = "${SIGNUM_NODE_TESTNET_DIR}\${SIGNUM_EXPLORER_TESTNET_DIR}"
@@ -157,6 +167,8 @@ $SIGNUM_EXPLORER_TESTNET_STARTER_EXEC_PATH = "$SIGNUM_EXPLORER_TESTNET_UNZIP_PAT
 $SIGNUM_EXPLORER_TESTNET_URL = "https://github.com/signum-network/signum-explorer/archive/refs/heads/master.zip"
 $SIGNUM_EXPLORER_TESTNET_PYTHON_URL = "https://www.python.org/ftp/python/${SIGNUM_EXPLORER_TESTNET_PYTHON_VERSION}/python-${SIGNUM_EXPLORER_TESTNET_PYTHON_VERSION}-embed-amd64.zip"
 $SIGNUM_EXPLORER_TESTNET_PYTHON_GETPIP_URL = "https://bootstrap.pypa.io/get-pip.py"
+$SIGNUM_EXPLORER_TESTNET_PORT = 6001
+$SIGNUM_EXPLORER_TESTNET_SUPERVISOR_SATUS_PORT = 9001
 
 $JAVA_POOL_MAINNET_DIR = "jre"
 $JAVA_POOL_MAINNET_BIN = "jre\bin\java"
@@ -329,6 +341,7 @@ $MARIADB_BIN = "${DATABASE_DIR}\${MARIADB_DIR}\${MARIADB_UNZIP}\bin"
 $MARIADB_STARTER_PS1_PATH = "${DATABASE_DIR}\${MARIADB_DIR}\${MARIADB_UNZIP}\${MARIADB_STARTER_PS1}"
 $MARIADB_STARTER_EXEC_PATH = "${DATABASE_DIR}\${MARIADB_DIR}\${MARIADB_UNZIP}\${MARIADB_STARTER_EXEC}"
 $MARIADB_URL = "https://archive.mariadb.org/mariadb-${MARIADB_VERSION}/winx64-packages/mariadb-${MARIADB_VERSION}-winx64.zip"
+$MARIADB_PORT = 3306
 
 $DATABASE_NAME = ""
 $DATABASE_USERNAME = ""
@@ -350,6 +363,7 @@ $SMARTC_WEB_UI_UNZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_WEB_UI_UNZIP}"
 $SMARTC_WEB_UI_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_WEB_UI_UNZIP}\${SMARTC_WEB_UI_STARTER_PS1}"
 $SMARTC_WEB_UI_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_WEB_UI_UNZIP}\${SMARTC_WEB_UI_STARTER_EXEC}"
 $SMARTC_WEB_UI_URL = "https://github.com/deleterium/smartc-web-ui/archive/refs/heads/main.zip"
+$SMARTC_WEB_UI_PORT = 7000
 
 $SMARTC_RETRO_UI_STARTER_PS1 = "start-smartc.ps1"
 $SMARTC_RETRO_UI_STARTER_EXEC = "start-smartc.bat"
@@ -362,6 +376,7 @@ $SMARTC_RETRO_UI_UNZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_RETRO_UI_UNZIP}"
 $SMARTC_RETRO_UI_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_RETRO_UI_UNZIP}\${SMARTC_RETRO_UI_STARTER_PS1}"
 $SMARTC_RETRO_UI_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_RETRO_UI_UNZIP}\${SMARTC_RETRO_UI_STARTER_EXEC}"
 $SMARTC_RETRO_UI_URL = "https://github.com/deleterium/smartc-retro-ui/archive/refs/heads/main.zip"
+$SMARTC_RETRO_UI_PORT = 7001
 
 $SMARTC_SIGNUM_DECOMPILER_STARTER_PS1 = "start-smartc-decompiler.ps1"
 $SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC = "start-smartc-decompiler.bat"
@@ -374,6 +389,7 @@ $SMARTC_SIGNUM_DECOMPILER_UNZIP_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DE
 $SMARTC_SIGNUM_DECOMPILER_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DECOMPILER_UNZIP}\${SMARTC_SIGNUM_DECOMPILER_STARTER_PS1}"
 $SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SMARTC_SIGNUM_DECOMPILER_UNZIP}\${SMARTC_SIGNUM_DECOMPILER_STARTER_EXEC}"
 $SMARTC_SIGNUM_DECOMPILER_URL = "https://github.com/deleterium/smartc-signum-decompiler/archive/refs/heads/main.zip"
+$SMARTC_SIGNUM_DECOMPILER_PORT = 7002
 
 $SC_SIMULATOR_STARTER_PS1 = "start-sc-simulator.ps1"
 $SC_SIMULATOR_STARTER_EXEC = "start-sc-simulator.bat"
@@ -386,6 +402,7 @@ $SC_SIMULATOR_UNZIP_PATH = "${SMART_CONTRACT_DIR}\${SC_SIMULATOR_UNZIP}"
 $SC_SIMULATOR_STARTER_PS1_PATH = "${SMART_CONTRACT_DIR}\${SC_SIMULATOR_UNZIP}\${SC_SIMULATOR_STARTER_PS1}"
 $SC_SIMULATOR_STARTER_EXEC_PATH = "${SMART_CONTRACT_DIR}\${SC_SIMULATOR_UNZIP}\${SC_SIMULATOR_STARTER_EXEC}"
 $SC_SIMULATOR_URL = "https://github.com/deleterium/SC-Simulator/archive/refs/heads/main.zip"
+$SC_SIMULATOR_PORT = 7003
 
 $SIGNUM_D_OR_STARTER_PS1 = "start-signum-d-or.ps1"
 $SIGNUM_D_OR_STARTER_EXEC = "start-signum-d-or.bat"
@@ -422,6 +439,66 @@ $JAVA_SMARTJ_BIN_PATH = "$JAVA_SMARTJ_DIR_PATH\bin\java"
 $JAVA_SMARTJ_ZIP_PATH = "${JAVA_SMARTJ_DIR_PATH}\${JAVA_SMARTJ_ZIP}"
 $JAVA_SMARTJ_UNZIP_PATH = "${JAVA_SMARTJ_DIR_PATH}\${JAVA_SMARTJ_UNZIP}"
 $JAVA_SMARTJ_URL = "https://builds.openlogic.com/downloadJDK/openlogic-openjdk/8u432-b06/$JAVA_SMARTJ_ZIP"
+
+### IPFS ###
+$IPFS_DIR_NAME = "IPFS"
+
+$IPFS_CLIENT_REPOSITORY_DIR_NAME = "Repository"
+$IPFS_CLIENT_REPOSITORY_DIR_PATH = "$IPFS_DIR_NAME\$IPFS_CLIENT_REPOSITORY_DIR_NAME"
+$IPFS_CLIENT_CONFIG_DIR_PATH = "$IPFS_CLIENT_REPOSITORY_DIR_PATH\config"
+$IPFS_CLIENT_STARTER_PS1 = "start-ipfs-client.ps1"
+$IPFS_CLIENT_STARTER_EXEC = "start-ipfs-client.bat"
+$IPFS_CLIENT_VERSION = "0.32.1"
+$IPFS_CLIENT_DIR_NAME = "IPFS-CLIENT"
+$IPFS_CLIENT_DIR_PATH = "$IPFS_DIR_NAME\$IPFS_CLIENT_DIR_NAME"
+$IPFS_CLIENT_UNZIP = "kubo_v${IPFS_CLIENT_VERSION}_windows-amd64"
+$IPFS_CLIENT_ZIP = "${IPFS_CLIENT_UNZIP}.zip"
+$IPFS_CLIENT_ZIP_PATH = "${IPFS_CLIENT_DIR_PATH}\${IPFS_CLIENT_ZIP}"
+$IPFS_CLIENT_UNZIP_PATH = "${IPFS_CLIENT_DIR_PATH}\${IPFS_CLIENT_UNZIP}"
+$IPFS_CLIENT_EXEC = "ipfs.exe"
+$IPFS_CLIENT_EXEC_PATH = "${IPFS_CLIENT_UNZIP_PATH}\${IPFS_CLIENT_EXEC}"
+$IPFS_CLIENT_STARTER_PS1_PATH = "${IPFS_CLIENT_UNZIP_PATH}\${IPFS_CLIENT_STARTER_PS1}"
+$IPFS_CLIENT_STARTER_EXEC_PATH = "${IPFS_CLIENT_UNZIP_PATH}\${IPFS_CLIENT_STARTER_EXEC}"
+$IPFS_CLIENT_URL = "https://github.com/ipfs/kubo/releases/download/v${IPFS_CLIENT_VERSION}/${IPFS_CLIENT_ZIP}"
+
+<##>
+$IPFS_CLIENT_SWARN_PORT = 4001
+$IPFS_CLIENT_API_PORT = 5001
+$IPFS_CLIENT_GATEWAY_PORT = 8080
+<##>
+<#
+$IPFS_CLIENT_SWARN_PORT = 4001
+$IPFS_CLIENT_API_PORT = 4002
+$IPFS_CLIENT_GATEWAY_PORT = 4003
+#>
+
+$IPFS_CLUSTER_FOLLOW_STARTER_PS1 = "start-ipfs-cluster-follow.ps1"
+$IPFS_CLUSTER_FOLLOW_STARTER_EXEC = "start-ipfs-cluster-follow.bat"
+$IPFS_CLUSTER_FOLLOW_VERSION = "1.1.2"
+$IPFS_CLUSTER_FOLLOW_DIR_NAME = "IPFS-CLUSTER-FOLLOW"
+$IPFS_CLUSTER_FOLLOW_SIGNUMART_SERVICE_JSON_NAME = "service.json"
+$IPFS_CLUSTER_FOLLOW_SIGNUMART_DIR_NAME = "Signumart"
+$IPFS_CLUSTER_FOLLOW_DATA_DIR_NAME = "Data"
+$IPFS_CLUSTER_FOLLOW_EXEC = "ipfs-cluster-follow.exe"
+$IPFS_CLUSTER_FOLLOW_DIR_PATH = "$IPFS_DIR_NAME\$IPFS_CLUSTER_FOLLOW_DIR_NAME"
+$IPFS_CLUSTER_FOLLOW_UNZIP = "ipfs-cluster-follow_v${IPFS_CLUSTER_FOLLOW_VERSION}_windows-amd64"
+$IPFS_CLUSTER_FOLLOW_ZIP = "${IPFS_CLUSTER_FOLLOW_UNZIP}.zip"
+$IPFS_CLUSTER_FOLLOW_ZIP_PATH = "${IPFS_CLUSTER_FOLLOW_DIR_PATH}\${IPFS_CLUSTER_FOLLOW_ZIP}"
+$IPFS_CLUSTER_FOLLOW_UNZIP_PATH = "${IPFS_CLUSTER_FOLLOW_DIR_PATH}\${IPFS_CLUSTER_FOLLOW_UNZIP}"
+$IPFS_CLUSTER_FOLLOW_DATA_DIR_PATH = "$IPFS_CLUSTER_FOLLOW_UNZIP_PATH\$IPFS_CLUSTER_FOLLOW_DATA_DIR_NAME"
+$IPFS_CLUSTER_FOLLOW_SIGNUMART_SERVICE_JSON_PATH = "$IPFS_CLUSTER_FOLLOW_DATA_DIR_PATH\$IPFS_CLUSTER_FOLLOW_SIGNUMART_SERVICE_JSON_NAME"
+$IPFS_CLUSTER_FOLLOW_SIGNUMART_DIR_PATH = "$IPFS_CLUSTER_FOLLOW_DATA_DIR_PATH\$IPFS_CLUSTER_FOLLOW_SIGNUMART_DIR_NAME"
+$IPFS_CLUSTER_FOLLOW_EXEC_PATH = "${IPFS_CLUSTER_FOLLOW_UNZIP_PATH}\${IPFS_CLUSTER_FOLLOW_EXEC}"
+$IPFS_CLUSTER_FOLLOW_STARTER_PS1_PATH = "${IPFS_CLUSTER_FOLLOW_UNZIP_PATH}\${IPFS_CLUSTER_FOLLOW_STARTER_PS1}"
+$IPFS_CLUSTER_FOLLOW_STARTER_EXEC_PATH = "${IPFS_CLUSTER_FOLLOW_UNZIP_PATH}\${IPFS_CLUSTER_FOLLOW_STARTER_EXEC}"
+$IPFS_CLUSTER_FOLLOW_URL = "https://dist.ipfs.tech/ipfs-cluster-follow/v${IPFS_CLUSTER_FOLLOW_VERSION}/$IPFS_CLUSTER_FOLLOW_ZIP"
+$IPFS_CLUSTER_FOLLOW_SIGNUMART_CONFIG_URL = "https://ipfs.io/ipfs/QmPu3KCckVKHPJh4BcyKEpHjcuQtp9GcspkcVbDcTQraSU"
+$IPFS_CLUSTER_FOLLOW_PORT = 4041
+
+$IPFS_SIGNUMART_STARTER_PS1 = "start-ipfs-signumart.ps1"
+$IPFS_SIGNUMART_STARTER_EXEC = "start-ipfs-signumart.bat"
+$IPFS_SIGNUMART_STARTER_PS1_PATH = "$IPFS_DIR_NAME\$IPFS_SIGNUMART_STARTER_PS1"
+$IPFS_SIGNUMART_STARTER_EXEC_PATH = "$IPFS_DIR_NAME\$IPFS_SIGNUMART_STARTER_EXEC"
 
 $TOOLS_DIR = "Tools"
 
@@ -493,6 +570,24 @@ $NOTEPAD_STARTER_PS1_PATH = "${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_UNZIP}\${NOTE
 $NOTEPAD_STARTER_EXEC_PATH = "${TOOLS_DIR}\${NOTEPAD_DIR}\${NOTEPAD_UNZIP}\${NOTEPAD_STARTER_EXEC}"
 $NOTEPAD_URL = "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.7.1/npp.8.7.1.portable.x64.zip"
 
+$BROWSER_DIR_NAME = "Browser"
+
+$BROWSER_CHROMIUM_STARTER_PS1 = "start-chromium.ps1"
+$BROWSER_CHROMIUM_STARTER_EXEC = "start-chromium.bat"
+
+$BROWSER_CHROMIUM_VERSION = "1410885"
+$BROWSER_CHROMIUM_DIR_NAME = "Chromium"
+$BROWSER_CHROMIUM_EXEC = "chrome.exe"
+$BROWSER_CHROMIUM_UNZIP = "chrome-win"
+$BROWSER_CHROMIUM_ZIP = "${BROWSER_CHROMIUM_UNZIP}.zip"
+$BROWSER_CHROMIUM_DIR_PATH = "${BROWSER_DIR_NAME}\${BROWSER_CHROMIUM_DIR_NAME}"
+$BROWSER_CHROMIUM_UNZIP_PATH = "$BROWSER_CHROMIUM_DIR_PATH\$BROWSER_CHROMIUM_UNZIP"
+$BROWSER_CHROMIUM_ZIP_PATH = "$BROWSER_CHROMIUM_DIR_PATH\$BROWSER_CHROMIUM_ZIP"
+$BROWSER_CHROMIUM_EXEC_PATH = "$BROWSER_CHROMIUM_UNZIP_PATH\${BROWSER_CHROMIUM_EXEC}"
+$BROWSER_CHROMIUM_STARTER_PS1_PATH = "$BROWSER_CHROMIUM_UNZIP_PATH\${BROWSER_CHROMIUM_STARTER_PS1}"
+$BROWSER_CHROMIUM_STARTER_EXEC_PATH = "$BROWSER_CHROMIUM_UNZIP_PATH\${BROWSER_CHROMIUM_STARTER_EXEC}"
+$BROWSER_CHROMIUM_URL = "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Win%2F${BROWSER_CHROMIUM_VERSION}%2Fchrome-win.zip?generation=1737732304268261&alt=media"
+
 # TODO change between databases to install
 
 function Show-InstallMenu {
@@ -526,25 +621,27 @@ function Show-InstallMenu {
 	Write-Host "[16] `tInstall SC Simulator"
 	Write-Host "[17] `tInstall Signum-D-OR"
 	Write-Host "[18] `tInstall SmartJ Signum Smart Contract Compiler"
+	Write-Host "[19] `tInstall SignumArt IPFS-Cluster"
 	# Write-Host "====================================================="
 	# Write-Host "            		 Databases	 			         "
 	# Write-Host "====================================================="
-    Write-Host "[19] `tInstall MariaDB"
+    Write-Host "[20] `tInstall MariaDB"
 	# Write-Host "====================================================="
 	# Write-Host "            		 Tools	 			             "
 	# Write-Host "====================================================="
-    Write-Host "[20] `tInstall HeidiSQL"
-	Write-Host "[21] `tInstall DBeaver"
-    Write-Host "[22] `tInstall NGINX"
-	Write-Host "[23] `tInstall NodeJS"
-	Write-Host "[24] `tInstall Notepad++"
+    Write-Host "[21] `tInstall HeidiSQL"
+	Write-Host "[22] `tInstall DBeaver"
+    Write-Host "[23] `tInstall NGINX"
+	Write-Host "[24] `tInstall NodeJS"
+	Write-Host "[25] `tInstall Notepad++"
+	Write-Host "[26] `tInstall Chromium Browser"
 	<# Write-Host "====================================================="
 	Write-Host "            	  Developer Tools 			         "
 	Write-Host "====================================================="
 	Write-Host "[8] `tInstall Signum SmartC Smart Contract Compiler" #>
 	# Write-Host "-----------------------------------------------------"
-	Write-Host "[25] `tInstall Whitepaper And Documents"
-	Write-Host "[26] `tInstall Signum Link Collection"
+	Write-Host "[27] `tInstall Whitepaper And Documents"
+	Write-Host "[28] `tInstall Signum Link Collection"
     Write-Host "-----------------------------------------------------"
 	# TODO Signum pages menu
 	# TODO add usefull signum pages wiki, official page, github stb. coinmarcetcap, bft portal, explorer
@@ -552,12 +649,12 @@ function Show-InstallMenu {
 	# Signum provider menu
 	# letsencrypt with ACME challege
 	# open readme how to use the installer
-    Write-Host "[27] `tSignum Starter Menu"
-    Write-Host "[28] `tExit"
+    Write-Host "[29] `tSignum Starter Menu"
+    Write-Host "[30] `tExit"
     Write-Host "====================================================="
 
 	# Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
-    $choice = Read-Host "Enter your choice (1-28)"
+    $choice = Read-Host "Enter your choice (1-30)"
 
 	function install-process($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -627,34 +724,40 @@ function Show-InstallMenu {
 		"18" {
 			install-process $SMARTJ_STARTER_EXEC_PATH "SmartJ Signum Smart Contract Compiler" {install-smartj-compiler}
         }
-        "19" {
-			install-process $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+		"19" {
+			install-process $IPFS_CLIENT_STARTER_PS1_PATH "SignumArt IPFS-Cluster" {install_SignumArt_IPFS_CLIENT-Cluster}
         }
         "20" {
+			install-process $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+        }
+        "21" {
 			install-process $HEIDISQL_EXEC_PATH "HeidiSQL" {install_heidisql}
         }
-		"21" {
+		"22" {
 			install-process $DBEAVER_EXEC_PATH "DBeaver" {install_DBeaver}
         }
-		"22" {
+		"23" {
 			install-process $NGINX_EXEC_PATH "NGINX" {install_nginx}
         }
-		"23" {
+		"24" {
 			install-process $NODEJS_EXEC_PATH "NodeJs" {install_nodejs}
         }
-		"24" {
+		"25" {
 			install-process $NOTEPAD_EXEC_PATH "Notepad" {install_notepad}
         }
-		"25" {
+		"26" {
+			install-process $BROWSER_CHROMIUM_EXEC_PATH "Chromium Browser" {install_chromium_browser}
+        }
+		"27" {
 			install-process $WHITEPAPER_DOC_PATH "Whitepaper And Documents" {install-doc}
         }
-		"26" {
+		"28" {
 			install-process $SIGNUM_LINK_COLLECTION_PATH "Signum Link Collection" {install-doc}
         }
-        "27" {
+        "29" {
             Show-StartMenu
         }
-        "28" {
+        "30" {
             Exit-Script
         }
         default {
@@ -689,20 +792,22 @@ function Show-StartMenu {
 	Write-Host "[16] `tStart SC Simulator"
 	Write-Host "[17] `tStart Signum-D-OR"
 	Write-Host "[18] `tStart SmartJ Signum Smart Contract Compiler"
-    Write-Host "[19] `tStart MariaDB"
-    Write-Host "[20] `tStart HeidiSQL"
-	Write-Host "[21] `tStart DBeaver"
-	Write-Host "[22] `tStart NGINX"
-	Write-Host "[23] `tStart NodeJS"
-	Write-Host "[24] `tStart Notepad++"
-	Write-Host "[25] `tOpen Whitepaper"
-	Write-Host "[26] `tOpen Signum Link Collection"
+	Write-Host "[19] `tStart SignumArt IPFS-Cluster"
+    Write-Host "[20] `tStart MariaDB"
+    Write-Host "[21] `tStart HeidiSQL"
+	Write-Host "[22] `tStart DBeaver"
+	Write-Host "[23] `tStart NGINX"
+	Write-Host "[24] `tStart NodeJS"
+	Write-Host "[25] `tStart Notepad++"
+	Write-Host "[26] `tStart Chromium Browser"
+	Write-Host "[27] `tOpen Whitepaper"
+	Write-Host "[28] `tOpen Signum Link Collection"
     Write-Host "-----------------------------------------------------"
-    Write-Host "[27] `tSignum Installer Menu"
-    Write-Host "[28] `tExit"
+    Write-Host "[29] `tSignum Installer Menu"
+    Write-Host "[30] `tExit"
     Write-Host "====================================================="
 
-    $choice = Read-Host "Enter your choice (1-28)"
+    $choice = Read-Host "Enter your choice (1-30)"
 
 	function start-process-menu($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -791,34 +896,40 @@ function Show-StartMenu {
 		"18" {
 			start-process-menu $SMARTJ_STARTER_PS1_PATH "SmartJ Signum Smart Contract Compiler" {install-smartj-compiler}
         }
-        "19" {
-			start-process-menu $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+		"19" {
+			start-process-menu $IPFS_SIGNUMART_STARTER_PS1_PATH "SignumArt IPFS-Cluster" {install_SignumArt_IPFS_CLIENT-Cluster}
         }
         "20" {
+			start-process-menu $MARIADB_STARTER_PS1_PATH "MariaDB" {install_mariadb}
+        }
+        "21" {
 			start-process-menu $HEIDISQL_STARTER_PS1_PATH "HeidiSQL" {install_heidisql}
 		}
-		"21" {
+		"22" {
 			start-process-menu $DBEAVER_STARTER_PS1_PATH "DBeaver" {install_DBeaver}
         }
-		"22" {
+		"23" {
 			start-process-menu $NGINX_STARTER_PS1_PATH "NGINX" {install_nginx}
         }
-		"23" {
+		"24" {
 			start-process-menu $NODEJS_STARTER_PS1_PATH "NodeJs" {install_nodejs}
         }
-		"24" {
+		"25" {
 			start-process-menu $NOTEPAD_STARTER_PS1_PATH "Notepad" {install_notepad}
         }
-		"25" {
+		"26" {
+			start-process-menu $BROWSER_CHROMIUM_STARTER_PS1_PATH "Chromium Browser" {install_chromium_browser}
+        }
+		"27" {
             open-doc-menu $WHITEPAPER_DOC_PATH "Whitepaper" {install-doc}
 		}
-		"26" {
+		"28" {
             open-doc-menu $SIGNUM_LINK_COLLECTION_PATH "Signum Link Collection" {install-doc}
 		}
-        "27" {
+        "29" {
             Show-InstallMenu
         }
-        "28" {
+        "30" {
             Exit-Script
         }
         default {
@@ -1091,7 +1202,7 @@ function Install-SignumMainnet {
 	}
 
     # Create starter ps1
-    signum-starter-ps1 "Mainnet" ${SIGNUM_NODE_MAINNET_STARTER_PS1_PATH} 8125
+    signum-starter-ps1 "Mainnet" ${SIGNUM_NODE_MAINNET_STARTER_PS1_PATH} $SIGNUM_NODE_MAINNET_API_PORT
 	
 	# Create starter batch
 	create-starter-ps1-exec ${SIGNUM_NODE_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${SIGNUM_NODE_STARTER_EXEC} ${SIGNUM_NODE_MAINNET_STARTER_EXEC_PATH}
@@ -1358,7 +1469,7 @@ function Install-SignumTestnet {
 	}
 
     # Install Signum Testnet starter batch
-    signum-starter-ps1 "Testnet" ${SIGNUM_NODE_TESTNET_STARTER_PS1_PATH} 6876
+    signum-starter-ps1 "Testnet" ${SIGNUM_NODE_TESTNET_STARTER_PS1_PATH} $SIGNUM_NODE_TESTNET_API_PORT
 	
 	# OS dependent start-node
 	# Create starter batch
@@ -1465,8 +1576,6 @@ function Install-SignumPoolMainnet {
 	# Copy poopl.properties to pool-original.properties
 	Write-Host "Copying ${SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_PATH} to ${SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_ORIGINAL_PATH} ..."
     Copy-Item -Path "${SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_PATH}" -Destination "${SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_ORIGINAL_PATH}"
-	
-	$port = 8000
 
 	# Create starter ps1
 	if (-not (Test-Path $SIGNUM_POOL_MAINNET_STARTER_PS1_PATH)) {
@@ -1502,13 +1611,13 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
     -ArgumentList "-NoExit", "-Command", `@"
     try {
         ```$host.UI.RawUI.WindowTitle = 'Signum Pool Mainnet'
-		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $SIGNUM_POOL_MAINET_PORT -and ```$_.State -eq 'Listen' }
         if (```$portInUse) {
 			Write-Host 'Signum Pool Mainnet is already running.'
 			exit
 		} else {
 			# Start Signum Pool Mainnet
-			Start-Process "http://localhost:$port"
+			Start-Process "http://localhost:$SIGNUM_POOL_MAINET_PORT"
 			.\jre\${JAVA_POOL_MAINNET_UNZIP}\bin\java -jar signum-pool.jar
 		}
     } catch {
@@ -1661,8 +1770,6 @@ function Install-SignumPoolTestnet {
 	Write-Host "Copying ${SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_PATH} to ${SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_ORIGINAL_PATH} ..."
     Copy-Item -Path "${SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_PATH}" -Destination "${SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_ORIGINAL_PATH}"
 
-	$port = 8001
-
 	# Create starter ps1
 	if (-not (Test-Path $SIGNUM_POOL_TESTNET_STARTER_PS1_PATH)) {
 		# Create start-pool.ps1 file with the desired content
@@ -1697,13 +1804,13 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
     -ArgumentList "-NoExit", "-Command", `@"
     try {
         ```$host.UI.RawUI.WindowTitle = 'Signum Pool Testnet'
-		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $SIGNUM_POOL_TESTNET_PORT -and ```$_.State -eq 'Listen' }
         if (```$portInUse) {
 			Write-Host 'Signum Pool Testnet is already running.'
 			exit
 		} else {
 			# Start Signum Pool Testnet
-			Start-Process "http://localhost:$port"
+			Start-Process "http://localhost:$SIGNUM_POOL_TESTNET_PORT"
 			.\jre\${JAVA_POOL_TESTNET_UNZIP}\bin\java -jar signum-pool.jar
 		}
     } catch {
@@ -2099,7 +2206,7 @@ timeout = 60
 serve(
 	application,
 	host="0.0.0.0",
-	port=5000,
+	port=$SIGNUM_EXPLORER_MAINNET_PORT,
 	threads=threads,
 	connection_limit=1000,  # Equivalent to Gunicorn's max_requests
 	asyncore_use_poll=True,
@@ -2144,7 +2251,7 @@ SITE_TITLE=Signum Explorer
 
 DB_DEFAULT_ENGINE=django.db.backends.mysql
 DB_DEFAULT_HOST=127.0.0.1
-DB_DEFAULT_PORT=3306
+DB_DEFAULT_PORT=$MARIADB_PORT
 DB_DEFAULT_NAME=signum-explorer-mainnet
 DB_DEFAULT_USER=signumuser_explorer_mainnet
 DB_DEFAULT_PASSWORD=signumpassword
@@ -2152,7 +2259,7 @@ DB_DEFAULT_OPTIONS={"init_command": "SET sql_mode='STRICT_TRANS_TABLES'", "chars
 
 DB_JAVA_WALLET_ENGINE=django.db.backends.mysql
 DB_JAVA_WALLET_HOST=127.0.0.1
-DB_JAVA_WALLET_PORT=3306
+DB_JAVA_WALLET_PORT=$MARIADB_PORT
 DB_JAVA_WALLET_NAME=signum-node-mainnet
 DB_JAVA_WALLET_USER=signumuser_node_mainnet_readonly
 DB_JAVA_WALLET_PASSWORD=signumpassword
@@ -2171,8 +2278,8 @@ SENTRY_DSN=
 SIGNUM_NODE=localhost
 WALLET_URL=https://signumwallet.ddns.net:8128/
 BRS_BOOTSTRAP_PEERS=["signumwallet.ddns.net:8123", "taylorforce.synology.me:8123", "zwurg.feste-ip.net:51940", "zmail.cloudns.ph:8123"]
-DEFAULT_P2P_PORT=8123
-DEFAULT_API_V1_PORT=8125
+DEFAULT_P2P_PORT=$SIGNUM_NODE_MAINNET_P2P_PORT
+DEFAULT_API_V1_PORT=$SIGNUM_NODE_MAINNET_API_PORT
 
 BRS_P2P_VERSION = $SIGNUM_NODE_MAINNET_VERSION
 MIN_PEER_VERSION = 3.8.0
@@ -2222,9 +2329,6 @@ TASKS_SCAN_DELAY=60
 	# Write the changes back to the file
 	$content | Set-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\config\settings.py
 
-	$port = 5000
-	$port1 = 9000
-
 	# Create starter ps1
 	if (-not (Test-Path $SIGNUM_EXPLORER_MAINNET_STARTER_PS1_PATH)) {
 		# Create start-explorer.ps1 file with the desired content
@@ -2261,14 +2365,14 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
     -ArgumentList "-NoExit", "-Command", `@"
     try {
         ```$host.UI.RawUI.WindowTitle = 'Signum Explorer Mainnet'
-		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $SIGNUM_EXPLORER_MAINNET_PORT -and ```$_.State -eq 'Listen' }
         if (```$portInUse) {
 			Write-Host 'Signum Explorer Mainnet is already running.'
 			exit
 		} else {
 			# Start Signum Explorer Mainnet
-			Start-Process "http://localhost:$port1"
-			Start-Process "http://localhost:$port"
+			Start-Process "http://localhost:$SIGNUM_EXPLORER_MAINNET_SUPERVISOR_SATUS_PORT"
+			Start-Process "http://localhost:$SIGNUM_EXPLORER_MAINNET_PORT"
 			.\Scripts\supervisord.exe -n -c .\supervisord.conf
 		}
     } catch {
@@ -2702,7 +2806,7 @@ timeout = 60
 serve(
 	application,
 	host="0.0.0.0",
-	port=5001,
+	port=$SIGNUM_EXPLORER_TESTNET_PORT,
 	threads=threads,
 	connection_limit=1000,  # Equivalent to Gunicorn's max_requests
 	asyncore_use_poll=True,
@@ -2747,7 +2851,7 @@ TEST_NET=true
 
 DB_DEFAULT_ENGINE=django.db.backends.mysql
 DB_DEFAULT_HOST=127.0.0.1
-DB_DEFAULT_PORT=3306
+DB_DEFAULT_PORT=$MARIADB_PORT
 DB_DEFAULT_NAME=signum-explorer-testnet
 DB_DEFAULT_USER=signumuser_explorer_testnet
 DB_DEFAULT_PASSWORD=signumpassword
@@ -2755,7 +2859,7 @@ DB_DEFAULT_OPTIONS={"init_command": "SET sql_mode='STRICT_TRANS_TABLES'", "chars
 
 DB_JAVA_WALLET_ENGINE=django.db.backends.mysql
 DB_JAVA_WALLET_HOST=127.0.0.1
-DB_JAVA_WALLET_PORT=3306
+DB_JAVA_WALLET_PORT=$MARIADB_PORT
 DB_JAVA_WALLET_NAME=signum-node-testnet
 DB_JAVA_WALLET_USER=signumuser_node_testnet_readonly
 DB_JAVA_WALLET_PASSWORD=signumpassword
@@ -2775,7 +2879,7 @@ SIGNUM_NODE=localhost
 WALLET_URL=https://signumwallettestnet.ddns.net:8138/
 BRS_BOOTSTRAP_PEERS=["signumwallettestnet.ddns.net:8138"]
 DEFAULT_P2P_PORT=7123
-DEFAULT_API_V1_PORT=6876
+DEFAULT_API_V1_PORT=$SIGNUM_NODE_TESTNET_API_PORT
 
 BRS_P2P_VERSION = $SIGNUM_NODE_TESTNET_VERSION
 MIN_PEER_VERSION = 3.8.0
@@ -2824,9 +2928,6 @@ TASKS_SCAN_DELAY=60
 	# Write the changes back to the file
 	$content | Set-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\config\settings.py
 
-	$port = 5001
-	$port1 = 9001
-
 	# Create starter ps1
 	if (-not (Test-Path $SIGNUM_EXPLORER_TESTNET_STARTER_PS1_PATH)) {
 		# Create start-explorer.ps1 file with the desired content
@@ -2863,14 +2964,14 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
     -ArgumentList "-NoExit", "-Command", `@"
     try {
         ```$host.UI.RawUI.WindowTitle = 'Signum Explorer Testnet'
-		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $SIGNUM_EXPLORER_TESTNET_PORT -and ```$_.State -eq 'Listen' }
         if (```$portInUse) {
 			Write-Host 'Signum Explorer Testnet is already running.'
 			exit
 		} else {
 			# Start Signum Explorer Testnet
-			Start-Process "http://localhost:$port1"
-			Start-Process "http://localhost:$port"
+			Start-Process "http://localhost:$SIGNUM_EXPLORER_TESTNET_SUPERVISOR_SATUS_PORT"
+			Start-Process "http://localhost:$SIGNUM_EXPLORER_TESTNET_PORT"
 			.\Scripts\supervisord.exe -n -c .\supervisord.conf
 		}
     } catch {
@@ -3038,7 +3139,7 @@ function install-smartc-web-ui {
 		# Write the changes back to the file
 		$content | Set-Content -Path $SMARTC_WEB_UI_UNZIP_PATH\package.json
 			
-	Write-Host "package.json configuration initialized"	
+	Write-Host "package.json configuration initialized"
 	
 	# Install node.js portable with npm
 	install_nodejs
@@ -3054,8 +3155,6 @@ function install-smartc-web-ui {
 	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
 	
 	Set-Location -Path $PSScriptRoot
-	
-	$port = 7000
 
 	# Create starter ps1
 	if (-not (Test-Path $SMARTC_WEB_UI_STARTER_PS1_PATH)) {
@@ -3071,14 +3170,14 @@ Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
     -ArgumentList "-NoExit", "-Command", `@"
     try {
         ```$host.UI.RawUI.WindowTitle = 'SmartC WEB UI'
-		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq 	$SMARTC_WEB_UI_PORT -and ```$_.State -eq 'Listen' }
         if (```$portInUse) {
 			Write-Host 'SmartC WEB UI is already running.'
 			exit
 		} else {
 			Write-Host 'Stop SmartC WEB UI: ctrl + c'
 			# Start SmartC WEB UI
-			Start-Process "http://localhost:$port"
+			Start-Process "http://localhost:$SMARTC_WEB_UI_PORT"
 			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 			..\..\$NODEJS_UNZIP_PATH\npm.cmd run start
 		}
@@ -3157,7 +3256,7 @@ function install-smartc-retro-ui {
 		# Write the changes back to the file
 		$content | Set-Content -Path $SMARTC_RETRO_UI_UNZIP_PATH\package.json
 			
-	Write-Host "package.json configuration initialized"	
+	Write-Host "package.json configuration initialized"
 	
 	# Install node.js portable with npm
 	install_nodejs
@@ -3173,8 +3272,6 @@ function install-smartc-retro-ui {
 	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
 	
 	Set-Location -Path $PSScriptRoot
-	
-	$port = 7001
 
 	# Create starter ps1
 	if (-not (Test-Path $SMARTC_RETRO_UI_STARTER_PS1_PATH)) {
@@ -3190,14 +3287,14 @@ Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
     -ArgumentList "-NoExit", "-Command", `@"
     try {
         ```$host.UI.RawUI.WindowTitle = 'SmartC RETRO UI'
-		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $SMARTC_RETRO_UI_PORT -and ```$_.State -eq 'Listen' }
         if (```$portInUse) {
 			Write-Host 'SmartC RETRO UI is already running.'
 			exit
 		} else {
 			Write-Host 'Stop SmartC RETRO UI: ctrl + c'
 			# Start SmartC RETRO UI
-			Start-Process "http://localhost:$port"
+			Start-Process "http://localhost:$SMARTC_RETRO_UI_PORT"
 			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 			..\..\$NODEJS_UNZIP_PATH\npm.cmd run start
 		}
@@ -3276,7 +3373,7 @@ function install-smartc-signum-decompiler {
 		# Write the changes back to the file
 		$content | Set-Content -Path $SMARTC_SIGNUM_DECOMPILER_UNZIP_PATH\package.json
 			
-	Write-Host "package.json configuration initialized"	
+	Write-Host "package.json configuration initialized"
 	
 	# Install node.js portable with npm
 	install_nodejs
@@ -3292,8 +3389,6 @@ function install-smartc-signum-decompiler {
 	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
 	
 	Set-Location -Path $PSScriptRoot
-	
-	$port = 7002
 
 	# Create starter ps1
 	if (-not (Test-Path $SMARTC_SIGNUM_DECOMPILER_STARTER_PS1_PATH)) {
@@ -3309,14 +3404,14 @@ Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
     -ArgumentList "-NoExit", "-Command", `@"
     try {
         ```$host.UI.RawUI.WindowTitle = 'Signum Pool Mainnet'
-		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $SMARTC_SIGNUM_DECOMPILER_PORT -and ```$_.State -eq 'Listen' }
         if (```$portInUse) {
 			Write-Host 'SmartC SIGNUM DECOMPILER is already running.'
 			exit
 		} else {
 			Write-Host 'Stop SmartC SIGNUM DECOMPILER: ctrl + c'
 			# Start SmartC SIGNUM DECOMPILER
-			Start-Process "http://localhost:$port/tester.html"
+			Start-Process "http://localhost:$SMARTC_SIGNUM_DECOMPILER_PORT/tester.html"
 			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 			..\..\$NODEJS_UNZIP_PATH\npm.cmd run webpage
 		}
@@ -3409,7 +3504,7 @@ function install-sc-simulator {
 		# Write the changes back to the file
 		$content | Set-Content -Path $SC_SIMULATOR_UNZIP_PATH\try.html
 			
-	Write-Host "try.html initialized"	
+	Write-Host "try.html initialized"
 	
 	# Install node.js portable with npm
 	install_nodejs
@@ -3426,8 +3521,6 @@ function install-sc-simulator {
 	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd run build
 	
 	Set-Location -Path $PSScriptRoot
-	
-	$port = 7003
 
 	# Create starter ps1
 	if (-not (Test-Path $SC_SIMULATOR_STARTER_PS1_PATH)) {
@@ -3443,14 +3536,14 @@ Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
     -ArgumentList "-NoExit", "-Command", `@"
     try {
         ```$host.UI.RawUI.WindowTitle = 'SC Simulator'
-		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $SC_SIMULATOR_PORT -and ```$_.State -eq 'Listen' }
         if (```$portInUse) {
 			Write-Host 'SC Simulator is already running.'
 			exit
 		} else {
 			Write-Host 'Stop SC Simulator: ctrl + c'
 			# Start SC Simulator
-			Start-Process "http://localhost:$port"/try.html
+			Start-Process "http://localhost:$SC_SIMULATOR_PORT/try.html"
 			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 			..\..\$NODEJS_UNZIP_PATH\npm.cmd run start
 		}
@@ -3700,7 +3793,7 @@ build.dependsOn shadowJar
 	# Write the changes back to the file
 	$content | Set-Content -Path $SMARTJ_UNZIP_PATH\gradlew.bat
 	
-	Write-Host "gradlew.bat initialized"	
+	Write-Host "gradlew.bat initialized"
 
 	Set-Location .\$SMARTJ_UNZIP_PATH
 	.\gradlew.bat clean shadowJar
@@ -3823,6 +3916,325 @@ ${powershell_exec_path} -ExecutionPolicy Bypass -File ".\${file-ps1}"
     }
 }
 
+function install_IPFS_CLIENT {
+	# Create IPFS directory
+	if (-not (Test-Path "${IPFS_DIR_NAME}")) {
+		New-Item -ItemType Directory -Path "${IPFS_DIR_NAME}" | Out-Null
+		Write-Host "Created directory: ${IPFS_DIR_NAME}"
+	} else {
+		Write-Host "Directory already exists: ${IPFS_DIR_NAME}"
+	}
+
+	# Create IPFS_CLIENT directory
+	if (-not (Test-Path "${IPFS_CLIENT_DIR_PATH}")) {
+		New-Item -ItemType Directory -Path "${IPFS_CLIENT_DIR_PATH}" | Out-Null
+		Write-Host "Created directory: ${IPFS_CLIENT_DIR_PATH}"
+	} else {
+		Write-Host "Directory already exists: ${IPFS_CLIENT_DIR_PATH}"
+	}
+
+	# Create IPFS Repository directory
+	if (-not (Test-Path "${IPFS_CLIENT_REPOSITORY_DIR_PATH}")) {
+		New-Item -ItemType Directory -Path "${IPFS_CLIENT_REPOSITORY_DIR_PATH}" | Out-Null
+		Write-Host "Created directory: ${IPFS_CLIENT_REPOSITORY_DIR_PATH}"
+	} else {
+		Write-Host "Directory already exists: ${IPFS_CLIENT_REPOSITORY_DIR_PATH}"
+	}
+
+	if (Test-Path "${IPFS_CLIENT_ZIP_PATH}") {
+		Write-Host "${IPFS_CLIENT_ZIP_PATH} already downloaded."
+	} else {
+		# Download HeidiSQL
+		Write-Host "Downloading IPFS_CLIENT ..."
+		# Start-BitsTransfer -Source "${IPFS_CLIENT_URL}" -Destination "${IPFS_CLIENT_ZIP_PATH}"
+		Invoke-WebRequest -Uri ${IPFS_CLIENT_URL} -OutFile ${IPFS_CLIENT_ZIP_PATH}
+
+		# Check if download was successful
+		if (-not (Test-Path "${IPFS_CLIENT_ZIP_PATH}")) {
+			Write-Host "Error: Failed to download IPFS_CLIENT."
+			Pause
+			return
+		}
+	}
+
+	if (Test-Path "${IPFS_CLIENT_UNZIP_PATH}") {
+		Write-Host "${IPFS_CLIENT_UNZIP_PATH} already installed."
+	} else {
+		# Unzip the downloaded file to the installation directory
+		Write-Host "Unzipping IPFS_CLIENT to $IPFS_CLIENT_UNZIP_PATH ..."
+		Expand-Archive -Path "$IPFS_CLIENT_ZIP_PATH" -DestinationPath "$IPFS_CLIENT_DIR_PATH" -Force
+		# Rename the folder
+		Rename-Item -Path $IPFS_CLIENT_DIR_PATH\kubo -NewName "$IPFS_CLIENT_UNZIP"
+	}
+
+	if (Test-Path "${IPFS_CLIENT_CONFIG_DIR_PATH}") {
+		Write-Host "IPFS client already configured."
+	} else {
+		# IPFS init
+		$env:IPFS_PATH = $IPFS_CLIENT_REPOSITORY_DIR_PATH
+		& ".\$IPFS_CLIENT_EXEC_PATH" init
+
+		# Replace ports to defined ones
+		<#
+		$content = Get-Content -Path $IPFS_CLIENT_CONFIG_DIR_PATH
+
+		# Process each line using regex to add '#' only if there's no '#' before the target
+		$content = $content | ForEach-Object {
+			$_ 	-replace "4001", "$IPFS_CLIENT_SWARN_PORT" `
+				-replace "5001", "$IPFS_CLIENT_API_PORT" `
+				-replace "8080", "$IPFS_CLIENT_GATEWAY_PORT"
+		}
+
+		# Write the changes back to the file
+		$content | Set-Content -Path $IPFS_CLIENT_CONFIG_DIR_PATH
+		#>
+
+		Write-Host "Configuration initialized"
+	}
+
+	# Create starter ps1
+	if (-not (Test-Path $IPFS_CLIENT_STARTER_PS1_PATH)) {
+		# Create start-node.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start IPFS_CLIENT
+Set-Location -Path `$PSScriptRoot
+
+Write-Host 'Starting IPFS_CLIENT ...'
+
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
+    -ArgumentList "-NoExit", "-Command", `@"
+    try {
+        ```$host.UI.RawUI.WindowTitle = 'IPFS_CLIENT'
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $IPFS_CLIENT_API_PORT -and ```$_.State -eq 'Listen' }
+        if (```$portInUse) {
+			Write-Host 'IPFS_CLIENT is already running.'
+			exit
+		} else {
+		 	Start-Process "http://localhost:$IPFS_CLIENT_API_PORT/webui"
+			Write-Host 'Stop IPFS_CLIENT: ctrl + c'
+			# Start IPFS_CLIENT
+			```$env:IPFS_PATH = '..\..\$IPFS_CLIENT_REPOSITORY_DIR_NAME'
+			.\$IPFS_CLIENT_EXEC daemon
+		}
+    } catch {
+        Write-Host 'An error occurred while starting IPFS_CLIENT: `$_'
+    } finally {
+        # Always set the title to 'IPFS_CLIENT Stopped' after IPFS_CLIENT exits
+        ```$host.UI.RawUI.WindowTitle = 'IPFS_CLIENT Stopped'
+    }
+"`@ ``
+    -WindowStyle Minimized
+
+exit
+"@
+
+		$content | Out-File -FilePath $IPFS_CLIENT_STARTER_PS1_PATH -Force
+
+		Write-Host "${IPFS_CLIENT_STARTER_PS1_PATH} successfully created."
+	} else {
+			Write-Host "File already exists: ${IPFS_CLIENT_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${IPFS_CLIENT_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${IPFS_CLIENT_STARTER_EXEC} ${IPFS_CLIENT_STARTER_EXEC_PATH}
+
+	Write-Host "IPFS_CLIENT installed successfully."
+
+}
+
+function install_IPFS_CLUSTER_FOLLOW {
+	# Create IPFS directory
+	if (-not (Test-Path "${IPFS_DIR_NAME}")) {
+		New-Item -ItemType Directory -Path "${IPFS_DIR_NAME}" | Out-Null
+		Write-Host "Created directory: ${IPFS_DIR_NAME}"
+	} else {
+		Write-Host "Directory already exists: ${IPFS_DIR_NAME}"
+	}
+
+	# Create IPFS_CLUSTER_FOLLOW directory
+	if (-not (Test-Path "${IPFS_CLUSTER_FOLLOW_DIR_PATH}")) {
+		New-Item -ItemType Directory -Path "${IPFS_CLUSTER_FOLLOW_DIR_PATH}" | Out-Null
+		Write-Host "Created directory: ${IPFS_CLUSTER_FOLLOW_DIR_PATH}"
+	} else {
+		Write-Host "Directory already exists: ${IPFS_CLUSTER_FOLLOW_DIR_PATH}"
+	}
+
+	if (Test-Path "${IPFS_CLUSTER_FOLLOW_ZIP_PATH}") {
+		Write-Host "${IPFS_CLUSTER_FOLLOW_ZIP_PATH} already downloaded."
+	} else {
+		# Download IPFS_CLUSTER_FOLLOW
+		Write-Host "Downloading IPFS_CLUSTER_FOLLOW ..."
+		# Start-BitsTransfer -Source "${IPFS_CLUSTER_FOLLOW_URL}" -Destination "${IPFS_CLUSTER_FOLLOW_ZIP_PATH}"
+		Invoke-WebRequest -Uri ${IPFS_CLUSTER_FOLLOW_URL} -OutFile ${IPFS_CLUSTER_FOLLOW_ZIP_PATH}
+
+		# Check if download was successful
+		if (-not (Test-Path "${IPFS_CLUSTER_FOLLOW_ZIP_PATH}")) {
+			Write-Host "Error: Failed to download IPFS_CLUSTER_FOLLOW."
+			Pause
+			return
+		}
+	}
+
+	if (Test-Path "${IPFS_CLUSTER_FOLLOW_UNZIP_PATH}") {
+		Write-Host "${IPFS_CLUSTER_FOLLOW_UNZIP_PATH} already installed."
+	} else {
+		# Unzip the downloaded file to the installation directory
+		Write-Host "Unzipping IPFS_CLUSTER_FOLLOW to $IPFS_CLUSTER_FOLLOW_UNZIP_PATH ..."
+		Expand-Archive -Path "$IPFS_CLUSTER_FOLLOW_ZIP_PATH" -DestinationPath "$IPFS_CLUSTER_FOLLOW_DIR_PATH" -Force
+		# Rename the folder
+		Rename-Item -Path $IPFS_CLUSTER_FOLLOW_DIR_PATH\ipfs-cluster-follow -NewName "$IPFS_CLUSTER_FOLLOW_UNZIP"
+	}
+
+	# Create Data directory
+	if (-not (Test-Path "${IPFS_CLUSTER_FOLLOW_DATA_DIR_PATH}")) {
+		New-Item -ItemType Directory -Path "${IPFS_CLUSTER_FOLLOW_DATA_DIR_PATH}" | Out-Null
+		Write-Host "Created directory: ${IPFS_CLUSTER_FOLLOW_DATA_DIR_PATH}"
+	} else {
+		Write-Host "Directory already exists: ${IPFS_CLUSTER_FOLLOW_DATA_DIR_PATH}"
+	}
+
+	# Create Signumart directory
+	<#
+	if (-not (Test-Path "${IPFS_CLUSTER_FOLLOW_SIGNUMART_DIR_PATH}")) {
+		New-Item -ItemType Directory -Path "${IPFS_CLUSTER_FOLLOW_SIGNUMART_DIR_PATH}" | Out-Null
+		Write-Host "Created directory: ${IPFS_CLUSTER_FOLLOW_SIGNUMART_DIR_PATH}"
+	} else {
+		Write-Host "Directory already exists: ${IPFS_CLUSTER_FOLLOW_SIGNUMART_DIR_PATH}"
+	}
+	#>
+
+	if (Test-Path "${IPFS_CLUSTER_FOLLOW_SIGNUMART_SERVICE_JSON_PATH}") {
+		Write-Host "${IPFS_CLUSTER_FOLLOW_SIGNUMART_SERVICE_JSON_PATH} already downloaded."
+	} else {
+		# Download IPFS_CLUSTER_FOLLOW
+		Write-Host "Downloading IPFS_CLUSTER_FOLLOW ..."
+		# Start-BitsTransfer -Source "${IPFS_CLUSTER_FOLLOW_URL}" -Destination "${IPFS_CLUSTER_FOLLOW_ZIP_PATH}"
+		Invoke-WebRequest -Uri ${IPFS_CLUSTER_FOLLOW_SIGNUMART_CONFIG_URL} -OutFile ${IPFS_CLUSTER_FOLLOW_SIGNUMART_SERVICE_JSON_PATH}
+
+		# Replace ports to defined ones
+		<#
+		$content = Get-Content -Path $IPFS_CLUSTER_FOLLOW_SIGNUMART_SERVICE_JSON_PATH
+
+		# Process each line using regex to add '#' only if there's no '#' before the target
+		$content = $content | ForEach-Object {
+			$_ 	-replace "4001", "$IPFS_CLIENT_SWARN_PORT" `
+				-replace "5001", "$IPFS_CLIENT_API_PORT" `
+				-replace "8080", "$IPFS_CLIENT_GATEWAY_PORT"
+		}
+
+		# Write the changes back to the file
+		$content | Set-Content -Path $IPFS_CLUSTER_FOLLOW_SIGNUMART_SERVICE_JSON_PATH
+		#>
+		
+		$env:IPFS_CLUSTER_PATH = ".\$IPFS_CLUSTER_FOLLOW_DATA_DIR_PATH"
+		$env:CLUSTER_RESTAPI_HTTPLISTENMULTIADDRESS = "/ip4/127.0.0.1/tcp/9094"
+		# & ".\$IPFS_CLUSTER_FOLLOW_EXEC_PATH" "$IPFS_CLUSTER_FOLLOW_SIGNUMART_DIR_NAME" init ".\$IPFS_CLUSTER_FOLLOW_SIGNUMART_SERVICE_JSON_PATH" --config ".\$IPFS_CLUSTER_FOLLOW_SIGNUMART_DIR_PATH"
+		& ".\$IPFS_CLUSTER_FOLLOW_EXEC_PATH" "$IPFS_CLUSTER_FOLLOW_SIGNUMART_DIR_NAME" init "$IPFS_CLUSTER_FOLLOW_SIGNUMART_CONFIG_URL"
+
+		# Rename-Item -Path ".\$IPFS_CLUSTER_FOLLOW_SIGNUMART_DIR_PATH\$IPFS_CLUSTER_FOLLOW_SIGNUMART_SERVICE_JSON_NAME" -NewName "original_${IPFS_CLUSTER_FOLLOW_SIGNUMART_SERVICE_JSON_NAME}"
+		# Copy-Item -Path ".\$IPFS_CLUSTER_FOLLOW_SIGNUMART_SERVICE_JSON_PATH" -Destination ".\$IPFS_CLUSTER_FOLLOW_SIGNUMART_DIR_PATH\$IPFS_CLUSTER_FOLLOW_SIGNUMART_SERVICE_JSON_NAME"
+
+		Write-Host "Configuration initialized"
+
+		# Check if download was successful
+		if (-not (Test-Path "${IPFS_CLUSTER_FOLLOW_SIGNUMART_SERVICE_JSON_PATH}")) {
+			Write-Host "Error: Failed to download IPFS_CLUSTER_FOLLOW SignumART service.json file."
+			Pause
+			return
+		}
+	}
+
+	# Create starter ps1
+	if (-not (Test-Path $IPFS_CLUSTER_FOLLOW_STARTER_PS1_PATH)) {
+		# Create start-node.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start IPFS_CLUSTER_FOLLOW
+Set-Location -Path `$PSScriptRoot
+
+Write-Host 'Starting IPFS_CLUSTER_FOLLOW ...'
+
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
+    -ArgumentList "-NoExit", "-Command", `@"
+    try {
+        ```$host.UI.RawUI.WindowTitle = 'SignumArt IPFS_CLUSTER_FOLLOW'
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $IPFS_CLUSTER_FOLLOW_PORT -and ```$_.State -eq 'Listen' }
+        if (```$portInUse) {
+			Write-Host 'SignumArt IPFS_CLUSTER_FOLLOW is already running.'
+			exit
+		} else {
+			Write-Host 'Stop SignumArt IPFS_CLUSTER_FOLLOW: ctrl + c'
+			# Start SignumArt IPFS_CLUSTER_FOLLOW-Cluster
+			```$env:IPFS_CLUSTER_PATH = '.\$IPFS_CLUSTER_FOLLOW_DATA_DIR_NAME'
+			```$env:CLUSTER_RESTAPI_HTTPLISTENMULTIADDRESS = '/ip4/127.0.0.1/tcp/9094'
+			.\$IPFS_CLUSTER_FOLLOW_EXEC $IPFS_CLUSTER_FOLLOW_SIGNUMART_DIR_NAME run
+		}
+    } catch {
+        Write-Host 'An error occurred while starting SignumArt IPFS_CLUSTER_FOLLOW: `$_'
+    } finally {
+        # Always set the title to 'SignumArt IPFS_CLUSTER_FOLLOW Stopped' after SignumArt IPFS_CLUSTER_FOLLOW exits
+        ```$host.UI.RawUI.WindowTitle = 'SignumArt IPFS_CLUSTER_FOLLOW Stopped'
+    }
+"`@ ``
+    -WindowStyle Minimized
+
+exit
+"@
+
+		$content | Out-File -FilePath $IPFS_CLUSTER_FOLLOW_STARTER_PS1_PATH -Force
+
+		Write-Host "${IPFS_CLUSTER_FOLLOW_STARTER_PS1_PATH} successfully created."
+	} else {
+			Write-Host "File already exists: ${IPFS_CLUSTER_FOLLOW_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${IPFS_CLUSTER_FOLLOW_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${IPFS_CLUSTER_FOLLOW_STARTER_EXEC} ${IPFS_CLUSTER_FOLLOW_STARTER_EXEC_PATH}
+
+	Write-Host "IPFS_CLUSTER_FOLLOW installed successfully."
+
+}
+
+function install_SignumArt_IPFS_CLIENT-Cluster {
+	install_IPFS_CLIENT
+	install_IPFS_CLUSTER_FOLLOW
+	
+	# Create .bat and .ps1 to start IPFS Client and Cluster Follow
+	$port = 4041
+	# Create starter ps1
+	if (-not (Test-Path $IPFS_SIGNUMART_STARTER_PS1_PATH)) {
+		# Create start-node.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start IPFS_CLUSTER_FOLLOW
+Set-Location -Path `$PSScriptRoot
+
+Write-Host 'Starting SignumArt IPFS ...'
+
+# Start-Process -FilePath ".\$IPFS_CLIENT_DIR_NAME\$IPFS_CLIENT_STARTER_PS1" "-WindowStyle Minimized"
+..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File ".\$IPFS_CLIENT_DIR_NAME\$IPFS_CLIENT_UNZIP\$IPFS_CLIENT_STARTER_PS1" "-WindowStyle Minimized"
+
+Start-Sleep -Seconds $SLEEP_SECONDS
+
+# Start-Process -FilePath ".\$IPFS_CLUSTER_FOLLOW_DIR_NAME\$IPFS_CLUSTER_FOLLOW_STARTER_PS1" "-WindowStyle Minimized"
+..\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File ".\$IPFS_CLUSTER_FOLLOW_DIR_NAME\$IPFS_CLUSTER_FOLLOW_UNZIP\$IPFS_CLUSTER_FOLLOW_STARTER_PS1" "-WindowStyle Minimized"
+
+exit
+"@
+
+		$content | Out-File -FilePath $IPFS_SIGNUMART_STARTER_PS1_PATH -Force
+
+		Write-Host "${IPFS_SIGNUMART_STARTER_PS1_PATH} successfully created."
+	} else {
+			Write-Host "File already exists: ${IPFS_SIGNUMART_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${IPFS_SIGNUMART_STARTER_PS1} ..\${POWERSHELL_EXEC_PATH} ${IPFS_SIGNUMART_STARTER_EXEC} ${IPFS_SIGNUMART_STARTER_EXEC_PATH}
+
+}
+
 function install_heidisql {
     # Create HeidiSQL directory
     if (-not (Test-Path "${TOOLS_DIR}\${HEIDISQL_DIR}")) {
@@ -3865,7 +4277,7 @@ function install_heidisql {
 Set-Location -Path `$PSScriptRoot
 
 # Start HeidiSQL
-Start-Process -FilePath "$HEIDISQL_EXEC"
+Start-Process -FilePath ".\$HEIDISQL_EXEC"
 
 exit
 "@
@@ -3928,7 +4340,7 @@ function install_DBeaver {
 Set-Location -Path `$PSScriptRoot
 
 # Start DBeaver
-Start-Process -FilePath "$DBEAVER_EXEC"
+Start-Process -FilePath ".\$DBEAVER_EXEC"
 
 exit
 "@
@@ -3989,7 +4401,7 @@ function install_notepad {
 Set-Location -Path `$PSScriptRoot
 
 # Start Notepad
-Start-Process -FilePath "$NOTEPAD_EXEC"
+Start-Process -FilePath ".\$NOTEPAD_EXEC"
 
 exit
 "@
@@ -4005,6 +4417,67 @@ exit
 	create-starter-ps1-exec ${NOTEPAD_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${NOTEPAD_STARTER_EXEC} ${NOTEPAD_STARTER_EXEC_PATH}
 
 	Write-Host "Notepad installed successfully."
+	
+}
+
+function install_chromium_browser {
+    # Create NOTEPAD++ directory
+    if (-not (Test-Path "$BROWSER_CHROMIUM_DIR_PATH")) {
+        New-Item -ItemType Directory -Path "$BROWSER_CHROMIUM_DIR_PATH" | Out-Null
+        Write-Host "Created directory: ${BROWSER_CHROMIUM_DIR_PATH}"
+    } else {
+        Write-Host "Directory already exists: ${BROWSER_CHROMIUM_DIR_PATH}"
+    }
+
+    if (Test-Path "$BROWSER_CHROMIUM_ZIP_PATH") {
+        Write-Host "${BROWSER_CHROMIUM_ZIP_PATH} already downloaded."
+    } else {
+        # Download Notepad
+        Write-Host "Downloading Chromium Browser ..."
+        # Start-BitsTransfer -Source "${BROWSER_CHROMIUM_URL}" -Destination "${BROWSER_CHROMIUM_ZIP_PATH}"
+		Invoke-WebRequest -Uri $BROWSER_CHROMIUM_URL -OutFile $BROWSER_CHROMIUM_ZIP_PATH
+
+        # Check if download was successful
+        if (-not (Test-Path "$BROWSER_CHROMIUM_ZIP_PATH")) {
+            Write-Host "Error: Failed to download Notepad."
+            Pause
+            return
+        }
+    }
+
+    if (Test-Path "$BROWSER_CHROMIUM_UNZIP_PATH") {
+        Write-Host "$BROWSER_CHROMIUM_UNZIP_PATH already installed."
+    } else {
+        # Unzip the downloaded file to the installation directory
+        Write-Host "Unzipping Chromium Browser to $BROWSER_CHROMIUM_UNZIP_PATH ..."
+        Expand-Archive -Path "$BROWSER_CHROMIUM_ZIP_PATH" -DestinationPath "$BROWSER_CHROMIUM_DIR_PATH" -Force
+    }
+	
+	# Create starter ps1
+	if (-not (Test-Path $BROWSER_CHROMIUM_STARTER_PS1_PATH)) {
+		# Create start-notepad.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start Chromium Browser
+Set-Location -Path `$PSScriptRoot
+
+# Start Chromium Browser
+Start-Process -FilePath ".\$BROWSER_CHROMIUM_EXEC"
+
+exit
+"@
+
+		$content | Out-File -FilePath $BROWSER_CHROMIUM_STARTER_PS1_PATH -Force
+
+		Write-Host "${BROWSER_CHROMIUM_STARTER_PS1_PATH} successfully created."
+	} else {
+			Write-Host "File already exists: ${BROWSER_CHROMIUM_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${BROWSER_CHROMIUM_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${BROWSER_CHROMIUM_STARTER_EXEC} ${BROWSER_CHROMIUM_STARTER_EXEC_PATH}
+
+	Write-Host "Chromium Browser installed successfully."
 	
 }
 
@@ -4050,7 +4523,7 @@ function install_nodejs {
 Set-Location -Path `$PSScriptRoot
 
 # Start NodeJS
-Start-Process -FilePath "$NODEJS_EXEC"
+Start-Process -FilePath ".\$NODEJS_EXEC"
 
 exit
 "@
@@ -4111,7 +4584,7 @@ function install_nginx {
 Set-Location -Path `$PSScriptRoot
 
 # Start NGINX
-Start-Process -FilePath "$NGINX_EXEC"
+Start-Process -FilePath ".\$NGINX_EXEC"
 
 exit
 "@
@@ -4244,7 +4717,7 @@ function setup_signumminer($config_path, $config_url, $net_type) {
 			# Write the changes back to the file
 			$content | Set-Content -Path $config_path
 			
-			Write-Host "Configuration initialized"	
+			Write-Host "Configuration initialized"
 			
 			# add user inputs
 			Write-Host "Please select an option:"
@@ -4260,17 +4733,17 @@ function setup_signumminer($config_path, $config_url, $net_type) {
 					$choice_account_id = Read-Host "Enter Account Id"
 					$choice_passphrase = Read-Host "Enter Passphrase"
 					if ($net_type -eq "mainnet") {
-						$choice_node_url = "http://localhost:8125"
+						$choice_node_url = "http://localhost:$SIGNUM_NODE_MAINNET_API_PORT"
 					} else {
-						$choice_node_url = "http://localhost:6876"
+						$choice_node_url = "http://localhost:$SIGNUM_NODE_TESTNET_API_PORT"
 					}
 					$choice_node_url = Read-Host "Enter Signum node url (default: $choice_node_url)"
 					if ($choice_node_url -eq "")
 					{
 						if ($net_type -eq "mainnet") {
-							$choice_node_url = "http://localhost:8125"
+							$choice_node_url = "http://localhost:$SIGNUM_NODE_MAINNET_API_PORT"
 						} else {
-							$choice_node_url = "http://localhost:6876"
+							$choice_node_url = "http://localhost:$SIGNUM_NODE_TESTNET_API_PORT"
 						}
 							
 					}
@@ -4440,7 +4913,7 @@ function setup_signumpool($config_path, $config_original_path, $net_type) {
 			# Write the changes back to the file
 			$content | Set-Content -Path $config_path
 			
-			Write-Host "Configuration initialized"	
+			Write-Host "Configuration initialized"
 			
 			# add user inputs
 			Write-Host "Please select an option:"
@@ -4456,17 +4929,17 @@ function setup_signumpool($config_path, $config_original_path, $net_type) {
 					$choice_account_id = Read-Host "Enter Account Id"
 					$choice_passphrase = Read-Host "Enter Passphrase"
 					if ($net_type -eq "mainnet") {
-						$choice_node_url = "http://localhost:8125"
+						$choice_node_url = "http://localhost:$SIGNUM_NODE_MAINNET_API_PORT"
 					} else {
-						$choice_node_url = "http://localhost:6876"
+						$choice_node_url = "http://localhost:$SIGNUM_NODE_TESTNET_API_PORT"
 					}
 					$choice_node_url = Read-Host "Enter Signum node url (default: $choice_node_url)"
 					if ($choice_node_url -eq "")
 					{
 						if ($net_type -eq "mainnet") {
-							$choice_node_url = "http://localhost:8125"
+							$choice_node_url = "http://localhost:$SIGNUM_NODE_MAINNET_API_PORT"
 						} else {
-							$choice_node_url = "http://localhost:6876"
+							$choice_node_url = "http://localhost:$SIGNUM_NODE_TESTNET_API_PORT"
 						}
 							
 					}
@@ -4554,42 +5027,42 @@ function setup_signumpool($config_path, $config_original_path, $net_type) {
 				}
 			}#>
 			# The port to run the server on, use 443 if you enalbe the letsencrypt thing (see below)
-			$serverPort = "8000"
-			$nodeAddresses = "http://localhost:8125"
+			$serverPort = "$SIGNUM_POOL_MAINET_PORT"
+			$nodeAddresses = "http://localhost:$SIGNUM_NODE_MAINNET_API_PORT"
 			$poolName = "SIGNUM POOL"
-			$miningURL = "http://localhost:8000"
+			$miningURL = "http://localhost:$SIGNUM_POOL_MAINET_PORT"
 			$passphrase = "YOUR POOL PASSPHRASE GOES HERE"
 			$feeRecipient = "S-W5YR-ZZQC-KUBJ-G78KB"
 			$donationRecipient = "S-JJQS-MMA4-GHB4-4ZNZU"
 			
 			if ($net_type -eq "mainnet") {
-				$serverPort = "8000" 
+				$serverPort = "$SIGNUM_POOL_MAINET_PORT" 
 			} else {
-					$serverPort = "8001" 
+				$serverPort = "$SIGNUM_POOL_TESTNET_PORT" 
 			}
 			
 			$serverPort = Read-Host "Enter Signum Pool Server Port to run the server (or press Enter for default ${serverPort})"
 			if (-not $serverPort) { 
 				if ($net_type -eq "mainnet") {
-					$serverPort = "8000" 
+					$serverPort = "$SIGNUM_POOL_MAINET_PORT" 
 				} else {
-					$serverPort = "8001" 
+					$serverPort = "$SIGNUM_POOL_TESTNET_PORT" 
 				}
 			}
 			Write-Host "serverPort = $serverPort"
 
 			if ($net_type -eq "mainnet") {
-				$nodeAddresses = "http://localhost:8125"
+				$nodeAddresses = "http://localhost:$SIGNUM_NODE_MAINNET_API_PORT"
 			} else {
-				$nodeAddresses = "http://localhost:6876"
+				$nodeAddresses = "http://localhost:$SIGNUM_NODE_TESTNET_API_PORT"
 			}
 			
 			$nodeAddresses = Read-Host "Enter Signum Node Address (or press Enter for default $nodeAddresses)"
 			if (-not $nodeAddresses) { 
 				if ($net_type -eq "mainnet") {
-					$nodeAddresses = "http://localhost:8125"
+					$nodeAddresses = "http://localhost:$SIGNUM_NODE_MAINNET_API_PORT"
 				} else {
-					$nodeAddresses = "http://localhost:6876"
+					$nodeAddresses = "http://localhost:$SIGNUM_NODE_TESTNET_API_PORT"
 				}
 			}
 			Write-Host "Signum Node Address: $nodeAddresses"
@@ -4600,18 +5073,18 @@ function setup_signumpool($config_path, $config_original_path, $net_type) {
 			Write-Host "The name of the pool: ${poolName}"
 
 			if ($net_type -eq "mainnet") {
-				$miningURL = "http://localhost:8000"
+				$miningURL = "http://localhost:$SIGNUM_POOL_MAINET_PORT"
 			} else {
-				$miningURL = "http://localhost:8001"
+				$miningURL = "http://localhost:$SIGNUM_POOL_TESTNET_PORT"
 			}
 
 			# The URL miners should point their miner to
 			$miningURL = Read-Host "Enter URL miners should point their miner to (or press Enter for skip)"
 			if (-not $miningURL) { 
 				if ($net_type -eq "mainnet") {
-					$miningURL = "http://localhost:8000"
+					$miningURL = "http://localhost:$SIGNUM_POOL_MAINET_PORT"
 				} else {
-					$miningURL = "http://localhost:8001"
+					$miningURL = "http://localhost:$SIGNUM_POOL_TESTNET_PORT"
 				}
 			}
 			Write-Host "The URL miners should point their miner to: ${miningURL}"
@@ -4776,7 +5249,7 @@ function install_btdex {
 Set-Location -Path `$PSScriptRoot
 
 # Start BTDEX
-Start-Process -FilePath "$BTDEX_EXEC"
+Start-Process -FilePath ".\$BTDEX_EXEC"
 
 exit
 "@
@@ -4827,7 +5300,7 @@ function install_phoenix {
 Set-Location -Path `$PSScriptRoot
 
 # Start PHOENIX
-Start-Process -FilePath "$PHOENIX_EXEC"
+Start-Process -FilePath ".\$PHOENIX_EXEC"
 
 exit
 "@
@@ -4942,7 +5415,7 @@ function install_turboplotter {
 Set-Location -Path `$PSScriptRoot
 
 # Start TurboPlotter
-Start-Process -FilePath "$TURBOPLOTTER_EXEC"
+Start-Process -FilePath ".\$TURBOPLOTTER_EXEC"
 
 exit
 "@
@@ -4997,8 +5470,6 @@ function install_mariadb {
         Write-Host "MariaDB data directory already initialized."
     }
 
-	$port = 3306
-
     if (-not (Test-Path $MARIADB_STARTER_PS1_PATH)) {
         $content = 
 @"
@@ -5009,27 +5480,27 @@ Set-Location -Path `$PSScriptRoot
 # mariadb setup as well currently mariadb within powershell is used in mariadb setup
 # 1:
 # Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" "-Command", ".\bin\${MARIADBD_EXEC} --no-defaults" -WindowStyle Hidden
-# Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" "-Command", ".\bin\${MARIADBD_EXEC} --no-defaults --console" -WindowStyle Hidden
+# Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" "-Command", ".\bin\${MARIADBD_EXEC} --no-defaults --console --port=$MARIADB_PORT" -WindowStyle Hidden
 # Last OK
-# Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" "-NoExit", "-Command", "```$host.UI.RawUI.WindowTitle = 'MariaDB'; .\bin\${MARIADBD_EXEC} --no-defaults --console" -WindowStyle Minimized
+# Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" "-NoExit", "-Command", "```$host.UI.RawUI.WindowTitle = 'MariaDB'; .\bin\${MARIADBD_EXEC} --no-defaults --console --port=$MARIADB_PORT" -WindowStyle Minimized
 # Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" "-Command", ".\bin\${MARIADBD_EXEC} --no-defaults"
 # 2: If I can set powershell window title it is ok as well
-# Start-Process -FilePath ".\bin\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+# Start-Process -FilePath ".\bin\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Minimized
 
-# & .\bin\${MARIADBD_EXEC} --no-defaults --console
+# & .\bin\${MARIADBD_EXEC} --no-defaults --console --port=$MARIADB_PORT
 
 Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
     -ArgumentList "-NoExit", "-Command", `@"
     try {
         ```$host.UI.RawUI.WindowTitle = 'MariaDB'
         # Check if MariaDB is already running
-		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $port -and ```$_.State -eq 'Listen' }
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $MARIADB_PORT -and ```$_.State -eq 'Listen' }
         if (```$portInUse) {
             Write-Host 'MariaDB is already running.'
 			exit
         } else {
 			# Start MariaDB
-			.\bin\mariadbd.exe --no-defaults --console
+			.\bin\mariadbd.exe --no-defaults --console --port=$MARIADB_PORT
 		}
     } catch {
         Write-Host 'An error occurred while starting MariaDB: ```$_'
@@ -5077,10 +5548,10 @@ function setup_mariadb ($name, $database, $user, $password) {
 
     Write-Host "Starting MariaDB server ..."
 	# Last OK
-    # Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+    # Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Minimized
 	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults" -WindowStyle Minimized
-	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Hidden
-	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Hidden
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Minimized
 	
 	.\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
 
@@ -5129,10 +5600,10 @@ function setup_mariadb_readonly ($name, $database, $user, $password) {
 
     Write-Host "Starting MariaDB server ..."
 	# Last OK
-    # Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+    # Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Minimized
 	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults" -WindowStyle Minimized
-	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Hidden
-	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Hidden
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Minimized
 	
 	.\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
 
@@ -5195,10 +5666,10 @@ function setup_mariadb_explorer ($name, $database, $user, $password) {
 
     Write-Host "Starting MariaDB server ..."
 	# Last OK
-    # Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+    # Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Minimized
 	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults" -WindowStyle Minimized
-	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Hidden
-	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console" -WindowStyle Minimized
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Hidden
+	# Start-Process -FilePath "${MARIADB_BIN}\${MARIADBD_EXEC}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Minimized
 	
 	.\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
 
@@ -5270,7 +5741,7 @@ function setup_db_node_properties($file) {
 			$line = $content[$i]
 
 			if ($content[$i] -match '# DB.Url=jdbc:mariadb:.*') {
-				$content[$i] = "DB.Url=jdbc:mariadb://localhost:3306/${DATABASE_NAME}"
+				$content[$i] = "DB.Url=jdbc:mariadb://localhost:$MARIADB_PORT/${DATABASE_NAME}"
 				$content[$i+1] = "DB.Username=${DATABASE_USERNAME}"
 				$content[$i+2] = "DB.Password=${DATABASE_PASSWORD}"
 				break
@@ -5281,7 +5752,7 @@ function setup_db_node_properties($file) {
 	$content | Set-Content -Path ${file}
 
 	<#
-    (Get-Content -Path $file) -replace '# DB.Url=jdbc:mariadb:.*', "DB.Url=jdbc:mariadb://localhost:3306/${DATABASE_NAME}" `
+    (Get-Content -Path $file) -replace '# DB.Url=jdbc:mariadb:.*', "DB.Url=jdbc:mariadb://localhost:$MARIADB_PORT/${DATABASE_NAME}" `
         -replace '# DB.Username=.*', "DB.Username=${DATABASE_USERNAME}" `
         -replace '# DB.Password=.*', "DB.Password=${DATABASE_PASSWORD}" | Set-Content -Path $file
 	#>
@@ -5295,7 +5766,7 @@ function setup_db_pool_properties($file) {
     (Get-Content -Path $file) -replace 'dbUrl=jdbc:h2:file*', "# dbUrl=jdbc:h2:file:./db/pooldb.h2;DB_CLOSE_ON_EXIT=FALSE" `
         -replace '^dbUsername=', "# dbUsername=" `
         -replace '^dbPassword=', "# dbPassword=" `
-		-replace '^#dbUrl=jdbc:mariadb://localhost:3306/pooldb*', "dbUrl=jdbc:mariadb://localhost:3306/${DATABASE_NAME}" `
+		-replace '^#dbUrl=jdbc:mariadb://localhost:$MARIADB_PORT/pooldb*', "dbUrl=jdbc:mariadb://localhost:$MARIADB_PORT/${DATABASE_NAME}" `
         -replace '^#dbUsername=root', "dbUsername=${DATABASE_USERNAME}" `
         -replace '^#dbPassword=passw', "dbPassword=${DATABASE_PASSWORD}" | Set-Content -Path $file
 
