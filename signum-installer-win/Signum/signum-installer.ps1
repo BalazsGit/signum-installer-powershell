@@ -317,7 +317,8 @@ $WHITEPAPER_URL = "https://signum-network.github.io/whitepaper/business/${WHITEP
 
 $WHITEHOUSE_DOC_NAME = "Climate_And_Energy_Implications_Of_Crypto_Assets_In_The_United_States.pdf"
 $WHITEHOUSE_DOC_PATH = "$DOCUMENTS_DIR\$WHITEHOUSE_DOC_NAME"
-$WHITEHOUSE_URL = "https://www.whitehouse.gov/wp-content/uploads/2022/09/09-2022-Crypto-Assets-and-Climate-Report.pdf"
+$WHITEHOUSE_URL = "https://github.com/BalazsGit/Signum-Documents/blob/main/09-2022-Crypto-Assets-and-Climate-Report.pdf"
+# $WHITEHOUSE_URL = "https://www.whitehouse.gov/wp-content/uploads/2022/09/09-2022-Crypto-Assets-and-Climate-Report.pdf"
 
 $INDECS_DOC_NAME = "Sustainabiliy_Of_Blockchain_For_Strong_Private_Data_From_IOT_Devices.pdf"
 $INDECS_DOC_PATH = "$DOCUMENTS_DIR\$INDECS_DOC_NAME"
