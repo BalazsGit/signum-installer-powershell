@@ -496,7 +496,39 @@ $IPFS_CLUSTER_FOLLOW_URL = "https://dist.ipfs.tech/ipfs-cluster-follow/v${IPFS_C
 $IPFS_CLUSTER_FOLLOW_SIGNUMART_CONFIG_URL = "https://ipfs.io/ipfs/QmPu3KCckVKHPJh4BcyKEpHjcuQtp9GcspkcVbDcTQraSU"
 $IPFS_CLUSTER_FOLLOW_PORT = 9094
 
-https://dist.ipfs.tech/ipfs-cluster-ctl/v1.1.2/ipfs-cluster-ctl_v1.1.2_windows-amd64.zip
+$IPFS_CLUSTER_CTL_STARTER_PS1 = "start-ipfs-cluster-ctl.ps1"
+$IPFS_CLUSTER_CTL_STARTER_EXEC = "start-ipfs-cluster-ctl.bat"
+$IPFS_CLUSTER_CTL_VERSION = "1.1.2"
+$IPFS_CLUSTER_CTL_DIR_NAME = "IPFS-CLUSTER-CTL"
+$IPFS_CLUSTER_CTL_EXEC = "ipfs-cluster-ctl.exe"
+$IPFS_CLUSTER_CTL_DIR_PATH = "$IPFS_DIR_NAME\$IPFS_CLUSTER_CTL_DIR_NAME"
+$IPFS_CLUSTER_CTL_UNZIP = "ipfs-cluster-ctl_v${IPFS_CLUSTER_CTL_VERSION}_windows-amd64"
+$IPFS_CLUSTER_CTL_ZIP = "${IPFS_CLUSTER_CTL_UNZIP}.zip"
+$IPFS_CLUSTER_CTL_ZIP_PATH = "${IPFS_CLUSTER_CTL_DIR_PATH}\${IPFS_CLUSTER_CTL_ZIP}"
+$IPFS_CLUSTER_CTL_UNZIP_PATH = "${IPFS_CLUSTER_CTL_DIR_PATH}\${IPFS_CLUSTER_CTL_UNZIP}"
+$IPFS_CLUSTER_CTL_DATA_DIR_PATH = "$IPFS_CLUSTER_CTL_UNZIP_PATH\$IPFS_CLUSTER_CTL_DATA_DIR_NAME"
+$IPFS_CLUSTER_CTL_EXEC_PATH = "${IPFS_CLUSTER_CTL_UNZIP_PATH}\${IPFS_CLUSTER_CTL_EXEC}"
+$IPFS_CLUSTER_CTL_STARTER_PS1_PATH = "${IPFS_CLUSTER_CTL_UNZIP_PATH}\${IPFS_CLUSTER_CTL_STARTER_PS1}"
+$IPFS_CLUSTER_CTL_STARTER_EXEC_PATH = "${IPFS_CLUSTER_CTL_UNZIP_PATH}\${IPFS_CLUSTER_CTL_STARTER_EXEC}"
+$IPFS_CLUSTER_CTL_URL = "https://dist.ipfs.tech/ipfs-cluster-ctl/v${IPFS_CLUSTER_CTL_VERSION}/$IPFS_CLUSTER_CTL_ZIP"
+$IPFS_CLUSTER_CTL_PORT =
+
+$IPFS_CLUSTER_SERVICE_STARTER_PS1 = "start-ipfs-cluster-service.ps1"
+$IPFS_CLUSTER_SERVICE_STARTER_EXEC = "start-ipfs-cluster-service.bat"
+$IPFS_CLUSTER_SERVICE_VERSION = "1.1.2"
+$IPFS_CLUSTER_SERVICE_DIR_NAME = "IPFS-CLUSTER-SERVICE"
+$IPFS_CLUSTER_SERVICE_EXEC = "ipfs-cluster-service.exe"
+$IPFS_CLUSTER_SERVICE_DIR_PATH = "$IPFS_DIR_NAME\$IPFS_CLUSTER_SERVICE_DIR_NAME"
+$IPFS_CLUSTER_SERVICE_UNZIP = "ipfs-cluster-service_v${IPFS_CLUSTER_SERVICE_VERSION}_windows-amd64"
+$IPFS_CLUSTER_SERVICE_ZIP = "${IPFS_CLUSTER_SERVICE_UNZIP}.zip"
+$IPFS_CLUSTER_SERVICE_ZIP_PATH = "${IPFS_CLUSTER_SERVICE_DIR_PATH}\${IPFS_CLUSTER_SERVICE_ZIP}"
+$IPFS_CLUSTER_SERVICE_UNZIP_PATH = "${IPFS_CLUSTER_SERVICE_DIR_PATH}\${IPFS_CLUSTER_SERVICE_UNZIP}"
+$IPFS_CLUSTER_SERVICE_DATA_DIR_PATH = "$IPFS_CLUSTER_SERVICE_UNZIP_PATH\$IPFS_CLUSTER_SERVICE_DATA_DIR_NAME"
+$IPFS_CLUSTER_SERVICE_EXEC_PATH = "${IPFS_CLUSTER_SERVICE_UNZIP_PATH}\${IPFS_CLUSTER_SERVICE_EXEC}"
+$IPFS_CLUSTER_SERVICE_STARTER_PS1_PATH = "${IPFS_CLUSTER_SERVICE_UNZIP_PATH}\${IPFS_CLUSTER_SERVICE_STARTER_PS1}"
+$IPFS_CLUSTER_SERVICE_STARTER_EXEC_PATH = "${IPFS_CLUSTER_SERVICE_UNZIP_PATH}\${IPFS_CLUSTER_SERVICE_STARTER_EXEC}"
+$IPFS_CLUSTER_SERVICE_URL = "https://dist.ipfs.tech/ipfs-cluster-service/v${IPFS_CLUSTER_SERVICE_VERSION}/$IPFS_CLUSTER_SERVICE_ZIP"
+$IPFS_CLUSTER_SERVICE_PORT =
 
 $IPFS_SIGNUMART_STARTER_PS1 = "start-ipfs-signumart.ps1"
 $IPFS_SIGNUMART_STARTER_EXEC = "start-ipfs-signumart.bat"
@@ -4199,9 +4231,179 @@ exit
 
 }
 
+function install_IPFS_CLUSTER_CTL {
+	# Create IPFS directory
+	if (-not (Test-Path "${IPFS_DIR_NAME}")) {
+		New-Item -ItemType Directory -Path "${IPFS_DIR_NAME}" | Out-Null
+		Write-Host "Created directory: ${IPFS_DIR_NAME}"
+	} else {
+		Write-Host "Directory already exists: ${IPFS_DIR_NAME}"
+	}
+
+	# Create IPFS_CLUSTER_CTL directory
+	if (-not (Test-Path "${IPFS_CLUSTER_CTL_DIR_PATH}")) {
+		New-Item -ItemType Directory -Path "${IPFS_CLUSTER_CTL_DIR_PATH}" | Out-Null
+		Write-Host "Created directory: ${IPFS_CLUSTER_CTL_DIR_PATH}"
+	} else {
+		Write-Host "Directory already exists: ${IPFS_CLUSTER_CTL_DIR_PATH}"
+	}
+
+	if (Test-Path "${IPFS_CLUSTER_CTL_ZIP_PATH}") {
+		Write-Host "${IPFS_CLUSTER_CTL_ZIP_PATH} already downloaded."
+	} else {
+		# Download IPFS_CLUSTER_CTL
+		Write-Host "Downloading IPFS_CLUSTER_CTL ..."
+		# Start-BitsTransfer -Source "${IPFS_CLUSTER_CTL_URL}" -Destination "${IPFS_CLUSTER_CTL_ZIP_PATH}"
+		Invoke-WebRequest -Uri ${IPFS_CLUSTER_CTL_URL} -OutFile ${IPFS_CLUSTER_CTL_ZIP_PATH}
+
+		# Check if download was successful
+		if (-not (Test-Path "${IPFS_CLUSTER_CTL_ZIP_PATH}")) {
+			Write-Host "Error: Failed to download IPFS_CLUSTER_CTL."
+			Pause
+			return
+		}
+	}
+
+	if (Test-Path "${IPFS_CLUSTER_CTL_UNZIP_PATH}") {
+		Write-Host "${IPFS_CLUSTER_CTL_UNZIP_PATH} already installed."
+	} else {
+		# Unzip the downloaded file to the installation directory
+		Write-Host "Unzipping IPFS_CLUSTER_CTL to $IPFS_CLUSTER_CTL_UNZIP_PATH ..."
+		Expand-Archive -Path "$IPFS_CLUSTER_CTL_ZIP_PATH" -DestinationPath "$IPFS_CLUSTER_CTL_DIR_PATH" -Force
+		# Rename the folder
+		Rename-Item -Path $IPFS_CLUSTER_CTL_DIR_PATH\ipfs-cluster-ctl -NewName "$IPFS_CLUSTER_CTL_UNZIP"
+	}
+
+	# Create starter ps1
+	if (-not (Test-Path $IPFS_CLUSTER_CTL_STARTER_PS1_PATH)) {
+		# Create start-node.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start IPFS_CLUSTER_CTL
+Set-Location -Path `$PSScriptRoot
+
+Write-Host 'Starting IPFS_CLUSTER_CTL ...'
+
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
+    -ArgumentList "-NoExit", "-Command", `@"
+    try {
+        ```$host.UI.RawUI.WindowTitle = 'SignumArt IPFS_CLUSTER_CTL'
+		.\$IPFS_CLUSTER_CTL_EXEC peers ls
+    } catch {
+        Write-Host 'An error occurred while starting SignumArt IPFS_CLUSTER_CTL: `$_'
+    } finally {
+        # Always set the title to 'SignumArt IPFS_CLUSTER_CTL Stopped' after SignumArt IPFS_CLUSTER_CTL exits
+        ```$host.UI.RawUI.WindowTitle = 'SignumArt IPFS_CLUSTER_CTL Stopped'
+    }
+"`@ ``
+    -WindowStyle Minimized
+
+exit
+"@
+
+		$content | Out-File -FilePath $IPFS_CLUSTER_CTL_STARTER_PS1_PATH -Force
+
+		Write-Host "${IPFS_CLUSTER_CTL_STARTER_PS1_PATH} successfully created."
+	} else {
+			Write-Host "File already exists: ${IPFS_CLUSTER_CTL_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${IPFS_CLUSTER_CTL_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${IPFS_CLUSTER_CTL_STARTER_EXEC} ${IPFS_CLUSTER_CTL_STARTER_EXEC_PATH}
+
+	Write-Host "IPFS_CLUSTER_CTL installed successfully."
+
+}
+
+function install_IPFS_CLUSTER_SERVICE {
+	# Create IPFS directory
+	if (-not (Test-Path "${IPFS_DIR_NAME}")) {
+		New-Item -ItemType Directory -Path "${IPFS_DIR_NAME}" | Out-Null
+		Write-Host "Created directory: ${IPFS_DIR_NAME}"
+	} else {
+		Write-Host "Directory already exists: ${IPFS_DIR_NAME}"
+	}
+
+	# Create IPFS_CLUSTER_SERVICE directory
+	if (-not (Test-Path "${IPFS_CLUSTER_SERVICE_DIR_PATH}")) {
+		New-Item -ItemType Directory -Path "${IPFS_CLUSTER_SERVICE_DIR_PATH}" | Out-Null
+		Write-Host "Created directory: ${IPFS_CLUSTER_SERVICE_DIR_PATH}"
+	} else {
+		Write-Host "Directory already exists: ${IPFS_CLUSTER_SERVICE_DIR_PATH}"
+	}
+
+	if (Test-Path "${IPFS_CLUSTER_SERVICE_ZIP_PATH}") {
+		Write-Host "${IPFS_CLUSTER_SERVICE_ZIP_PATH} already downloaded."
+	} else {
+		# Download IPFS_CLUSTER_SERVICE
+		Write-Host "Downloading IPFS_CLUSTER_SERVICE ..."
+		# Start-BitsTransfer -Source "${IPFS_CLUSTER_SERVICE_URL}" -Destination "${IPFS_CLUSTER_SERVICE_ZIP_PATH}"
+		Invoke-WebRequest -Uri ${IPFS_CLUSTER_SERVICE_URL} -OutFile ${IPFS_CLUSTER_SERVICE_ZIP_PATH}
+
+		# Check if download was successful
+		if (-not (Test-Path "${IPFS_CLUSTER_SERVICE_ZIP_PATH}")) {
+			Write-Host "Error: Failed to download IPFS_CLUSTER_SERVICE."
+			Pause
+			return
+		}
+	}
+
+	if (Test-Path "${IPFS_CLUSTER_SERVICE_UNZIP_PATH}") {
+		Write-Host "${IPFS_CLUSTER_SERVICE_UNZIP_PATH} already installed."
+	} else {
+		# Unzip the downloaded file to the installation directory
+		Write-Host "Unzipping IPFS_CLUSTER_SERVICE to $IPFS_CLUSTER_SERVICE_UNZIP_PATH ..."
+		Expand-Archive -Path "$IPFS_CLUSTER_SERVICE_ZIP_PATH" -DestinationPath "$IPFS_CLUSTER_SERVICE_DIR_PATH" -Force
+		# Rename the folder
+		Rename-Item -Path $IPFS_CLUSTER_SERVICE_DIR_PATH\ipfs-cluster-service -NewName "$IPFS_CLUSTER_SERVICE_UNZIP"
+	}
+
+	# Create starter ps1
+	if (-not (Test-Path $IPFS_CLUSTER_SERVICE_STARTER_PS1_PATH)) {
+		# Create start-node.ps1 file with the desired content
+		$content = 
+@"
+# PowerShell script to start IPFS_CLUSTER_SERVICE
+Set-Location -Path `$PSScriptRoot
+
+Write-Host 'Starting IPFS_CLUSTER_SERVICE ...'
+
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
+    -ArgumentList "-NoExit", "-Command", `@"
+    try {
+        ```$host.UI.RawUI.WindowTitle = 'SignumArt IPFS_CLUSTER_SERVICE'
+		.\$IPFS_CLUSTER_SERVICE_EXEC
+    } catch {
+        Write-Host 'An error occurred while starting SignumArt IPFS_CLUSTER_SERVICE: `$_'
+    } finally {
+        # Always set the title to 'SignumArt IPFS_CLUSTER_SERVICE Stopped' after SignumArt IPFS_CLUSTER_SERVICE exits
+        ```$host.UI.RawUI.WindowTitle = 'SignumArt IPFS_CLUSTER_SERVICE Stopped'
+    }
+"`@ ``
+    -WindowStyle Minimized
+
+exit
+"@
+
+		$content | Out-File -FilePath $IPFS_CLUSTER_SERVICE_STARTER_PS1_PATH -Force
+
+		Write-Host "${IPFS_CLUSTER_SERVICE_STARTER_PS1_PATH} successfully created."
+	} else {
+			Write-Host "File already exists: ${IPFS_CLUSTER_SERVICE_STARTER_PS1_PATH}"
+	}
+
+	# Create starter batch
+	create-starter-ps1-exec ${IPFS_CLUSTER_SERVICE_STARTER_PS1} ..\..\..\${POWERSHELL_EXEC_PATH} ${IPFS_CLUSTER_SERVICE_STARTER_EXEC} ${IPFS_CLUSTER_SERVICE_STARTER_EXEC_PATH}
+
+	Write-Host "IPFS_CLUSTER_SERVICE installed successfully."
+
+}
+
 function install_SignumArt_IPFS_CLIENT-Cluster {
 	install_IPFS_CLIENT
 	install_IPFS_CLUSTER_FOLLOW
+	install_IPFS_CLUSTER_CTL
+	install_IPFS_CLUSTER_SERVICE
 	
 	# Create .bat and .ps1 to start IPFS Client and Cluster Follow
 	$port = 4041
