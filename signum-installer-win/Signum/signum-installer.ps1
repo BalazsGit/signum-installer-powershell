@@ -11,13 +11,15 @@ $global:DATABASE_PASSWORD = $null
 
 $SLEEP_SECONDS = 20
 
-$POWERSHELL_VERSION = "7.4.6"
-$POWERSHELL_DIR = "PowerShell"
-$POWERSHELL_UNZIP = "PowerShell-${POWERSHELL_VERSION}-win-x64"
-$POWERSHELL_ZIP = "${POWERSHELL_UNZIP}.zip"
-$POWERSHELL_UNZIP = "PowerShell-${POWERSHELL_VERSION}-win-x64"
-$POWERSHELL_EXEC = "pwsh.exe"
-$POWERSHELL_EXEC_PATH = "${POWERSHELL_DIR}\${POWERSHELL_UNZIP}\${POWERSHELL_EXEC}"
+# Follow the naming convension of variables
+$POWERSHELL_VERSION = "7.5.0"
+$POWERSHELL_DIR_NAME = "PowerShell"
+$POWERSHELL_EXEC_NAME = "pwsh.exe"
+$POWERSHELL_UNZIP_NAME = "PowerShell-${POWERSHELL_VERSION}-win-x64"
+$POWERSHELL_ZIP_NAME = "${POWERSHELL_UNZIP_NAME}.zip"
+$POWERSHELL_UNZIP_PATH = "${POWERSHELL_DIR_NAME}\${POWERSHELL_UNZIP_NAME}"
+$POWERSHELL_ZIP_PATH = "${POWERSHELL_DIR_NAME}\${POWERSHELL_ZIP_NAME}"
+$POWERSHELL_EXEC_PATH = "${POWERSHELL_UNZIP_PATH}\${POWERSHELL_EXEC_NAME}"
 $POWERSHELL_URL = "https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/PowerShell-${POWERSHELL_VERSION}-win-x64.zip"
 
 # TODO rename: $SIGNUM_NODE_MAINNET_VERSION -> $SIGNUM_NODE_MAINNET_VERSION?
@@ -4406,7 +4408,6 @@ function install_SignumArt_IPFS_CLIENT-Cluster {
 	install_IPFS_CLUSTER_SERVICE
 	
 	# Create .bat and .ps1 to start IPFS Client and Cluster Follow
-	$port = 4041
 	# Create starter ps1
 	if (-not (Test-Path $IPFS_SIGNUMART_STARTER_PS1_PATH)) {
 		# Create start-node.ps1 file with the desired content
