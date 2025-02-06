@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 
 cd %~dp0
 
-set "POWERSHELL_VERSION=7.4.6"
+set "POWERSHELL_VERSION=7.5.0"
 set "POWERSHELL_DIR=PowerShell"
 set "POWERSHELL_ZIP=PowerShell-%POWERSHELL_VERSION%-win-x64.zip"
 set "POWERSHELL_UNZIP=PowerShell-%POWERSHELL_VERSION%-win-x64"
