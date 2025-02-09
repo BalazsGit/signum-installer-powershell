@@ -562,7 +562,7 @@ $DBEAVER_URL = "https://dbeaver.io/files/${DBEAVER_VERSION}/${DBEAVER_ZIP_NAME}"
 $NODEJS_STARTER_PS1_NAME = "start-nodejs.ps1"
 $NODEJS_STARTER_EXEC_NAME = "start-nodejs.bat"
 
-$NODEJS_VERSION = "22.12.0"
+$NODEJS_VERSION = "23.7.0"
 $NODEJS_DIR_NAME = "NodeJS"
 $NODEJS_EXEC_NAME = "node.exe"
 $NODEJS_ZIP_NAME = "node-v${NODEJS_VERSION}-win-x64.zip"
@@ -616,18 +616,41 @@ $BROWSER_DIR_NAME = "Browser"
 $BROWSER_CHROMIUM_STARTER_PS1_NAME = "start-chromium.ps1"
 $BROWSER_CHROMIUM_STARTER_EXEC_NAME = "start-chromium.bat"
 
-$BROWSER_CHROMIUM_VERSION = "1410885"
 $BROWSER_CHROMIUM_DIR_NAME = "Chromium"
 $BROWSER_CHROMIUM_EXEC_NAME = "chrome.exe"
 $BROWSER_CHROMIUM_UNZIP_NAME = "chrome-win"
-$BROWSER_CHROMIUM_ZIP = "${BROWSER_CHROMIUM_UNZIP_NAME}.zip"
+$BROWSER_CHROMIUM_PROFILE_DIR_NAME = "Profile"
+
+$BROWSER_CHROMIUM_ZIP_NAME = "${BROWSER_CHROMIUM_UNZIP_NAME}.zip"
 $BROWSER_CHROMIUM_DIR_PATH = "${BROWSER_DIR_NAME}\${BROWSER_CHROMIUM_DIR_NAME}"
 $BROWSER_CHROMIUM_UNZIP_PATH = "$BROWSER_CHROMIUM_DIR_PATH\$BROWSER_CHROMIUM_UNZIP_NAME"
-$BROWSER_CHROMIUM_ZIP_PATH = "$BROWSER_CHROMIUM_DIR_PATH\$BROWSER_CHROMIUM_ZIP"
+$BROWSER_CHROMIUM_ZIP_PATH = "$BROWSER_CHROMIUM_DIR_PATH\$BROWSER_CHROMIUM_ZIP_NAME"
 $BROWSER_CHROMIUM_EXEC_PATH = "$BROWSER_CHROMIUM_UNZIP_PATH\${BROWSER_CHROMIUM_EXEC_NAME}"
 $BROWSER_CHROMIUM_STARTER_PS1_PATH = "$BROWSER_CHROMIUM_UNZIP_PATH\${BROWSER_CHROMIUM_STARTER_PS1_NAME}"
 $BROWSER_CHROMIUM_STARTER_EXEC_PATH = "$BROWSER_CHROMIUM_UNZIP_PATH\${BROWSER_CHROMIUM_STARTER_EXEC_NAME}"
-$BROWSER_CHROMIUM_URL = "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Win%2F${BROWSER_CHROMIUM_VERSION}%2Fchrome-win.zip?generation=1737732304268261&alt=media"
+$BROWSER_CHROMIUM_URL = "https://download-chromium.appspot.com/dl/Win_x64?type=snapshots"
+
+### Chromium Extension variables ###
+$BROWSER_CHROMIUM_EXTENSIONS_DIR_NAME = "Extensions"
+$BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH = "$BROWSER_CHROMIUM_UNZIP_PATH\$BROWSER_CHROMIUM_EXTENSIONS_DIR_NAME"
+
+### Chromium Signum XT Wallet Extension variables ###
+$BROWSER_CHROMIUM_SIGNUM_XT_DIR_NAME = "SignumXT"
+$BROWSER_CHROMIUM_SIGNUM_XT_VERSION = "1.5.2"
+$BROWSER_CHROMIUM_SIGNUM_XT_ZIP_NAME = "chrome.zip"
+$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_INSTALL = $true
+$BROWSER_CHROMIUM_SIGNUM_XT_DIR_PATH = "$BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH\$BROWSER_CHROMIUM_SIGNUM_XT_DIR_NAME"
+$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH = "$BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH\$BROWSER_CHROMIUM_SIGNUM_XT_ZIP_NAME"
+$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH = "$BROWSER_CHROMIUM_SIGNUM_XT_DIR_PATH\$BROWSER_CHROMIUM_SIGNUM_XT_VERSION"
+$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_URL = "https://github.com/signum-network/signum-xt-wallet/releases/download/${BROWSER_CHROMIUM_SIGNUM_XT_VERSION}/${BROWSER_CHROMIUM_SIGNUM_XT_ZIP_NAME}"
+
+$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_NAME = "main"
+$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_NAME = "signum-xt-wallet-main"
+$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_NAME = "${BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_NAME}.zip"
+$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_PATH = "$BROWSER_CHROMIUM_SIGNUM_XT_DIR_PATH\$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_NAME"
+$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_PATH = "$BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH\$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_NAME"
+$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_PATH = "$BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH\$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_NAME"
+$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_URL = "https://github.com/signum-network/signum-xt-wallet/archive/refs/heads/main.zip"
 
 ### Certbot variables ###
 $CERTBOT_DIR_NAME = "Certbot"
@@ -1575,6 +1598,20 @@ function Install-SignumPoolMainnet {
 
 	# install-process $SIGNUM_NODE_MAINNET_STARTER_PS1_PATH "Signum Mainnet" {Install-SignumMainnet}
 
+	# Install Chromium browser
+	if (-not (Test-Path -Path "$BROWSER_CHROMIUM_EXEC_PATH")) {
+        install_chromium_browser
+    } else {
+        Write-Host "Chromium browser already installed"
+    }
+
+	# Install Chromium browser
+	if (-not (Test-Path -Path "$BROWSER_CHROMIUM_EXEC_PATH")) {
+        install_chromium_browser
+    } else {
+        Write-Host "Chromium browser already installed"
+    }
+
     # Create Pool directory
     if (-not (Test-Path -Path "${SIGNUM_POOL_MAINNET_DIR_PATH}")) {
         New-Item -Path "${SIGNUM_POOL_MAINNET_DIR_PATH}" -ItemType Directory | Out-Null
@@ -1687,7 +1724,8 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
 		} else {
 			# Start Signum Pool Mainnet
-			Start-Process "http://localhost:$SIGNUM_POOL_MAINET_PORT"
+			# Start-Process "http://localhost:$SIGNUM_POOL_MAINET_PORT"
+			Start-Process -FilePath "..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$SIGNUM_POOL_MAINET_PORT"
 			.\${JAVA_POOL_MAINNET_DIR_NAME}\${JAVA_POOL_MAINNET_UNZIP_NAME}\bin\java.exe -jar signum-pool.jar
 		}
     } catch {
@@ -1767,6 +1805,13 @@ function Install-SignumPoolTestnet {
     Write-Host "Installing Signum Pool Testnet ..."
 
 	# install-process $SIGNUM_NODE_MAINNET_STARTER_PS1_PATH "Signum Testnet" {Install-SignumMainnet}
+
+	# Install Chromium browser
+	if (-not (Test-Path -Path "$BROWSER_CHROMIUM_EXEC_PATH")) {
+        install_chromium_browser
+    } else {
+        Write-Host "Chromium browser already installed"
+    }
 
     # Create Pool directory
     if (-not (Test-Path -Path "${SIGNUM_POOL_TESTNET_DIR_PATH}")) {
@@ -1880,7 +1925,8 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
 		} else {
 			# Start Signum Pool Testnet
-			Start-Process "http://localhost:$SIGNUM_POOL_TESTNET_PORT"
+			# Start-Process "http://localhost:$SIGNUM_POOL_TESTNET_PORT"
+			Start-Process -FilePath "..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$SIGNUM_POOL_TESTNET_PORT"
 			.\${JAVA_POOL_TESTNET_DIR_NAME}\${JAVA_POOL_TESTNET_UNZIP_NAME}\bin\java.exe -jar signum-pool.jar
 		}
     } catch {
@@ -1957,6 +2003,13 @@ function Install-SignumExplorerMainnet {
     Write-Host "Installing Signum Exporer Mainnet ..."
 
 	# install-process $SIGNUM_NODE_MAINNET_STARTER_PS1_PATH "Signum Mainnet" {Install-SignumMainnet}
+
+	# Install Chromium browser
+	if (-not (Test-Path -Path "$BROWSER_CHROMIUM_EXEC_PATH")) {
+		install_chromium_browser
+	} else {
+		Write-Host "Chromium browser already installed"
+	}
 
     # Create Explorer directory
     if (-not (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_DIR_PATH}")) {
@@ -2441,8 +2494,10 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
 		} else {
 			# Start Signum Explorer Mainnet
-			Start-Process "http://localhost:$SIGNUM_EXPLORER_MAINNET_SUPERVISOR_SATUS_PORT"
-			Start-Process "http://localhost:$SIGNUM_EXPLORER_MAINNET_PORT"
+			# Start-Process "http://localhost:$SIGNUM_EXPLORER_MAINNET_SUPERVISOR_SATUS_PORT"
+			Start-Process -FilePath "..\..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$SIGNUM_EXPLORER_MAINNET_SUPERVISOR_SATUS_PORT"
+			# Start-Process "http://localhost:$SIGNUM_EXPLORER_MAINNET_PORT"
+			Start-Process -FilePath "..\..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$SIGNUM_EXPLORER_MAINNET_PORT"
 			.\Scripts\supervisord.exe -n -c .\supervisord.conf
 		}
     } catch {
@@ -2564,6 +2619,13 @@ function Install-SignumExplorerTestnet {
     Write-Host "Installing Signum Exporer Testnet ..."
 
 	# install-process $SIGNUM_NODE_TESTNET_STARTER_PS1_PATH "Signum Testnet" {Install-SignumTestnet}
+
+	# Install Chromium browser
+	if (-not (Test-Path -Path "$BROWSER_CHROMIUM_EXEC_PATH")) {
+        install_chromium_browser
+    } else {
+        Write-Host "Chromium browser already installed"
+    }
 
     # Create Explorer directory
     if (-not (Test-Path -Path "${SIGNUM_EXPLORER_TESTNET_DIR_PATH}")) {
@@ -3040,8 +3102,10 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
 		} else {
 			# Start Signum Explorer Testnet
-			Start-Process "http://localhost:$SIGNUM_EXPLORER_TESTNET_SUPERVISOR_SATUS_PORT"
-			Start-Process "http://localhost:$SIGNUM_EXPLORER_TESTNET_PORT"
+			# Start-Process "http://localhost:$SIGNUM_EXPLORER_TESTNET_SUPERVISOR_SATUS_PORT"
+			Start-Process -FilePath "..\..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$SIGNUM_EXPLORER_TESTNET_SUPERVISOR_SATUS_PORT"
+			# Start-Process "http://localhost:$SIGNUM_EXPLORER_TESTNET_PORT"
+			Start-Process -FilePath "..\..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$SIGNUM_EXPLORER_TESTNET_PORT"
 			.\Scripts\supervisord.exe -n -c .\supervisord.conf
 		}
     } catch {
@@ -3305,6 +3369,13 @@ exit
 
 function install-smartc-web-ui {
     Write-Host "Installing SmartC WEB UI Smart Contract Compiler ..."
+
+	# Install Chromium browser
+	if (-not (Test-Path -Path "$BROWSER_CHROMIUM_EXEC_PATH")) {
+        install_chromium_browser
+    } else {
+        Write-Host "Chromium browser already installed"
+    }
 	
 	# Create SmartContract directory
     if (-not (Test-Path "${SMART_CONTRACT_DIR_NAME}")) {
@@ -3367,7 +3438,7 @@ function install-smartc-web-ui {
 	# $NODEJS_UNZIP_PATH\npm config set cache ./npm-cache
 	
 	# npm istall smarc web ui
-	Write-Host "npm install SmarC packages"
+	Write-Host "Install SmarC packages"
 
 	Set-Location .\$SMARTC_WEB_UI_UNZIP_PATH
 	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
@@ -3388,14 +3459,15 @@ Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
     -ArgumentList "-NoExit", "-Command", `@"
     try {
         ```$host.UI.RawUI.WindowTitle = 'SmartC WEB UI'
-		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq 	$SMARTC_WEB_UI_PORT -and ```$_.State -eq 'Listen' }
+		```$portInUse = Get-NetTCPConnection | Where-Object { ```$_.LocalPort -eq $SMARTC_WEB_UI_PORT -and ```$_.State -eq 'Listen' }
         if (```$portInUse) {
 			Write-Host 'SmartC WEB UI is already running.'
 			exit
 		} else {
 			Write-Host 'Stop SmartC WEB UI: ctrl + c'
 			# Start SmartC WEB UI
-			Start-Process "http://localhost:$SMARTC_WEB_UI_PORT"
+			# Start-Process "http://localhost:$SMARTC_WEB_UI_PORT"
+			Start-Process -FilePath "..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$SMARTC_WEB_UI_PORT"
 			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 			..\..\$NODEJS_UNZIP_PATH\npm.cmd run start
 		}
@@ -3425,6 +3497,13 @@ exit
 
 function install-smartc-retro-ui {
     Write-Host "Installing SmartC RETRO UI Smart Contract Compiler ..."
+
+	# Install Chromium browser
+	if (-not (Test-Path -Path "$BROWSER_CHROMIUM_EXEC_PATH")) {
+        install_chromium_browser
+    } else {
+        Write-Host "Chromium browser already installed"
+    }
 	
 	# Create SmartContract directory
     if (-not (Test-Path "${SMART_CONTRACT_DIR_NAME}")) {
@@ -3480,15 +3559,15 @@ function install-smartc-retro-ui {
 			
 	Write-Host "package.json configuration initialized"
 	
-	# Install node.js portable with npm
+	# Install node.js portable
 	install_nodejs
 	
 	Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 	# $NODEJS_UNZIP_PATH\npm config set prefix ./npm-global
 	# $NODEJS_UNZIP_PATH\npm config set cache ./npm-cache
 	
-	# npm istall smarc web ui
-	Write-Host "npm install SmarC packages"
+	# Istall smarc web ui with npm
+	Write-Host "Install SmarC packages"
 
 	Set-Location .\$SMARTC_RETRO_UI_UNZIP_PATH
 	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
@@ -3516,7 +3595,8 @@ Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
 		} else {
 			Write-Host 'Stop SmartC RETRO UI: ctrl + c'
 			# Start SmartC RETRO UI
-			Start-Process "http://localhost:$SMARTC_RETRO_UI_PORT"
+			# Start-Process "http://localhost:$SMARTC_RETRO_UI_PORT"
+			Start-Process -FilePath "..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$SMARTC_RETRO_UI_PORT"
 			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 			..\..\$NODEJS_UNZIP_PATH\npm.cmd run start
 		}
@@ -3546,6 +3626,13 @@ exit
 
 function install-smartc-signum-decompiler {
     Write-Host "Installing SmartC SIGNUM Smart Contract Decompiler ..."
+
+	# Install Chromium browser
+	if (-not (Test-Path -Path "$BROWSER_CHROMIUM_EXEC_PATH")) {
+        install_chromium_browser
+    } else {
+        Write-Host "Chromium browser already installed"
+    }
 	
 	# Create SmartContract directory
     if (-not (Test-Path "${SMART_CONTRACT_DIR_NAME}")) {
@@ -3601,15 +3688,15 @@ function install-smartc-signum-decompiler {
 			
 	Write-Host "package.json configuration initialized"
 	
-	# Install node.js portable with npm
+	# Install node.js portable
 	install_nodejs
 	
 	Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 	# $NODEJS_UNZIP_PATH\npm config set prefix ./npm-global
 	# $NODEJS_UNZIP_PATH\npm config set cache ./npm-cache
 	
-	# npm istall smarc web ui
-	Write-Host "npm install SmarC decompiler packages"
+	# Istall smarc web ui with npm
+	Write-Host "Install SmarC decompiler packages"
 
 	Set-Location .\$SMARTC_SIGNUM_DECOMPILER_UNZIP_PATH
 	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
@@ -3637,7 +3724,8 @@ Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
 		} else {
 			Write-Host 'Stop SmartC SIGNUM DECOMPILER: ctrl + c'
 			# Start SmartC SIGNUM DECOMPILER
-			Start-Process "http://localhost:$SMARTC_SIGNUM_DECOMPILER_PORT/tester.html"
+			# Start-Process "http://localhost:$SMARTC_SIGNUM_DECOMPILER_PORT/tester.html"
+			Start-Process -FilePath "..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$SMARTC_SIGNUM_DECOMPILER_PORT/tester.html"
 			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 			..\..\$NODEJS_UNZIP_PATH\npm.cmd run webpage
 		}
@@ -3667,6 +3755,13 @@ exit
 
 function install-sc-simulator {
     Write-Host "Installing SC Simulator ..."
+
+	# Install Chromium browser
+	if (-not (Test-Path -Path "$BROWSER_CHROMIUM_EXEC_PATH")) {
+        install_chromium_browser
+    } else {
+        Write-Host "Chromium browser already installed"
+    }
 	
 	# Create SmartContract directory
     if (-not (Test-Path "${SMART_CONTRACT_DIR_NAME}")) {
@@ -3740,15 +3835,15 @@ function install-sc-simulator {
 			
 	Write-Host "try.html initialized"
 	
-	# Install node.js portable with npm
+	# Install node.js portable
 	install_nodejs
 	
 	Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 	# $NODEJS_UNZIP_PATH\npm config set prefix ./npm-global
 	# $NODEJS_UNZIP_PATH\npm config set cache ./npm-cache
 	
-	# npm istall smarc web ui
-	Write-Host "npm install SmarC packages"
+	# Istall smarc web ui with npm
+	Write-Host "Install SmarC packages"
 
 	Set-Location .\$SC_SIMULATOR_UNZIP_PATH
 	& ..\..\${NODEJS_UNZIP_PATH}\npm.cmd install
@@ -3777,7 +3872,8 @@ Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" ``
 		} else {
 			Write-Host 'Stop SC Simulator: ctrl + c'
 			# Start SC Simulator
-			Start-Process "http://localhost:$SC_SIMULATOR_PORT/try.html"
+			# Start-Process "http://localhost:$SC_SIMULATOR_PORT/try.html"
+			Start-Process -FilePath "..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$SC_SIMULATOR_PORT/try.html"
 			Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 			..\..\$NODEJS_UNZIP_PATH\npm.cmd run start
 		}
@@ -4075,6 +4171,13 @@ Write-Host 'Starting SmartJ SIGNUM Smart Contract Compiler ...'
 
 function signum-starter-ps1 ($name, $file, $port) {
 
+	# Install Chromium browser
+	if (-not (Test-Path -Path "$BROWSER_CHROMIUM_EXEC_PATH")) {
+        install_chromium_browser
+    } else {
+        Write-Host "Chromium browser already installed"
+    }
+
     if (-not (Test-Path $file)) {
 
         # Create start-node.ps1 file with the desired content
@@ -4111,7 +4214,8 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
 		} else {
 			# Start Signum Node $name
-			Start-Process "http://localhost:$port"
+			# Start-Process "http://localhost:$port"
+			Start-Process -FilePath "..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$port"
 			.\jre\bin\java -jar signum-node.jar
 		}
     } catch {
@@ -4151,6 +4255,14 @@ ${powershell_exec_path} -ExecutionPolicy Bypass -File ".\${file-ps1}"
 }
 
 function install_IPFS_CLIENT {
+
+	# Install Chromium browser
+	if (-not (Test-Path -Path "$BROWSER_CHROMIUM_EXEC_PATH")) {
+        install_chromium_browser
+    } else {
+        Write-Host "Chromium browser already installed"
+    }
+
 	# Create IPFS directory
 	if (-not (Test-Path "${IPFS_DIR_NAME}")) {
 		New-Item -ItemType Directory -Path "${IPFS_DIR_NAME}" | Out-Null
@@ -4245,7 +4357,8 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			Write-Host 'IPFS_CLIENT is already running.'
 			exit
 		} else {
-		 	Start-Process "http://localhost:$IPFS_CLIENT_API_PORT/webui"
+		 	# Start-Process "http://localhost:$IPFS_CLIENT_API_PORT/webui"
+			Start-Process -FilePath "..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$IPFS_CLIENT_API_PORT/webui"
 			Write-Host 'Stop IPFS_CLIENT: ctrl + c'
 			# Start IPFS_CLIENT
 			```$env:IPFS_PATH = '..\..\$IPFS_CLIENT_REPOSITORY_DIR_NAME'
@@ -4827,7 +4940,9 @@ exit
 }
 
 function install_chromium_browser {
-    # Create NOTEPAD++ directory
+	Write-Host "Installing Chromium Browser ..."
+
+    # Create Browser directory
     if (-not (Test-Path "$BROWSER_CHROMIUM_DIR_PATH")) {
         New-Item -ItemType Directory -Path "$BROWSER_CHROMIUM_DIR_PATH" | Out-Null
         Write-Host "Created directory: ${BROWSER_CHROMIUM_DIR_PATH}"
@@ -4838,7 +4953,7 @@ function install_chromium_browser {
     if (Test-Path "$BROWSER_CHROMIUM_ZIP_PATH") {
         Write-Host "${BROWSER_CHROMIUM_ZIP_PATH} already downloaded."
     } else {
-        # Download Notepad
+        # Download Chromium Browser
         Write-Host "Downloading Chromium Browser ..."
         # Start-BitsTransfer -Source "${BROWSER_CHROMIUM_URL}" -Destination "${BROWSER_CHROMIUM_ZIP_PATH}"
 		Invoke-WebRequest -Uri $BROWSER_CHROMIUM_URL -OutFile $BROWSER_CHROMIUM_ZIP_PATH
@@ -4851,6 +4966,7 @@ function install_chromium_browser {
         }
     }
 
+	# Unzip files
     if (Test-Path "$BROWSER_CHROMIUM_UNZIP_PATH") {
         Write-Host "$BROWSER_CHROMIUM_UNZIP_PATH already installed."
     } else {
@@ -4858,7 +4974,7 @@ function install_chromium_browser {
         Write-Host "Unzipping Chromium Browser to $BROWSER_CHROMIUM_UNZIP_PATH ..."
         Expand-Archive -Path "$BROWSER_CHROMIUM_ZIP_PATH" -DestinationPath "$BROWSER_CHROMIUM_DIR_PATH" -Force
     }
-	
+
 	# Create starter ps1
 	if (-not (Test-Path $BROWSER_CHROMIUM_STARTER_PS1_PATH)) {
 		# Create start-notepad.ps1 file with the desired content
@@ -4868,7 +4984,7 @@ function install_chromium_browser {
 Set-Location -Path `$PSScriptRoot
 
 # Start Chromium Browser
-Start-Process -FilePath ".\$BROWSER_CHROMIUM_EXEC_NAME"
+Start-Process -FilePath ".\$BROWSER_CHROMIUM_EXEC_NAME" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}"
 
 exit
 "@
@@ -4882,6 +4998,153 @@ exit
 
 	# Create starter batch
 	create-starter-ps1-exec ${BROWSER_CHROMIUM_STARTER_PS1_NAME} ..\..\..\${POWERSHELL_EXEC_PATH} ${BROWSER_CHROMIUM_STARTER_EXEC_NAME} ${BROWSER_CHROMIUM_STARTER_EXEC_PATH}
+
+	# Create Extensins directory
+	if (-not (Test-Path "$BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH")) {
+		New-Item -ItemType Directory -Path "$BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH" | Out-Null
+		Write-Host "Created directory: ${BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH}"
+	} else {
+		Write-Host "Directory already exists: ${BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH}"
+	}
+
+	if ($BROWSER_CHROMIUM_SIGNUM_XT_VERSION_INSTALL) {
+
+		# Create SignumXT directory from github release version
+		if (-not (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH")) {
+			New-Item -ItemType Directory -Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH" | Out-Null
+			Write-Host "Created directory: ${BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH}"
+		} else {
+			Write-Host "Directory already exists: ${BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH}"
+		}
+
+		if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH") {
+			Write-Host "${BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH} already downloaded."
+		} else {
+			# Download SignumXT Extension
+			Write-Host "Downloading SignumXT Extension ..."
+			# Start-BitsTransfer -Source "${BROWSER_CHROMIUM_URL}" -Destination "${BROWSER_CHROMIUM_ZIP_PATH}"
+			Invoke-WebRequest -Uri $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_URL -OutFile $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH
+
+			# Check if download was successful
+			if (-not (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH")) {
+				Write-Host "Error: Failed to download Notepad."
+				Pause
+				return
+			}
+		}
+		# Install SignumXT Extension from github release
+		# Unzip files
+		if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH\misc") {
+			Write-Host "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH already installed."
+		} else {
+			# Unzip the downloaded file to the installation directory
+			Write-Host "Unzipping SignumXT to $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH ..."
+			Expand-Archive -Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH" -DestinationPath "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH" -Force
+		}
+
+		Start-Process -FilePath ".\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}",`
+			"--load-extension=.\$BROWSER_CHROMIUM_EXTENSIONS_DIR_NAME\$BROWSER_CHROMIUM_SIGNUM_XT_DIR_NAME\$BROWSER_CHROMIUM_SIGNUM_XT_VERSION"
+
+		# Delete files
+		if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH") {
+			Write-Host "Delete $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH file."
+			Remove-Item -Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH" -Force
+		} else {
+			# Delete the downloaded file
+			Write-Host "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH already deleted"
+		}
+	} else {
+
+		# TODO BUG Extension is not loading
+		# Create SignumXT directory from github main branch
+		if (-not (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_PATH")) {
+			New-Item -ItemType Directory -Path "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_PATH" | Out-Null
+			Write-Host "Created directory: ${BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_PATH}"
+		} else {
+			Write-Host "Directory already exists: ${BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_PATH}"
+		}
+
+		if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_PATH") {
+			Write-Host "${BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_PATH} already downloaded."
+		} else {
+			# Download SignumXT Extension
+			Write-Host "Downloading SignumXT Extension ..."
+			Write-Host "From URL: $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_URL"
+			Write-Host "To: $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_PATH"
+			# Start-BitsTransfer -Source "${BROWSER_CHROMIUM_URL}" -Destination "${BROWSER_CHROMIUM_ZIP_PATH}"
+			Invoke-WebRequest -Uri $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_URL -OutFile $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_PATH
+
+			# Check if download was successful
+			if (-not (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_PATH")) {
+				Write-Host "Error: Failed to download Notepad."
+				Pause
+				return
+			}
+		}
+
+		if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_PATH") {
+			Write-Host "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_PATH already unzipped."
+		} else {
+			# Unzip the downloaded file to the installation directory
+			Write-Host "Unzipping original main to $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_PATH ..."
+			Expand-Archive -Path "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_PATH" -DestinationPath "$BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH" -Force
+		}
+
+		# Install nodejs
+		install_nodejs
+
+		Set-Location ".\$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_PATH"
+
+		# Set Alias to yarn
+		Set-Alias -Name yarn -Value "..\..\..\..\..\${NODEJS_UNZIP_PATH}\node_modules\corepack\shims\yarn.cmd"
+
+		# Set Alias to npx
+		Set-Alias -Name npx -Value "..\..\..\..\..\${NODEJS_UNZIP_PATH}\node_modules\corepack\shims\npx.cmd"
+
+		# Set Alias to npm
+		Set-Alias -Name npm -Value "..\..\..\..\..\${NODEJS_UNZIP_PATH}\node_modules\npm.cmd"
+
+		# Build SignumXT from github main branch
+		Write-Host "Build SignumXT from github main branch"
+		yarn install
+		yarn build:chrome
+		
+		Set-Location -Path $PSScriptRoot
+
+		# Install SignumXT Extension from github main branch
+		# Unzip files
+		# TODO Questionprompt for reinstall
+		if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_PATH\misc") {
+			Write-Host "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_PATH already installed."
+		} else {
+			# Unzip the SignumXT to the installation directory
+			Write-Host "Unzipping SignumXT original main to $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_PATH ..."
+			Expand-Archive -Path "${BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_PATH}\dist\${BROWSER_CHROMIUM_SIGNUM_XT_ZIP_NAME}" -DestinationPath "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_PATH" -Force
+	
+		}
+
+		Start-Process -FilePath ".\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}",`
+			"--load-extension=.\$BROWSER_CHROMIUM_EXTENSIONS_DIR_NAME\$BROWSER_CHROMIUM_SIGNUM_XT_DIR_NAME\$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_NAME"
+
+		# Delete files
+		Write-Host "Cleaning $BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH directory."
+		if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_PATH") {
+			Write-Host "Delete $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_PATH file."
+			Remove-Item -Path "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_PATH" -Force
+		} else {
+			# Delete the downloaded file
+			Write-Host "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_PATH already deleted"
+		}
+
+		if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_PATH") {
+			Write-Host "Delete $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_PATH file."
+			Remove-Item -Path "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_PATH" -Recurse -Force
+		} else {
+			# Delete the downloaded file
+			Write-Host "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_PATH already deleted"
+		}
+
+	}
 
 	Write-Host "Chromium Browser installed successfully."
 	
