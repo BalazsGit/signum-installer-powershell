@@ -644,13 +644,26 @@ $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH = "$BROWSER_CHROMIUM_EXTENSIONS_DIR
 $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH = "$BROWSER_CHROMIUM_SIGNUM_XT_DIR_PATH\$BROWSER_CHROMIUM_SIGNUM_XT_VERSION"
 $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_URL = "https://github.com/signum-network/signum-xt-wallet/releases/download/${BROWSER_CHROMIUM_SIGNUM_XT_VERSION}/${BROWSER_CHROMIUM_SIGNUM_XT_ZIP_NAME}"
 
-$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_NAME = "main"
-$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_NAME = "signum-xt-wallet-main"
+# TODO temporary solution untill /refs/heads/main has issues with build
+# $BROWSER_CHROMIUM_SIGNUM_XT_BRANCH_NAME = "main"
+$BROWSER_CHROMIUM_SIGNUM_XT_BRANCH_NAME = "8b5fe07253c2ec6acd6beda91402da5fffea0fd4"
+$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_NAME = "signum-xt-wallet-${BROWSER_CHROMIUM_SIGNUM_XT_BRANCH_NAME}"
+$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_NAME = $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_NAME
 $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_NAME = "${BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_NAME}.zip"
 $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_PATH = "$BROWSER_CHROMIUM_SIGNUM_XT_DIR_PATH\$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_NAME"
 $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_PATH = "$BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH\$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_ZIP_ORIGINAL_NAME"
 $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_PATH = "$BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH\$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_NAME"
-$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_URL = "https://github.com/signum-network/signum-xt-wallet/archive/refs/heads/main.zip"
+
+# TODO introduce the solution to other github downloads
+# Regex pattern to check if it's a commit hash (SHA-1)
+$commitHashPattern = "^[0-9a-f]{7,40}$"
+if ($BROWSER_CHROMIUM_SIGNUM_XT_BRANCH_NAME -match $commitHashPattern) {
+    # It's a commit hash
+    $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_URL = "https://github.com/signum-network/signum-xt-wallet/archive/${BROWSER_CHROMIUM_SIGNUM_XT_BRANCH_NAME}.zip"
+} else {
+    # It's a branch name
+    $BROWSER_CHROMIUM_SIGNUM_XT_MAIN_URL = "https://github.com/signum-network/signum-xt-wallet/archive/refs/heads/${BROWSER_CHROMIUM_SIGNUM_XT_BRANCH_NAME}.zip"
+}
 
 ### Certbot variables ###
 $CERTBOT_DIR_NAME = "Certbot"
@@ -5095,19 +5108,10 @@ exit
 
 		Set-Location ".\$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_UNZIP_ORIGINAL_PATH"
 
-		# Set Alias to yarn
-		Set-Alias -Name yarn -Value "..\..\..\..\..\${NODEJS_UNZIP_PATH}\node_modules\corepack\shims\yarn.cmd"
-
-		# Set Alias to npx
-		Set-Alias -Name npx -Value "..\..\..\..\..\${NODEJS_UNZIP_PATH}\node_modules\corepack\shims\npx.cmd"
-
-		# Set Alias to npm
-		Set-Alias -Name npm -Value "..\..\..\..\..\${NODEJS_UNZIP_PATH}\node_modules\npm.cmd"
-
 		# Build SignumXT from github main branch
 		Write-Host "Build SignumXT from github main branch"
-		yarn install
-		yarn build:chrome
+		& "..\..\..\..\..\${NODEJS_UNZIP_PATH}\node_modules\corepack\shims\yarn.cmd" install
+		& "..\..\..\..\..\${NODEJS_UNZIP_PATH}\node_modules\corepack\shims\yarn.cmd" build:chrome
 		
 		Set-Location -Path $PSScriptRoot
 
