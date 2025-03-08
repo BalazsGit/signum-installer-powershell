@@ -94,8 +94,8 @@ $SIGNUM_POOL_MAINNET_UNZIP_NAME = "signum-pool-${SIGNUM_POOL_MAINNET_VERSION}"
 $SIGNUM_POOL_MAINNET_ZIP_NAME = "${SIGNUM_POOL_MAINNET_UNZIP_NAME}.zip"
 $SIGNUM_POOL_MAINNET_ZIP_PATH = "${SIGNUM_POOL_MAINNET_DIR_PATH}\${SIGNUM_POOL_MAINNET_ZIP_NAME}"
 $SIGNUM_POOL_MAINNET_UNZIP_PATH = "${SIGNUM_POOL_MAINNET_DIR_PATH}\${SIGNUM_POOL_MAINNET_UNZIP_NAME}"
-$SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_NAME"
-$SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_ORIGINAL_NAME"
+$SIGNUM_POOL_MAINNET_PROPERTIES_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_NAME"
+$SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_ORIGINAL_NAME"
 $SIGNUM_POOL_MAINNET_STARTER_PS1_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_PS1_NAME}"
 $SIGNUM_POOL_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_EXEC_NAME}"
 $SIGNUM_POOL_MAINNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_MAINNET_VERSION}/${SIGNUM_POOL_MAINNET_ZIP}"
@@ -108,8 +108,8 @@ $SIGNUM_POOL_TESTNET_UNZIP_NAME = "signum-pool-${SIGNUM_POOL_TESTNET_VERSION}"
 $SIGNUM_POOL_TESTNET_ZIP_NAME = "${SIGNUM_POOL_TESTNET_UNZIP_NAME}.zip"
 $SIGNUM_POOL_TESTNET_ZIP_PATH = "${SIGNUM_POOL_TESTNET_DIR_PATH}\${SIGNUM_POOL_TESTNET_ZIP_NAME}"
 $SIGNUM_POOL_TESTNET_UNZIP_PATH = "${SIGNUM_POOL_TESTNET_DIR_PATH}\${SIGNUM_POOL_TESTNET_UNZIP_NAME}"
-$SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_NAME"
-$SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_ORIGINAL_NAME"
+$SIGNUM_POOL_TESTNET_PROPERTIES_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_NAME"
+$SIGNUM_POOL_TESTNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_ORIGINAL_NAME"
 $SIGNUM_POOL_TESTNET_STARTER_PS1_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_PS1_NAME}"
 $SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_EXEC_NAME}"
 $SIGNUM_POOL_TESTNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_TESTNET_VERSION}/${SIGNUM_POOL_TESTNET_ZIP_NAME}"
@@ -579,17 +579,33 @@ $NODEJS_URL = "https://nodejs.org/dist/v${NODEJS_VERSION}/${NODEJS_ZIP_NAME}"
 $NGINX_STARTER_PS1_NAME = "start-nginx.ps1"
 $NGINX_STARTER_EXEC_NAME = "start-nginx.bat"
 
+$NGINX_CREATE_CERTIFICATE_PS1_NAME = "create-certificate.ps1"
+$NGINX_CREATE_CERTIFICATE_EXEC_NAME = "create-certificate.bat"
+
+$NGINX_RENEW_CERTIFICATE_PS1_NAME = "renew-certificate.ps1"
+$NGINX_RENEW_CERTIFICATE_EXEC_NAME = "renew-certificate.bat"
+
 $NGINX_VERSION = "1.26.2"
 $NGINX_DIR_NAME = "NGINX"
 $NGINX_EXEC_NAME = "nginx.exe"
+$NGINX_CONFIG_DIR_NAME = "conf"
+$NGINX_CONFIG_FILE_NAME = "nginx.conf"
+$NGINX_ORIGINAL_CONFIG_FILE_NAME = "nginx-original.conf"
 $NGINX_UNZIP_NAME = "nginx-${NGINX_VERSION}"
-$NGINX_ZIP_NAME = "$NGINX_UNZIP_NAME.zip"
+$NGINX_ZIP_NAME = "${NGINX_UNZIP_NAME}.zip"
 $NGINX_DIR_PATH = "${TOOLS_DIR_NAME}\${NGINX_DIR_NAME}"
 $NGINX_UNZIP_PATH = "${NGINX_DIR_PATH}\${NGINX_UNZIP_NAME}"
 $NGINX_ZIP_PATH = "${NGINX_DIR_PATH}\${NGINX_ZIP_NAME}"
+$NGINX_CONFIG_DIR_PATH = "$NGINX_UNZIP_PATH\$NGINX_CONFIG_DIR_NAME"
+$NGINX_CONFIG_FILE_PATH = "$NGINX_CONFIG_DIR_PATH\$NGINX_CONFIG_FILE_NAME"
+$NGINX_ORIGINAL_CONFIG_FILE_PATH = "$NGINX_CONFIG_DIR_PATH\$NGINX_ORIGINAL_CONFIG_FILE_NAME"
 $NGINX_EXEC_PATH = "${NGINX_UNZIP_PATH}\${NGINX_EXEC_NAME}"
 $NGINX_STARTER_PS1_PATH = "${NGINX_UNZIP_PATH}\${NGINX_STARTER_PS1_NAME}"
 $NGINX_STARTER_EXEC_PATH = "${NGINX_UNZIP_PATH}\${NGINX_STARTER_EXEC_NAME}"
+$NGINX_CREATE_CERTIFICATE_PS1_PATH = "${NGINX_UNZIP_PATH}\${NGINX_CREATE_CERTIFICATE_PS1_NAME}"
+$NGINX_CREATE_CERTIFICATE_EXEC_PATH = "${NGINX_UNZIP_PATH}\${NGINX_CREATE_CERTIFICATE_EXEC_NAME}"
+$NGINX_RENEW_CERTIFICATE_PS1_PATH = "${NGINX_UNZIP_PATH}\${NGINX_RENEW_CERTIFICATE_PS1_NAME}"
+$NGINX_RENEW_CERTIFICATE_EXEC_PATH = "${NGINX_UNZIP_PATH}\${NGINX_RENEW_CERTIFICATE_EXEC_NAME}"
 $NGINX_URL = "https://nginx.org/download/nginx-${NGINX_VERSION}.zip"
 
 ### Notepad variables ###
@@ -671,17 +687,26 @@ $CERTBOT_DIR_NAME = "Certbot"
 $CERTBOT_STARTER_PS1_NAME = "start-certbot.ps1"
 $CERTBOT_STARTER_EXEC_NAME = "start-certbot.bat"
 
-$CERTBOT_STARTER_PS1_PATH = "${CERTBOT_DIR_NAME}\${CERTBOT_STARTER_PS1_NAME}"
-$CERTBOT_STARTER_EXEC_PATH = "${CERTBOT_DIR_NAME}\${CERTBOT_STARTER_EXEC_NAME}"
+$CERTBOT_WEBROOT_MAP = "html/ssl/letsencrypt"
+
+$CERTBOT_DIR_PATH = "${TOOLS_DIR_NAME}\${CERTBOT_DIR_NAME}"
+$CERTBOT_STARTER_PS1_PATH = "${CERTBOT_DIR_PATH}\${CERTBOT_STARTER_PS1_NAME}"
+$CERTBOT_STARTER_EXEC_PATH = "${CERTBOT_DIR_PATH}\${CERTBOT_STARTER_EXEC_NAME}"
 
 ### Certbot Python variables ###
+$CERTBOT_FIRST_SSL_SERVER_NAME = $null
+
+$CERTBOT_CONFIGURATION_RELATIVE_PATH = "CertbotData/config"
+$CERTBOT_WORKING_DIR_RELATIVE_PATH = "CertbotData/work"
+$CERTBOT_LOGS_DIR_RELATIVE_PATH = "CertbotData/logs"
+
 $CERTBOT_PYTHON_VERSION = "3.13.1"
 $CERTBOT_PYTHON_STANDARD_LIB_UNZIP_NAME = "python310"
 $CERTBOT_PYTHON_STANDARD_LIB_ZIP_NAME = "${CERTBOT_PYTHON_STANDARD_LIB_UNZIP_NAME}.zip"
 $CERTBOT_PYTHON_UNZIP_NAME = "python-${CERTBOT_PYTHON_VERSION}-embed-amd64"
 $CERTBOT_PYTHON_ZIP_NAME = "${CERTBOT_PYTHON_UNZIP_NAME}.zip"
-$CERTBOT_PYTHON_ZIP_PATH = "${CERTBOT_DIR_NAME}\${CERTBOT_PYTHON_ZIP_NAME}"
-$CERTBOT_PYTHON_UNZIP_PATH = "${CERTBOT_DIR_NAME}\${CERTBOT_PYTHON_UNZIP_NAME}"
+$CERTBOT_PYTHON_ZIP_PATH = "${CERTBOT_DIR_PATH}\${CERTBOT_PYTHON_ZIP_NAME}"
+$CERTBOT_PYTHON_UNZIP_PATH = "${CERTBOT_DIR_PATH}\${CERTBOT_PYTHON_UNZIP_NAME}"
 $CERTBOT_PYTHON_URL = "https://www.python.org/ftp/python/${SIGNUM_EXPLORER_TESTNET_PYTHON_VERSION}/python-${SIGNUM_EXPLORER_TESTNET_PYTHON_VERSION}-embed-amd64.zip"
 $CERTBOT_PYTHON_GETPIP_URL = "https://bootstrap.pypa.io/get-pip.py"
 
@@ -729,18 +754,17 @@ function Show-InstallMenu {
 	# Write-Host "====================================================="
     Write-Host "[21] `tInstall HeidiSQL"
 	Write-Host "[22] `tInstall DBeaver"
-    Write-Host "[23] `tInstall NGINX"
-	Write-Host "[24] `tInstall Certbot"
-	Write-Host "[25] `tInstall NodeJS"
-	Write-Host "[26] `tInstall Notepad++"
-	Write-Host "[27] `tInstall Chromium Browser"
+    Write-Host "[23] `tInstall NGINX with Certbot"
+	Write-Host "[24] `tInstall NodeJS"
+	Write-Host "[25] `tInstall Notepad++"
+	Write-Host "[26] `tInstall Chromium Browser"
 	<# Write-Host "====================================================="
 	Write-Host "            	  Developer Tools 			         "
 	Write-Host "====================================================="
 	Write-Host "[8] `tInstall Signum SmartC Smart Contract Compiler" #>
 	# Write-Host "-----------------------------------------------------"
-	Write-Host "[28] `tInstall Whitepaper And Documents"
-	Write-Host "[29] `tInstall Signum Link Collection"
+	Write-Host "[27] `tInstall Whitepaper And Documents"
+	Write-Host "[28] `tInstall Signum Link Collection"
     Write-Host "-----------------------------------------------------"
 	# TODO Signum pages menu
 	# TODO add usefull signum pages wiki, official page, github stb. coinmarcetcap, bft portal, explorer
@@ -748,12 +772,12 @@ function Show-InstallMenu {
 	# Signum provider menu
 	# letsencrypt with ACME challege
 	# open readme how to use the installer
-    Write-Host "[30] `tSignum Starter Menu"
-    Write-Host "[31] `tExit"
+    Write-Host "[29] `tSignum Starter Menu"
+    Write-Host "[30] `tExit"
     Write-Host "====================================================="
 
 	# Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
-    $choice = Read-Host "Enter your choice (1-31)"
+    $choice = Read-Host "Enter your choice (1-30)"
 
 	function install-process($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -836,30 +860,27 @@ function Show-InstallMenu {
 			install-process $DBEAVER_EXEC_PATH "DBeaver" {install_DBeaver}
         }
 		"23" {
-			install-process $NGINX_STARTER_EXEC_PATH "NGINX" {install_nginx}
+			install-process $NGINX_STARTER_EXEC_PATH "NGINX with Certbot" {install_nginx_and_certbot}
         }
 		"24" {
-			install-process $CERTBOT_STARTER_EXEC_PATH "Certbot" {Install_Certbot}
-        }
-		"25" {
 			install-process $NODEJS_EXEC_PATH "NodeJs" {install_nodejs}
         }
-		"26" {
+		"25" {
 			install-process $NOTEPAD_EXEC_PATH "Notepad" {install_notepad}
         }
-		"27" {
+		"26" {
 			install-process $BROWSER_CHROMIUM_EXEC_PATH "Chromium Browser" {install_chromium_browser}
         }
-		"28" {
+		"27" {
 			install-process $WHITEPAPER_DOC_PATH "Whitepaper And Documents" {install-doc}
         }
-		"29" {
+		"28" {
 			install-process $SIGNUM_LINK_COLLECTION_PATH "Signum Link Collection" {install-doc}
         }
-        "30" {
+        "29" {
             Show-StartMenu
         }
-        "31" {
+        "30" {
             Exit-Script
         }
         default {
@@ -898,19 +919,18 @@ function Show-StartMenu {
     Write-Host "[20] `tStart MariaDB"
     Write-Host "[21] `tStart HeidiSQL"
 	Write-Host "[22] `tStart DBeaver"
-	Write-Host "[23] `tStart NGINX"
-	Write-Host "[24] `tStart Certbot"
-	Write-Host "[25] `tStart NodeJS"
-	Write-Host "[26] `tStart Notepad++"
-	Write-Host "[27] `tStart Chromium Browser"
-	Write-Host "[28] `tOpen Whitepaper"
-	Write-Host "[29] `tOpen Signum Link Collection"
+	Write-Host "[23] `tStart NGINX with Certbot"
+	Write-Host "[24] `tStart NodeJS"
+	Write-Host "[25] `tStart Notepad++"
+	Write-Host "[26] `tStart Chromium Browser"
+	Write-Host "[27] `tOpen Whitepaper"
+	Write-Host "[28] `tOpen Signum Link Collection"
     Write-Host "-----------------------------------------------------"
-    Write-Host "[30] `tSignum Installer Menu"
-    Write-Host "[31] `tExit"
+    Write-Host "[29] `tSignum Installer Menu"
+    Write-Host "[30] `tExit"
     Write-Host "====================================================="
 
-    $choice = Read-Host "Enter your choice (1-31)"
+    $choice = Read-Host "Enter your choice (1-30)"
 
 	function start-process-menu($file, $name, $installFunction) {
 		if (Test-Path $file) {
@@ -1012,30 +1032,27 @@ function Show-StartMenu {
 			start-process-menu $DBEAVER_STARTER_PS1_PATH "DBeaver" {install_DBeaver}
         }
 		"23" {
-			start-process-menu $NGINX_STARTER_PS1_PATH "NGINX" {install_nginx}
+			start-process-menu $NGINX_STARTER_PS1_PATH "NGINX with Certbot" {install_nginx_and_certbot}
         }
 		"24" {
-			start-process-menu $CERTBOT_STARTER_PS1_PATH "Certbot" {Install_Certbot}
-        }
-		"25" {
 			start-process-menu $NODEJS_STARTER_PS1_PATH "NodeJs" {install_nodejs}
         }
-		"26" {
+		"25" {
 			start-process-menu $NOTEPAD_STARTER_PS1_PATH "Notepad" {install_notepad}
         }
-		"27" {
+		"26" {
 			start-process-menu $BROWSER_CHROMIUM_STARTER_PS1_PATH "Chromium Browser" {install_chromium_browser}
         }
-		"28" {
+		"27" {
             open-doc-menu $WHITEPAPER_DOC_PATH "Whitepaper" {install-doc}
 		}
-		"29" {
+		"28" {
             open-doc-menu $SIGNUM_LINK_COLLECTION_PATH "Signum Link Collection" {install-doc}
 		}
-        "30" {
+        "29" {
             Show-InstallMenu
         }
-        "31" {
+        "30" {
             Exit-Script
         }
         default {
@@ -1051,6 +1068,9 @@ function Exit-Script {
     Pause
     Exit
 }
+
+# TODO check for one answer and select configuration with default values, or make configuration steps
+# TODO Would You like to setup configuration, or use default configuration?
 
 function install-doc-init {
 	
@@ -1694,8 +1714,8 @@ function Install-SignumPoolMainnet {
     }
 	
 	# Copy poopl.properties to pool-original.properties
-	Write-Host "Copying ${SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_PATH} to ${SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_ORIGINAL_PATH} ..."
-    Copy-Item -Path "${SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_PATH}" -Destination "${SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_ORIGINAL_PATH}"
+	Write-Host "Copying ${SIGNUM_POOL_MAINNET_PROPERTIES_PATH} to ${SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH} ..."
+    Copy-Item -Path "${SIGNUM_POOL_MAINNET_PROPERTIES_PATH}" -Destination "${SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH}"
 
 	# Create starter ps1
 	if (-not (Test-Path $SIGNUM_POOL_MAINNET_STARTER_PS1_PATH)) {
@@ -1782,11 +1802,11 @@ exit
 	
 	if ($global:UserResponse -eq "yes") {	
 		# Update database information in pool.properties
-		setup_db_pool_properties ${SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_PATH}
+		setup_db_pool_properties ${SIGNUM_POOL_MAINNET_PROPERTIES_PATH}
 	}
 	
 	# Setup pool.properties
-	question-prompt "Setup" "Signum Pool Mainnet Properties" {setup_signumpool $SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_PATH  $SIGNUM_POOL_SIGNUM_NODE_MAINNET_PROPERTIES_ORIGINAL_PATH "mainnet"}
+	question-prompt "Setup" "Signum Pool Mainnet Properties" {setup_signumpool $SIGNUM_POOL_MAINNET_PROPERTIES_PATH  $SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH "mainnet"}
 
 	# TODO Create start-node-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
 	# TODO start-node-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
@@ -1895,8 +1915,8 @@ function Install-SignumPoolTestnet {
     }
 	
 	# Copy poopl.properties to pool-original.properties
-	Write-Host "Copying ${SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_PATH} to ${SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_ORIGINAL_PATH} ..."
-    Copy-Item -Path "${SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_PATH}" -Destination "${SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_ORIGINAL_PATH}"
+	Write-Host "Copying ${SIGNUM_POOL_TESTNET_PROPERTIES_PATH} to ${SIGNUM_POOL_TESTNET_PROPERTIES_ORIGINAL_PATH} ..."
+    Copy-Item -Path "${SIGNUM_POOL_TESTNET_PROPERTIES_PATH}" -Destination "${SIGNUM_POOL_TESTNET_PROPERTIES_ORIGINAL_PATH}"
 
 	# Create starter ps1
 	if (-not (Test-Path $SIGNUM_POOL_TESTNET_STARTER_PS1_PATH)) {
@@ -1983,11 +2003,11 @@ exit
 	
 	if ($global:UserResponse -eq "yes") {	
 		# Update database information in pool.properties
-		setup_db_pool_properties ${SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_PATH}
+		setup_db_pool_properties ${SIGNUM_POOL_TESTNET_PROPERTIES_PATH}
 	}
 	
 	# Setup pool.properties
-	question-prompt "Setup" "Signum Pool Testnet Properties" {setup_signumpool $SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_PATH $SIGNUM_POOL_SIGNUM_NODE_TESTNET_PROPERTIES_ORIGINAL_PATH "testnet"}
+	question-prompt "Setup" "Signum Pool Testnet Properties" {setup_signumpool $SIGNUM_POOL_TESTNET_PROPERTIES_PATH $SIGNUM_POOL_TESTNET_PROPERTIES_ORIGINAL_PATH "testnet"}
 
 	# TODO Create start-node-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
 	# TODO start-node-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
@@ -2218,6 +2238,7 @@ function Install-SignumExplorerMainnet {
     }
 	
 	# TODO setup supervisord username and password and change port if testnet is also running
+
 <#
 	[inet_http_server]
 	port = 9000
@@ -2301,7 +2322,7 @@ function Install-SignumExplorerMainnet {
 
 		$line = $line `
 			-replace "^\[unix_http_server\]", ";[unix_http_server]" `
-			-replace "^port = 9001", "port = 9000" `
+			-replace "^port = 9001", "port = $SIGNUM_EXPLORER_MAINNET_SUPERVISOR_SATUS_PORT" `
 			-replace "^username = dummy", ";username = dummy" `
 			-replace "^password = changeme", ";password = changeme" `
 			-replace "^file = /tmp/supervisor.sock", ";file = ./tmp/supervisor.sock" `
@@ -2911,6 +2932,7 @@ function Install-SignumExplorerTestnet {
 
 		$line = $line `
 			-replace "^\[unix_http_server\]", ";[unix_http_server]" `
+			-replace "^port = 9001", "port = $SIGNUM_EXPLORER_TESTNET_SUPERVISOR_SATUS_PORT" `
 			-replace "^username = dummy", ";username = dummy" `
 			-replace "^password = changeme", ";password = changeme" `
 			-replace "^file = /tmp/supervisor.sock", ";file = ./tmp/supervisor.sock" `
@@ -3237,38 +3259,38 @@ exit
 }
 
 function Install_Certbot {
-    Write-Host "Installing Certbot Exporer Mainnet ..."
+    Write-Host "Installing Certbot ..."
 
     # Create Certbot directory
-    if (-not (Test-Path -Path "${CERTBOT_DIR_NAME}")) {
-        New-Item -Path "${CERTBOT_DIR_NAME}" -ItemType Directory | Out-Null
-        Write-Host "Created directory: ${CERTBOT_DIR_NAME}"
+    if (-not (Test-Path -Path "${CERTBOT_DIR_PATH}")) {
+        New-Item -Path "${CERTBOT_DIR_PATH}" -ItemType Directory | Out-Null
+        Write-Host "Created directory: ${CERTBOT_DIR_PATH}"
     } else {
-        Write-Host "Directory already exists: ${CERTBOT_DIR_NAME}"
+        Write-Host "Directory already exists: ${CERTBOT_DIR_PATH}"
     }
 
 	# Create CertbotData\config directory
-	if (-not (Test-Path -Path "${CERTBOT_DIR_NAME}\CertbotData\config")) {
-		New-Item -Path "${CERTBOT_DIR_NAME}\CertbotData\config" -ItemType Directory | Out-Null
-		Write-Host "Created directory: ${CERTBOT_DIR_NAME}\CertbotData\config"
+	if (-not (Test-Path -Path "${CERTBOT_DIR_PATH}\CertbotData\config")) {
+		New-Item -Path "${CERTBOT_DIR_PATH}\CertbotData\config" -ItemType Directory | Out-Null
+		Write-Host "Created directory: ${CERTBOT_DIR_PATH}\CertbotData\config"
 	} else {
-		Write-Host "Directory already exists: ${CERTBOT_DIR_NAME}\CertbotData\config"
+		Write-Host "Directory already exists: ${CERTBOT_DIR_PATH}\CertbotData\config"
 	}
 
 	# Create CertbotData\work directory
-	if (-not (Test-Path -Path "${CERTBOT_DIR_NAME}\CertbotData\work")) {
-		New-Item -Path "${CERTBOT_DIR_NAME}\CertbotData\work" -ItemType Directory | Out-Null
-		Write-Host "Created directory: ${CERTBOT_DIR_NAME}\CertbotData\work"
+	if (-not (Test-Path -Path "${CERTBOT_DIR_PATH}\CertbotData\work")) {
+		New-Item -Path "${CERTBOT_DIR_PATH}\CertbotData\work" -ItemType Directory | Out-Null
+		Write-Host "Created directory: ${CERTBOT_DIR_PATH}\CertbotData\work"
 	} else {
-		Write-Host "Directory already exists: ${CERTBOT_DIR_NAME}\CertbotData\work"
+		Write-Host "Directory already exists: ${CERTBOT_DIR_PATH}\CertbotData\work"
 	}
 
 	# Create CertbotData\logs directory
-	if (-not (Test-Path -Path "${CERTBOT_DIR_NAME}\CertbotData\logs")) {
-		New-Item -Path "${CERTBOT_DIR_NAME}\CertbotData\logs" -ItemType Directory | Out-Null
-		Write-Host "Created directory: ${CERTBOT_DIR_NAME}\CertbotData\logs"
+	if (-not (Test-Path -Path "${CERTBOT_DIR_PATH}\CertbotData\logs")) {
+		New-Item -Path "${CERTBOT_DIR_PATH}\CertbotData\logs" -ItemType Directory | Out-Null
+		Write-Host "Created directory: ${CERTBOT_DIR_PATH}\CertbotData\logs"
 	} else {
-		Write-Host "Directory already exists: ${CERTBOT_DIR_NAME}\CertbotData\logs"
+		Write-Host "Directory already exists: ${CERTBOT_DIR_PATH}\CertbotData\logs"
 	}
 	
 	# download python
@@ -3353,17 +3375,16 @@ function Install_Certbot {
 Set-Location -Path `$PSScriptRoot
 
 Write-Host 'Starting Certbot ...'
-Start-Process -FilePath "..\${POWERSHELL_EXEC_PATH}" -Verb runAs -ArgumentList "-NoExit", "-Command", `@"
+Start-Process -FilePath "..\..\${POWERSHELL_EXEC_PATH}" -Verb runAs -ArgumentList "-NoExit", "-Command", `@"
 ```$host.UI.RawUI.WindowTitle = 'Certbot'
 .\${CERTBOT_PYTHON_UNZIP_NAME}\Scripts\certbot.exe certonly ````
 	--manual ````
-	--config-dir ".\CertbotData\config" ````
-	--work-dir ".\CertbotData\work" ````
-	--logs-dir ".\CertbotData\logs"
+	--config-dir "./$CERTBOT_CONFIGURATION_RELATIVE_PATH" ````
+	--work-dir "./$CERTBOT_WORKING_DIR_RELATIVE_PATH" ````
+	--logs-dir "./$CERTBOT_LOGS_DIR_RELATIVE_PATH"
 "`@ ``
--WindowStyle Minimized
 
-exit
+
 "@
 
 		$content | Out-File -FilePath $CERTBOT_STARTER_PS1_PATH -Force
@@ -3374,11 +3395,13 @@ exit
 	}
 
 	# Create starter batch
-	create-starter-ps1-exec ${CERTBOT_STARTER_PS1_NAME} ..\${POWERSHELL_EXEC_PATH} ${CERTBOT_STARTER_EXEC_NAME} ${CERTBOT_STARTER_EXEC_PATH}
+	create-starter-ps1-exec ${CERTBOT_STARTER_PS1_NAME} ..\..\${POWERSHELL_EXEC_PATH} ${CERTBOT_STARTER_EXEC_NAME} ${CERTBOT_STARTER_EXEC_PATH}
 
     Write-Host "Certbot Installation complete."
 	
 }
+
+
 
 function install-smartc-web-ui {
     Write-Host "Installing SmartC WEB UI Smart Contract Compiler ..."
@@ -4250,7 +4273,7 @@ exit
     }
 }
 
-function create-starter-ps1-exec (${file-ps1}, ${powershell_exec_path}, ${file-exec}, ${file-exec-path}){
+function create-starter-ps1-exec (${file-ps1}, ${powershell_exec_path}, ${file-exec}, ${file-exec-path}) {
 
     if (-not (Test-Path ${file-exec-path})) {
         # Create start-node batch file with the desired content
@@ -5215,25 +5238,43 @@ exit
 	
 }
 
-function install_nginx {
+function install_nginx_and_certbot {
+
+	# Certbot Install
+	# install-process $CERTBOT_STARTER_EXEC_PATH "Certbot" {Install_Certbot}
+	<#
+	# TODO check Certbot installation
+	Write-Host "Checking Certbot installation as precondition"
+
+	if (-not (Test-Path -Path "$CERTBOT_STARTER_PS1_PATH")) {
+		Write-Host "Certbot is alredy installed"
+		Write-Host "Certbot is alredy installed"
+
+	} else {
+		Install_Certbot
+	}
+	#>
+
+	Install_Certbot
+
     # Create NGINX directory
-    if (-not (Test-Path "${TOOLS_DIR_NAME}\${NGINX_DIR_NAME}")) {
-        New-Item -ItemType Directory -Path "${TOOLS_DIR_NAME}\${NGINX_DIR_NAME}" | Out-Null
+    if (-not (Test-Path $NGINX_DIR_PATH)) {
+        New-Item -ItemType Directory -Path $NGINX_DIR_PATH | Out-Null
         Write-Host "Created directory: ${NGINX_DIR_NAME}"
     } else {
         Write-Host "Directory already exists: ${NGINX_DIR_NAME}"
     }
 
-    if (Test-Path "${TOOLS_DIR_NAME}\${NGINX_DIR_NAME}\${NGINX_ZIP_NAME}") {
+    if (Test-Path $NGINX_ZIP_PATH) {
         Write-Host "${NGINX_ZIP_NAME} already downloaded."
     } else {
         # Download NGINX
         Write-Host "Downloading NGINX ..."
-        # Start-BitsTransfer -Source "${NGINX_URL}" -Destination "${TOOLS_DIR_NAME}\${NGINX_DIR_NAME}\${NGINX_ZIP_NAME}"
-		Invoke-WebRequest -Uri ${NGINX_URL} -OutFile ${TOOLS_DIR_NAME}\${NGINX_DIR_NAME}\${NGINX_ZIP_NAME}
+        # Start-BitsTransfer -Source "${NGINX_URL}" -Destination "$NGINX_ZIP_PATH"
+		Invoke-WebRequest -Uri ${NGINX_URL} -OutFile $NGINX_ZIP_PATH
 
         # Check if download was successful
-        if (-not (Test-Path "${TOOLS_DIR_NAME}\${NGINX_DIR_NAME}\${NGINX_ZIP_NAME}")) {
+        if (-not (Test-Path $NGINX_ZIP_PATH)) {
             Write-Host "Error: Failed to download NGINX."
             Pause
             return
@@ -5247,6 +5288,29 @@ function install_nginx {
         Write-Host "Unzipping NGINX to ${NGINX_UNZIP_PATH} ..."
         Expand-Archive -Path "${NGINX_ZIP_PATH}" -DestinationPath "${NGINX_DIR_PATH}" -Force
     }
+
+	# Create directories for SSL
+	if (-not (Test-Path "${NGINX_UNZIP_PATH}\html\ssl\letsencrypt")) {
+		New-Item -ItemType Directory -Path "${NGINX_UNZIP_PATH}\html\ssl\letsencrypt" | Out-Null
+		Write-Host "Created directory: ${NGINX_UNZIP_PATH}\html\ssl\letsencrypt"
+	} else {
+		Write-Host "Directory already exists: ${NGINX_UNZIP_PATH}\html\ssl\letsencrypt"
+	}
+
+	if (-not (Test-Path "${NGINX_UNZIP_PATH}\ssl\certificates")) {
+		New-Item -ItemType Directory -Path "${NGINX_UNZIP_PATH}\ssl\certificates" | Out-Null
+		Write-Host "Created directory: ${NGINX_UNZIP_PATH}\ssl\certificates"
+	} else {
+		Write-Host "Directory already exists: ${NGINX_UNZIP_PATH}\ssl\certificates"
+	}
+
+	# Create nginx-original.conf from nginx.conf
+	if (-not (Test-Path $NGINX_ORIGINAL_CONFIG_FILE_PATH)) {
+		Write-Host "Copying ${NGINX_CONFIG_FILE_PATH} to ${NGINX_ORIGINAL_CONFIG_FILE_PATH} ..."
+    	Copy-Item -Path "${NGINX_CONFIG_FILE_PATH}" -Destination "${NGINX_ORIGINAL_CONFIG_FILE_PATH}"
+	} else {
+		Write-Host "File already exists: ${$NGINX_ORIGINAL_CONFIG_FILE_PATH}"
+	}
 	
 	# Create starter ps1
 	if (-not (Test-Path $NGINX_STARTER_PS1_PATH)) {
@@ -5273,7 +5337,687 @@ exit
 	create-starter-ps1-exec ${NGINX_STARTER_PS1_NAME} ..\..\..\${POWERSHELL_EXEC_PATH} ${NGINX_STARTER_EXEC_NAME} ${NGINX_STARTER_EXEC_PATH}
 
 	Write-Host "NGINX installed successfully."
+
+	# Open Nginx Setup menu
+	question-prompt "open" "NginX Setup Menu" {nginx_and_certbot_setup_menu $NGINX_CONFIG_FILE_PATH $NGINX_ORIGINAL_CONFIG_FILE_PATH}
+
+}
+
+# It makes one certificate for all domains
+function nginx_and_certbot_setup_menu ($config_path, $config_original_path) {
 	
+	# TODO make option to select setup menus from the main window
+	Clear-Host
+    Write-Host "====================================================="
+    Write-Host "              Nginx/Certbot Setup Menu               "
+    Write-Host "====================================================="
+    Write-Host "Please select an option:"
+    Write-Host "[1] `tEdit Nginx Configuration file"
+    Write-Host "[2] `tStep by Step Nginx/Certbot Configuration"
+	Write-Host "[3] `tRestore Configuration"
+	Write-Host "====================================================="
+	Write-Host "[4] `tExit Setup"
+    Write-Host "====================================================="
+	
+	
+    $choice = Read-Host "Enter your choice (1-4)"
+	$serverNames_ssl = @()
+
+	$serverNamesString_ssl = $null
+
+	$overwrite_ssl = $false
+
+	$commentServerBlockStart = "# BEGIN INITIAL CERTBOT CONFIG"
+    $commentServerBlockEnd = "# END INITIAL CERTBOT CONFIG"
+	$commentServerNames_ssl ="# SSL Server Names:"
+
+	switch ($choice) {
+        "1" {
+			# Install notepad++
+			install_notepad
+			# Open Configuration with notepad++
+			# Start-Process -FilePath "$NOTEPAD_EXEC_PATH"
+			& $NOTEPAD_EXEC_PATH $config_path
+			Return
+        }
+        "2" {
+
+			# Would You like to add Let's Encrypt certificate handler to Nginx configuration?
+			do {
+
+				# Check if nginx.conf exists
+				if (!(Test-Path "$config_path")) {
+					Write-Host "nginx.conf not found at $config_path..."
+					Pause
+					return
+				}
+
+				# Read the current nginx.conf
+				$nginxConfContent = Get-Content -Path $config_path -Raw
+
+				# Remove old Certbot config if it exists
+				if ($nginxConfContent -match [regex]::Escape($commentServerBlockStart)) {
+					Write-Host "Let's Encrypt certificate handler configuration is already exist on Nginx configuration file!"
+
+					# Read out the $CERTBOT_FIRST_SSL_SERVER_NAME and $serverNames_ssl from nginx.conf
+					$pattern_serverNameFirst_ssl = "ssl_certificate\s+$CERTBOT_CONFIGURATION_RELATIVE_PATH/live/([^/]+)/cert.pem;"
+					$pattern_serverNames_ssl = "$commentServerNames_ssl\s+(.+)"
+
+					# Search for the matching line
+					foreach ($line in $nginxConfContent) {
+						if ($line -match $pattern_serverNameFirst_ssl) {
+							$CERTBOT_FIRST_SSL_SERVER_NAME = $matches[1]
+							Write-Host "Extracted Certbot certification folder name: $CERTBOT_FIRST_SSL_SERVER_NAME"
+						}
+						if ($line -match $pattern_serverNames_ssl) {
+							$serverNames_ssl = $matches[1] -split '\s+'
+							Write-Host "Extracted SSL Server names: $serverNames_ssl"
+						}
+					}
+					do {
+						$userChoice = Read-Host "Do You want to overwrite the existing SSL configuration? (yes/no)"
+						if ($userChoice -match '^(yes|YES|Yes|y|Y)$') {
+							# Collect server names (domains, IPv4, IPv6)
+							$serverNames_ssl = @()
+							do {
+								$serverName = Read-Host "Enter a server DNS name, IPv4, or IPv6 address for SSL support (or type 'no' to stop adding)"
+								
+								if ($serverName -match '^(no|NO|No|n|N)$') {
+									break
+								} elseif (
+									$serverName -match '^(localhost)(:\d+)?$' -or  # Localhost with optional port
+									$serverName -match '^[a-zA-Z0-9.-]+(:\d+)?$' -or  # Domain with optional port
+									$serverName -match '^\d{1,3}(\.\d{1,3}){3}(:\d+)?$' -or  # IPv4 with optional port
+									$serverName -match '^\[?([a-fA-F0-9:]+:+)+[a-fA-F0-9]+\]?(?::\d+)?$'  # IPv6 with optional port
+								) {
+									# Ensure IPv6 addresses are wrapped in []
+									if ($serverName -match '^([a-fA-F0-9:]+:+)+[a-fA-F0-9]+(:\d+)?$') {
+										$serverName = "[$serverName]"  # Add brackets for IPv6
+									}
+									$serverNames_ssl += $serverName
+								} else {
+									Write-Host "Invalid input. Please enter a valid domain name, IPv4, or IPv6 address."
+								}
+							} while ($true)
+
+							Write-Host "Server Names: $serverNames_ssl"
+					
+							if ($serverNames_ssl.Count -eq 0) {
+								Write-Host "No server names added. Exiting..."
+								Pause
+								break
+							}
+					
+							# Convert server names to a space-separated string
+							$serverNamesString_ssl = $serverNames_ssl -join " "
+
+							# Regex pattern to find the block where "listen 80;" is followed by "server_name" with any IP or domain
+							$pattern = "(?<=listen\s+80;\s+server_name\s+)([^;]+);"
+
+							# Replace the server_name value with $serverNamesString_ssl
+							$nginxConfContent = $nginxConfContent -replace $pattern, "$serverNamesString_ssl;"
+
+							# Regex pattern to find "listen 443 ssl;" followed by "server_name" with any IP or domain
+							$pattern = "(?<=listen\s+443\s+ssl;\s+server_name\s+)([^;]+);"
+
+							# Replace the server_name value with $serverNamesString_ssl
+							$nginxConfContent = $nginxConfContent -replace $pattern, "$serverNamesString_ssl;"
+
+							# Overwrite the nginx.conf file with the updated content
+							$nginxConfContent | Set-Content -Path $config_path -Encoding UTF8
+							$overwrite_ssl = $true
+
+							Write-Host "Existing Certbot configuration updated."
+							break
+						} elseif ($userChoice -match '^(no|NO|No|n|N)$') {
+							Write-Host "Adding Let's encript certificate handler to Nginx configuration is canceled."
+							break
+						} else {
+							Write-Host "Wrong choice, please try again"
+							Pause
+						}
+						Write-Host "Server Names: $serverNames_ssl"
+					} while ($true)
+					break
+				} else {
+					$userChoice = Read-Host "Would You like to add Let's Encrypt certificate handler to Nginx configuration? (yes/no)"
+					if ($userChoice -match '^(yes|YES|Yes|y|Y)$') {
+						# Collect server names (domains, IPv4, IPv6)
+						$serverNames_ssl = @()
+						do {
+							$serverName = Read-Host "Enter a server DNS name, IPv4, or IPv6 address for SSL support (or type 'no' to stop adding)"
+							
+							if ($serverName -match '^(no|NO|No|n|N)$') {
+								break
+							} elseif (
+								$serverName -match '^(localhost)(:\d+)?$' -or  # Localhost with optional port
+								$serverName -match '^[a-zA-Z0-9.-]+(:\d+)?$' -or  # Domain with optional port
+								$serverName -match '^\d{1,3}(\.\d{1,3}){3}(:\d+)?$' -or  # IPv4 with optional port
+								$serverName -match '^\[?([a-fA-F0-9:]+:+)+[a-fA-F0-9]+\]?(?::\d+)?$'  # IPv6 with optional port
+							) {
+								# Ensure IPv6 addresses are wrapped in []
+								if ($serverName -match '^([a-fA-F0-9:]+:+)+[a-fA-F0-9]+(:\d+)?$') {
+									$serverName = "[$serverName]"  # Add brackets for IPv6
+								}
+								$serverNames_ssl += $serverName
+							} else {
+								Write-Host "Invalid input. Please enter a valid domain name, IPv4, or IPv6 address."
+							}
+						} while ($true)			
+				
+						if ($serverNames_ssl.Count -eq 0) {
+							Write-Host "No server names added. Exiting..."
+							Pause
+							break
+						}
+				
+						# Convert server names to a space-separated string
+						$CERTBOT_FIRST_SSL_SERVER_NAME = $serverNames_ssl[0]
+						$serverNamesString_ssl = $serverNames_ssl -join " "
+						$newConfig_ssl = 
+@"
+
+#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+	worker_connections  1024;
+}
+
+
+http {
+	include       mime.types;
+	default_type  application/octet-stream;
+
+	#log_format  main  '`$remote_addr - `$remote_user [`$time_local] "`$request" '
+	#                  '`$status `$body_bytes_sent "`$http_referer" '
+	#                  '"`$http_user_agent" "`$http_x_forwarded_for"';
+
+	#access_log  logs/access.log  main;
+
+	sendfile        on;
+	#tcp_nopush     on;
+
+	#keepalive_timeout  0;
+	keepalive_timeout  65;
+
+	#gzip  on;
+
+	$commentServerBlockStart
+	server {
+		listen       80;
+		server_name  $serverNamesString_ssl;
+
+		#charset koi8-r;
+
+		#access_log  logs/host.access.log  main;
+
+		# Allow Let's Encrypt ACME challenge
+		location ^~ /.well-known/acme-challenge/ {
+			default_type "text/plain";
+			root $CERTBOT_WEBROOT_MAP;
+			autoindex on;
+			allow all;
+		}
+
+		location / {
+			root   html;
+			index  index.html index.htm;
+			
+			# Redirect all other traffic to HTTPS
+			return 301 https://`$host`$request_uri;
+		}
+
+		#error_page  404              /404.html;
+
+		# redirect server error pages to the static page /50x.html
+		error_page   500 502 503 504  /50x.html;
+		location = /50x.html {
+			root   html;
+		}
+
+		# proxy the PHP scripts to Apache listening on 127.0.0.1:80
+		#
+		#location ~ \.php$ {
+		#    proxy_pass   http://127.0.0.1;
+		#}
+
+		# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+		#
+		#location ~ \.php$ {
+		#    root           html;
+		#    fastcgi_pass   127.0.0.1:9000;
+		#    fastcgi_index  index.php;
+		#    fastcgi_param  SCRIPT_FILENAME  /scripts`$fastcgi_script_name;
+		#    include        fastcgi_params;
+		#}
+
+		# deny access to .htaccess files, if Apache's document root
+		# concurs with nginx's one
+		#
+		#location ~ /\.ht {
+		#    deny  all;
+		#}
+	}
+
+	# another virtual host using mix of IP-, name-, and port-based configuration
+	#
+	#server {
+	#    listen       8000;
+	#    listen       somename:8080;
+	#    server_name  somename  alias  another.alias;
+	#
+	#    location / {
+	#        root   html;
+	#        index  index.html index.htm;
+	#    }
+	#}
+
+	# HTTPS server
+	#
+    #server {
+    #    listen       443 ssl;
+    #    server_name  localhost;
+
+    #    ssl_certificate      cert.pem;
+    #    ssl_certificate_key  cert.key;
+
+    #    ssl_session_cache    shared:SSL:1m;
+    #    ssl_session_timeout  5m;
+
+    #    ssl_ciphers  HIGH:!aNULL:!MD5;
+    #    ssl_prefer_server_ciphers  on;
+
+    #    location / {
+    #        root   html;
+    #        index  index.html index.htm;
+    #    }
+    #}
+
+	server {
+		listen       443 ssl;
+		server_name  $serverNamesString_ssl;
+
+		# Use relative paths for SSL certificates
+		ssl_certificate      $CERTBOT_CONFIGURATION_RELATIVE_PATH/live/${CERTBOT_FIRST_SSL_SERVER_NAME}/cert.pem;
+		ssl_certificate_key  $CERTBOT_CONFIGURATION_RELATIVE_PATH/live/${CERTBOT_FIRST_SSL_SERVER_NAME}/privkey.pem;
+
+		ssl_session_cache    shared:SSL:1m;
+		ssl_session_timeout  5m;
+		ssl_ciphers  HIGH:!aNULL:!MD5;
+		ssl_prefer_server_ciphers  on;
+
+		location / {
+			root   html;
+			index  index.html index.htm;
+		}
+	}
+	$commentServerNames_ssl $serverNamesString_ssl
+	$commentServerBlockEnd
+}
+
+"@
+
+					# Overwrite nginx.conf with new content
+					$newConfig_ssl | Set-Content -Path $config_path -Encoding UTF8
+
+					# Confirm overwrite
+					Write-Host "nginx.conf has been successfully updated!" -ForegroundColor Green
+					# You should open port 80
+					Write-Host "You should open port 80 and 443"
+				} elseif ($userChoice -match '^(no|NO|No|n|N)$') {
+					Write-Host "Adding Let's encript certificate handler to Nginx configuration is canceled."
+					break
+				} else {
+					Write-Host "Wrong choice, please try again"
+					Pause
+				}
+				break
+			}
+
+		} while ($true)
+
+		# Add proxy passes and servers
+		do {
+			$userChoice = Read-Host "Would You like to add new server configurtion with proxy_pass? (yes/no)"
+			if ($userChoice -match '^(yes|YES|Yes|y|Y)$') {
+
+				# Set input port
+				$port = Read-Host "Enter input port (8125)"
+
+				# SSL settings
+				do {
+					$userChoice = Read-Host "Would you like to use SSL/HTTPS? (yes/no)"
+					if ($userChoice -match '^(yes|YES|Yes|y|Y)$') {
+						$ssl = "ssl"
+						$ssl_config =
+@"
+
+		# Certbot SSL
+		ssl_certificate      $CERTBOT_CONFIGURATION_RELATIVE_PATH/live/${CERTBOT_FIRST_SSL_SERVER_NAME}/cert.pem;
+		ssl_certificate_key  $CERTBOT_CONFIGURATION_RELATIVE_PATH/live/${CERTBOT_FIRST_SSL_SERVER_NAME}/privkey.pem;
+
+		ssl_session_cache    shared:SSL:1m;
+		ssl_session_timeout  5m;
+		ssl_ciphers  HIGH:!aNULL:!MD5;
+		ssl_prefer_server_ciphers  on;
+
+"@
+						break
+					} elseif ($userChoice -match '^(no|NO|No|n|N)$') {
+						$ssl = ""
+						$ssl_config = ""
+						break
+					} else {
+						Write-Host "Invalid input. Please enter (yes/no)."
+					}
+				# Repeat the question in case answer is invalid
+				} while($true)
+
+				# Collect server names (domains, IPv4, IPv6)
+				$serverNames = @()
+
+				do {
+					$serverName = Read-Host "Enter input server DNS name, IPv4, or IPv6 address for port: $port (or type 'no' to stop adding)"	
+					if ($serverName -match '^(no|NO|No|n|N)$') {
+						break
+					} elseif (
+						$serverName -match '^(localhost)(:\d+)?$' -or  # Localhost with optional port
+						$serverName -match '^[a-zA-Z0-9.-]+(:\d+)?$' -or  # Domain with optional port
+						$serverName -match '^\d{1,3}(\.\d{1,3}){3}(:\d+)?$' -or  # IPv4 with optional port
+						$serverName -match '^\[?([a-fA-F0-9:]+:+)+[a-fA-F0-9]+\]?(?::\d+)?$'  # IPv6 with optional port
+					) {
+						# Ensure IPv6 addresses are wrapped in []
+						if ($serverName -match '^([a-fA-F0-9:]+:+)+[a-fA-F0-9]+(:\d+)?$') {
+							$serverName = "[$serverName]"  # Add brackets for IPv6
+						}
+						$serverNames += $serverName
+					} else {
+						Write-Host "Invalid input. Please enter a valid domain name, IPv4, or IPv6 address."
+					}
+				} while ($true)					
+		
+				if ($serverNames.Count -eq 0) {
+					Write-Host "No server names added. Exiting..."
+					Pause
+					break
+				}
+
+				# Convert server names to a space-separated string
+				$serverNamesString = $serverNames -join " "
+
+				# Set proxi_pass
+				$proxi_pass = Read-Host "Enter proxi_pass (http://localhost:7125)"
+
+				$newServerConfig = 
+@"
+
+
+	server {
+		listen       $port $ssl;
+		server_name  $serverNamesString;
+
+		error_page 301 307 400 497 https://`$host`$request_uri;
+		$ssl_config
+		location / {
+			limit_req zone=speedbump burst=20;
+			proxy_pass              $proxi_pass;
+			proxy_ssl_session_reuse off;
+			proxy_redirect          off;
+			proxy_set_header        Host              `$http_host;
+			proxy_set_header        X-Real-IP         `$remote_addr;
+			proxy_set_header        X-Forwarded-For   `$proxy_add_x_forwarded_for;
+		}
+	}
+
+
+"@
+
+				# Read the current nginx.conf
+				$nginxConfContent = Get-Content -Path $config_path -Raw
+
+				# Ensures it only matches closing } of html{}
+				# $pattern = "(?<=\bhtml\s*\{[^}]*\n)^\}"
+				$pattern = "\s*}\s*$"
+
+				# Replace the server_name value with $serverNamesString
+				$updatedConf = $nginxConfContent -replace $pattern, "${newServerConfig}}"
+
+				# Add newServerConfig to nginx.conf
+				$updatedConf | Set-Content -Path $config_path -Encoding UTF8
+
+				# Confirm overwrite
+				Write-Host "New server added to Nginx configuration." -ForegroundColor Green
+
+			} elseif ($userChoice -match '^(no|NO|No|n|N)$') {
+				Write-Host "Adding new server to Nginx configuration is canceled."
+				break
+			} else {
+				Write-Host "Wrong choice, please try again"
+				Pause
+			}
+		} while ($true)
+
+		if ($serverNames_ssl.Count -eq 0) {
+			Write-Host "No server names added. Exiting..."
+			Pause
+			return
+		} else {
+			# TODO on GUI option to: --register-unsafely-without-email
+			$email_address = Read-Host "Enter e-mail address for certification"
+
+			# Create Certbot create-certification.ps1 and create_certification.bat file
+			$serverNamesString_ssl = $serverNames_ssl -join " `````n`t-d "
+
+				$content = 
+
+@"
+# PowerShell script to Create Certbot certification
+Set-Location -Path `$PSScriptRoot
+
+# Run Certbot inside the portable Python environment
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -Verb runAs -ArgumentList "-NoExit", "-Command", `@"
+	```$host.UI.RawUI.WindowTitle = 'Certbot certification'
+	..\..\..\${CERTBOT_PYTHON_UNZIP_PATH}\Scripts\certbot.exe certonly ````
+	--config-dir "./$CERTBOT_CONFIGURATION_RELATIVE_PATH" ````
+	--work-dir "./$CERTBOT_WORKING_DIR_RELATIVE_PATH" ````
+	--logs-dir "./$CERTBOT_LOGS_DIR_RELATIVE_PATH" ````
+	--webroot ````
+	-w ./$CERTBOT_WEBROOT_MAP ````
+	--agree-tos ````
+	--email $email_address ````
+	-d $serverNamesString_ssl
+"`@ ``
+
+# Restart nginx after first certification creation
+Start-Sleep -Seconds 300
+
+.\nginx.exe -s reload
+
+# Run certbot renewal
+& ..\..\..\${POWERSHELL_EXEC_PATH} $NGINX_RENEW_CERTIFICATE_PS1_NAME
+
+exit
+"@
+
+
+				if (-not (Test-Path $NGINX_CREATE_CERTIFICATE_PS1_PATH)) {
+					$content | Out-File -FilePath $NGINX_CREATE_CERTIFICATE_PS1_PATH -Force
+					Write-Host "${NGINX_CREATE_CERTIFICATE_PS1_PATH} successfully created."
+				} else {
+					Write-Host "$NGINX_CREATE_CERTIFICATE_PS1_PATH file already exists"
+					if ($overwrite_ssl) {
+						Write-Host "SSL configuration changed!"
+						$content | Out-File -FilePath $NGINX_CREATE_CERTIFICATE_PS1_PATH -Force
+						Write-Host "SSL configuration updated!"
+					}
+				}
+
+				# Create create_certification.bat file
+				create-starter-ps1-exec ${NGINX_CREATE_CERTIFICATE_PS1_NAME} ..\..\..\${POWERSHELL_EXEC_PATH} ${NGINX_CREATE_CERTIFICATE_EXEC_NAME} ${NGINX_CREATE_CERTIFICATE_EXEC_PATH}
+
+				# Create certbot renewal script
+				$content = 
+
+@"
+# Set working directory to script location
+Set-Location -Path $PSScriptRoot
+
+# Run Certbot renewal
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -Verb runAs -ArgumentList "-NoExit", "-Command", `@"
+	```$host.UI.RawUI.WindowTitle = 'Certbot certification'
+
+	# Replace / to \
+	$certbotConfigDirPath = "$CERTBOT_CONFIGURATION_RELATIVE_PATH" -replace '/', '\'
+
+	# Path to the Certbot Configuration directory
+	$certbotRenewalDirPath = ".\$certbotConfigDirPath\renewal"
+
+	# Function to check and update paths
+	function Update-CertbotRenewalPaths {
+
+		# Check if the Certbot config directory exists
+		if (!(Test-Path -Path $certbotConfigDirPath)) {
+			Write-Error "Certbot configuration directory not found: $certbotConfigDirPath"
+			return
+		}
+
+		# Check if the Certbot renewal directory exists
+		if (!(Test-Path -Path $certbotRenewalDirPath)) {
+			Write-Error "Certbot renewal directory not found: $certbotRenewalDirPath"
+			return
+		}
+		Write-Host "Certbot renewal directory: $certbotRenewalDirPath"
+
+		# Get all files in the renewal directory
+		$renewalFiles = Get-ChildItem -Path $certbotRenewalDirPath -File
+
+		# Replace \ to /
+		$currentDirPath = "$PSScriptRoot" -replace '\\', '/'
+
+		# Loop through each renewal file
+		foreach ($renewalFile in $renewalFiles) {
+			Write-Host "Checking renewal file: $($renewalFile.FullName)"
+
+			# Read the content of the file
+			$fileContent = Get-Content -Path $renewalFile.FullName
+			$originalContent = $fileContent
+
+			# Loop through each line in the file
+			for ($i = 0; $i -lt $fileContent.Count; $i++) {
+				$line = $fileContent[$i]
+				$line 	-replace "\s*=\s*.+$CERTBOT_WEBROOT_MAP", " = $currentDirPath/$CERTBOT_WEBROOT_MAP" `
+						-replace "\s*=\s*.+archive", " = $currentDirPath/archive" `
+						-replace "\s*=\s*.+live", " = $currentDirPath/live"
+				}
+			}
+			# Compare the content
+			if ($fileContent.TrimEnd() -eq $originalContent.TrimEnd()) {
+				Write-Output "The contents are the same."
+			} else {
+				# Write the modified content back to the file
+				Write-Output "The contents are different."
+				Write-Output "Update $renewalFile.FullName"
+				$fileContent | Out-File -FilePath $renewalFile.FullName -Force
+			}
+		}
+
+		Write-Host "All Certbot renewal files checked."
+	}
+
+	function Check-And-Renew-Cert {
+
+		# Call the function to check and update paths
+		Update-CertbotRenewalPaths
+
+		Write-Host "Checking certificate expiration and renewing if necessary..."
+		& "..\..\..\${CERTBOT_PYTHON_UNZIP_PATH}\Scripts\certbot.exe" renew ````
+		--config-dir "./$CERTBOT_CONFIGURATION_RELATIVE_PATH" ````
+		--work-dir "./$CERTBOT_WORKING_DIR_RELATIVE_PATH" ````
+		--logs-dir "./$CERTBOT_LOGS_DIR_RELATIVE_PATH" ````
+		--deploy-hook "./nginx.exe -s reload"
+		# Check the result of the renew process:
+		if ($LASTEXITCODE -eq 0) {
+			Write-Host "Certificates renewed successfully."
+		} else {
+			Write-Error "Certificates renewal failed."
+		}
+	}
+	
+	# Main loop to check renewal every 24 hours
+	while ($true) {
+		Check-And-Renew-Cert
+		Start-Sleep -Seconds 86400  # Wait for 24 hours (86400 seconds)
+	}
+"`@ ``
+
+exit
+"@
+
+				if (-not (Test-Path $NGINX_RENEW_CERTIFICATE_PS1_PATH)) {
+					$content | Out-File -FilePath $NGINX_RENEW_CERTIFICATE_PS1_PATH -Force
+					Write-Host "${NGINX_RENEW_CERTIFICATE_PS1_PATH} successfully created."
+				} else {
+					Write-Host "$NGINX_RENEW_CERTIFICATE_PS1_PATH file already exists"
+				}
+				
+				# Create renew-certificte.bat file
+				create-starter-ps1-exec ${NGINX_RENEW_CERTIFICATE_PS1_NAME} ..\..\..\${POWERSHELL_EXEC_PATH} ${NGINX_RENEW_CERTIFICATE_EXEC_NAME} ${NGINX_RENEW_CERTIFICATE_EXEC_PATH}
+
+				# Run certbot create-certification.ps1
+				do {
+					$userChoice = Read-Host "Would You like to create certification? (yes/no)"
+					if ($userChoice -match '^(yes|YES|Yes|y|Y)$') {
+						# TODO Run certbot create-certification.ps1
+						& $POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File "${NGINX_CREATE_CERTIFICATE_PS1_PATH}"
+						break
+					} elseif ($userChoice -match '^(no|NO|No|n|N)$') {
+						break
+					} else {
+						Write-Host "Invalid input. Please enter a valid domain name, IPv4, or IPv6 address."
+					}
+				} while ($true)
+
+			}
+
+			Write-Host "NginX Setup Complete"
+
+		}
+		"3" {
+			# Restore Configuration
+			Write-Host "Restore Configuration file ..."
+			
+			# Create nginx-backup.conf from nginx.conf
+			Write-Host "Create backup from ${config_path} to ${config_path}\nginx-backup.conf ..."
+			Copy-Item -Path "${config_path}" -Destination "${config_path}\nginx-backup.conf"
+
+			# Copy nginx-original.conf to nginx.conf and 
+			Write-Host "Copying ${config_original_path} to ${config_path} ..."
+			Copy-Item -Path "${config_original_path}" -Destination "${config_path}"
+
+			Write-Host "Configuration restored"
+			Pause
+            nginx_and_certbot_setup_menu $config_path $config_original_path
+			Return
+		}
+		"4" {
+			# Exit Setup
+			Return
+		}
+		default {
+            Write-Host "Invalid choice! Please try again."
+            Pause
+            nginx_and_certbot_setup_menu $config_path
+        }
+	}
+
 }
 
 function install_signumminer_mainnet {
@@ -5506,6 +6250,11 @@ function setup_signumminer($config_path, $config_url, $net_type) {
         }
 		"3" {
 			# Restore Configuration
+
+			# Create config-backup.yaml from config.yaml
+			Write-Host "Create backup from ${config_path}\config.yaml to ${config_path}\config-backup.yaml ..."
+			Copy-Item -Path "${config_path}\config.yaml" -Destination "${config_path}\config-backup.yaml"
+
 			Write-Host "Downloading Configuration file ..."
 			# Start-BitsTransfer -Source $config_url -Destination $config_path
 			Invoke-WebRequest -Uri ${config_url} -OutFile ${config_path}
@@ -5797,6 +6546,10 @@ function setup_signumpool($config_path, $config_original_path, $net_type) {
 			# Restore Configuration
 			Write-Host "Restore Configuration file ..."
 			
+			# Create pool.properties from pool-backup.properties
+			Write-Host "Create backup from ${config_path} to ${config_path}\pool-backup.properties ..."
+			Copy-Item -Path "${config_path}" -Destination "${config_path}\pool-backup.properties"
+
 			# Copy poopl.properties to pool-original.properties
 			Write-Host "Copying ${config_original_path} to ${config_path} ..."
 			Copy-Item -Path "${config_original_path}" -Destination "${config_path}"
@@ -6024,7 +6777,7 @@ function install_signumplotter {
 Set-Location -Path `$PSScriptRoot
 
 # Start SignumPlotter
-Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-NoExit", "-Command", .\SIGNUMPLOTTER_EXEC_NAME"
+Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-NoExit", "-Command", .\SIGNUMPLOTTER_EXEC_NAME --help"
 # "..\..\..\${POWERSHELL_EXEC_PATH}" "$SIGNUMPLOTTER_EXEC_NAME"
 # & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\$SIGNUMPLOTTER_EXEC_NAME
 
@@ -6043,6 +6796,7 @@ exit
 		
     Write-Host "SignumPlotter installed successfully."
         
+	# TODO Signum-Plotter configuration
 }
 
 function install_turboplotter {
@@ -6451,13 +7205,18 @@ function question-prompt($process, $name, $installFunction) {
 	# Initialize the global variable
 	$global:UserResponse = $null
     $userChoice = Read-Host "Do you want to ${process} ${name} (yes/no)"
-    if ($userChoice -match '^(yes|y|Y)$') {
+    if ($userChoice -match '^(yes|YES|Yes|y|Y)$') {
 		$global:UserResponse = "yes"
         &$installFunction
-    } else {
+	} elseif ($userChoice -match '^(no|NO|No|n|N)$') {
 		$global:UserResponse = "no"
-        Write-Host "${name} ${process} canceled."
-    }
+		Write-Host "${name} ${process} canceled."
+	} else {
+		$global:UserResponse = $null
+		Write-Host "Wrong choice, please try again"
+		Pause
+		question-prompt $process $name $installFunction
+	}
 }
 
 function download-prompt($name, $url, $target_path, $file) {
