@@ -656,8 +656,8 @@ $BROWSER_CHROMIUM_SIGNUM_XT_VERSION = "1.5.2"
 $BROWSER_CHROMIUM_SIGNUM_XT_ZIP_NAME = "chrome.zip"
 $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_INSTALL = $true
 $BROWSER_CHROMIUM_SIGNUM_XT_DIR_PATH = "$BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH\$BROWSER_CHROMIUM_SIGNUM_XT_DIR_NAME"
-$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH = "$BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH\$BROWSER_CHROMIUM_SIGNUM_XT_ZIP_NAME"
 $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH = "$BROWSER_CHROMIUM_SIGNUM_XT_DIR_PATH\$BROWSER_CHROMIUM_SIGNUM_XT_VERSION"
+$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH = "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH\$BROWSER_CHROMIUM_SIGNUM_XT_ZIP_NAME"
 $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_URL = "https://github.com/signum-network/signum-xt-wallet/releases/download/${BROWSER_CHROMIUM_SIGNUM_XT_VERSION}/${BROWSER_CHROMIUM_SIGNUM_XT_ZIP_NAME}"
 
 # TODO temporary solution untill /refs/heads/main has issues with build
@@ -5043,36 +5043,36 @@ exit
 		Write-Host "Directory already exists: ${BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH}"
 	}
 
+	# In case true installation of released version
 	if ($BROWSER_CHROMIUM_SIGNUM_XT_VERSION_INSTALL) {
-
-		# Create SignumXT directory from github release version
-		if (-not (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH")) {
-			New-Item -ItemType Directory -Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH" | Out-Null
-			Write-Host "Created directory: ${BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH}"
-		} else {
-			Write-Host "Directory already exists: ${BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH}"
-		}
-
-		if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH") {
-			Write-Host "${BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH} already downloaded."
-		} else {
-			# Download SignumXT Extension
-			Write-Host "Downloading SignumXT Extension ..."
-			# Start-BitsTransfer -Source "${BROWSER_CHROMIUM_URL}" -Destination "${BROWSER_CHROMIUM_ZIP_PATH}"
-			Invoke-WebRequest -Uri $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_URL -OutFile $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH
-
-			# Check if download was successful
-			if (-not (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH")) {
-				Write-Host "Error: Failed to download Notepad."
-				Pause
-				return
-			}
-		}
 		# Install SignumXT Extension from github release
-		# Unzip files
-		if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH\misc") {
+		# Check if given SignumXT Extention is installed
+		if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH\fullpage.html") {
 			Write-Host "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH already installed."
 		} else {
+			# Create SignumXT directory from github release version
+			if (-not (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH")) {
+				New-Item -ItemType Directory -Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH" | Out-Null
+				Write-Host "Created directory: ${BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH}"
+			} else {
+				Write-Host "Directory already exists: ${BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH}"
+			}
+
+			if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH") {
+				Write-Host "${BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH} already downloaded."
+			} else {
+				# Download SignumXT Extension
+				Write-Host "Downloading SignumXT Extension ..."
+				# Start-BitsTransfer -Source "${BROWSER_CHROMIUM_URL}" -Destination "${BROWSER_CHROMIUM_ZIP_PATH}"
+				Invoke-WebRequest -Uri $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_URL -OutFile $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH
+
+				# Check if download was successful
+				if (-not (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH")) {
+					Write-Host "Error: Failed to download Notepad."
+					Pause
+					return
+				}
+			}
 			# Unzip the downloaded file to the installation directory
 			Write-Host "Unzipping SignumXT to $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH ..."
 			Expand-Archive -Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH" -DestinationPath "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_DIR_PATH" -Force
@@ -5081,14 +5081,6 @@ exit
 		Start-Process -FilePath ".\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}",`
 			"--load-extension=.\$BROWSER_CHROMIUM_EXTENSIONS_DIR_NAME\$BROWSER_CHROMIUM_SIGNUM_XT_DIR_NAME\$BROWSER_CHROMIUM_SIGNUM_XT_VERSION"
 
-		# Delete files
-		if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH") {
-			Write-Host "Delete $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH file."
-			Remove-Item -Path "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH" -Force
-		} else {
-			# Delete the downloaded file
-			Write-Host "$BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH already deleted"
-		}
 	} else {
 
 		# TODO BUG Extension is not loading
