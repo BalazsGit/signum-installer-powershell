@@ -650,6 +650,7 @@ $BROWSER_CHROMIUM_URL = "https://download-chromium.appspot.com/dl/Win_x64?type=s
 $BROWSER_CHROMIUM_EXTENSIONS_DIR_NAME = "Extensions"
 $BROWSER_CHROMIUM_EXTENSIONS_DIR_PATH = "$BROWSER_CHROMIUM_UNZIP_PATH\$BROWSER_CHROMIUM_EXTENSIONS_DIR_NAME"
 
+# TODO Extention SignumXT should be installed manually by developer mode and add extention from Extentions folder path $BROWSER_CHROMIUM_SIGNUM_XT_VERSION_ZIP_PATH to be added permanently
 ### Chromium Signum XT Wallet Extension variables ###
 $BROWSER_CHROMIUM_SIGNUM_XT_DIR_NAME = "SignumXT"
 $BROWSER_CHROMIUM_SIGNUM_XT_VERSION = "1.5.2"
