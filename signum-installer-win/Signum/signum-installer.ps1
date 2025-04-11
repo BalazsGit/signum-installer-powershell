@@ -4289,7 +4289,7 @@ exit
 function create-starter-ps1-exec (${file-ps1}, ${powershell_exec_path}, ${file-exec}, ${file-exec-path}) {
 
     if (-not (Test-Path ${file-exec-path})) {
-        # Create start-node batch file with the desired content
+        # Create starter batch file with the desired content
         $content = 
 @"
 cd %~dp0
@@ -4544,7 +4544,7 @@ function install_IPFS_CLUSTER_FOLLOW {
 
 	# Create starter ps1
 	if (-not (Test-Path $IPFS_CLUSTER_FOLLOW_STARTER_PS1_PATH)) {
-		# Create start-node.ps1 file with the desired content
+		# Create start-ipfs-cluster-follow.ps1 file with the desired content
 		$content = 
 @"
 # PowerShell script to start IPFS_CLUSTER_FOLLOW
@@ -4639,7 +4639,7 @@ function install_IPFS_CLUSTER_CTL {
 
 	# Create starter ps1
 	if (-not (Test-Path $IPFS_CLUSTER_CTL_STARTER_PS1_PATH)) {
-		# Create start-node.ps1 file with the desired content
+		# Create start-ipfs-cluster-ctl.ps1 file with the desired content
 		$content = 
 @"
 # PowerShell script to start IPFS_CLUSTER_CTL
@@ -4724,7 +4724,7 @@ function install_IPFS_CLUSTER_SERVICE {
 
 	# Create starter ps1
 	if (-not (Test-Path $IPFS_CLUSTER_SERVICE_STARTER_PS1_PATH)) {
-		# Create start-node.ps1 file with the desired content
+		# Create start-ipfs-cluster-service.ps1 file with the desired content
 		$content = 
 @"
 # PowerShell script to start IPFS_CLUSTER_SERVICE
@@ -4772,7 +4772,7 @@ function install_SignumArt_IPFS_CLIENT-Cluster {
 	# Create .bat and .ps1 to start IPFS Client and Cluster Follow
 	# Create starter ps1
 	if (-not (Test-Path $IPFS_SIGNUMART_STARTER_PS1_PATH)) {
-		# Create start-node.ps1 file with the desired content
+		# Create start-ipfs-signumart.ps1 file with the desired content
 		$content = 
 @"
 # PowerShell script to start IPFS_CLUSTER_FOLLOW
@@ -4838,7 +4838,7 @@ function install_heidisql {
 		
 	# Create starter ps1
 	if (-not (Test-Path $HEIDISQL_STARTER_PS1_PATH)) {
-		# Create start-node.ps1 file with the desired content
+		# Create start-heidisql.ps1 file with the desired content
 		$content = 
 @"
 # PowerShell script to start HeidiSQL
@@ -4901,7 +4901,7 @@ function install_DBeaver {
 		
 	# Create starter ps1
 	if (-not (Test-Path $DBEAVER_STARTER_PS1_PATH)) {
-		# Create start-node.ps1 file with the desired content
+		# Create start-dbeaver.ps1 file with the desired content
 		$content = 
 @"
 # PowerShell script to start DBeaver
