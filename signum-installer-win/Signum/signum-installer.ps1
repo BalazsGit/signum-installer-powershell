@@ -4389,7 +4389,7 @@ function install_IPFS_CLIENT {
 
 	# Create starter ps1
 	if (-not (Test-Path $IPFS_CLIENT_STARTER_PS1_PATH)) {
-		# Create start-ipfs.ps1 file with the desired content
+		# Create start-ipfs-client.ps1 file with the desired content
 		$content = 
 @"
 # PowerShell script to start IPFS_CLIENT
@@ -5146,7 +5146,7 @@ exit
 		# Install SignumXT Extension from github main branch
 		# Unzip files
 		# TODO Questionprompt for reinstall
-		if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_PATH\misc") {
+		if (Test-Path "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_PATH\fullpage.html") {
 			Write-Host "$BROWSER_CHROMIUM_SIGNUM_XT_MAIN_DIR_PATH already installed."
 		} else {
 			# Unzip the SignumXT to the installation directory
