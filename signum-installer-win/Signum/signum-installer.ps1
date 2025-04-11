@@ -98,7 +98,7 @@ $SIGNUM_POOL_MAINNET_PROPERTIES_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_
 $SIGNUM_POOL_MAINNET_PROPERTIES_ORIGINAL_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\$SIGNUM_POOL_PROPERTIES_ORIGINAL_NAME"
 $SIGNUM_POOL_MAINNET_STARTER_PS1_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_PS1_NAME}"
 $SIGNUM_POOL_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_EXEC_NAME}"
-$SIGNUM_POOL_MAINNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_MAINNET_VERSION}/${SIGNUM_POOL_MAINNET_ZIP}"
+$SIGNUM_POOL_MAINNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_MAINNET_VERSION}/${SIGNUM_POOL_MAINNET_ZIP_NAME}"
 $SIGNUM_POOL_MAINET_PORT = 8000
 
 ### Signum Pool Testnet variables ###
@@ -311,8 +311,8 @@ $MARIADB_ZIP_NAME = "${MARIADB_UNZIP_NAME}.zip"
 $MARIADB_UNZIP_PATH = "${MARIADB_DIR_PATH}\${MARIADB_UNZIP_NAME}"
 $MARIADB_ZIP_PATH = "${MARIADB_DIR_PATH}\${MARIADB_ZIP_NAME}"
 $MARIADB_BIN_PATH = "${MARIADB_UNZIP_PATH}\bin"
-$MARIADB_STARTER_PS1_PATH = "${$MARIADB_UNZIP_PATH}\${MARIADB_STARTER_PS1_NAME}"
-$MARIADB_STARTER_EXEC_PATH = "${$MARIADB_UNZIP_PATH}\${MARIADB_STARTER_EXEC_NAME}"
+$MARIADB_STARTER_PS1_PATH = "${MARIADB_UNZIP_PATH}\${MARIADB_STARTER_PS1_NAME}"
+$MARIADB_STARTER_EXEC_PATH = "${MARIADB_UNZIP_PATH}\${MARIADB_STARTER_EXEC_NAME}"
 $MARIADB_URL = "https://archive.mariadb.org/mariadb-${MARIADB_VERSION}/winx64-packages/mariadb-${MARIADB_VERSION}-winx64.zip"
 $MARIADB_PORT = 3306
 
@@ -1759,11 +1759,15 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 		} else {
 			# Start Signum Pool Mainnet
 			# Start-Process "http://localhost:$SIGNUM_POOL_MAINET_PORT"
-			Start-Process -FilePath "..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$SIGNUM_POOL_MAINET_PORT"
+			try {
+				Start-Process -FilePath "..\..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$SIGNUM_POOL_MAINET_PORT"
+			} catch {
+        		Write-Host 'An error occurred while starting Browser' -ForegroundColor Red
+    		}
 			.\${JAVA_POOL_MAINNET_DIR_NAME}\${JAVA_POOL_MAINNET_UNZIP_NAME}\bin\java.exe -jar signum-pool.jar
 		}
     } catch {
-        Write-Host 'An error occurred while starting Signum Pool Mainnet: `$_'
+        Write-Host 'An error occurred while starting Signum Pool Mainnet' -ForegroundColor Red
     } finally {
         # Always set the title to 'Signum Pool Mainnet Stopped' after Signum Pool Mainnet exits
         ```$host.UI.RawUI.WindowTitle = 'Signum Pool Mainnet Stopped'
@@ -1772,7 +1776,7 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
     -WindowStyle Minimized
 
 # TODO check
-# & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
+# & ..\..\..\$POWERSHELL_EXEC_PATH -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
 # "jre\bin\java" "-jar" "signum-node.jar" -WindowStyle Minimized
 # Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "Set-Title 'Signum Mainnet Node'; Start-Process -NoNewWindow -FilePath 'jre\bin\java' -ArgumentList '-jar', 'signum-node.jar'"
 
@@ -1960,11 +1964,15 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 		} else {
 			# Start Signum Pool Testnet
 			# Start-Process "http://localhost:$SIGNUM_POOL_TESTNET_PORT"
-			Start-Process -FilePath "..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$SIGNUM_POOL_TESTNET_PORT"
+			try {
+				Start-Process -FilePath "..\..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$SIGNUM_POOL_TESTNET_PORT"
+			} catch {
+        		Write-Host 'An error occurred while starting Browser' -ForegroundColor Red
+			}
 			.\${JAVA_POOL_TESTNET_DIR_NAME}\${JAVA_POOL_TESTNET_UNZIP_NAME}\bin\java.exe -jar signum-pool.jar
 		}
     } catch {
-        Write-Host 'An error occurred while starting Signum Pool Testnet: `$_'
+        Write-Host 'An error occurred while starting Signum Pool Testnet' -ForegroundColor Red
     } finally {
         # Always set the title to 'Signum Pool Testnet Stopped' after Signum Pool Testnet exits
         ```$host.UI.RawUI.WindowTitle = 'Signum Pool Testnet Stopped'
@@ -1973,7 +1981,7 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
     -WindowStyle Minimized
 
 # TODO check
-# & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
+# & ..\..\..\$POWERSHELL_EXEC_PATH -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
 # "jre\bin\java" "-jar" "signum-node.jar" -WindowStyle Minimized
 # Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "Set-Title 'Signum Testnet Node'; Start-Process -NoNewWindow -FilePath 'jre\bin\java' -ArgumentList '-jar', 'signum-node.jar'"
 
@@ -2545,7 +2553,7 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
     -WindowStyle Minimized
 
 # TODO check
-# & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
+# & ..\..\..\$POWERSHELL_EXEC_PATH -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
 # "jre\bin\java" "-jar" "signum-node.jar" -WindowStyle Minimized
 # Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "Set-Title 'Signum Mainnet Node'; Start-Process -NoNewWindow -FilePath 'jre\bin\java' -ArgumentList '-jar', 'signum-node.jar'"
 
@@ -3154,7 +3162,7 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
     -WindowStyle Minimized
 
 # TODO check
-# & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
+# & ..\..\..\$POWERSHELL_EXEC_PATH -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
 # "jre\bin\java" "-jar" "signum-node.jar" -WindowStyle Minimized
 # Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "Set-Title 'Signum Testnet Node'; Start-Process -NoNewWindow -FilePath 'jre\bin\java' -ArgumentList '-jar', 'signum-node.jar'"
 
@@ -4236,7 +4244,7 @@ Start-Sleep -Seconds $SLEEP_SECONDS
 # Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "```$host.UI.RawUI.WindowTitle = 'Signum Node $name'; jre\bin\java -jar signum-node.jar"
 
 # TODO check
-# & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
+# & ..\..\..\$POWERSHELL_EXEC_PATH -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
 # "jre\bin\java" "-jar" "signum-node.jar" -WindowStyle Minimized
 # Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "Set-Title 'Signum Mainnet Node'; Start-Process -NoNewWindow -FilePath 'jre\bin\java' -ArgumentList '-jar', 'signum-node.jar'"
 
@@ -4252,11 +4260,15 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 		} else {
 			# Start Signum Node $name
 			# Start-Process "http://localhost:$port"
-			Start-Process -FilePath "..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$port"
+			try {
+				Start-Process -FilePath "..\..\..\$BROWSER_CHROMIUM_EXEC_PATH" -ArgumentList "--user-data-dir=.\${BROWSER_CHROMIUM_PROFILE_DIR_NAME}", "http://localhost:$port"
+			} catch {
+        		Write-Host 'An error occurred while starting Browser' -ForegroundColor Red
+    		}
 			.\jre\bin\java -jar signum-node.jar
 		}
     } catch {
-        Write-Host 'An error occurred while starting Signum Node ${name}: `$_'
+        Write-Host 'An error occurred while starting Signum Node ${name}' -ForegroundColor Red
     } finally {
         # Always set the title to 'Signum Node $name Stopped' after Signum Node $name exits
         ```$host.UI.RawUI.WindowTitle = 'Signum Node $name Stopped'
@@ -4377,7 +4389,7 @@ function install_IPFS_CLIENT {
 
 	# Create starter ps1
 	if (-not (Test-Path $IPFS_CLIENT_STARTER_PS1_PATH)) {
-		# Create start-node.ps1 file with the desired content
+		# Create start-ipfs.ps1 file with the desired content
 		$content = 
 @"
 # PowerShell script to start IPFS_CLIENT
@@ -5302,7 +5314,7 @@ function install_nginx_and_certbot {
 		Write-Host "Copying ${NGINX_CONFIG_FILE_PATH} to ${NGINX_ORIGINAL_CONFIG_FILE_PATH} ..."
     	Copy-Item -Path "${NGINX_CONFIG_FILE_PATH}" -Destination "${NGINX_ORIGINAL_CONFIG_FILE_PATH}"
 	} else {
-		Write-Host "File already exists: ${$NGINX_ORIGINAL_CONFIG_FILE_PATH}"
+		Write-Host "File already exists: ${NGINX_ORIGINAL_CONFIG_FILE_PATH}"
 	}
 	
 	# Create starter ps1
@@ -6772,7 +6784,7 @@ Set-Location -Path `$PSScriptRoot
 # Start SignumPlotter
 Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" -ArgumentList "-NoExit", "-Command", .\SIGNUMPLOTTER_EXEC_NAME --help"
 # "..\..\..\${POWERSHELL_EXEC_PATH}" "$SIGNUMPLOTTER_EXEC_NAME"
-# & ..\..\..\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -NoExit -Command .\$SIGNUMPLOTTER_EXEC_NAME
+# & ..\..\..\$POWERSHELL_EXEC_PATH -NoExit -Command .\$SIGNUMPLOTTER_EXEC_NAME
 
 exit
 "@
@@ -6973,7 +6985,7 @@ function setup_mariadb ($name, $database, $user, $password) {
 	# Start-Process -FilePath "${MARIADB_BIN_PATH}\${MARIADBD_EXEC_NAME}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Hidden
 	# Start-Process -FilePath "${MARIADB_BIN_PATH}\${MARIADBD_EXEC_NAME}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Minimized
 	
-	.\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
+	& .\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
 
     Start-Sleep -Seconds $SLEEP_SECONDS
 
@@ -7025,7 +7037,7 @@ function setup_mariadb_readonly ($name, $database, $user, $password) {
 	# Start-Process -FilePath "${MARIADB_BIN_PATH}\${MARIADBD_EXEC_NAME}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Hidden
 	# Start-Process -FilePath "${MARIADB_BIN_PATH}\${MARIADBD_EXEC_NAME}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Minimized
 	
-	.\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
+	& .\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
 
     Start-Sleep -Seconds $SLEEP_SECONDS
 
@@ -7091,7 +7103,7 @@ function setup_mariadb_explorer ($name, $database, $user, $password) {
 	# Start-Process -FilePath "${MARIADB_BIN_PATH}\${MARIADBD_EXEC_NAME}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Hidden
 	# Start-Process -FilePath "${MARIADB_BIN_PATH}\${MARIADBD_EXEC_NAME}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Minimized
 	
-	.\PowerShell\PowerShell-7.4.6-win-x64\pwsh.exe -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
+	& .\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
 
     Start-Sleep -Seconds $SLEEP_SECONDS
 
@@ -7186,7 +7198,7 @@ function setup_db_pool_properties($file) {
     (Get-Content -Path $file) -replace 'dbUrl=jdbc:h2:file*', "# dbUrl=jdbc:h2:file:./db/pooldb.h2;DB_CLOSE_ON_EXIT=FALSE" `
         -replace '^dbUsername=', "# dbUsername=" `
         -replace '^dbPassword=', "# dbPassword=" `
-		-replace '^#dbUrl=jdbc:mariadb://localhost:$MARIADB_PORT/pooldb*', "dbUrl=jdbc:mariadb://localhost:$MARIADB_PORT/${DATABASE_NAME}" `
+		-replace '^#dbUrl=jdbc:mariadb://localhost:3306/pooldb*', "dbUrl=jdbc:mariadb://localhost:$MARIADB_PORT/${DATABASE_NAME}" `
         -replace '^#dbUsername=root', "dbUsername=${DATABASE_USERNAME}" `
         -replace '^#dbPassword=passw', "dbPassword=${DATABASE_PASSWORD}" | Set-Content -Path $file
 
