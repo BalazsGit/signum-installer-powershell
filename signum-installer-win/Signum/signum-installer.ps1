@@ -33,32 +33,45 @@ $SIGNUM_NODE_STARTER_PS1_NAME = "start-node.ps1"
 $SIGNUM_NODE_STARTER_EXEC_NAME = "start-node.bat"
 
 ### Signum Node Mainnet variables ###
-$SIGNUM_NODE_MAINNET_VERSION = "v3.8.4"
+$SIGNUM_NODE_MAINNET_VERSION = "v3.9.0"
+$SIGNUM_NODE_MAINNET_VERSION_NUMBER = [version]($SIGNUM_NODE_MAINNET_VERSION.TrimStart("v"))
 $SIGNUM_NODE_MAINNET_DIR_PATH = "${SIGNUM_MAINNET_DIR_NAME}\${SIGNUM_NODE_DIR_NAME}"
-$SIGNUM_NODE_MAINNET_ZIP_NAME = "signum-node-${SIGNUM_NODE_MAINNET_VERSION}-win_x64.zip"
-$SIGNUM_NODE_MAINNET_UNZIP_NAME = "signum-node-${SIGNUM_NODE_MAINNET_VERSION}-win_x64"
+# $SIGNUM_NODE_MAINNET_UNZIP_NAME = "signum-node-${SIGNUM_NODE_MAINNET_VERSION}.-win_x64"
+$SIGNUM_NODE_MAINNET_UNZIP_NAME = "signum-node-${SIGNUM_NODE_MAINNET_VERSION}.-win_x64"
+$SIGNUM_NODE_MAINNET_ZIP_NAME = "${SIGNUM_NODE_MAINNET_UNZIP_NAME}.zip"
+$SIGNUM_NODE_MAINNET_UNZIP_2_NAME = "signum-node-${SIGNUM_NODE_MAINNET_VERSION}"
+$SIGNUM_NODE_MAINNET_ZIP_2_NAME = "${SIGNUM_NODE_MAINNET_UNZIP_2_NAME}.zip"
 $SIGNUM_NODE_MAINNET_UNZIP_PATH = "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP_NAME}"
+$SIGNUM_NODE_MAINNET_UNZIP_2_PATH = "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP_2_NAME}"
 $SIGNUM_NODE_MAINNET_STARTER_PS1_PATH = "$SIGNUM_NODE_MAINNET_UNZIP_PATH\${SIGNUM_NODE_STARTER_PS1_NAME}"
 $SIGNUM_NODE_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_NODE_MAINNET_UNZIP_PATH\${SIGNUM_NODE_STARTER_EXEC_NAME}"
 $SIGNUM_NODE_MAINNET_DEFAULT_PROPERTIES_PATH = "$SIGNUM_NODE_MAINNET_UNZIP_PATH\conf\node-default.properties"
 $SIGNUM_NODE_MAINNET_PROPERTIES_PATH = "$SIGNUM_NODE_MAINNET_UNZIP_PATH\conf\node.properties"
 $SIGNUM_NODE_MAINNET_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_MAINNET_VERSION}/${SIGNUM_NODE_MAINNET_ZIP_NAME}"
+# $SIGNUM_NODE_MAINNET_2_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_MAINNET_VERSION}/${SIGNUM_NODE_MAINNET_ZIP_2_NAME}"
+$SIGNUM_NODE_MAINNET_2_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_MAINNET_VERSION}/${SIGNUM_NODE_MAINNET_ZIP_2_NAME}"
 $SIGNUM_NODE_MAINNET_P2P_PORT = 8123
 $SIGNUM_NODE_MAINNET_API_PORT = 8125
 $SIGNUM_NODE_MAINNET_API_WEBSOCKET_PORT = 8126
 
 ### Signum Node Testnet variables ###
-$SIGNUM_NODE_TESTNET_VERSION = "v3.8.4"
+$SIGNUM_NODE_TESTNET_VERSION = "v3.9.0"
+$SIGNUM_NODE_TESTNET_VERSION_NUMBER = [version]($SIGNUM_NODE_TESTNET_VERSION.TrimStart("v"))
 $SIGNUM_NODE_TESTNET_DIR_PATH = "${SIGNUM_TESTNET_DIR_NAME}\${SIGNUM_NODE_DIR_NAME}"
-$SIGNUM_NODE_TESTNET_ZIP_NAME = "signum-node-${SIGNUM_NODE_TESTNET_VERSION}-win_x64.zip"
 $SIGNUM_NODE_TESTNET_UNZIP_NAME = "signum-node-${SIGNUM_NODE_TESTNET_VERSION}-win_x64"
+$SIGNUM_NODE_TESTNET_ZIP_NAME = "${SIGNUM_NODE_TESTNET_UNZIP_NAME}.zip"
+$SIGNUM_NODE_TESTNET_UNZIP_2_NAME = "signum-node-${SIGNUM_NODE_TESTNET_VERSION}"
+$SIGNUM_NODE_TESTNET_ZIP_2_NAME = "${SIGNUM_NODE_TESTNET_UNZIP_2_NAME}.zip"
 $SIGNUM_NODE_TESTNET_UNZIP_PATH = "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_UNZIP_NAME}"
+$SIGNUM_NODE_TESTNET_UNZIP_2_PATH = "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_UNZIP_2_NAME}"
 $SIGNUM_NODE_TESTNET_STARTER_PS1_PATH = "$SIGNUM_NODE_TESTNET_UNZIP_PATH\${SIGNUM_NODE_STARTER_PS1_NAME}"
 $SIGNUM_NODE_TESTNET_STARTER_EXEC_PATH = "$SIGNUM_NODE_TESTNET_UNZIP_PATH\${SIGNUM_NODE_STARTER_EXEC_NAME}"
 $SIGNUM_NODE_TESTNET_DEFAULT_PROPERTIES_PATH = "$SIGNUM_NODE_TESTNET_UNZIP_PATH\conf\node-default.properties"
 $SIGNUM_NODE_TESTNET_PROPERTIES_PATH = "$SIGNUM_NODE_TESTNET_UNZIP_PATH\conf\node.properties"
 $SIGNUM_NODE_TESTNET_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_TESTNET_VERSION}/${SIGNUM_NODE_TESTNET_ZIP_NAME}"
-$SIGNUM_NODE_TESTNET_P2P_PORT = # TODO TBD
+$SIGNUM_NODE_TESTNET_2_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_TESTNET_VERSION}/${SIGNUM_NODE_TESTNET_ZIP_2_NAME}"
+# If "$SIGNUM_NODE_TESTNET_P2P_PORT" is setting different than default "P2P.Port = 7123" than default "P2P.BootstrapPeers" should be also modified because default "P2P.BootstrapPeers" only accept connections from "P2P.Port = 7123"
+$SIGNUM_NODE_TESTNET_P2P_PORT = 7123
 $SIGNUM_NODE_TESTNET_API_PORT = 6876
 $SIGNUM_NODE_TESTNET_API_WEBSOCKET_PORT = # TODO TBD
 
@@ -1261,7 +1274,7 @@ function Install-SignumMainnet {
         # Download the Signum mainnet zip file
         Write-Host "Downloading Signum from GitHub ..."
         # Start-BitsTransfer -Source "${SIGNUM_NODE_MAINNET_URL}" -Destination "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_ZIP_NAME}"
-		Invoke-WebRequest -Uri ${SIGNUM_NODE_MAINNET_URL} -OutFile ${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_ZIP_NAME}
+		Invoke-WebRequest -Uri $SIGNUM_NODE_MAINNET_URL -OutFile ${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_ZIP_NAME}
 
         # Check if download was successful
         if (-not (Test-Path -Path "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_ZIP_NAME}")) {
@@ -1286,6 +1299,44 @@ function Install-SignumMainnet {
         # Copy node-default.properties to node.properties
 		Write-Host "Copying ${SIGNUM_NODE_MAINNET_DEFAULT_PROPERTIES_PATH} to ${SIGNUM_NODE_MAINNET_PROPERTIES_PATH} ..."
 		Copy-Item -Path "${SIGNUM_NODE_MAINNET_DEFAULT_PROPERTIES_PATH}" -Destination "${SIGNUM_NODE_MAINNET_PROPERTIES_PATH}"
+	}
+
+	# If signum node version is higher or equal to v3.9.0 download $SIGNUM_NODE_MAINNET_ZIP_2_NAME as well
+	if ($SIGNUM_NODE_MAINNET_VERSION_NUMBER -ge [version]"3.9.0") {
+
+		if (Test-Path -Path "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_ZIP_2_NAME}") {
+			Write-Host "${SIGNUM_NODE_MAINNET_ZIP_2_NAME} already downloaded."
+		} else {
+			# Download the Signum mainnet zip file
+			Write-Host "Downloading Signum from GitHub ..."
+			# Start-BitsTransfer -Source "${SIGNUM_NODE_MAINNET_URL}" -Destination "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_ZIP_NAME}"
+			Invoke-WebRequest -Uri "${SIGNUM_NODE_MAINNET_2_URL}" -OutFile ${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_ZIP_2_NAME}
+	
+			# Check if download was successful
+			if (-not (Test-Path -Path "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_ZIP_2_NAME}")) {
+				Write-Host "Error: Failed to download Signum."
+				Pause
+				# Install-Menu
+				return
+			}
+		}
+
+		if (Test-Path -Path "$SIGNUM_NODE_MAINNET_UNZIP_2_PATH") {
+			Write-Host "${SIGNUM_NODE_MAINNET_UNZIP_2_NAME} already installed."
+		} else {
+			# Unzip the downloaded file to the installation directory
+			Write-Host "Unzipping Signum to $SIGNUM_NODE_MAINNET_UNZIP_2_PATH ..."
+			Expand-Archive -Path "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_ZIP_2_NAME}" -DestinationPath "$SIGNUM_NODE_MAINNET_UNZIP_2_PATH" -Force
+		}
+
+		if (Test-Path -Path "${SIGNUM_NODE_MAINNET_UNZIP_PATH}\signum-node.jar") {
+			Write-Host "${SIGNUM_NODE_MAINNET_UNZIP_PATH}\signum-node.jar already exists."
+		} else {
+			# Copy jar file
+			Write-Host "Copying ${SIGNUM_NODE_MAINNET_UNZIP_2_PATH}\signum-node.jar to ${SIGNUM_NODE_MAINNET_UNZIP_PATH} ..."
+			Copy-Item -Path "${SIGNUM_NODE_MAINNET_UNZIP_2_PATH}\signum-node.jar" -Destination "${SIGNUM_NODE_MAINNET_UNZIP_PATH}"
+		}
+	
 	}
 	
 <# #this true by default	
@@ -1558,11 +1609,47 @@ function Install-SignumTestnet {
 		Copy-Item -Path "${SIGNUM_NODE_TESTNET_DEFAULT_PROPERTIES_PATH}" -Destination "${SIGNUM_NODE_TESTNET_PROPERTIES_PATH}"
 	}
 
-
     # Update node.properties with new database information
     Write-Host "Updating ${SIGNUM_NODE_TESTNET_PROPERTIES_PATH} with Testnet configurations ..."
     (Get-Content -Path $SIGNUM_NODE_TESTNET_PROPERTIES_PATH) -replace '# node.network = signum.net.TestnetNetwork', 'node.network = signum.net.TestnetNetwork' | Set-Content -Path $SIGNUM_NODE_TESTNET_PROPERTIES_PATH
 	
+	# If signum node version is higher or equal to v3.9.0 download $SIGNUM_NODE_TESTNET_ZIP_2_NAME as well
+	if ($SIGNUM_NODE_TESTNET_VERSION_NUMBER -ge [version]"3.9.0") {
+
+		if (Test-Path -Path "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_ZIP_2_NAME}") {
+			Write-Host "${SIGNUM_NODE_TESTNET_ZIP_2_NAME} already downloaded."
+		} else {
+			# Download the Signum testnet zip file
+			Write-Host "Downloading Signum from GitHub ..."
+			Invoke-WebRequest -Uri "${SIGNUM_NODE_TESTNET_2_URL}" -OutFile ${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_ZIP_2_NAME}
+	
+			# Check if download was successful
+			if (-not (Test-Path -Path "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_ZIP_2_NAME}")) {
+				Write-Host "Error: Failed to download Signum."
+				Pause
+				# Install-Menu
+				return
+			}
+		}
+
+		if (Test-Path -Path "$SIGNUM_NODE_TESTNET_UNZIP_2_PATH") {
+			Write-Host "${SIGNUM_NODE_TESTNET_UNZIP_2_NAME} already installed."
+		} else {
+			# Unzip the downloaded file to the installation directory
+			Write-Host "Unzipping Signum to $SIGNUM_NODE_TESTNET_UNZIP_2_PATH ..."
+			Expand-Archive -Path "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_ZIP_2_NAME}" -DestinationPath "$SIGNUM_NODE_TESTNET_UNZIP_2_PATH" -Force
+		}
+
+		if (Test-Path -Path "${SIGNUM_NODE_TESTNET_UNZIP_PATH}\signum-node.jar") {
+			Write-Host "${SIGNUM_NODE_TESTNET_UNZIP_PATH}\signum-node.jar already exists."
+		} else {
+			# Copy jar file
+			Write-Host "Copying ${SIGNUM_NODE_TESTNET_UNZIP_2_PATH}\signum-node.jar to ${SIGNUM_NODE_TESTNET_UNZIP_PATH} ..."
+			Copy-Item -Path "${SIGNUM_NODE_TESTNET_UNZIP_2_PATH}\signum-node.jar" -Destination "${SIGNUM_NODE_TESTNET_UNZIP_PATH}"
+		}
+	
+	}
+
 <# #this true by default
 	# Add node.indirectIncomingService.enable = true propertie
 	$content = Get-Content -Path $SIGNUM_NODE_TESTNET_PROPERTIES_PATH
@@ -7212,7 +7299,7 @@ function question-prompt($process, $name, $installFunction) {
     $userChoice = Read-Host "Do you want to ${process} ${name} (yes/no)"
     if ($userChoice -match '^(yes|YES|Yes|y|Y)$') {
 		$global:UserResponse = "yes"
-        &$installFunction
+        & $installFunction
 	} elseif ($userChoice -match '^(no|NO|No|n|N)$') {
 		$global:UserResponse = "no"
 		Write-Host "${name} ${process} canceled."
