@@ -33,43 +33,33 @@ $SIGNUM_NODE_STARTER_PS1_NAME = "start-node.ps1"
 $SIGNUM_NODE_STARTER_EXEC_NAME = "start-node.bat"
 
 ### Signum Node Mainnet variables ###
-$SIGNUM_NODE_MAINNET_VERSION = "v3.9.0"
+$SIGNUM_NODE_MAINNET_VERSION = "v3.9.1"
 $SIGNUM_NODE_MAINNET_VERSION_NUMBER = [version]($SIGNUM_NODE_MAINNET_VERSION.TrimStart("v"))
 $SIGNUM_NODE_MAINNET_DIR_PATH = "${SIGNUM_MAINNET_DIR_NAME}\${SIGNUM_NODE_DIR_NAME}"
-# $SIGNUM_NODE_MAINNET_UNZIP_NAME = "signum-node-${SIGNUM_NODE_MAINNET_VERSION}.-win_x64"
-$SIGNUM_NODE_MAINNET_UNZIP_NAME = "signum-node-${SIGNUM_NODE_MAINNET_VERSION}.-win_x64"
+$SIGNUM_NODE_MAINNET_UNZIP_NAME = "signum-node-${SIGNUM_NODE_MAINNET_VERSION}-win_x64"
 $SIGNUM_NODE_MAINNET_ZIP_NAME = "${SIGNUM_NODE_MAINNET_UNZIP_NAME}.zip"
-$SIGNUM_NODE_MAINNET_UNZIP_2_NAME = "signum-node-${SIGNUM_NODE_MAINNET_VERSION}"
-$SIGNUM_NODE_MAINNET_ZIP_2_NAME = "${SIGNUM_NODE_MAINNET_UNZIP_2_NAME}.zip"
 $SIGNUM_NODE_MAINNET_UNZIP_PATH = "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP_NAME}"
-$SIGNUM_NODE_MAINNET_UNZIP_2_PATH = "${SIGNUM_NODE_MAINNET_DIR_PATH}\${SIGNUM_NODE_MAINNET_UNZIP_2_NAME}"
 $SIGNUM_NODE_MAINNET_STARTER_PS1_PATH = "$SIGNUM_NODE_MAINNET_UNZIP_PATH\${SIGNUM_NODE_STARTER_PS1_NAME}"
 $SIGNUM_NODE_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_NODE_MAINNET_UNZIP_PATH\${SIGNUM_NODE_STARTER_EXEC_NAME}"
 $SIGNUM_NODE_MAINNET_DEFAULT_PROPERTIES_PATH = "$SIGNUM_NODE_MAINNET_UNZIP_PATH\conf\node-default.properties"
 $SIGNUM_NODE_MAINNET_PROPERTIES_PATH = "$SIGNUM_NODE_MAINNET_UNZIP_PATH\conf\node.properties"
 $SIGNUM_NODE_MAINNET_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_MAINNET_VERSION}/${SIGNUM_NODE_MAINNET_ZIP_NAME}"
-# $SIGNUM_NODE_MAINNET_2_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_MAINNET_VERSION}/${SIGNUM_NODE_MAINNET_ZIP_2_NAME}"
-$SIGNUM_NODE_MAINNET_2_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_MAINNET_VERSION}/${SIGNUM_NODE_MAINNET_ZIP_2_NAME}"
 $SIGNUM_NODE_MAINNET_P2P_PORT = 8123
 $SIGNUM_NODE_MAINNET_API_PORT = 8125
 $SIGNUM_NODE_MAINNET_API_WEBSOCKET_PORT = 8126
 
 ### Signum Node Testnet variables ###
-$SIGNUM_NODE_TESTNET_VERSION = "v3.9.0"
+$SIGNUM_NODE_TESTNET_VERSION = "v3.9.1"
 $SIGNUM_NODE_TESTNET_VERSION_NUMBER = [version]($SIGNUM_NODE_TESTNET_VERSION.TrimStart("v"))
 $SIGNUM_NODE_TESTNET_DIR_PATH = "${SIGNUM_TESTNET_DIR_NAME}\${SIGNUM_NODE_DIR_NAME}"
 $SIGNUM_NODE_TESTNET_UNZIP_NAME = "signum-node-${SIGNUM_NODE_TESTNET_VERSION}-win_x64"
 $SIGNUM_NODE_TESTNET_ZIP_NAME = "${SIGNUM_NODE_TESTNET_UNZIP_NAME}.zip"
-$SIGNUM_NODE_TESTNET_UNZIP_2_NAME = "signum-node-${SIGNUM_NODE_TESTNET_VERSION}"
-$SIGNUM_NODE_TESTNET_ZIP_2_NAME = "${SIGNUM_NODE_TESTNET_UNZIP_2_NAME}.zip"
 $SIGNUM_NODE_TESTNET_UNZIP_PATH = "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_UNZIP_NAME}"
-$SIGNUM_NODE_TESTNET_UNZIP_2_PATH = "${SIGNUM_NODE_TESTNET_DIR_PATH}\${SIGNUM_NODE_TESTNET_UNZIP_2_NAME}"
 $SIGNUM_NODE_TESTNET_STARTER_PS1_PATH = "$SIGNUM_NODE_TESTNET_UNZIP_PATH\${SIGNUM_NODE_STARTER_PS1_NAME}"
 $SIGNUM_NODE_TESTNET_STARTER_EXEC_PATH = "$SIGNUM_NODE_TESTNET_UNZIP_PATH\${SIGNUM_NODE_STARTER_EXEC_NAME}"
 $SIGNUM_NODE_TESTNET_DEFAULT_PROPERTIES_PATH = "$SIGNUM_NODE_TESTNET_UNZIP_PATH\conf\node-default.properties"
 $SIGNUM_NODE_TESTNET_PROPERTIES_PATH = "$SIGNUM_NODE_TESTNET_UNZIP_PATH\conf\node.properties"
 $SIGNUM_NODE_TESTNET_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_TESTNET_VERSION}/${SIGNUM_NODE_TESTNET_ZIP_NAME}"
-$SIGNUM_NODE_TESTNET_2_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_TESTNET_VERSION}/${SIGNUM_NODE_TESTNET_ZIP_2_NAME}"
 # If "$SIGNUM_NODE_TESTNET_P2P_PORT" is setting different than default "P2P.Port = 7123" than default "P2P.BootstrapPeers" should be also modified because default "P2P.BootstrapPeers" only accept connections from "P2P.Port = 7123"
 $SIGNUM_NODE_TESTNET_P2P_PORT = 7123
 $SIGNUM_NODE_TESTNET_API_PORT = 6876
@@ -316,7 +306,7 @@ $MARIADB_STARTER_EXEC_NAME = "start-mariadb.bat"
 $MARIADB_EXEC_NAME = "mariadb.exe"
 $MARIADBD_EXEC_NAME = "mariadbd.exe"
 $MARIADB_INSTALL_EXEC_NAME = "mysql_install_db.exe"
-$MARIADB_VERSION = "10.6.20"
+$MARIADB_VERSION = "10.6.22"
 $MARIADB_DIR_NAME = "MariaDB"
 $MARIADB_DIR_PATH = "${DATABASE_DIR}\${MARIADB_DIR_NAME}"
 $MARIADB_UNZIP_NAME = "mariadb-${MARIADB_VERSION}-winx64"
@@ -1301,6 +1291,7 @@ function Install-SignumMainnet {
 		Copy-Item -Path "${SIGNUM_NODE_MAINNET_DEFAULT_PROPERTIES_PATH}" -Destination "${SIGNUM_NODE_MAINNET_PROPERTIES_PATH}"
 	}
 
+<#
 	# If signum node version is higher or equal to v3.9.0 download $SIGNUM_NODE_MAINNET_ZIP_2_NAME as well
 	if ($SIGNUM_NODE_MAINNET_VERSION_NUMBER -ge [version]"3.9.0") {
 
@@ -1338,6 +1329,7 @@ function Install-SignumMainnet {
 		}
 	
 	}
+#>
 	
 <# #this true by default	
 	# Add node.indirectIncomingService.enable = true propertie
@@ -1380,7 +1372,7 @@ function Install-SignumMainnet {
 	}
 
     # Create starter ps1
-    signum-starter-ps1 "Mainnet" ${SIGNUM_NODE_MAINNET_STARTER_PS1_PATH} $SIGNUM_NODE_MAINNET_API_PORT
+    signum-starter-ps1 "Mainnet" ${SIGNUM_NODE_MAINNET_STARTER_PS1_PATH} ${SIGNUM_NODE_MAINNET_API_PORT} ${SIGNUM_NODE_MAINNET_VERSION_NUMBER}
 	
 	# Create starter batch
 	create-starter-ps1-exec ${SIGNUM_NODE_STARTER_PS1_NAME} ..\..\..\${POWERSHELL_EXEC_PATH} ${SIGNUM_NODE_STARTER_EXEC_NAME} ${SIGNUM_NODE_MAINNET_STARTER_EXEC_PATH}
@@ -1612,7 +1604,8 @@ function Install-SignumTestnet {
     # Update node.properties with new database information
     Write-Host "Updating ${SIGNUM_NODE_TESTNET_PROPERTIES_PATH} with Testnet configurations ..."
     (Get-Content -Path $SIGNUM_NODE_TESTNET_PROPERTIES_PATH) -replace '# node.network = signum.net.TestnetNetwork', 'node.network = signum.net.TestnetNetwork' | Set-Content -Path $SIGNUM_NODE_TESTNET_PROPERTIES_PATH
-	
+
+<#
 	# If signum node version is higher or equal to v3.9.0 download $SIGNUM_NODE_TESTNET_ZIP_2_NAME as well
 	if ($SIGNUM_NODE_TESTNET_VERSION_NUMBER -ge [version]"3.9.0") {
 
@@ -1649,8 +1642,9 @@ function Install-SignumTestnet {
 		}
 	
 	}
+#>
 
-<# #this true by default
+<# This is true by default
 	# Add node.indirectIncomingService.enable = true propertie
 	$content = Get-Content -Path $SIGNUM_NODE_TESTNET_PROPERTIES_PATH
 	
@@ -1683,7 +1677,7 @@ function Install-SignumTestnet {
 	}
 
     # Install Signum Testnet starter batch
-    signum-starter-ps1 "Testnet" ${SIGNUM_NODE_TESTNET_STARTER_PS1_PATH} $SIGNUM_NODE_TESTNET_API_PORT
+    signum-starter-ps1 "Testnet" ${SIGNUM_NODE_TESTNET_STARTER_PS1_PATH} ${SIGNUM_NODE_TESTNET_API_PORT} ${SIGNUM_NODE_TESTNET_VERSION_NUMBER}
 	
 	# OS dependent start-node
 	# Create starter batch
@@ -4301,7 +4295,7 @@ Write-Host 'Starting SmartJ SIGNUM Smart Contract Compiler ...'
 
 }
 
-function signum-starter-ps1 ($name, $file, $port) {
+function signum-starter-ps1 ($name, $file, $port, $signum_node_version_number) {
 
 	# Install Chromium browser
 	if (-not (Test-Path -Path "$BROWSER_CHROMIUM_EXEC_PATH")) {
@@ -4309,6 +4303,14 @@ function signum-starter-ps1 ($name, $file, $port) {
     } else {
         Write-Host "Chromium browser already installed"
     }
+
+	$signum_node_jar_path = $null
+	# If signum node version is higher or equal to v3.9.0
+	if ($signum_node_version_number -ge [version]"3.9.0") {
+		$signum_node_jar_path = ".\jre\bin\java -jar .\app\signum-node-all.jar"
+	} else {
+		$signum_node_jar_path = ".\jre\bin\java -jar .\signum-node.jar"
+	}
 
     if (-not (Test-Path $file)) {
 
@@ -4331,7 +4333,7 @@ Start-Sleep -Seconds $SLEEP_SECONDS
 # Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "```$host.UI.RawUI.WindowTitle = 'Signum Node $name'; jre\bin\java -jar signum-node.jar"
 
 # TODO check
-# & ..\..\..\$POWERSHELL_EXEC_PATH -NoExit -Command .\jre\bin\java -jar signum-node.jar -WindowStyle Minimized
+# & ..\..\..\$POWERSHELL_EXEC_PATH -NoExit -Command $signum_node_jar_path -WindowStyle Minimized
 # "jre\bin\java" "-jar" "signum-node.jar" -WindowStyle Minimized
 # Start-Process -FilePath "..\..\..\$POWERSHELL_EXEC_PATH" -ArgumentList "-NoExit", "-Command", "Set-Title 'Signum Mainnet Node'; Start-Process -NoNewWindow -FilePath 'jre\bin\java' -ArgumentList '-jar', 'signum-node.jar'"
 
@@ -4352,7 +4354,7 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			} catch {
         		Write-Host 'An error occurred while starting Browser' -ForegroundColor Red
     		}
-			.\jre\bin\java -jar signum-node.jar
+			$signum_node_jar_path
 		}
     } catch {
         Write-Host 'An error occurred while starting Signum Node ${name}' -ForegroundColor Red
@@ -7072,7 +7074,7 @@ function setup_mariadb ($name, $database, $user, $password) {
 	# Start-Process -FilePath "${MARIADB_BIN_PATH}\${MARIADBD_EXEC_NAME}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Hidden
 	# Start-Process -FilePath "${MARIADB_BIN_PATH}\${MARIADBD_EXEC_NAME}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Minimized
 	
-	& .\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
+	& .\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File $MARIADB_STARTER_PS1_PATH "-WindowStyle Minimized"
 
     Start-Sleep -Seconds $SLEEP_SECONDS
 
@@ -7124,7 +7126,7 @@ function setup_mariadb_readonly ($name, $database, $user, $password) {
 	# Start-Process -FilePath "${MARIADB_BIN_PATH}\${MARIADBD_EXEC_NAME}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Hidden
 	# Start-Process -FilePath "${MARIADB_BIN_PATH}\${MARIADBD_EXEC_NAME}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Minimized
 	
-	& .\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
+	& .\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File $MARIADB_STARTER_PS1_PATH "-WindowStyle Minimized"
 
     Start-Sleep -Seconds $SLEEP_SECONDS
 
@@ -7190,7 +7192,7 @@ function setup_mariadb_explorer ($name, $database, $user, $password) {
 	# Start-Process -FilePath "${MARIADB_BIN_PATH}\${MARIADBD_EXEC_NAME}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Hidden
 	# Start-Process -FilePath "${MARIADB_BIN_PATH}\${MARIADBD_EXEC_NAME}" -ArgumentList "--no-defaults", "--console --port=$MARIADB_PORT" -WindowStyle Minimized
 	
-	& .\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File ".\Database\MariaDB\mariadb-10.6.20-winx64\start-mariadb.ps1" "-WindowStyle Minimized"
+	& .\$POWERSHELL_EXEC_PATH -ExecutionPolicy Bypass -File $MARIADB_STARTER_PS1_PATH "-WindowStyle Minimized"
 
     Start-Sleep -Seconds $SLEEP_SECONDS
 
