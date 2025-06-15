@@ -46,7 +46,12 @@ $SIGNUM_NODE_MAINNET_PROPERTIES_PATH = "$SIGNUM_NODE_MAINNET_UNZIP_PATH\conf\nod
 $SIGNUM_NODE_MAINNET_URL = "https://github.com/signum-network/signum-node/releases/download/${SIGNUM_NODE_MAINNET_VERSION}/${SIGNUM_NODE_MAINNET_ZIP_NAME}"
 $SIGNUM_NODE_MAINNET_P2P_PORT = 8123
 $SIGNUM_NODE_MAINNET_API_PORT = 8125
+# TODO ADD websocket to configuration 
 $SIGNUM_NODE_MAINNET_API_WEBSOCKET_PORT = 8126
+
+$SIGNUM_NODE_MAINNET_DATABASE_NAME = "signum-node-mainnet"
+$SIGNUM_NODE_MAINNET_DATABASE_USERNAME = "signumuser_node_mainnet"
+$SIGNUM_NODE_MAINNET_DATABASE_PASSWORD = "signumpassword"
 
 ### Signum Node Testnet variables ###
 $SIGNUM_NODE_TESTNET_VERSION = "v3.9.1"
@@ -64,6 +69,10 @@ $SIGNUM_NODE_TESTNET_URL = "https://github.com/signum-network/signum-node/releas
 $SIGNUM_NODE_TESTNET_P2P_PORT = 7123
 $SIGNUM_NODE_TESTNET_API_PORT = 6876
 $SIGNUM_NODE_TESTNET_API_WEBSOCKET_PORT = # TODO TBD
+
+$SIGNUM_NODE_TESTNET_DATABASE_NAME = "signum-node-testnet"
+$SIGNUM_NODE_TESTNET_DATABASE_USERNAME = "signumuser_node_testnet"
+$SIGNUM_NODE_TESTNET_DATABASE_PASSWORD = "signumpassword"
 
 ### Signum NeoClassic variables ###
 $SIGNUM_WALLET_NEOCLASSIC_ZIP_NAME = "neoclassic.zip"
@@ -104,6 +113,11 @@ $SIGNUM_POOL_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\${SIGN
 $SIGNUM_POOL_MAINNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_MAINNET_VERSION}/${SIGNUM_POOL_MAINNET_ZIP_NAME}"
 $SIGNUM_POOL_MAINET_PORT = 8000
 
+$SIGNUM_POOL_MAINET_DATABASE_NAME = "signum-pool-mainnet"
+$SIGNUM_POOL_MAINET_DATABASE_USERNAME = "signumuser_pool_mainnet"
+$SIGNUM_POOL_MAINET_DATABASE_PASSWORD = "signumpassword"
+
+
 ### Signum Pool Testnet variables ###
 $SIGNUM_POOL_TESTNET_VERSION = "v2.2.1"
 $SIGNUM_POOL_TESTNET_DIR_PATH = "${SIGNUM_TESTNET_DIR_NAME}\${SIGNUM_POOL_DIR_NAME}"
@@ -117,6 +131,10 @@ $SIGNUM_POOL_TESTNET_STARTER_PS1_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGNU
 $SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGNUM_POOL_STARTER_EXEC_NAME}"
 $SIGNUM_POOL_TESTNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_TESTNET_VERSION}/${SIGNUM_POOL_TESTNET_ZIP_NAME}"
 $SIGNUM_POOL_TESTNET_PORT = 8001
+
+$SIGNUM_POOL_TESTNET_DATABASE_NAME = "signum-pool-testnet"
+$SIGNUM_POOL_TESTNET_DATABASE_USERNAME = "signumuser_pool_testnet"
+$SIGNUM_POOL_TESTNET_DATABASE_PASSWORD = "signumpassword"
 
 ### Signum Explorer variables ###
 $SIGNUM_EXPLORER_DIR_NAME = "Explorer"
@@ -135,6 +153,14 @@ $SIGNUM_EXPLORER_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_EXPLORER_MAINNET_UNZIP_PAT
 $SIGNUM_EXPLORER_MAINNET_URL = "https://github.com/signum-network/signum-explorer/archive/refs/heads/master.zip"
 $SIGNUM_EXPLORER_MAINNET_PORT = 6000
 $SIGNUM_EXPLORER_MAINNET_SUPERVISOR_SATUS_PORT = 9000
+
+$SIGNUM_EXPLORER_MAINNET_DATABASE_NAME = "signum-explorer-mainnet"
+$SIGNUM_EXPLORER_MAINNET_DATABASE_USERNAME = "signumuser_explorer_mainnet"
+$SIGNUM_EXPLORER_MAINNET_DATABASE_PASSWORD = "signumpassword"
+
+$SIGNUM_EXPLORER_MAINNET_NODE_READONLY_DATABASE_NAME = "signum-node-mainnet"
+$SIGNUM_EXPLORER_MAINNET_NODE_READONLY_DATABASE_USERNAME = "signumuser_node_mainnet_readonly"
+$SIGNUM_EXPLORER_MAINNET_NODE_READONLY_DATABASE_PASSWORD = "signumpassword"
 
 ### Signum Explorer Mainnet Python variables ###
 $SIGNUM_EXPLORER_MAINNET_PYTHON_VERSION = "3.10.11"
@@ -158,6 +184,14 @@ $SIGNUM_EXPLORER_TESTNET_STARTER_EXEC_PATH = "$SIGNUM_EXPLORER_TESTNET_UNZIP_PAT
 $SIGNUM_EXPLORER_TESTNET_URL = "https://github.com/signum-network/signum-explorer/archive/refs/heads/master.zip"
 $SIGNUM_EXPLORER_TESTNET_PORT = 6001
 $SIGNUM_EXPLORER_TESTNET_SUPERVISOR_SATUS_PORT = 9001
+
+$SIGNUM_EXPLORER_TESTNET_DATABASE_NAME = "signum-explorer-testnet"
+$SIGNUM_EXPLORER_TESTNET_DATABASE_USERNAME = "signumuser_explorer_testnet"
+$SIGNUM_EXPLORER_TESTNET_DATABASE_PASSWORD = "signumpassword"
+
+$SIGNUM_EXPLORER_TESTNET_NODE_READONLY_DATABASE_NAME = "signum-node-testnet"
+$SIGNUM_EXPLORER_TESTNET_NODE_READONLY_DATABASE_USERNAME = "signumuser_node_testnet_readonly"
+$SIGNUM_EXPLORER_TESTNET_NODE_READONLY_DATABASE_PASSWORD = "signumpassword"
 
 ### Signum Explorer Testnet Python variables ###
 $SIGNUM_EXPLORER_TESTNET_PYTHON_VERSION = "3.10.11"
@@ -317,7 +351,14 @@ $MARIADB_BIN_PATH = "${MARIADB_UNZIP_PATH}\bin"
 $MARIADB_STARTER_PS1_PATH = "${MARIADB_UNZIP_PATH}\${MARIADB_STARTER_PS1_NAME}"
 $MARIADB_STARTER_EXEC_PATH = "${MARIADB_UNZIP_PATH}\${MARIADB_STARTER_EXEC_NAME}"
 $MARIADB_URL = "https://archive.mariadb.org/mariadb-${MARIADB_VERSION}/winx64-packages/mariadb-${MARIADB_VERSION}-winx64.zip"
+
 $MARIADB_PORT = 3306
+$MARIADB_ROOT_USER = "root"
+$MARIADB_ROOT_PASSWORD = ""
+$MARIADB_DATADIR = "./data"
+$MARIADB_INNODB_BUFFER_POOL_SIZE = "6G"
+$MARIADB_INNODB_LOG_BUFFER_SIZE = "128M"
+$MARIADB_CHARACTER_SET_SERVER = "UTF8"
 
 <#
 $DATABASE_NAME = ""
@@ -1387,7 +1428,7 @@ function Install-SignumMainnet {
 	}
 
     # Setup MariaDB for Mainnet
-	question-prompt "Setup" "MariaDB for Signum Mainnet Node" {setup_mariadb "Signum Node Mainnet" "signum-node-mainnet" "signumuser_node_mainnet" "signumpassword"}
+	question-prompt "Setup" "MariaDB for Signum Mainnet Node" {setup_mariadb "Signum Node Mainnet" $SIGNUM_NODE_MAINNET_DATABASE_NAME $SIGNUM_NODE_MAINNET_DATABASE_USERNAME $SIGNUM_NODE_MAINNET_DATABASE_PASSWORD}
 	
 	if ($global:UserResponse -eq "yes") {	
 		# Update database information in node.properties
@@ -1693,7 +1734,7 @@ function Install-SignumTestnet {
 	}
 
     # Setup MariaDB for Testnet
-    question-prompt "Setup" "MariaDB for Signum Testnet Node" {setup_mariadb "Signum Node Testnet" "signum-node-testnet" "signumuser_node_testnet" "signumpassword"}
+    question-prompt "Setup" "MariaDB for Signum Testnet Node" {setup_mariadb "Signum Node Testnet" $SIGNUM_NODE_TESTNET_DATABASE_NAME $SIGNUM_NODE_TESTNET_DATABASE_USERNAME $SIGNUM_NODE_TESTNET_DATABASE_PASSWORD}
 	
 	# Update database information in node.properties
 	setup_db_node_properties ${SIGNUM_NODE_TESTNET_PROPERTIES_PATH}
@@ -1884,7 +1925,7 @@ exit
 	}
 
     # Setup MariaDB for Signum Pool Mainnet
-    question-prompt "Setup" "MariaDB for Signum Pool Mainnet" {setup_mariadb "Signum Pool Mainnet" "signum-pool-mainnet" "signumuser_pool_mainnet" "signumpassword"}
+    question-prompt "Setup" "MariaDB for Signum Pool Mainnet" {setup_mariadb "Signum Pool Mainnet" $SIGNUM_POOL_MAINET_DATABASE_NAME $SIGNUM_POOL_MAINET_DATABASE_USERNAME $SIGNUM_POOL_MAINET_DATABASE_PASSWORD}
 	
 	if ($global:UserResponse -eq "yes") {	
 		# Update database information in pool.properties
@@ -2089,7 +2130,7 @@ exit
 	}
 
     # Setup MariaDB for Signum Pool Testnet
-    question-prompt "Setup" "MariaDB for Signum Pool Testnet" {setup_mariadb "Signum Pool Testnet" "signum-pool-testnet" "signumuser_pool_testnet" "signumpassword"}
+    question-prompt "Setup" "MariaDB for Signum Pool Testnet" {setup_mariadb "Signum Pool Testnet" $SIGNUM_POOL_TESTNET_DATABASE_NAME $SIGNUM_POOL_TESTNET_DATABASE_USERNAME $SIGNUM_POOL_TESTNET_DATABASE_PASSWORD}
 	
 	if ($global:UserResponse -eq "yes") {	
 		# Update database information in pool.properties
@@ -2499,17 +2540,17 @@ SITE_TITLE=Signum Explorer
 DB_DEFAULT_ENGINE=django.db.backends.mysql
 DB_DEFAULT_HOST=127.0.0.1
 DB_DEFAULT_PORT=$MARIADB_PORT
-DB_DEFAULT_NAME=signum-explorer-mainnet
-DB_DEFAULT_USER=signumuser_explorer_mainnet
-DB_DEFAULT_PASSWORD=signumpassword
+DB_DEFAULT_NAME=$SIGNUM_EXPLORER_MAINNET_DATABASE_NAME
+DB_DEFAULT_USER=$SIGNUM_EXPLORER_MAINNET_DATABASE_USERNAME
+DB_DEFAULT_PASSWORD=$SIGNUM_EXPLORER_MAINNET_DATABASE_PASSWORD
 DB_DEFAULT_OPTIONS={"init_command": "SET sql_mode='STRICT_TRANS_TABLES'", "charset": "utf8mb4"}
 
 DB_JAVA_WALLET_ENGINE=django.db.backends.mysql
 DB_JAVA_WALLET_HOST=127.0.0.1
 DB_JAVA_WALLET_PORT=$MARIADB_PORT
-DB_JAVA_WALLET_NAME=signum-node-mainnet
-DB_JAVA_WALLET_USER=signumuser_node_mainnet_readonly
-DB_JAVA_WALLET_PASSWORD=signumpassword
+DB_JAVA_WALLET_NAME=$SIGNUM_EXPLORER_MAINNET_NODE_READONLY_DATABASE_NAME
+DB_JAVA_WALLET_USER=$SIGNUM_EXPLORER_MAINNET_NODE_READONLY_DATABASE_USERNAME
+DB_JAVA_WALLET_PASSWORD=$SIGNUM_EXPLORER_MAINNET_NODE_READONLY_DATABASE_PASSWORD
 DB_JAVA_WALLET_OPTIONS={}
 
 CACHE_DEFAULT_HOST=localhost
@@ -2661,7 +2702,7 @@ exit
 	}
 
     # Setup MariaDB for Signum Pool Mainnet
-    question-prompt "Setup" "MariaDB for Signum Explorer Mainnet" {setup_mariadb_explorer "Signum Explorer Mainnet" "signum-explorer-mainnet" "signumuser_explorer_mainnet" "signumpassword"}
+    question-prompt "Setup" "MariaDB for Signum Explorer Mainnet" {setup_mariadb_explorer "Signum Explorer Mainnet" $SIGNUM_EXPLORER_MAINNET_DATABASE_NAME $SIGNUM_EXPLORER_MAINNET_DATABASE_USERNAME $SIGNUM_EXPLORER_MAINNET_DATABASE_PASSWORD}
 	
 	if ($global:UserResponse -eq "yes") {
 		# Setup .env file with the Signum Explorer database values
@@ -2717,7 +2758,7 @@ exit
 
 	# Create Read Only User for Signum Node Mainnet database access for explorer
 	Write-Host "Create Read Only User for Signum Node Mainnet database access for explorer"
-	question-prompt "Setup" "MariaDB for Signum Explorer Mainnet Read Only Node connection" {setup_mariadb_readonly "Signum Explorer Mainnet Node connection" "$dbName" "signumuser_node_mainnet_readonly" "signumpassword"}
+	question-prompt "Setup" "MariaDB for Signum Explorer Mainnet Read Only Node connection" {setup_mariadb_readonly "Signum Explorer Mainnet Node connection" $dbName $SIGNUM_EXPLORER_MAINNET_NODE_READONLY_DATABASE_USERNAME $SIGNUM_EXPLORER_MAINNET_NODE_READONLY_DATABASE_PASSWORD}
 
 	if ($global:UserResponse -eq "yes") {	
 		# Setup .env file with the Signum Explorer database values
@@ -3109,17 +3150,17 @@ TEST_NET=true
 DB_DEFAULT_ENGINE=django.db.backends.mysql
 DB_DEFAULT_HOST=127.0.0.1
 DB_DEFAULT_PORT=$MARIADB_PORT
-DB_DEFAULT_NAME=signum-explorer-testnet
-DB_DEFAULT_USER=signumuser_explorer_testnet
-DB_DEFAULT_PASSWORD=signumpassword
+DB_DEFAULT_NAME=$SIGNUM_EXPLORER_TESTNET_DATABASE_NAME
+DB_DEFAULT_USER=$SIGNUM_EXPLORER_TESTNET_DATABASE_USERNAME
+DB_DEFAULT_PASSWORD=$SIGNUM_EXPLORER_TESTNET_DATABASE_PASSWORD
 DB_DEFAULT_OPTIONS={"init_command": "SET sql_mode='STRICT_TRANS_TABLES'", "charset": "utf8mb4"}
 
 DB_JAVA_WALLET_ENGINE=django.db.backends.mysql
 DB_JAVA_WALLET_HOST=127.0.0.1
 DB_JAVA_WALLET_PORT=$MARIADB_PORT
-DB_JAVA_WALLET_NAME=signum-node-testnet
-DB_JAVA_WALLET_USER=signumuser_node_testnet_readonly
-DB_JAVA_WALLET_PASSWORD=signumpassword
+DB_JAVA_WALLET_NAME=$SIGNUM_EXPLORER_TESTNET_NODE_READONLY_DATABASE_NAME
+DB_JAVA_WALLET_USER=$SIGNUM_EXPLORER_TESTNET_NODE_READONLY_DATABASE_USERNAME
+DB_JAVA_WALLET_PASSWORD=$SIGNUM_EXPLORER_TESTNET_NODE_READONLY_DATABASE_PASSWORD
 DB_JAVA_WALLET_OPTIONS={}
 
 CACHE_DEFAULT_HOST=localhost
@@ -3135,7 +3176,7 @@ SENTRY_DSN=
 SIGNUM_NODE=localhost
 WALLET_URL=https://signumwallettestnet.ddns.net:8138/
 BRS_BOOTSTRAP_PEERS=["signumwallettestnet.ddns.net:8138"]
-DEFAULT_P2P_PORT=7123
+DEFAULT_P2P_PORT=$SIGNUM_NODE_TESTNET_P2P_PORT
 DEFAULT_API_V1_PORT=$SIGNUM_NODE_TESTNET_API_PORT
 
 BRS_P2P_VERSION = $SIGNUM_NODE_TESTNET_VERSION
@@ -3270,7 +3311,7 @@ exit
 	}
 
     # Setup MariaDB for Signum Pool Testnet
-    question-prompt "Setup" "MariaDB for Signum Explorer Testnet" {setup_mariadb_explorer "Signum Explorer Testnet" "signum-explorer-testnet" "signumuser_explorer_testnet" "signumpassword"}
+    question-prompt "Setup" "MariaDB for Signum Explorer Testnet" {setup_mariadb_explorer "Signum Explorer Testnet" $SIGNUM_EXPLORER_TESTNET_DATABASE_NAME $SIGNUM_EXPLORER_TESTNET_DATABASE_USERNAME $SIGNUM_EXPLORER_TESTNET_DATABASE_PASSWORD}
 	
 	if ($global:UserResponse -eq "yes") {	
 		# Setup .env file with the Signum Explorer database values
@@ -3326,7 +3367,7 @@ exit
 	
 	# Create Read Only User for Signum Node Testnet database access for explorer
 	Write-Host "Create Read Only User for Signum Node Testnet database access for explorer"
-	question-prompt "Setup" "MariaDB for Signum Explorer Testnet Read Only Node connection" {setup_mariadb_readonly "Signum Explorer Testnet Node connection" "$dbName" "signumuser_node_testnet_readonly" "signumpassword"}
+	question-prompt "Setup" "MariaDB for Signum Explorer Testnet Read Only Node connection" {setup_mariadb_readonly "Signum Explorer Testnet Node connection" $dbName $SIGNUM_EXPLORER_TESTNET_NODE_READONLY_DATABASE_USERNAME $SIGNUM_EXPLORER_TESTNET_NODE_READONLY_DATABASE_PASSWORD}
 	
 	if ($global:UserResponse -eq "yes") {	
 		# Setup .env file with the Signum Explorer database values
@@ -7021,7 +7062,7 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
         } else {
 			# Start MariaDB
-			.\bin\mariadbd.exe --no-defaults --console --port=$MARIADB_PORT
+			.\bin\mariadbd.exe  --datadir=$MARIADB_DATADIR --port=$MARIADB_PORT --innodb-buffer-pool-size=$MARIADB_INNODB_BUFFER_POOL_SIZE --innodb-log-buffer-size=$MARIADB_INNODB_LOG_BUFFER_SIZE --character-set-server=$MARIADB_CHARACTER_SET_SERVER --console
 		}
     } catch {
         Write-Host 'An error occurred while starting MariaDB: ```$_'
@@ -7080,16 +7121,16 @@ function setup_mariadb ($name, $database, $user, $password) {
 
     Write-Host "Creating database: ${DATABASE_NAME}"
 	$createDatabaseQuery = "CREATE DATABASE IF NOT EXISTS ``${DATABASE_NAME}``;"
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=root --password= -e $createDatabaseQuery
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $createDatabaseQuery
 
     Write-Host "Creating user: ${DATABASE_USERNAME}"
 	$createUserQuery = "CREATE USER IF NOT EXISTS '${DATABASE_USERNAME}'@'localhost' IDENTIFIED BY '${DATABASE_PASSWORD}';"
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=root --password= -e $createUserQuery
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $createUserQuery
 
     Write-Host "Granting permissions to user ${DATABASE_USERNAME} on database ${DATABASE_NAME} ..."
 	$grantPermissionsQuery = "GRANT ALL PRIVILEGES ON ``${DATABASE_NAME}``.* TO '${DATABASE_USERNAME}'@'localhost';"
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=root --password= -e $grantPermissionsQuery
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=root --password= -e "FLUSH PRIVILEGES;"
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $grantPermissionsQuery
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
 
 	$global:DATABASE_NAME = $DATABASE_NAME
 	$global:DATABASE_USERNAME = $DATABASE_USERNAME
@@ -7132,11 +7173,11 @@ function setup_mariadb_readonly ($name, $database, $user, $password) {
 
     Write-Host "Creating user: ${DATABASE_USERNAME}"
 	$createUserQuery = "CREATE USER IF NOT EXISTS '${DATABASE_USERNAME}'@'localhost' IDENTIFIED BY '${DATABASE_PASSWORD}';"
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=root --password= -e $createUserQuery
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $createUserQuery
 
     Write-Host "Granting permissions to user ${DATABASE_USERNAME} on database ${DATABASE_NAME} ..."
 	$grantPermissionsQuery = "GRANT SELECT, SHOW VIEW ON ``${DATABASE_NAME}``.* TO '${DATABASE_USERNAME}'@'localhost';"
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=root --password= -e $grantPermissionsQuery
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $grantPermissionsQuery
 
 <#
 	# Indexing
@@ -7150,10 +7191,10 @@ CREATE INDEX account_latest ON account(latest);
 "@
 	
 	# Execute each SQL command
-	& "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=root --password= -e $sqlCommands
+	& "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $sqlCommands
 #>	
 	
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=root --password= -e "FLUSH PRIVILEGES;"
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
 
 	$global:DATABASE_NAME = $DATABASE_NAME
 	$global:DATABASE_USERNAME = $DATABASE_USERNAME
@@ -7198,15 +7239,15 @@ function setup_mariadb_explorer ($name, $database, $user, $password) {
 
     Write-Host "Creating database: ${DATABASE_NAME}"
 	$createDatabaseQuery = "CREATE DATABASE IF NOT EXISTS ``${DATABASE_NAME}``;"
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=root --password= -e $createDatabaseQuery
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $createDatabaseQuery
 
     Write-Host "Creating user: ${DATABASE_USERNAME}"
 	$createUserQuery = "CREATE USER IF NOT EXISTS '${DATABASE_USERNAME}'@'localhost' IDENTIFIED BY '${DATABASE_PASSWORD}';"
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=root --password= -e $createUserQuery
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $createUserQuery
 
     Write-Host "Granting permissions to user ${DATABASE_USERNAME} on database ${DATABASE_NAME} ..."
 	$grantPermissionsQuery = "GRANT ALL PRIVILEGES ON ``${DATABASE_NAME}``.* TO '${DATABASE_USERNAME}'@'localhost';"
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=root --password= -e $grantPermissionsQuery
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $grantPermissionsQuery
 
 	# Define the SQL queries
 	$sqlQueryGetUser = "SELECT '$DATABASE_USERNAME' FROM mysql.user;"
@@ -7238,11 +7279,11 @@ CREATE TABLE scan_peermonitor (
 
 	# Run the queries
 	Write-Host "Executing query to retrieve user details..."
-	& "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=root --password= -e $sqlQueryGetUser
+	& "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $sqlQueryGetUser
 
 	Write-Host "Creating table in the Signum ${name} database..."
-	& "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=root --password= -e $sqlQueryCreateTable
-	& "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=root --password= -e "FLUSH PRIVILEGES;"
+	& "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $sqlQueryCreateTable
+	& "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
 	
 	$global:DATABASE_NAME = $DATABASE_NAME
 	$global:DATABASE_USERNAME = $DATABASE_USERNAME
