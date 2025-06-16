@@ -141,6 +141,8 @@ $SIGNUM_EXPLORER_DIR_NAME = "Explorer"
 $SIGNUM_EXPLORER_STARTER_PS1_NAME = "start-explorer.ps1"
 $SIGNUM_EXPLORER_STARTER_EXEC_NAME = "start-explorer.bat"
 
+$SIGNUM_EXPLORER_COINMARKETCAP_API_KEY = "your_cmc_api_key"
+
 ### Signum Explorer Mainnet variables ###
 $SIGNUM_EXPLORER_MAINNET_UNZIP_NAME = "signum-explorer-master"
 $SIGNUM_EXPLORER_MAINNET_ZIP_NAME = "${SIGNUM_EXPLORER_MAINNET_UNZIP_NAME}.zip"
@@ -151,8 +153,10 @@ $SIGNUM_EXPLORER_MAINNET_UNZIP_PATH = "${SIGNUM_EXPLORER_MAINNET_DIR_PATH}\${SIG
 $SIGNUM_EXPLORER_MAINNET_STARTER_PS1_PATH = "$SIGNUM_EXPLORER_MAINNET_UNZIP_PATH\${SIGNUM_EXPLORER_STARTER_PS1_NAME}"
 $SIGNUM_EXPLORER_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_EXPLORER_MAINNET_UNZIP_PATH\${SIGNUM_EXPLORER_STARTER_EXEC_NAME}"
 $SIGNUM_EXPLORER_MAINNET_URL = "https://github.com/signum-network/signum-explorer/archive/refs/heads/master.zip"
-$SIGNUM_EXPLORER_MAINNET_PORT = 6000
+$SIGNUM_EXPLORER_MAINNET_PORT = 9010
 $SIGNUM_EXPLORER_MAINNET_SUPERVISOR_SATUS_PORT = 9000
+
+# $SIGNUM_EXPLORER_MAINNET_API_KEY = "your_actual_api_key_here"
 
 $SIGNUM_EXPLORER_MAINNET_DATABASE_NAME = "signum-explorer-mainnet"
 $SIGNUM_EXPLORER_MAINNET_DATABASE_USERNAME = "signumuser_explorer_mainnet"
@@ -166,7 +170,7 @@ $SIGNUM_EXPLORER_MAINNET_NODE_READONLY_DATABASE_PASSWORD = "signumpassword"
 $SIGNUM_EXPLORER_MAINNET_PYTHON_VERSION = "3.10.11"
 $SIGNUM_EXPLORER_MAINNET_PYTHON_STANDARD_LIB_UNZIP_NAME = "python310"
 $SIGNUM_EXPLORER_MAINNET_PYTHON_STANDARD_LIB_ZIP_NAME = "${SIGNUM_EXPLORER_MAINNET_PYTHON_STANDARD_LIB_UNZIP_NAME}.zip"
-$SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_NAME = "python-${SIGNUM_EXPLORER_MAINNET_PYTHON_VERSION}-embed-amd64}.zip"
+$SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_NAME = "python-${SIGNUM_EXPLORER_MAINNET_PYTHON_VERSION}-embed-amd64.zip"
 $SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_PATH = "${SIGNUM_EXPLORER_MAINNET_DIR_PATH}\${SIGNUM_EXPLORER_MAINNET_PYTHON_ZIP_NAME}"
 $SIGNUM_EXPLORER_MAINNET_PYTHON_UNZIP_PATH = "${SIGNUM_EXPLORER_MAINNET_DIR_PATH}\${SIGNUM_EXPLORER_MAINNET_UNZIP_NAME}"
 $SIGNUM_EXPLORER_MAINNET_PYTHON_URL = "https://www.python.org/ftp/python/${SIGNUM_EXPLORER_MAINNET_PYTHON_VERSION}/python-${SIGNUM_EXPLORER_MAINNET_PYTHON_VERSION}-embed-amd64.zip"
@@ -182,8 +186,10 @@ $SIGNUM_EXPLORER_TESTNET_UNZIP_PATH = "${SIGNUM_EXPLORER_TESTNET_DIR_PATH}\${SIG
 $SIGNUM_EXPLORER_TESTNET_STARTER_PS1_PATH = "$SIGNUM_EXPLORER_TESTNET_UNZIP_PATH\${SIGNUM_EXPLORER_STARTER_PS1_NAME}"
 $SIGNUM_EXPLORER_TESTNET_STARTER_EXEC_PATH = "$SIGNUM_EXPLORER_TESTNET_UNZIP_PATH\${SIGNUM_EXPLORER_STARTER_EXEC_NAME}"
 $SIGNUM_EXPLORER_TESTNET_URL = "https://github.com/signum-network/signum-explorer/archive/refs/heads/master.zip"
-$SIGNUM_EXPLORER_TESTNET_PORT = 6001
+$SIGNUM_EXPLORER_TESTNET_PORT = 9011
 $SIGNUM_EXPLORER_TESTNET_SUPERVISOR_SATUS_PORT = 9001
+
+# $SIGNUM_EXPLORER_TESTNET_API_KEY = "your_actual_api_key_here"
 
 $SIGNUM_EXPLORER_TESTNET_DATABASE_NAME = "signum-explorer-testnet"
 $SIGNUM_EXPLORER_TESTNET_DATABASE_USERNAME = "signumuser_explorer_testnet"
@@ -197,7 +203,7 @@ $SIGNUM_EXPLORER_TESTNET_NODE_READONLY_DATABASE_PASSWORD = "signumpassword"
 $SIGNUM_EXPLORER_TESTNET_PYTHON_VERSION = "3.10.11"
 $SIGNUM_EXPLORER_TESTNET_PYTHON_STANDARD_LIB_UNZIP_NAME = "python310"
 $SIGNUM_EXPLORER_TESTNET_PYTHON_STANDARD_LIB_ZIP_NAME = "${SIGNUM_EXPLORER_TESTNET_PYTHON_STANDARD_LIB_UNZIP_NAME}.zip"
-$SIGNUM_EXPLORER_TESTNET_PYTHON_ZIP_NAME = "python-${SIGNUM_EXPLORER_TESTNET_PYTHON_VERSION}-embed-amd64}.zip"
+$SIGNUM_EXPLORER_TESTNET_PYTHON_ZIP_NAME = "python-${SIGNUM_EXPLORER_TESTNET_PYTHON_VERSION}-embed-amd64.zip"
 $SIGNUM_EXPLORER_TESTNET_PYTHON_ZIP_PATH = "${SIGNUM_EXPLORER_TESTNET_DIR_PATH}\${SIGNUM_EXPLORER_TESTNET_PYTHON_ZIP_NAME}"
 $SIGNUM_EXPLORER_TESTNET_PYTHON_UNZIP_PATH = "${SIGNUM_EXPLORER_TESTNET_DIR_PATH}\${SIGNUM_EXPLORER_TESTNET_UNZIP_NAME}"
 $SIGNUM_EXPLORER_TESTNET_PYTHON_URL = "https://www.python.org/ftp/python/${SIGNUM_EXPLORER_TESTNET_PYTHON_VERSION}/python-${SIGNUM_EXPLORER_TESTNET_PYTHON_VERSION}-embed-amd64.zip"
@@ -2331,7 +2337,7 @@ function Install-SignumExplorerMainnet {
 	
 	# run pyton get-pip.py command
 	Write-Host "Installing get-pip.py"
-	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\python.exe" "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\get-pip.py"
+	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\python.exe" "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\get-pip.py" --no-warn-script-location
 	
 	# uncomment import site from $SIGNUM_EXPLORER_MAINNET_PYTHON_STANDARD_LIB_UNZIP_NAME._pth
 	Write-Host "Setup $SIGNUM_EXPLORER_MAINNET_PYTHON_STANDARD_LIB_UNZIP_NAME._pth file"
@@ -2345,11 +2351,11 @@ function Install-SignumExplorerMainnet {
 	$content | Set-Content -Path ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\$SIGNUM_EXPLORER_MAINNET_PYTHON_STANDARD_LIB_UNZIP_NAME._pth
 	
 	# installation
-	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install setuptools
-	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install maturin
-	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install supervisor-win
-	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install waitress
-	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install -r ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\requirements.txt
+	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install setuptools --no-warn-script-location
+	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install maturin --no-warn-script-location
+	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install supervisor-win --no-warn-script-location
+	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install waitress --no-warn-script-location
+	& "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\Scripts\pip.exe" install -r ${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\requirements.txt --no-warn-script-location
 	
 	# create ./tmp/supervisord.pid if not exists
 	if (Test-Path -Path "${SIGNUM_EXPLORER_MAINNET_UNZIP_PATH}\tmp\supervisord.pid") {
@@ -2437,6 +2443,12 @@ function Install-SignumExplorerMainnet {
 			if ($line -match "^stdout_logfile = /dev/stdout") {
 				$line = ($line -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = tasks_stdout.log" + "`n;stdout_logfile = CON"
 			}
+			<#
+			if ($line -match "^stdout_logfile_maxbytes") {
+				$apiKeyLine = "environment=API_KEY=""" + $SIGNUM_EXPLORER_MAINNET_API_KEY + """"
+				$line = $line + "`n" + $apiKeyLine
+			}
+			#>
 		} 
 		
 		if ($foundSNR) {
@@ -2460,7 +2472,7 @@ function Install-SignumExplorerMainnet {
 			-replace "^pidfile = /tmp/supervisord.pid", "pidfile = ./tmp/supervisord.pid" `
 			-replace "^chmod = 0700", ";chmod = 0700" `
 			-replace "^serverurl = unix:///tmp/supervisor.sock", "serverurl = ./tmp/supervisor.sock" `
-			-replace "^directory=.*", "directory=./" `
+			-replace "^directory=.*", "directory = ./" `
 			-replace "^command = gunicorn config.wsgi -c gunicorn.conf.py", "command = ./python.exe run_waitress.py" `
 			-replace "^command = python3 manage.py peers", "command = ./python.exe manage.py peers" `
 			-replace "^command = python3 manage.py tasks", "command = ./python.exe manage.py tasks" `
@@ -2530,6 +2542,8 @@ COINGECKO_PRICE_ID=SIGNUM
 COINGECKO_PRICE_USD=0.000
 COINGECKO_PRICE_BTC=0.000
 COINGECKO_MKT_USD=0.000
+
+COINMARKETCAP_API_KEY=$SIGNUM_EXPLORER_COINMARKETCAP_API_KEY
 
 COIN_SYMBOL=SIGNA
 ADDRESS_PREFIX=S-
@@ -2948,7 +2962,7 @@ function Install-SignumExplorerTestnet {
 	
 	# run pyton get-pip.py command
 	Write-Host "Installing get-pip.py"
-	& "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\python.exe" "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\get-pip.py"
+	& "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\python.exe" "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\get-pip.py" --no-warn-script-location
 	
 	# uncomment import site from $SIGNUM_EXPLORER_TESTNET_PYTHON_STANDARD_LIB_UNZIP_NAME._pth
 	Write-Host "Setup $SIGNUM_EXPLORER_TESTNET_PYTHON_STANDARD_LIB_UNZIP_NAME._pth file"
@@ -2962,11 +2976,11 @@ function Install-SignumExplorerTestnet {
 	$content | Set-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\$SIGNUM_EXPLORER_TESTNET_PYTHON_STANDARD_LIB_UNZIP_NAME._pth
 	
 	# installation
-	& "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\Scripts\pip.exe" install setuptools
-	& "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\Scripts\pip.exe" install maturin
-	& "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\Scripts\pip.exe" install supervisor-win
-	& "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\Scripts\pip.exe" install waitress
-	& "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\Scripts\pip.exe" install -r ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\requirements.txt
+	& "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\Scripts\pip.exe" install setuptools --no-warn-script-location
+	& "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\Scripts\pip.exe" install maturin --no-warn-script-location
+	& "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\Scripts\pip.exe" install supervisor-win --no-warn-script-location
+	& "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\Scripts\pip.exe" install waitress --no-warn-script-location
+	& "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\Scripts\pip.exe" install -r ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\requirements.txt --no-warn-script-location
 	
 	# create ./tmp/supervisord.pid if not exists
 	if (Test-Path -Path "${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\tmp\supervisord.pid") {
@@ -3046,6 +3060,12 @@ function Install-SignumExplorerTestnet {
 			if ($line -match "^stdout_logfile = /dev/stdout") {
 				$line = ($line -replace "^stdout_logfile = /dev/stdout", ";stdout_logfile = /dev/stdout") + "`nstdout_logfile = tasks_stdout.log" + "`n;stdout_logfile = CON"
 			}
+			<#
+			if ($line -match "^stdout_logfile_maxbytes") {
+				$apiKeyLine = "environment=API_KEY=""" + $SIGNUM_EXPLORER_TESTNET_API_KEY + """"
+				$line = $line + "`n" + $apiKeyLine
+			}
+			#>
 		}
 		
 		if ($foundSNR) {
@@ -3070,7 +3090,7 @@ function Install-SignumExplorerTestnet {
 			-replace "^pidfile = /tmp/supervisord.pid", "pidfile = ./tmp/supervisord.pid" `
 			-replace "^chmod = 0700", ";chmod = 0700" `
 			-replace "^serverurl = unix:///tmp/supervisor.sock", "serverurl = ./tmp/supervisor.sock" `
-			-replace "^directory=.*", "directory=./" `
+			-replace "^directory=.*", "directory = ./" `
 			-replace "^command = gunicorn config.wsgi -c gunicorn.conf.py", "command = ./python.exe run_waitress.py" `
 			-replace "^command = python3 manage.py peers", "command = ./python.exe manage.py peers" `
 			-replace "^command = python3 manage.py tasks", "command = ./python.exe manage.py tasks" `
@@ -3140,6 +3160,8 @@ COINGECKO_PRICE_ID=SIGNUM
 COINGECKO_PRICE_USD=0.000
 COINGECKO_PRICE_BTC=0.000
 COINGECKO_MKT_USD=0.000
+
+COINMARKETCAP_API_KEY=$SIGNUM_EXPLORER_COINMARKETCAP_API_KEY
 
 COIN_SYMBOL=SIGNA
 ADDRESS_PREFIX=S-
@@ -3381,6 +3403,11 @@ exit
 				
 		# Write the changes back to the file
 		$content | Set-Content -Path ${SIGNUM_EXPLORER_TESTNET_UNZIP_PATH}\.env	
+
+		# TODO update database values with the new ones
+		# $SIGNUM_EXPLORER_TESTNET_NODE_READONLY_DATABASE_NAME = $global:DATABASE_NAME
+		# $SIGNUM_EXPLORER_TESTNET_NODE_READONLY_DATABASE_USERNAME = $global:DATABASE_USERNAME
+		# $SIGNUM_EXPLORER_TESTNET_NODE_READONLY_DATABASE_PASSWORD = $global:DATABASE_PASSWORD
 	}
 	
 	# TODO further setup of .env and run_waitress.py if want
@@ -3495,7 +3522,7 @@ function Install_Certbot {
 
 	# Install Certbot
 	Write-Host "Install Certbot"
-	& "${CERTBOT_PYTHON_UNZIP_PATH}\Scripts\pip.exe" install certbot
+	& "${CERTBOT_PYTHON_UNZIP_PATH}\Scripts\pip.exe" install certbot --no-warn-script-location
 	
 	# Create starter ps1
 	if (-not (Test-Path $CERTBOT_STARTER_PS1_PATH)) {
