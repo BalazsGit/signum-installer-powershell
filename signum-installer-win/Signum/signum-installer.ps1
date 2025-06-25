@@ -49,7 +49,7 @@ $SIGNUM_NODE_MAINNET_API_PORT = 8125
 # TODO ADD websocket to configuration 
 $SIGNUM_NODE_MAINNET_API_WEBSOCKET_PORT = 8126
 
-$SIGNUM_NODE_MAINNET_DATABASE_NAME = "signum-node-mainnet"
+$SIGNUM_NODE_MAINNET_DATABASE_NAME = "signum_node_mainnet"
 $SIGNUM_NODE_MAINNET_DATABASE_USERNAME = "signumuser_node_mainnet"
 $SIGNUM_NODE_MAINNET_DATABASE_PASSWORD = "signumpassword"
 
@@ -70,7 +70,7 @@ $SIGNUM_NODE_TESTNET_P2P_PORT = 7123
 $SIGNUM_NODE_TESTNET_API_PORT = 6876
 $SIGNUM_NODE_TESTNET_API_WEBSOCKET_PORT = # TODO TBD
 
-$SIGNUM_NODE_TESTNET_DATABASE_NAME = "signum-node-testnet"
+$SIGNUM_NODE_TESTNET_DATABASE_NAME = "signum_node_testnet"
 $SIGNUM_NODE_TESTNET_DATABASE_USERNAME = "signumuser_node_testnet"
 $SIGNUM_NODE_TESTNET_DATABASE_PASSWORD = "signumpassword"
 
@@ -113,7 +113,7 @@ $SIGNUM_POOL_MAINNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_MAINNET_UNZIP_PATH\${SIGN
 $SIGNUM_POOL_MAINNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_MAINNET_VERSION}/${SIGNUM_POOL_MAINNET_ZIP_NAME}"
 $SIGNUM_POOL_MAINET_PORT = 8000
 
-$SIGNUM_POOL_MAINET_DATABASE_NAME = "signum-pool-mainnet"
+$SIGNUM_POOL_MAINET_DATABASE_NAME = "signum_pool_mainnet"
 $SIGNUM_POOL_MAINET_DATABASE_USERNAME = "signumuser_pool_mainnet"
 $SIGNUM_POOL_MAINET_DATABASE_PASSWORD = "signumpassword"
 
@@ -132,7 +132,7 @@ $SIGNUM_POOL_TESTNET_STARTER_EXEC_PATH = "$SIGNUM_POOL_TESTNET_UNZIP_PATH\${SIGN
 $SIGNUM_POOL_TESTNET_URL = "https://github.com/signum-network/signum-pool/releases/download/${SIGNUM_POOL_TESTNET_VERSION}/${SIGNUM_POOL_TESTNET_ZIP_NAME}"
 $SIGNUM_POOL_TESTNET_PORT = 8001
 
-$SIGNUM_POOL_TESTNET_DATABASE_NAME = "signum-pool-testnet"
+$SIGNUM_POOL_TESTNET_DATABASE_NAME = "signum_pool_testnet"
 $SIGNUM_POOL_TESTNET_DATABASE_USERNAME = "signumuser_pool_testnet"
 $SIGNUM_POOL_TESTNET_DATABASE_PASSWORD = "signumpassword"
 
@@ -158,7 +158,7 @@ $SIGNUM_EXPLORER_MAINNET_SUPERVISOR_SATUS_PORT = 9000
 
 # $SIGNUM_EXPLORER_MAINNET_API_KEY = "your_actual_api_key_here"
 
-$SIGNUM_EXPLORER_MAINNET_DATABASE_NAME = "signum-explorer-mainnet"
+$SIGNUM_EXPLORER_MAINNET_DATABASE_NAME = "signum_explorer_mainnet"
 $SIGNUM_EXPLORER_MAINNET_DATABASE_USERNAME = "signumuser_explorer_mainnet"
 $SIGNUM_EXPLORER_MAINNET_DATABASE_PASSWORD = "signumpassword"
 
@@ -191,7 +191,7 @@ $SIGNUM_EXPLORER_TESTNET_SUPERVISOR_SATUS_PORT = 9001
 
 # $SIGNUM_EXPLORER_TESTNET_API_KEY = "your_actual_api_key_here"
 
-$SIGNUM_EXPLORER_TESTNET_DATABASE_NAME = "signum-explorer-testnet"
+$SIGNUM_EXPLORER_TESTNET_DATABASE_NAME = "signum_explorer_testnet"
 $SIGNUM_EXPLORER_TESTNET_DATABASE_USERNAME = "signumuser_explorer_testnet"
 $SIGNUM_EXPLORER_TESTNET_DATABASE_PASSWORD = "signumpassword"
 
@@ -346,7 +346,8 @@ $MARIADB_STARTER_EXEC_NAME = "start-mariadb.bat"
 $MARIADB_EXEC_NAME = "mariadb.exe"
 $MARIADBD_EXEC_NAME = "mariadbd.exe"
 $MARIADB_INSTALL_EXEC_NAME = "mysql_install_db.exe"
-$MARIADB_VERSION = "10.6.22"
+# $MARIADB_VERSION = "10.6.22"
+$MARIADB_VERSION = "10.11.13"
 $MARIADB_DIR_NAME = "MariaDB"
 $MARIADB_DIR_PATH = "${DATABASE_DIR}\${MARIADB_DIR_NAME}"
 $MARIADB_UNZIP_NAME = "mariadb-${MARIADB_VERSION}-winx64"
@@ -362,9 +363,15 @@ $MARIADB_PORT = 3306
 $MARIADB_ROOT_USER = "root"
 $MARIADB_ROOT_PASSWORD = ""
 $MARIADB_DATADIR = "./data"
-$MARIADB_INNODB_BUFFER_POOL_SIZE = "6G"
-$MARIADB_INNODB_LOG_BUFFER_SIZE = "128M"
+$MARIADB_INNODB_BUFFER_POOL_SIZE = "2G"
+$MARIADB_INNODB_LOG_BUFFER_SIZE = "256M"
 $MARIADB_CHARACTER_SET_SERVER = "UTF8"
+# $MARIADB_INNODB_BUFFER_POOL_INSTANCES = 3
+$MARIADB_INNODB_FLUSH_LOG_AT_TRX_COMMIT = "1"
+$MARIADB_MAX_ALLOWED_PACKET = "64M"
+$MARIADB_WAIT_TIMEOUT = "600"
+$MARIADB_INTERACTIVE_TIMEOUT = "600"
+$MARIADB_INNODB_FILE_PER_TABLE = "1"
 
 <#
 $DATABASE_NAME = ""
@@ -7089,7 +7096,8 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
         } else {
 			# Start MariaDB
-			.\bin\mariadbd.exe  --datadir=$MARIADB_DATADIR --port=$MARIADB_PORT --innodb-buffer-pool-size=$MARIADB_INNODB_BUFFER_POOL_SIZE --innodb-log-buffer-size=$MARIADB_INNODB_LOG_BUFFER_SIZE --character-set-server=$MARIADB_CHARACTER_SET_SERVER --console
+			# .\bin\mariadbd.exe  --datadir=$MARIADB_DATADIR --port=$MARIADB_PORT --innodb-buffer-pool-size=$MARIADB_INNODB_BUFFER_POOL_SIZE --innodb-log-buffer-size=$MARIADB_INNODB_LOG_BUFFER_SIZE --character-set-server=$MARIADB_CHARACTER_SET_SERVER --innodb-flush-log-at-commit=$MARIADB_INNODB_FLUSH_LOG_AT_COMMIT --console
+			.\bin\mariadbd.exe  --datadir=$MARIADB_DATADIR --port=$MARIADB_PORT --innodb_buffer_pool_size=$MARIADB_INNODB_BUFFER_POOL_SIZE --innodb_log_buffer_size=$MARIADB_INNODB_LOG_BUFFER_SIZE --character_set_server=$MARIADB_CHARACTER_SET_SERVER --innodb_flush_log_at_trx_commit=$MARIADB_INNODB_FLUSH_LOG_AT_TRX_COMMIT --max_allowed_packet=$MARIADB_MAX_ALLOWED_PACKET --wait_timeout=$MARIADB_WAIT_TIMEOUT --interactive_timeout=$MARIADB_INTERACTIVE_TIMEOUT --innodb_file_per_table=$MARIADB_INNODB_FILE_PER_TABLE --console
 		}
     } catch {
         Write-Host 'An error occurred while starting MariaDB: ```$_'
@@ -7413,4 +7421,5 @@ function download-prompt($name, $url, $target_path, $file) {
 # Initialize the script by showing the install menu
 # Pause
 install-doc-init
+# Pause
 Show-InstallMenu
