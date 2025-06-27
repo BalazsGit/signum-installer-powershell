@@ -349,7 +349,7 @@ $MARIADB_EXEC_NAME = "mariadb.exe"
 $MARIADBD_EXEC_NAME = "mariadbd.exe"
 $MARIADB_INSTALL_EXEC_NAME = "mysql_install_db.exe"
 # $MARIADB_VERSION = "10.6.22"
-$MARIADB_VERSION = "10.11.13"
+$MARIADB_VERSION = "11.8.2"
 $MARIADB_DIR_NAME = "MariaDB"
 $MARIADB_DIR_PATH = "${DATABASE_DIR}\${MARIADB_DIR_NAME}"
 $MARIADB_UNZIP_NAME = "mariadb-${MARIADB_VERSION}-winx64"
@@ -361,19 +361,22 @@ $MARIADB_STARTER_PS1_PATH = "${MARIADB_UNZIP_PATH}\${MARIADB_STARTER_PS1_NAME}"
 $MARIADB_STARTER_EXEC_PATH = "${MARIADB_UNZIP_PATH}\${MARIADB_STARTER_EXEC_NAME}"
 $MARIADB_URL = "https://archive.mariadb.org/mariadb-${MARIADB_VERSION}/winx64-packages/mariadb-${MARIADB_VERSION}-winx64.zip"
 
+$MARIADB_SSL = 0
+$MARIADB_HOST = "localhost"
 $MARIADB_PORT = 3306
 $MARIADB_ROOT_USER = "root"
 $MARIADB_ROOT_PASSWORD = ""
-$MARIADB_DATADIR = "./data"
+$MARIADB_DATADIR = "data"
 $MARIADB_INNODB_BUFFER_POOL_SIZE = "2G"
-$MARIADB_INNODB_LOG_BUFFER_SIZE = "256M"
+$MARIADB_INNODB_LOG_BUFFER_SIZE = "512M"
+$MARIADB_INNODB_LOG_FILE_SIZE = "512M"
 $MARIADB_CHARACTER_SET_SERVER = "UTF8"
 # $MARIADB_INNODB_BUFFER_POOL_INSTANCES = 3
 $MARIADB_INNODB_FLUSH_LOG_AT_TRX_COMMIT = "1"
-$MARIADB_MAX_ALLOWED_PACKET = "64M"
+$MARIADB_MAX_ALLOWED_PACKET = "512M"
 $MARIADB_WAIT_TIMEOUT = "600"
 $MARIADB_INTERACTIVE_TIMEOUT = "600"
-$MARIADB_INNODB_FILE_PER_TABLE = "1"
+# $MARIADB_INNODB_FILE_PER_TABLE = "1"
 
 <#
 $DATABASE_NAME = ""
@@ -1445,10 +1448,13 @@ function Install-SignumMainnet {
     # Setup MariaDB for Mainnet
 	question-prompt "Setup" "MariaDB for Signum Mainnet Node" {setup_mariadb "Signum Node Mainnet" $SIGNUM_NODE_MAINNET_DATABASE_NAME $SIGNUM_NODE_MAINNET_DATABASE_USERNAME $SIGNUM_NODE_MAINNET_DATABASE_PASSWORD}
 	
-	if ($global:UserResponse -eq "yes") {	
+	if ($global:UserResponse -eq "yes") {
 		# Update database information in node.properties
 		setup_db_node_properties ${SIGNUM_NODE_MAINNET_PROPERTIES_PATH}
 	}
+
+	# Check if node.experimental = true is within the config, if not add it
+	setup_node_properties ${SIGNUM_NODE_MAINNET_PROPERTIES_PATH}
 
 	# TODO Create start-node-v8.2.0-mariadb-v10.20.0.bat in root to start specific versions
 	# TODO start-node-node.bat should be bat and start-mariadb.bat should be bat as well and OS spacific or ps1 + ps1 executer bat
@@ -1750,9 +1756,13 @@ function Install-SignumTestnet {
 
     # Setup MariaDB for Testnet
     question-prompt "Setup" "MariaDB for Signum Testnet Node" {setup_mariadb "Signum Node Testnet" $SIGNUM_NODE_TESTNET_DATABASE_NAME $SIGNUM_NODE_TESTNET_DATABASE_USERNAME $SIGNUM_NODE_TESTNET_DATABASE_PASSWORD}
-	
-	# Update database information in node.properties
-	setup_db_node_properties ${SIGNUM_NODE_TESTNET_PROPERTIES_PATH}
+
+	if ($global:UserResponse -eq "yes") {
+		# Update database information in node.properties
+		setup_db_node_properties ${SIGNUM_NODE_TESTNET_PROPERTIES_PATH}
+	}
+
+	setup_node_properties ${SIGNUM_NODE_TESTNET_PROPERTIES_PATH}
 
     Write-Host "Signum Testnet Node Installation complete."
     # Pause
@@ -7060,8 +7070,8 @@ function install_mariadb {
         Expand-Archive -Path "$MARIADB_ZIP_PATH" -DestinationPath "$MARIADB_DIR_PATH" -Force
     }
 
-    if (-not (Test-Path "${MARIADB_UNZIP_PATH}\data")) {
-        New-Item -ItemType Directory -Force -Path "${MARIADB_UNZIP_PATH}\data" | Out-Null
+    if (-not (Test-Path "${MARIADB_UNZIP_PATH}\$MARIADB_DATADIR")) {
+        New-Item -ItemType Directory -Force -Path "${MARIADB_UNZIP_PATH}\$MARIADB_DATADIR" | Out-Null
         Write-Host "Initializing MariaDB data directory ..."
         & "${MARIADB_BIN_PATH}\${MARIADB_INSTALL_EXEC_NAME}"
     } else {
@@ -7069,6 +7079,22 @@ function install_mariadb {
     }
 
     if (-not (Test-Path $MARIADB_STARTER_PS1_PATH)) {
+
+		$start_mariadb_command = @(
+			".\bin\mariadbd.exe",
+			"--datadir=./$MARIADB_DATADIR",
+			"--port=$MARIADB_PORT",
+			"--innodb_buffer_pool_size=$MARIADB_INNODB_BUFFER_POOL_SIZE",
+			"--innodb_log_buffer_size=$MARIADB_INNODB_LOG_BUFFER_SIZE",
+			"--max_allowed_packet=$MARIADB_MAX_ALLOWED_PACKET",
+			"--character_set_server=$MARIADB_CHARACTER_SET_SERVER",
+			"--innodb_flush_log_at_trx_commit=$MARIADB_INNODB_FLUSH_LOG_AT_TRX_COMMIT",
+			"--innodb_log_file_size=$MARIADB_INNODB_LOG_FILE_SIZE",
+			"--wait_timeout=$MARIADB_WAIT_TIMEOUT",
+			"--interactive_timeout=$MARIADB_INTERACTIVE_TIMEOUT",
+			"--console"
+		) -join ' '
+
         $content = 
 @"
 # PowerShell script to start MariaDB
@@ -7098,8 +7124,8 @@ Start-Process -FilePath "..\..\..\${POWERSHELL_EXEC_PATH}" ``
 			exit
         } else {
 			# Start MariaDB
-			# .\bin\mariadbd.exe  --datadir=$MARIADB_DATADIR --port=$MARIADB_PORT --innodb-buffer-pool-size=$MARIADB_INNODB_BUFFER_POOL_SIZE --innodb-log-buffer-size=$MARIADB_INNODB_LOG_BUFFER_SIZE --character-set-server=$MARIADB_CHARACTER_SET_SERVER --innodb-flush-log-at-commit=$MARIADB_INNODB_FLUSH_LOG_AT_COMMIT --console
-			.\bin\mariadbd.exe  --datadir=$MARIADB_DATADIR --port=$MARIADB_PORT --innodb_buffer_pool_size=$MARIADB_INNODB_BUFFER_POOL_SIZE --innodb_log_buffer_size=$MARIADB_INNODB_LOG_BUFFER_SIZE --character_set_server=$MARIADB_CHARACTER_SET_SERVER --innodb_flush_log_at_trx_commit=$MARIADB_INNODB_FLUSH_LOG_AT_TRX_COMMIT --max_allowed_packet=$MARIADB_MAX_ALLOWED_PACKET --wait_timeout=$MARIADB_WAIT_TIMEOUT --interactive_timeout=$MARIADB_INTERACTIVE_TIMEOUT --innodb_file_per_table=$MARIADB_INNODB_FILE_PER_TABLE --console
+			# .\bin\mariadbd.exe --datadir=$MARIADB_DATADIR --port=$MARIADB_PORT --innodb-buffer-pool-size=$MARIADB_INNODB_BUFFER_POOL_SIZE --innodb-log-buffer-size=$MARIADB_INNODB_LOG_BUFFER_SIZE --character-set-server=$MARIADB_CHARACTER_SET_SERVER --innodb-flush-log-at-commit=$MARIADB_INNODB_FLUSH_LOG_AT_COMMIT --console
+			$start_mariadb_command
 		}
     } catch {
         Write-Host 'An error occurred while starting MariaDB: ```$_'
@@ -7158,16 +7184,16 @@ function setup_mariadb ($name, $database, $user, $password) {
 
     Write-Host "Creating database: ${DATABASE_NAME}"
 	$createDatabaseQuery = "CREATE DATABASE IF NOT EXISTS ``${DATABASE_NAME}``;"
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $createDatabaseQuery
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --ssl=$MARIADB_SSL --host=$MARIADB_HOST --port=$MARIADB_PORT --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $createDatabaseQuery
 
     Write-Host "Creating user: ${DATABASE_USERNAME}"
 	$createUserQuery = "CREATE USER IF NOT EXISTS '${DATABASE_USERNAME}'@'localhost' IDENTIFIED BY '${DATABASE_PASSWORD}';"
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $createUserQuery
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --ssl=$MARIADB_SSL --host=$MARIADB_HOST --port=$MARIADB_PORT --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $createUserQuery
 
     Write-Host "Granting permissions to user ${DATABASE_USERNAME} on database ${DATABASE_NAME} ..."
 	$grantPermissionsQuery = "GRANT ALL PRIVILEGES ON ``${DATABASE_NAME}``.* TO '${DATABASE_USERNAME}'@'localhost';"
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $grantPermissionsQuery
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --ssl=$MARIADB_SSL --host=$MARIADB_HOST --port=$MARIADB_PORT --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $grantPermissionsQuery
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --ssl=$MARIADB_SSL --host=$MARIADB_HOST --port=$MARIADB_PORT --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
 
 	$global:DATABASE_NAME = $DATABASE_NAME
 	$global:DATABASE_USERNAME = $DATABASE_USERNAME
@@ -7210,11 +7236,11 @@ function setup_mariadb_readonly ($name, $database, $user, $password) {
 
     Write-Host "Creating user: ${DATABASE_USERNAME}"
 	$createUserQuery = "CREATE USER IF NOT EXISTS '${DATABASE_USERNAME}'@'localhost' IDENTIFIED BY '${DATABASE_PASSWORD}';"
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $createUserQuery
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --ssl=$MARIADB_SSL --host=$MARIADB_HOST --port=$MARIADB_PORT --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $createUserQuery
 
     Write-Host "Granting permissions to user ${DATABASE_USERNAME} on database ${DATABASE_NAME} ..."
 	$grantPermissionsQuery = "GRANT SELECT, SHOW VIEW ON ``${DATABASE_NAME}``.* TO '${DATABASE_USERNAME}'@'localhost';"
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $grantPermissionsQuery
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --ssl=$MARIADB_SSL --host=$MARIADB_HOST --port=$MARIADB_PORT --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $grantPermissionsQuery
 
 <#
 	# Indexing
@@ -7231,7 +7257,7 @@ CREATE INDEX account_latest ON account(latest);
 	& "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e $sqlCommands
 #>	
 	
-    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
+    & "${MARIADB_BIN_PATH}\${MARIADB_EXEC_NAME}" --ssl=$MARIADB_SSL --host=$MARIADB_HOST --port=$MARIADB_PORT --user=$MARIADB_ROOT_USER --password=$MARIADB_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
 
 	$global:DATABASE_NAME = $DATABASE_NAME
 	$global:DATABASE_USERNAME = $DATABASE_USERNAME
@@ -7356,6 +7382,34 @@ function setup_db_node_properties($file) {
         -replace '# DB.Password=.*', "DB.Password=${DATABASE_PASSWORD}" | Set-Content -Path $file
 	#>
     Write-Host "Update complete."
+	
+}
+
+function setup_node_properties($file) {
+	
+	$content = Get-Content -Path $file
+	$match_node_experimental = $false
+	
+		for ($i = 0; $i -lt $content.Count; $i++) {
+
+			# Get the current line
+			$line = $content[$i]
+
+			if ($content[$i] -match 'node.experimental = true') {
+				$match_node_experimental = $true
+			}
+
+		}
+
+		if ($match_node_experimental -eq $false) {
+			Write-Host "Updating node.properties with node.experimental = true"
+			$content += "node.experimental = true"
+		} else {
+			Write-Host "node.experimental already set to true"
+		}
+
+	# Write the changes back to the file
+	$content | Set-Content -Path ${file}
 	
 }
 
